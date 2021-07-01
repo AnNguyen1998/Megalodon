@@ -53,6 +53,20 @@ public class LoginControllerController {
 		}
 		return "shop/shop-3";
 	}
-	
+	@PostMapping("/regis")
+	public String savecustomer(@Validated @ModelAttribute("user")Users user,ModelMap model,@RequestParam(required = false) String pre_password,BindingResult rs) {
+		if(!pre_password.equalsIgnoreCase(user.getPasswordUsers())) {
+			model.addAttribute("message","");
+			return "shop/shop-3";
+		}else {
+			Role role=new Role();
+			role.setIdRole(3);
+			user.setRole(role);
+			user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
+		userservice.save(user);
+		model.addAttribute(user);
+		return "shop/shop-3";
+		}
+	}
 }
 
