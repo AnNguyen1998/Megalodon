@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <link rel="shortcut icon" th:href="@{../assets/images/favicon.ico}">
+
+    <title>Megalodon Shop</title>
+
+
+    <!-- App css -->
+    <link th:href="@{../assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/core.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/components.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/icons.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/pages.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/menu.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/responsive.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{../plugins/switchery/switchery.min.css}">
+
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="../assets/js/modernizr.min.js"></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation Bar-->
+    <header id="topnav">
+        <div class="topbar-main">
+            <div class="container">
+
+                <!-- Logo container-->
+                <div class="logo">
+                    <!-- Text Logo -->
+                    <!--<a href="index.html" class="logo">-->
+                    <!--Zircos-->
+                    <!--</a>-->
+                    <!-- Image Logo -->
+                    <a href="index.html" class="logo">
+                        <img th:src="@{../assets/images/logo.png}" alt="" height="30">
+                    </a>
+
+                </div>
+                <!-- End Logo container-->
+
+
+                <div class="menu-extras">
+
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                        <li class="navbar-c-items">
+                            <form role="search" class="navbar-left app-search pull-left hidden-xs">
+                                <input type="text" placeholder="Search..." class="form-control">
+                                <a href=""><i class="fa fa-search"></i></a>
+                            </form>
+                        </li>
+
+                        <li class="dropdown navbar-c-items">
+                            <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
+                                <i class="mdi mdi-email"></i>
+                                <span class="badge up bg-danger">8</span>
+                            </a>
+
+                            <ul
+                                class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
+                                <li class="text-center">
+                                    <h5>Messages</h5>
+                                </li>
+                                <li>
+                                    <a href="#" class="user-list-item">
+                                        <div class="avatar">
+                                            <img th:src="@{../assets/images/users/avatar-2.jpg}" alt="">
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">Patricia Beach</span>
+                                            <span class="desc">There are new settings available</span>
+                                            <span class="time">2 hours ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="user-list-item">
+                                        <div class="avatar">
+                                            <img th:src="@{../assets/images/users/avatar-3.jpg}" alt="">
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">Connie Lucas</span>
+                                            <span class="desc">There are new settings available</span>
+                                            <span class="time">2 hours ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="user-list-item">
+                                        <div class="avatar">
+                                            <img th:src="@{../assets/images/users/avatar-4.jpg}" alt="">
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">Margaret Becker</span>
+                                            <span class="desc">There are new settings available</span>
+                                            <span class="time">2 hours ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="all-msgs text-center">
+                                    <p class="m-0"><a href="#">See all Messages</a></p>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown navbar-c-items">
+                            <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
+                                <i class="mdi mdi-bell"></i>
+                                <span class="badge up bg-success">4</span>
+                            </a>
+
+                            <ul
+                                class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
+                                <li class="text-center">
+                                    <h5>Notifications</h5>
+                                </li>
+                                <li>
+                                    <a href="#" class="user-list-item">
+                                        <div class="icon bg-info">
+                                            <i class="mdi mdi-account"></i>
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">New Signup</span>
+                                            <span class="time">5 hours ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="user-list-item">
+                                        <div class="icon bg-danger">
+                                            <i class="mdi mdi-comment"></i>
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">New Message received</span>
+                                            <span class="time">1 day ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="user-list-item">
+                                        <div class="icon bg-warning">
+                                            <i class="mdi mdi-settings"></i>
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">Settings</span>
+                                            <span class="time">1 day ago</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="all-msgs text-center">
+                                    <p class="m-0"><a href="#">See all Notification</a></p>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown navbar-c-items">
+                            <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
+                                aria-expanded="true"><img th:src="@{../assets/images/users/avatar-1.jpg}" alt="user-img"
+                                    class="img-circle"> </a>
+                            <ul
+                                class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+                                <li class="text-center">
+                                    <h5>Hi, John</h5>
+                                </li>
+                                <li><a href="javascript:void(0)"><i class="ti-user m-r-5"></i> Profile</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-settings m-r-5"></i> Settings</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+                <!-- end menu-extras -->
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end topbar-main -->
+
+        <div class="navbar-custom">
+            <div class="container">
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-layers"></i>Game Manager</a>
+                            <ul class="submenu megamenu">
+                                <li>
+                                    <ul>
+                                        <li>
+                                            <span>Game</span>
+                                        </li>
+                                        <li><a href="#">List Game</a></li>
+                                        <li><a href="#">Add Game</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-layers"></i>User Manager</a>
+                            <ul class="submenu megamenu">
+                                <li>
+                                    <ul>
+                                        <li>
+                                            <span>User</span>
+                                        </li>
+                                        <li><a href="#">List Customer</a></li>
+                                        <li><a href="#">Users</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-layers"></i>Blog Manager</a>
+                            <ul class="submenu megamenu">
+                                <li>
+                                    <ul>
+                                        <li>
+                                            <span>Blog</span>
+                                        </li>
+                                        <li><a href="#">Dashboard Blog</a></li>
+                                        <li><a href="#">Add Blog</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-layers"></i>SlideShow</a>
+                    </ul>
+                    </li>
+                    </ul>
+                    <!-- End navigation menu -->
+                </div> <!-- end #navigation -->
+            </div> <!-- end container -->
+        </div> <!-- end navbar-custom -->
+    </header>
+    <!-- End Navigation Bar-->
+
+
+    <div class="wrapper">
+        <div class="container">
+
+
+            <!-- infor User -->
+
+            <div class="row" style="display: flex; justify-content: center;">
+
+
+                <div class="col-sm-12 col-xs-12 col-md-6">
+                    <div class="card-box">
+                        <h4 class="header-title m-t-0">INFORMATION USER</h4>
+                        <div class="row">
+                            <form action="admin" method="post" v-on:submit.prevent="postUser" data-parsley-validate
+                                novalidate>
+                                <div class="form-group">
+
+
+                                    <p class="text-muted font-13 m-b-15 m-t-20">Role</p>
+                                    <div class="radio radio-info radio-inline">
+                                        <input type="radio" id="inlineRadio1" value="1" name="role" v-model="role_id">
+                                        <label for="inlineRadio1"> Admin </label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input type="radio" id="inlineRadio2" value="2" name="role" v-model="role_id">
+                                        <label for="inlineRadio2"> Employee </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="userName">Username<span class="text-danger">*</span></label>
+                                    <input type="text" name="usernameUsers" parsley-trigger="change" required
+                                        placeholder="Enter Username" class="form-control" id="userName"
+                                        v-model="usernameUsers_">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userName">Full Name<span class="text-danger">*</span></label>
+                                    <input type="text" name="nameUsers" parsley-trigger="change" required
+                                        placeholder="Enter your name" class="form-control" id="FullName"
+                                        v-model="nameUsers_">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="emailAddress">Date<span class="text-danger">*</span></label>
+
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" id="" name="dateOfBirthday"
+                                            v-model="dateOfBirthday_">
+                                        <input type="hidden" class="form-control" id="" name="idUsers"
+                                            v-model="idUsers_">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Phone">Phone<span class="text-danger">*</span></label>
+                                        <input type="text" name="phoneUsers" parsley-trigger="change" required
+                                            placeholder="Enter Your Phone" class="form-control" id="Phone"
+                                            v-model="phoneUsers_">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passWord2">Email<span class="text-danger">*</span></label>
+                                        <input type="email" name="email_users" parsley-trigger="change" required
+                                            placeholder="Enter Your Email" class="form-control" id="Email"
+                                            v-model="emailUsers_">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Address">Address<span class="text-danger">*</span></label>
+                                        <input type="text" name="addressUsers" parsley-trigger="change" required
+                                            placeholder="Enter Address" class="form-control" id="Address"
+                                            v-model="addressUsers_">
+                                    </div>
+
+                                    <div class="form-group text-right m-b-0">
+                                        <input class="btn btn-primary " type="submit" id="save" value="Create/Edit">
+
+
+
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end infor User -->
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel">
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="m-b-30">
+                                        <h4 class="header-title m-t-0">LIST USERS</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="m-b-30">
+                                        <form>
+                                            <input name="nameuser" type="text" id="search-input"
+                                                class="form-control product-search"
+                                                placeholder="Input Name want to Search here ..." v-model="search">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <table class="table table-striped add-edit-table table-bordered"
+                                    id="datatable-editable">
+                                    <thead>
+                                        <tr>
+                                            <th>UserName</th>
+                                            <th>Full Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Role</th>
+
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr class="gradeX" v-for="u in filteredUsers" >
+                                            <td>{{u.usernameUsers}}</td>
+                                            <td>{{u.nameUsers}}</td>
+                                            <td>{{u.emailUsers}}</td>
+                                            <td>{{u.phoneUsers}}</td>
+                                            <td>{{u.role.nameRole}}</td>
+
+                                            <td class="actions">
+                                                <a v-on:click="editUser(u)"><i class="fa fa-pencil"></i></a>
+                                                <a v-on:click="deleteUser(u)"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end: page -->
+
+                    </div> <!-- end Panel -->
+
+                </div>
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="footer text-right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            © 2016 - 2018 Zircos.
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Footer -->
+
+            <!-- Footer -->
+            <footer class="footer text-right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            © 2016 - 2018 Zircos.
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Footer -->
+
+        </div>
+    </div>
+    <!-- jQuery  -->
+    <script th:src="@{../assets/js/jquery.min.js}"></script>
+    <script th:src="@{../assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{../assets/js/detect.js}"></script>
+    <script th:src="@{../assets/js/fastclick.js}"></script>
+    <script th:src="@{../assets/js/jquery.blockUI.js}"></script>
+    <script th:src="@{../assets/js/waves.js}"></script>
+    <script th:src="@{../assets/js/jquery.slimscroll.js}"></script>
+    <script th:src="@{../assets/js/jquery.scrollTo.min.js}"></script>
+    <script th:src="@{../plugins/switchery/switchery.min.js}"></script>
+
+    <!-- Counter js  -->
+    <script th:src="@{../plugins/waypoints/jquery.waypoints.min.js}"></script>
+    <script th:src="@{../plugins/counterup/jquery.counterup.min.js}"></script>
+
+
+    <!-- App js -->
+    <script th:src="@{../assets/js/jquery.core.js}"></script>
+    <script th:src="@{../assets/js/jquery.app.js}"></script>
+
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://vuejs.org/js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '.wrapper',
+        data() {
+            return {
+                users: [],
+                idUsers_: '',
+                nameUsers_: '',
+                usernameUsers_: '',
+                emailUsers_: '',
+                phoneUsers_: '',
+                addressUsers_: '',
+                role_id: '',
+                dateOfBirthday_: '',
+                passwordUsers_: '',
+                imageUsers_: '',
+                nameuser_: '',
+                search: '',
+            }
+        },
+
+        mounted() {
+            this.fetchUser();
+        },
+        methods: {
+            fetchUser: function () {
+                axios.get("http://localhost:8080/api/user").then(response => (
+                    this.users = response.data))
+            },
+
+            postUser: function (event) {
+                // Creating
+                if (this.idUsers_ == '' || this.idUsers_ == null) {
+                    axios
+                        .post("http://localhost:8080/api/adduser", {
+                            "nameUsers": this.nameUsers_,
+                            "emailUsers": this.emailUsers_,
+                            "usernameUsers": this.usernameUsers_,
+                            "phoneUsers": this.phoneUsers_,
+                            "addressUsers": this.addressUsers_,
+                            "role": {
+                                "idRole": this.role_id,
+
+                            },
+                            "dateOfBirthday": this.dateOfBirthday_,
+                            "passwordUsers": this.passwordUsers_,
+                            "imageUsers": this.imageUsers_,
+                        })
+                        .then(savedRole => {
+                            this.users.push(savedRole.data);
+                            this.emailUsers_ = '';
+                            this.usernameUsers_ = '';
+                            this.nameUsers_ = '';
+                            this.phoneUsers_ = '';
+                            this.idUsers_ = '';
+                            this.addressUsers_ = '';
+                            this.role_ = '';
+                            this.dateOfBirthday_ = '';
+                            this.passwordUsers_ = '';
+                            this.imageUsers_ = '';
+                            this.fetchUser();
+                        })
+                } else { // Updating
+                    axios
+                        .post("http://localhost:8080/api/adduser", {
+                            "idUsers": this.idUsers_,
+                            "nameUsers": this.nameUsers_,
+                            "emailUsers": this.emailUsers_,
+                            "usernameUsers": this.usernameUsers_,
+                            "phoneUsers": this.phoneUsers_,
+                            "addressUsers": this.addressUsers_,
+                            "role": {
+                                "idRole": this.role_id,
+
+                            },
+                            "dateOfBirthday": this.dateOfBirthday_,
+                            "passwordUsers": this.passwordUsers_,
+                            "imageUsers": this.imageUsers_,
+                        })
+                        .then(savedUser => {
+                            this.fetchUser();
+                            this.emailUsers_ = '';
+                            this.usernameUsers_ = '';
+                            this.nameUsers_ = '';
+                            this.idUsers_ = '';
+                            this.phoneUsers_ = '';
+                            this.addressUsers_ = '';
+                            this.role_ = '';
+                            this.dateOfBirthday_ = '';
+                            this.passwordUsers_ = '';
+                            this.imageUsers_ = '';
+                        })
+                }
+            },
+            editUser: function (u) {
+                this.idUsers_ = u.idUsers;
+                this.nameUsers_ = u.nameUsers;
+                this.emailUsers_ = u.emailUsers;
+                this.usernameUsers_ = u.usernameUsers;
+                this.phoneUsers_ = u.phoneUsers;
+                this.addressUsers_ = u.addressUsers;
+                this.role_id = u.role.idRole;
+                this.dateOfBirthday_ = u.dateOfBirthday;
+                this.passwordUsers_ = u.passwordUsers;
+                this.imageUsers_ = u.imageUsers;
+
+
+            },
+            deleteUser: async function (id) {
+                await axios
+                    .delete("http://localhost:8080/api/delete/" + id.idUsers);
+                this.fetchUser();
+            },
+        },
+       computed: {
+			filteredUsers: function (){
+				return this.users.filter((u)=>{
+					return u.nameUsers.toLowerCase().match(this.search.toLowerCase());
+					})	
+			}	
+        }, 
+
+    })
+
+
+</script>
+
+</html>
