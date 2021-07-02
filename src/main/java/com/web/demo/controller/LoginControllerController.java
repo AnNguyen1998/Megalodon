@@ -1,6 +1,7 @@
 package com.web.demo.controller;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,56 +18,73 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import com.web.demo.config.WebUtils;
 import com.web.demo.entity.Role;
 import com.web.demo.entity.Users;
-import com.web.demo.service.UserService;
+import com.web.demo.service.UserServiceSon;
 
 @Controller
 public class LoginControllerController {
 	@Autowired
-	UserService userservice;
+	UserServiceSon userservice;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	//Login
+	// Login
 	@GetMapping("/shop")
-	public String game(Model model,Principal principal ,@RequestParam(required = false) String message) {
-		//Regis
-		model.addAttribute("user",new Users());
-		
+	public String game(Model model, Principal principal, @RequestParam(required = false) String message) {
+		// Regis
+		model.addAttribute("user", new Users());
+
 		//
 		if (message != null && !message.isEmpty()) {
-	        if (message.equals("logout")) {
-	          model.addAttribute("message", "Logout!");
-	        }
-	        if (message.equals("error")) {
-	          model.addAttribute("message", "Login Failed!");
-	        }
-	      }
+			if (message.equals("logout")) {
+				model.addAttribute("message", "Logout!");
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");
+			}
+			
+		}
 		System.out.println(message);
-		if(principal != null) {
-		User loginedUser = (User) ((Authentication) principal).getPrincipal();
-		String userInfo=WebUtils.toString(loginedUser);
-		model.addAttribute("userInfo", userInfo);
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			String userInfo = WebUtils.toString(loginedUser);
+			model.addAttribute("userInfo", userInfo);
 		}
 		return "shop/shop-3";
 	}
+
+	
+
 	@PostMapping("/regis")
-	public String savecustomer(@Validated @ModelAttribute("user")Users user,ModelMap model,@RequestParam(required = false) String pre_password,BindingResult rs) {
-		if(!pre_password.equalsIgnoreCase(user.getPasswordUsers())) {
-			model.addAttribute("message","");
+	public String savecustomer(@Validated @ModelAttribute("user") Users user, ModelMap model,
+			@RequestParam(required = false) String pre_password, BindingResult rs) {
+		Optional<Users> userbyusername = userservice.findByUsernameUsers(user.getUsernameUsers());
+		Optional<Users> userbyemail = userservice.findByEmailUsers(user.getEmailUsers());
+		if(rs.hasErrors()) {
+			model.addAttribute("user",user);
 			return "shop/shop-3";
-		}else {
-			Role role=new Role();
+		}
+		if (userbyusername.isPresent()) {
+			model.addAttribute("message2", "Username already exists");
+			return "shop/shop-3";
+		}
+		if (userbyemail.isPresent()) {
+			model.addAttribute("message2", "Email already exists");
+			return "shop/shop-3";
+		}
+		if (!pre_password.equalsIgnoreCase(user.getPasswordUsers())) {
+			model.addAttribute("message2", "Password not match");
+			return "shop/shop-3";
+		} else {
+			Role role = new Role();
 			role.setIdRole(3);
 			user.setRole(role);
 			user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
-		userservice.save(user);
-		model.addAttribute(user);
-		return "shop/shop-3";
+			userservice.save(user);
+			model.addAttribute(user);
+			return "redirect:/shop";
 		}
 	}
 }
-
