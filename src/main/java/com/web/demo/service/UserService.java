@@ -14,4 +14,8 @@ public interface UserService {
 
 	Users findByusernameUsers(String username);
 
+
+
+	Optional<Users> findByUsernameUsers(String usernameUsers);
+
 }

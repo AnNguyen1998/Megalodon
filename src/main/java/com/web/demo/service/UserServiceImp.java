@@ -14,6 +14,10 @@ public class UserServiceImp implements UserService {
 	
 	
  @Override
+public Optional<Users> findByUsernameUsers(String usernameUsers) {
+		return usersRepository.findByUsernameUsers(usernameUsers);
+	}
+@Override
 public Users findByusernameUsers(String username) {
 		return usersRepository.findByusernameUsers(username);
 	}

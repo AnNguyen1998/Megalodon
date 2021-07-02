@@ -62,13 +62,16 @@ public class LoginControllerSon {
 	@PostMapping("/regis")
 	public String savecustomer(@Validated @ModelAttribute("user") Users user, ModelMap model,
 			@RequestParam(required = false) String pre_password, BindingResult rs) {
-		
+		Optional<Users> userbyusername = userservice.findByUsernameUsers(user.getUsernameUsers());
 		Optional<Users> userbyemail = userservice.findByEmailUsers(user.getEmailUsers());
 		if(rs.hasErrors()) {
 			model.addAttribute("user",user);
 			return "shop/shop-3";
 		}
-		
+		if (userbyusername.isPresent()) {
+			model.addAttribute("message2", "Username already exists");
+			return "shop/shop-3";
+		}
 		if (userbyemail.isPresent()) {
 			model.addAttribute("message2", "Email already exists");
 			return "shop/shop-3";
