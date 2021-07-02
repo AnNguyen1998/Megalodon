@@ -1,33 +1,35 @@
 package com.web.demo.service;
-/**
- * @author NguyenHuuSon
- */
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.Users;
-import com.web.demo.repository.UsersRepositorySon;
+import com.web.demo.repository.UsersRepository;
 
 @Service
-public class UserServiceSonImp implements UserServiceSon {
+public class UserServiceImp implements UserService {
 	
 	
 	
  @Override
+public Optional<Users> findByUsernameUsers(String usernameUsers) {
+		return usersRepository.findByUsernameUsers(usernameUsers);
+	}
+@Override
+public Users findByusernameUsers(String username) {
+		return usersRepository.findByusernameUsers(username);
+	}
+@Override
 public <S extends Users> S save(S entity) {
 		return usersRepository.save(entity);
 	}
 
 @Autowired
-UsersRepositorySon usersRepository;
+UsersRepository usersRepository;
 
-@Override
-public Optional<Users> findByUsernameUsers(String username) {
-	// TODO Auto-generated method stub
-	return usersRepository.findByUsernameUsers(username);
-}
+
 
 @Override
 public Optional<Users> findByEmailUsers(String emailUsers) {

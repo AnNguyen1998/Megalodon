@@ -1,7 +1,5 @@
 package com.web.demo.config;
-/**
- * @author NguyenHuuSon
- */
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -16,7 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.web.demo.service.UserServiceSon;
+import com.web.demo.service.UserService;
  
 @Component
 public class CustomizeAuthenticationSuccessHandler implements AuthenticationSuccessHandler {

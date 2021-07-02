@@ -2,6 +2,8 @@ package com.web.demo.entity;
 // Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,14 +34,9 @@ public class TokenUser implements java.io.Serializable {
 
 	public TokenUser(Users users) {
 		this.users = users;
+		date =new Date();
+		valueTokenUsers=UUID.randomUUID().toString();
 	}
-
-	public TokenUser(Users users, String valueTokenUsers, Date date) {
-		this.users = users;
-		this.valueTokenUsers = valueTokenUsers;
-		this.date = date;
-	}
-
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -51,7 +49,7 @@ public class TokenUser implements java.io.Serializable {
 		this.idTokenUsers = idTokenUsers;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Id_users", nullable = false)
 	public Users getUsers() {
 		return this.users;

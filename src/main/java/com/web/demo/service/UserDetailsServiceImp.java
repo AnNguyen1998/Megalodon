@@ -1,7 +1,5 @@
 package com.web.demo.service;
-/**
- * @author NguyenHuuSon
- */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +16,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.web.demo.entity.Users;
-import com.web.demo.repository.UsersRepositorySon;
+import com.web.demo.repository.UsersRepository;
 
 
 
 @Service
 public class UserDetailsServiceImp implements UserDetailsService{
 	@Autowired
-	private UsersRepositorySon usersRepository;
+	private UsersRepository usersRepository;
 	
 	
 	@Override
