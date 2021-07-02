@@ -1,5 +1,7 @@
 package com.web.demo.config;
-
+/**
+ * @author NguyenHuuSon
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,10 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  		
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
 		http
 				.authorizeRequests()
 				.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('EMPLOYEE')");
-		
+			
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/");
 		http.authorizeRequests().and()
 				.formLogin().successHandler(customizeAuthenticationSuccessHandler)

@@ -2002,7 +2002,7 @@ height:100vh;display:flex;justify-content:center;align-items:center;">
 					</div>
 					<div class="main-caption text-center color-type-2">
 						<h2 class="h2 tt">log in</h2>
-						<h4 style="color: red;"  class="h4 tt" th:utext="${message}"></h4>
+						<h4 style="color: red;"  class="h4 tt" th:utext="${messageL}"></h4>
 						<script type="text/javascript">
 							var input = document.querySelector('#input-message');
 							/* input.addEventListener('change', function(){
@@ -2114,24 +2114,45 @@ height:100vh;display:flex;justify-content:center;align-items:center;">
 					</div>
 					<div class="main-caption text-center color-type-2">
 						<h2 class="h2 tt">register</h2>
+							<h4 style="color: red;"  class="h4 tt" th:utext="${message2}"></h4>
+						<script type="text/javascript">
+							var input = document.querySelector('#input-message');
+							/* input.addEventListener('change', function(){
+								if(input.value){
+									document.body.classList.add('overflow');
+									var popup = document.querySelector('.popup');
+									console.log(popup)
+									popup.classList.add('active');
+								}
+							}); */
+							var message="[[${message2}]]";
+							if(message){
+								document.body.classList.add('overflow');
+								var popup = document.querySelector('.index-popup-register');
+								popup.classList.add('active');
+							}
+							</script>
 					</div>
 					<div class="empty-sm-30 empty-xs-30"></div>
 					<form th:action="@{/regis}" th:object="${user}" method="post">
 						<div class="input-field-wrap">
-							<input type="text" th:field="*{emailUsers}" class="input-field" placeholder="Your name"
+							<input type="text" th:field="*{nameUsers}" class="input-field" placeholder="Your name"
 								name="name" >
+								
 							<div class="focus"></div>
 						</div>
 						<div class="empty-sm-15 empty-xs-15"></div>
 						<div class="input-field-wrap">
 							<input type="email" th:field="*{emailUsers}" class="input-field" placeholder="Your email"
 								name="email" required="">
+								<span th:if="${#fields.hasErrors('emailUsers')}"
+												th:errors="*{emailUsers}" style="color: red" th:class="${#fields.hasErrors('emailUsers')}? error"></span>
 							<div class="focus"></div>
 						</div>
 						<div class="empty-sm-15 empty-xs-15"></div>
 						<div class="input-field-wrap">
 							<input type="text" th:field="*{usernameUsers}" class="input-field" placeholder="Your Username"
-								name="email" required="">
+								name="email" required="required">
 							<div class="focus"></div>
 						</div>
 						<div class="empty-sm-15 empty-xs-15"></div>

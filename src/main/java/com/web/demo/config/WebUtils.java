@@ -1,5 +1,7 @@
 package com.web.demo.config;
- 
+ /**
+  * @author NguyenHuuSon
+  */
 import java.util.Collection;
  
 import org.springframework.security.core.GrantedAuthority;
