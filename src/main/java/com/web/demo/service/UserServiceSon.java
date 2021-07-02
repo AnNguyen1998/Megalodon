@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.web.demo.entity.Users;
 
-public interface UserService {
+public interface UserServiceSon {
 
 	<S extends Users> S save(S entity);
 
