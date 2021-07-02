@@ -4,6 +4,8 @@ package com.web.demo.service;
  */
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.Users;
@@ -11,7 +13,8 @@ import com.web.demo.repository.AdminUserRepoAn;
 
 @Service
 public class AdminUserServiceImpAn implements AdminUserServiceAn {
-
+	@Autowired
+	PasswordEncoder pass;
 	@Override
 	public void deleteById(Integer id) {
 		user.deleteById(id);
@@ -31,8 +34,22 @@ public class AdminUserServiceImpAn implements AdminUserServiceAn {
 	}
 
 	@Override
-	public <S extends Users> S save(S entity) {
-		return user.save(entity);
+	public <S extends Users> Users save(S entity) {
+		Users usernew=new Users();
+		usernew.setIdUsers(entity.getIdUsers());
+		usernew.setNameUsers(entity.getNameUsers());
+		usernew.setUsernameUsers(entity.getUsernameUsers());
+		usernew.setPasswordUsers(pass.encode(entity.getPasswordUsers()));
+		usernew.setEmailUsers(entity.getEmailUsers());
+		usernew.setPhoneUsers(entity.getPhoneUsers());
+		usernew.setImageUsers(entity.getImageUsers());
+		usernew.setAddressUsers(entity.getAddressUsers());
+		usernew.setDateOfBirthday(entity.getDateOfBirthday());
+		usernew.setGender(entity.getGender());
+		usernew.setRole(entity.getRole());
+		usernew.setStatus(entity.getStatus());
+				
+		return user.save(usernew);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public interface AdminUserServiceAn {
 	
 	List<Users> findAll();
 
-	<S extends Users> S save(S entity);
+	<S extends Users> Users save(S entity);
 
 	Users getById(Integer id);
 
