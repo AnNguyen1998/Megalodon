@@ -78,10 +78,10 @@ public class CommentGame implements java.io.Serializable {
 		this.contentCommentGame = contentCommentGame;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commentGame")
-	public Set<ReplyCommentGame> getReplyCommentGames() {
-		return this.replyCommentGames;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commentGame")
+//	public Set<ReplyCommentGame> getReplyCommentGames() {
+//		return this.replyCommentGames;
+//	}
 
 	public void setReplyCommentGames(Set<ReplyCommentGame> replyCommentGames) {
 		this.replyCommentGames = replyCommentGames;

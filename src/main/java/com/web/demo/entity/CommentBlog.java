@@ -95,10 +95,10 @@ public class CommentBlog implements java.io.Serializable {
 		this.nameUser = nameUser;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commentBlog")
-	public Set<ReplyCommentBlog> getReplyCommentBlogs() {
-		return this.replyCommentBlogs;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commentBlog")
+//	public Set<ReplyCommentBlog> getReplyCommentBlogs() {
+//		return this.replyCommentBlogs;
+//	}
 
 	public void setReplyCommentBlogs(Set<ReplyCommentBlog> replyCommentBlogs) {
 		this.replyCommentBlogs = replyCommentBlogs;

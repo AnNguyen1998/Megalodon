@@ -189,55 +189,55 @@ public class Users implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
-	public Set<TokenUser> getTokenUsers() {
-		return this.tokenUsers;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	public Set<TokenUser> getTokenUsers() {
+//		return this.tokenUsers;
+//	}
 
 	public void setTokenUsers(Set<TokenUser> tokenUsers) {
 		this.tokenUsers = tokenUsers;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
-	public Set<Bill> getBills() {
-		return this.bills;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	public Set<Bill> getBills() {
+//		return this.bills;
+//	}
 
 	public void setBills(Set<Bill> bills) {
 		this.bills = bills;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
-	public Set<Blog> getBlogs() {
-		return this.blogs;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	public Set<Blog> getBlogs() {
+//		return this.blogs;
+//	}
 
 	public void setBlogs(Set<Blog> blogs) {
 		this.blogs = blogs;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
-	public Set<CommentBlog> getCommentBlogs() {
-		return this.commentBlogs;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	public Set<CommentBlog> getCommentBlogs() {
+//		return this.commentBlogs;
+//	}
 
 	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
 		this.commentBlogs = commentBlogs;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
-	public Set<CommentGame> getCommentGames() {
-		return this.commentGames;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	public Set<CommentGame> getCommentGames() {
+//		return this.commentGames;
+//	}
 
 	public void setCommentGames(Set<CommentGame> commentGames) {
 		this.commentGames = commentGames;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
-	public Set<ActiveGame> getActiveGames() {
-		return this.activeGames;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	public Set<ActiveGame> getActiveGames() {
+//		return this.activeGames;
+//	}
 
 	public void setActiveGames(Set<ActiveGame> activeGames) {
 		this.activeGames = activeGames;

@@ -52,10 +52,10 @@ public class Category implements java.io.Serializable {
 		this.nameCategory = nameCategory;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
-	public Set<GameCategory> getGameCategories() {
-		return this.gameCategories;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+//	public Set<GameCategory> getGameCategories() {
+//		return this.gameCategories;
+//	}
 
 	public void setGameCategories(Set<GameCategory> gameCategories) {
 		this.gameCategories = gameCategories;

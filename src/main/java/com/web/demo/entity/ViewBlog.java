@@ -67,10 +67,10 @@ public class ViewBlog implements java.io.Serializable {
 		this.countView = countView;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "viewBlog")
-	public Set<Blog> getBlogs() {
-		return this.blogs;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "viewBlog")
+//	public Set<Blog> getBlogs() {
+//		return this.blogs;
+//	}
 
 	public void setBlogs(Set<Blog> blogs) {
 		this.blogs = blogs;

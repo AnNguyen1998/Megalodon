@@ -81,10 +81,10 @@ public class Bill implements java.io.Serializable {
 		this.totalPrice = totalPrice;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "bill")
-	public Set<BillDetail> getBillDetails() {
-		return this.billDetails;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "bill")
+//	public Set<BillDetail> getBillDetails() {
+//		return this.billDetails;
+//	}
 
 	public void setBillDetails(Set<BillDetail> billDetails) {
 		this.billDetails = billDetails;

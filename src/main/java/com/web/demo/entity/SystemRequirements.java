@@ -85,10 +85,10 @@ public class SystemRequirements implements java.io.Serializable {
 		this.storage = storage;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "systemRequirements")
-	public Set<Games> getGameses() {
-		return this.gameses;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "systemRequirements")
+//	public Set<Games> getGameses() {
+//		return this.gameses;
+//	}
 
 	public void setGameses(Set<Games> gameses) {
 		this.gameses = gameses;

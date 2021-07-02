@@ -222,55 +222,55 @@ public class Games implements java.io.Serializable {
 		this.countRate = countRate;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
-	public Set<ImageData> getImageDatas() {
-		return this.imageDatas;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+//	public Set<ImageData> getImageDatas() {
+//		return this.imageDatas;
+//	}
 
 	public void setImageDatas(Set<ImageData> imageDatas) {
 		this.imageDatas = imageDatas;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
-	public Set<GameCategory> getGameCategories() {
-		return this.gameCategories;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+//	public Set<GameCategory> getGameCategories() {
+//		return this.gameCategories;
+//	}
 
 	public void setGameCategories(Set<GameCategory> gameCategories) {
 		this.gameCategories = gameCategories;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
-	public Set<ActiveGame> getActiveGames() {
-		return this.activeGames;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+//	public Set<ActiveGame> getActiveGames() {
+//		return this.activeGames;
+//	}
 
 	public void setActiveGames(Set<ActiveGame> activeGames) {
 		this.activeGames = activeGames;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
-	public Set<CommentGame> getCommentGames() {
-		return this.commentGames;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+//	public Set<CommentGame> getCommentGames() {
+//		return this.commentGames;
+//	}
 
 	public void setCommentGames(Set<CommentGame> commentGames) {
 		this.commentGames = commentGames;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
-	public Set<BillDetail> getBillDetails() {
-		return this.billDetails;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+//	public Set<BillDetail> getBillDetails() {
+//		return this.billDetails;
+//	}
 
 	public void setBillDetails(Set<BillDetail> billDetails) {
 		this.billDetails = billDetails;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
-	public Set<SlideShow> getSlideShows() {
-		return this.slideShows;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+//	public Set<SlideShow> getSlideShows() {
+//		return this.slideShows;
+//	}
 
 	public void setSlideShows(Set<SlideShow> slideShows) {
 		this.slideShows = slideShows;

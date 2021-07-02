@@ -90,10 +90,10 @@ public class Discount implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "discount")
-	public Set<Games> getGameses() {
-		return this.gameses;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "discount")
+//	public Set<Games> getGameses() {
+//		return this.gameses;
+//	}
 
 	public void setGameses(Set<Games> gameses) {
 		this.gameses = gameses;

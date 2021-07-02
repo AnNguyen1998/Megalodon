@@ -123,10 +123,10 @@ public class Blog implements java.io.Serializable {
 		this.imageBlog = imageBlog;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "blog")
-	public Set<CommentBlog> getCommentBlogs() {
-		return this.commentBlogs;
-	}
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "blog")
+//	public Set<CommentBlog> getCommentBlogs() {
+//		return this.commentBlogs;
+//	}
 
 	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
 		this.commentBlogs = commentBlogs;
