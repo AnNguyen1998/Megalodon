@@ -12,9 +12,13 @@ public class AdminUserControllerAn {
 	public String adminindex() {
 		return "admin/index";
 	}
-	@GetMapping("admin/listuser")
+	@GetMapping("admin/listusers")
 	public String userlist() {
 		System.out.println("Admin/listuser");
 		return "admin/listuser";
+	}
+	@GetMapping("admin/listcustomers")
+	public String listcustomer() {
+		return "admin/customer";
 	}
 }
