@@ -4,12 +4,14 @@ import java.util.Optional;
 
 import com.web.demo.entity.Users;
 
-public interface UserServiceSon {
+public interface UserService {
 
-	Optional<Users> findByUsernameUsers(String usernameUsers);
+	<S extends Users> S save(S entity);
+
+	
 
 	Optional<Users> findByEmailUsers(String emailUsers);
 
-	void save(Users user);
+	Users findByusernameUsers(String username);
 
 }

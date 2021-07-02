@@ -22,12 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.web.demo.config.WebUtils;
 import com.web.demo.entity.Role;
 import com.web.demo.entity.Users;
-import com.web.demo.service.UserServiceSon;
+import com.web.demo.service.UserService;
+
 
 @Controller
 public class LoginControllerSon {
 	@Autowired
-	UserServiceSon userservice;
+	UserService userservice;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -61,16 +62,13 @@ public class LoginControllerSon {
 	@PostMapping("/regis")
 	public String savecustomer(@Validated @ModelAttribute("user") Users user, ModelMap model,
 			@RequestParam(required = false) String pre_password, BindingResult rs) {
-		Optional<Users> userbyusername = userservice.findByUsernameUsers(user.getUsernameUsers());
+		
 		Optional<Users> userbyemail = userservice.findByEmailUsers(user.getEmailUsers());
 		if(rs.hasErrors()) {
 			model.addAttribute("user",user);
 			return "shop/shop-3";
 		}
-		if (userbyusername.isPresent()) {
-			model.addAttribute("message2", "Username already exists");
-			return "shop/shop-3";
-		}
+		
 		if (userbyemail.isPresent()) {
 			model.addAttribute("message2", "Email already exists");
 			return "shop/shop-3";
