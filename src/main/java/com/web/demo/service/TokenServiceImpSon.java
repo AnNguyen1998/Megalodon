@@ -5,11 +5,12 @@ package com.web.demo.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.TokenUser;
 import com.web.demo.repository.TokenRepositorySon;
 
-
+@Service
 public class TokenServiceImpSon implements TokenServiceSon{
 	
 	
