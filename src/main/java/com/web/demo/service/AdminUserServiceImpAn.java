@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.Users;
 import com.web.demo.repository.AdminUserRepoAn;
+import com.web.demo.repository.TokenRepositorySon;
 
 @Service
 public class AdminUserServiceImpAn implements AdminUserServiceAn {
 	@Autowired
 	PasswordEncoder pass;
+	
 	@Override
 	public void deleteById(Integer id) {
 		user.deleteById(id);
@@ -42,18 +44,31 @@ public class AdminUserServiceImpAn implements AdminUserServiceAn {
 		usernew.setPasswordUsers(pass.encode(entity.getPasswordUsers()));
 		usernew.setEmailUsers(entity.getEmailUsers());
 		usernew.setPhoneUsers(entity.getPhoneUsers());
-		usernew.setImageUsers(entity.getImageUsers());
+		
+		if(entity.getImageUsers()==null||entity.getImageUsers().equals("")) {	
+			usernew.setImageUsers("source");
+		}else {
+			usernew.setImageUsers(entity.getImageUsers());
+		}
 		usernew.setAddressUsers(entity.getAddressUsers());
 		usernew.setDateOfBirthday(entity.getDateOfBirthday());
 		usernew.setGender(entity.getGender());
 		usernew.setRole(entity.getRole());
-		usernew.setStatus(entity.getStatus());
+		if(entity.getGender()==null) {
+			usernew.setGender(1);
+		}else {
+			usernew.setStatus(entity.getStatus());
+		}
+		if(entity.getStatus()==null) {
+			usernew.setStatus(1);
+		}else {
+			usernew.setStatus(entity.getStatus());
+		}
 				
 		return user.save(usernew);
 	}
 
 	@Override
-
 	public Users getById(Integer id) {
 		return user.getById(id);
 	}

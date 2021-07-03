@@ -15,7 +15,7 @@ public class AdminUserControllerAn {
 	@GetMapping("admin/listusers")
 	public String userlist() {
 		System.out.println("Admin/listuser");
-		return "admin/listusers";
+		return "admin/listuser";
 	}
 	@GetMapping("admin/listcustomers")
 	public String listcustomer() {

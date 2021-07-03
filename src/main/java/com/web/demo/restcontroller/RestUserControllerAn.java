@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.web.demo.entity.TokenUser;
 import com.web.demo.entity.Users;
 import com.web.demo.service.AdminUserServiceAn;
+import com.web.demo.service.TokenServiceSon;
 
 @RestController
 public class RestUserControllerAn {
-	
+	@Autowired
+	TokenServiceSon tokenservice;
 	@Autowired
 	AdminUserServiceAn userService;
 	
@@ -34,6 +38,8 @@ public class RestUserControllerAn {
 	@PostMapping("/api/adduser")
 	public  ResponseEntity<Users> adduser(@RequestBody Users users){
 		Users us= userService.save(users);
+		TokenUser token = new TokenUser(users);
+		tokenservice.save(token);
 		return new ResponseEntity<Users>(us,HttpStatus.OK);
 	}
 	@DeleteMapping("/api/delete/{id}")

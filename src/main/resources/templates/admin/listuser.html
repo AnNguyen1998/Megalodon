@@ -50,7 +50,7 @@
                     <!--</a>-->
                     <!-- Image Logo -->
                     <a href="/admin" class="logo">
-                        <img th:src="" alt="Megalodon" height="30">
+                        <img  alt="Megalodon" height="30">
                     </a>
 
                 </div>
@@ -443,6 +443,7 @@
                             "dateOfBirthday": this.dateOfBirthday_,
                             "passwordUsers": this.passwordUsers_,
                             "imageUsers": this.imageUsers_,
+                            
                         })
                         .then(savedRole => {
                             this.users.push(savedRole.data);
@@ -458,6 +459,7 @@
                             this.imageUsers_ = '';
                             this.fetchUser();
                         })
+                        this.fetchUser()
                 } else { // Updating
                     axios
                         .post("http://localhost:8080/api/adduser", {
@@ -488,6 +490,7 @@
                            this.passwordUsers_='';
                             this.imageUsers_ = '';
                         })
+                        
                 }
             },
             editUser: function (u) {
