@@ -2024,9 +2024,9 @@ height:100vh;display:flex;justify-content:center;align-items:center;">
 					</div>
 					<div class="empty-sm-30 empty-xs-30"></div>
 					<div class="empty-sm-30 empty-xs-30"></div>
-					<form th:action="@{/login}" method="POST" role="form">
+					<form th:action="@{/login}" method="POST" role="form" >
 						<div class="input-field-wrap">
-							<input type="text" class="input-field" placeholder="Your email"
+							<input type="text" class="input-field" placeholder="Your Username"
 								name="usernameUsers">
 							<div class="focus"></div>
 						</div>
@@ -2038,10 +2038,13 @@ height:100vh;display:flex;justify-content:center;align-items:center;">
 						</div>
 						<div class="empty-sm-20 empty-xs-20"></div>
 						<div class="simple-text xs forgot fl color-3">
-							<a href="#"><p>Forgot password</p></a>
+							
+							<a href="#" class="open-popup" data-open="popup-forgot"
+									data-rel="6"><p>Forgot password</p></a>
 						</div>
 						<div class="simple-text xs reg-now fr">
-							<a href="#"><p>Register now</p></a>
+							<a href="#" class="open-popup" data-open="popup-register"
+									data-rel="4"><p>Register now</p></a>
 						</div>
 						<div class="empty-sm-30 empty-xs-20"></div>
 						<div class="text-center">
@@ -2062,7 +2065,7 @@ height:100vh;display:flex;justify-content:center;align-items:center;">
 	</div>
 	
 	
-	<!-- POPUP LOGIN -->
+	<!-- POPUP Logout -->
 	<div class="popup index-popup-logout" data-rel="5">
 		<div class="popup-wrap popup-layer">
 			<div class="empty-sm-0 empty-xs-15"></div>
@@ -2080,13 +2083,80 @@ height:100vh;display:flex;justify-content:center;align-items:center;">
 					</div>
 					<div class="empty-sm-30 empty-xs-20"></div>
 					<div class="main-caption text-center color-type-2">
-						<h2 class="h2 tt">Logout</h2>
+						<h2 class="h2 tt">Forgot Password</h2>
 					</div>
 					<div class="empty-sm-30 empty-xs-30"></div>
 					<form th:action="@{/logout}" method="POST" role="form">
 						<div class="text-center">
 							<div class="page-button button-style-1 type-2">
 								<input type="submit"> <span class="txt">Logout</span><i></i>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- POPUP FORGOT -->
+	<div class="popup index-popup-forgot" data-rel="6">
+		<div class="popup-wrap popup-layer">
+			<div class="empty-sm-0 empty-xs-15"></div>
+			<div class="container size-1">
+				<div class="popup-inner">
+					<div class="close-popup type-2">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+							viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9"
+							width="14px" height="14px">
+            <path
+								d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+								fill="#484848" />
+            </svg>
+					</div>
+					<div class="empty-sm-30 empty-xs-20"></div>
+					<div class="main-caption text-center color-type-2">
+						<h2 class="h2 tt">Forgot Password</h2>
+						<h4 style="color: red;"  class="h4 tt" th:utext="${message3}"></h4>
+						<script type="text/javascript">
+							
+							/* input.addEventListener('change', function(){
+								if(input.value){
+									document.body.classList.add('overflow');
+									var popup = document.querySelector('.popup');
+									console.log(popup)
+									popup.classList.add('active');
+								}
+							}); */
+							var message="[[${message3}]]";
+							if(message){
+								document.body.classList.add('overflow');
+								var popup = document.querySelector('.index-popup-forgot');
+								popup.classList.add('active');
+							}
+							</script>
+					</div>
+					<div class="empty-sm-30 empty-xs-30"></div>
+					<form th:action="@{/forgot}" method="post" role="form" th:object="${user}" >
+						<div class="input-field-wrap">
+							<input type="text" class="input-field" placeholder="Your Email" th:field="*{emailUsers}"
+								>
+							<div class="focus"></div>
+						</div>
+						<div class="empty-sm-15 empty-xs-15"></div>
+						
+						
+						<div class="simple-text xs reg-now fr">
+							
+							<a href="#" class="open-popup" data-open="popup-register"
+									data-rel="4"><p>Register now</p></a>
+							
+						</div>
+						<div class="empty-sm-30 empty-xs-20"></div>
+						<div class="text-center">
+							<div class="page-button button-style-1 type-2">
+								<button type="submit"> <span class="txt">Send</span><i></i></button>
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" />
 							</div>
@@ -2137,28 +2207,27 @@ height:100vh;display:flex;justify-content:center;align-items:center;">
 					<form th:action="@{/regis}" th:object="${user}" method="post">
 						<div class="input-field-wrap">
 							<input type="text" th:field="*{nameUsers}" class="input-field" placeholder="Your name"
-								name="name" >
+								>
 								
 							<div class="focus"></div>
 						</div>
 						<div class="empty-sm-15 empty-xs-15"></div>
 						<div class="input-field-wrap">
 							<input type="email" th:field="*{emailUsers}" class="input-field" placeholder="Your email"
-								name="email" required="">
-								<span th:if="${#fields.hasErrors('emailUsers')}"
-												th:errors="*{emailUsers}" style="color: red" th:class="${#fields.hasErrors('emailUsers')}? error"></span>
+								 required="">
+								
 							<div class="focus"></div>
 						</div>
 						<div class="empty-sm-15 empty-xs-15"></div>
 						<div class="input-field-wrap">
 							<input type="text" th:field="*{usernameUsers}" class="input-field" placeholder="Your Username"
-								name="email" required="required">
+								 required="required">
 							<div class="focus"></div>
 						</div>
 						<div class="empty-sm-15 empty-xs-15"></div>
 						<div class="input-field-wrap">
 							<input type="password" th:field="*{passwordUsers}" class="input-field"
-								placeholder="Enter password" name="password" required="">
+								placeholder="Enter password"  required="">
 							<div class="focus"></div>
 						</div>
 						<div class="empty-sm-15 empty-xs-15"></div>

@@ -38,9 +38,9 @@ public class LoginControllerSon {
 
 	// Login
 	@GetMapping("/shop")
-	public String game(Model model, Principal principal, @RequestParam(required = false) String message) {
+	public String game(Model model, Principal principal, @RequestParam(required = false) String message,Users user) {
 		// Regis
-		model.addAttribute("user", new Users());
+		model.addAttribute("user", user);
 
 		//
 		if (message != null && !message.isEmpty()) {
@@ -65,13 +65,10 @@ public class LoginControllerSon {
 
 	@PostMapping("/regis")
 	public String savecustomer(@Validated @ModelAttribute("user") Users user, ModelMap model,
-			@RequestParam(required = false) String pre_password, BindingResult rs) {
+			@RequestParam(required = false) String pre_password) {
 		Optional<Users> userbyusername = userservice.findByUsernameUsers(user.getUsernameUsers());
 		Optional<Users> userbyemail = userservice.findByEmailUsers(user.getEmailUsers());
-		if(rs.hasErrors()) {
-			model.addAttribute("user",user);
-			return "shop/shop-3";
-		}
+		
 		if (userbyusername.isPresent()) {
 			model.addAttribute("message2", "Username already exists");
 			return "shop/shop-3";
@@ -98,5 +95,20 @@ public class LoginControllerSon {
 		}
 	}
 	
+	@PostMapping("/forgot")
+	public String forgot(Model model,@ModelAttribute("user")Users user) {
+		Optional<Users> userbyemail = userservice.findByEmailUsers(user.getEmailUsers());
+		if(!userbyemail.isPresent()) {
+			model.addAttribute("message3", "Email not exist");
+			model.addAttribute("user", user);
+			return"shop/shop-3";
+		}else {
+			model.addAttribute("message3", "Please check your email");
+			model.addAttribute("user", user);
+			return"shop/shop-3";
+			
+		}
+		
+	}
 	
 }
