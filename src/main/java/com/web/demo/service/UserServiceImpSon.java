@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.Users;
-import com.web.demo.repository.UsersRepository;
+import com.web.demo.repository.UsersRepositorySon;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImpSon implements UserServiceSon {
 	
 	
 	
@@ -27,7 +27,7 @@ public <S extends Users> S save(S entity) {
 	}
 
 @Autowired
-UsersRepository usersRepository;
+UsersRepositorySon usersRepository;
 
 
 

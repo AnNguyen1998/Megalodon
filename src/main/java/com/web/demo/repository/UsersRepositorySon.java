@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.web.demo.entity.Users;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users,Integer> {
+public interface UsersRepositorySon extends JpaRepository<Users,Integer> {
 
 	
 	

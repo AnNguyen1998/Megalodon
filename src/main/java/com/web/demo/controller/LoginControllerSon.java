@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.web.demo.config.WebUtils;
 import com.web.demo.entity.Role;
 import com.web.demo.entity.Users;
-import com.web.demo.service.UserService;
+import com.web.demo.service.UserServiceSon;
 
 
 @Controller
 public class LoginControllerSon {
 	@Autowired
-	UserService userservice;
+	UserServiceSon userservice;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
