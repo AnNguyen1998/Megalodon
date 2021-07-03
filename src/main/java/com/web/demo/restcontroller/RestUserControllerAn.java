@@ -38,8 +38,8 @@ public class RestUserControllerAn {
 	@PostMapping("/api/adduser")
 	public  ResponseEntity<Users> adduser(@RequestBody Users users){
 		Users us= userService.save(users);
-		TokenUser token = new TokenUser(users);
-		tokenservice.save(token);
+//		TokenUser token = new TokenUser(users);
+//		tokenservice.save(token);
 		return new ResponseEntity<Users>(us,HttpStatus.OK);
 	}
 	@DeleteMapping("/api/delete/{id}")
