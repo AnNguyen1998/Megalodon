@@ -4,6 +4,7 @@ package com.web.demo.controller;
  */
 import java.security.Principal;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -89,6 +90,7 @@ public class LoginControllerSon {
 			
 			userservice.save(user);
 			TokenUser token=new TokenUser(user);
+			
 			tokenservice.save(token);
 			model.addAttribute(user);
 			return "redirect:/shop";
