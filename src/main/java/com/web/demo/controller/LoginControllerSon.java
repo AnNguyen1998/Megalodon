@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.demo.config.WebUtils;
 import com.web.demo.entity.Role;
+import com.web.demo.entity.TokenUser;
 import com.web.demo.entity.Users;
+import com.web.demo.service.TokenServiceSon;
 import com.web.demo.service.UserServiceSon;
 
 
@@ -29,6 +31,8 @@ import com.web.demo.service.UserServiceSon;
 public class LoginControllerSon {
 	@Autowired
 	UserServiceSon userservice;
+	@Autowired
+	TokenServiceSon tokenservice;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -84,9 +88,15 @@ public class LoginControllerSon {
 			role.setIdRole(3);
 			user.setRole(role);
 			user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
+			
+			
 			userservice.save(user);
+			TokenUser token=new TokenUser(user);
+			tokenservice.save(token);
 			model.addAttribute(user);
 			return "redirect:/shop";
 		}
 	}
+	
+	
 }
