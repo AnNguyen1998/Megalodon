@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -281,10 +281,10 @@
             <div class="row m-t-20 m-b-20">
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="form-group search-box">
-                        <form>                        
-                        <input type="text" id="search-input" class="form-control product-search" placeholder="Search here..."></i></input>
-                        <input type="submit"  hidden/>
-                    </form>
+                                               
+                        <input type="text" id="search-input" class="form-control product-search" placeholder="Search here..." v-model="search"></i></input>
+                        
+                    
                     </div>
                 </div>
             </div>
@@ -308,13 +308,13 @@
 
 
                             <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>51</td>
+                                <tr v-for="u in filteredUsers" v-if="u.role.idRole ==3">
+                                    <td>{{u.usernameUsers}}</td>
+                                    <td>{{u.nameUsers}}</td>
+                                    <td>{{u.emailUsers}}</td>
+                                    <td>{{u.addressUsers}}</td>
+                                    <td>{{u.dateOfBirthday}}</td>
+                                    <td>{{u.phoneUsers}}</td>
                                 </tr>
                                 
                             </tbody>
@@ -367,5 +367,34 @@
     <script src="../assets/js/jquery.app.js"></script>
 
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://vuejs.org/js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '.wrapper',
+        data() {
+            return {
+                users: [],
+                search: '',
+            }
+        },
+        mounted() {
+            this.fetchUser();
+        },
+        methods: {
+            fetchUser: function () {
+                axios.get("http://localhost:8080/api/user").then(response => (
+                    this.users = response.data))
+            },
+        },
+        computed: {
+			filteredUsers: function (){
+				return this.users.filter((u)=>{
+					return u.nameUsers.toLowerCase().match(this.search.toLowerCase());
+					})	
+			}	
+        }, 
 
+    })
+    </script>
 </html>
