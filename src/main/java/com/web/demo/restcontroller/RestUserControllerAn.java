@@ -3,6 +3,7 @@ package com.web.demo.restcontroller;
  * @author An Nguyen
  */
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,11 @@ import com.web.demo.service.TokenServiceSon;
 
 @RestController
 public class RestUserControllerAn {
-	@Autowired
-	TokenServiceSon tokenservice;
+	
 	@Autowired
 	AdminUserServiceAn userService;
-	
+	@Autowired
+	TokenServiceSon tokenservice;
 	@GetMapping("/api/user")
 	public ResponseEntity<?> getListuser(){
 		System.out.println("/api/user");
@@ -36,10 +37,18 @@ public class RestUserControllerAn {
 		return ResponseEntity.ok(list);
 	}
 	@PostMapping("/api/adduser")
-	public  ResponseEntity<Users> adduser(@RequestBody Users users){
-		Users us= userService.save(users);
-//		TokenUser token = new TokenUser(users);
-//		tokenservice.save(token);
+	public  ResponseEntity<Users> adduser(@RequestBody Users users){	
+		Users us = null;
+		if(users.getIdUsers() == null) {
+			us= userService.save(users);
+			TokenUser token = new TokenUser(us);
+			tokenservice.save(token);
+		}//else {
+//			us = userService.save(users);
+//			TokenUser token = tokenservice.findByUsers(us);
+//			token.setValueTokenUsers(UUID.randomUUID().toString());
+//			tokenservice.save(token);
+//		}
 		return new ResponseEntity<Users>(us,HttpStatus.OK);
 	}
 	@DeleteMapping("/api/delete/{id}")
