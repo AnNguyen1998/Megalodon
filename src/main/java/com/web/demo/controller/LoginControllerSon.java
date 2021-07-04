@@ -160,8 +160,10 @@ public class LoginControllerSon {
 			model.addAttribute("mes", "Password not match");
 			return "redirect:/confirm-reset?token=" + linktoken+"&mess=P";
 		} else {
+			tokenuser.setValueTokenUsers(UUID.randomUUID().toString());
 			users.get().setPasswordUsers(passwordEncoder.encode(pass));
 			userservice.save(users.get());
+			tokenservice.save(tokenuser);
 			return "redirect:/shop";
 		}
 

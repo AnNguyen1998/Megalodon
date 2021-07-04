@@ -1,0 +1,30 @@
+package com.web.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.web.demo.entity.SlideShow;
+import com.web.demo.repository.SlideShowRepository;
+
+public class SlideShowServiceImp implements SlideShowService{
+@Override
+public Optional<SlideShow> findById(Integer id) {
+		return slideshowRepository.findById(id);
+	}
+
+@Override
+public <S extends SlideShow> S save(S entity) {
+		return slideshowRepository.save(entity);
+	}
+
+@Override
+public List<SlideShow> findAll() {
+		return slideshowRepository.findAll();
+	}
+
+@Autowired
+SlideShowRepository slideshowRepository;
+
+}
