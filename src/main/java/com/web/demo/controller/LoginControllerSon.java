@@ -153,7 +153,6 @@ public class LoginControllerSon {
 	@PostMapping("/change-password")
 	public String change(@RequestParam("token") String token, @RequestParam("prepassword") String prepass,
 			@RequestParam("password") String pass, Model model,@ModelAttribute("user")Users user) {
-
 		TokenUser tokenuser = tokenservice.findByValueTokenUsers(token);
 		String linktoken = tokenuser.getValueTokenUsers();
 		Optional<Users> users = userservice.findByEmailUsers(tokenuser.getUsers().getEmailUsers());
