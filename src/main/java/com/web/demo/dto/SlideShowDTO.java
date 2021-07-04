@@ -1,15 +1,11 @@
 package com.web.demo.dto;
 // Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,7 +33,7 @@ public class SlideShowDTO implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_slide_show", unique = true, nullable = false)
+	
 	public Integer getIdSlideShow() {
 		return this.idSlideShow;
 	}
@@ -46,8 +42,7 @@ public class SlideShowDTO implements java.io.Serializable {
 		this.idSlideShow = idSlideShow;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_game")
+	
 	public Games getGames() {
 		return this.games;
 	}
@@ -56,7 +51,7 @@ public class SlideShowDTO implements java.io.Serializable {
 		this.games = games;
 	}
 
-	@Column(name = "image", length = 45)
+	
 	public MultipartFile  getImage() {
 		return this.image;
 	}

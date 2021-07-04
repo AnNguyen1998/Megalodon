@@ -37,7 +37,7 @@ public ResponseEntity<ByteArrayResource> dowloadLinkImage(@PathVariable int id){
 			ByteArrayResource bsr=new ByteArrayResource(buffer);
 			return ResponseEntity.ok()
 					.contentLength(buffer.length)
-					.contentType(MediaType.parseMediaType("image/png"))
+					.contentType(MediaType.parseMediaType("image/jpg"))
 					.body(bsr);
 		}catch (Exception e) {
 		e.printStackTrace();
