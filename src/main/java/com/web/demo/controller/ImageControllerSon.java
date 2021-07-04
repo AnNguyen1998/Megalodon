@@ -44,6 +44,5 @@ public ResponseEntity<ByteArrayResource> dowloadLinkImage(@PathVariable int id){
 		}
 	}
 	return ResponseEntity.badRequest().build();
-	
 }
 }

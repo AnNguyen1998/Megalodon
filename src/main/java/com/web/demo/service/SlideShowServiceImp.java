@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.SlideShow;
 import com.web.demo.repository.SlideShowRepository;
-
+@Service
 public class SlideShowServiceImp implements SlideShowService{
 @Override
 public Optional<SlideShow> findById(Integer id) {
