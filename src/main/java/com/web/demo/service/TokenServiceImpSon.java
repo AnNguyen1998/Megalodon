@@ -31,7 +31,4 @@ public class TokenServiceImpSon implements TokenServiceSon{
 	}
 	@Autowired
 	TokenRepositorySon confirmtoken;
-	
-	
-	
 }
