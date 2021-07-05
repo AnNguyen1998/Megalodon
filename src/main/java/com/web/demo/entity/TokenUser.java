@@ -59,7 +59,7 @@ public class TokenUser implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "value_token_users", length = 45)
+	@Column(name = "value_token_users")
 	public String getValueTokenUsers() {
 		return this.valueTokenUsers;
 	}
@@ -69,7 +69,7 @@ public class TokenUser implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Date", length = 19)
+	@Column(name = "Date")
 	public Date getDate() {
 		return this.date;
 	}

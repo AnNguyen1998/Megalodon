@@ -42,7 +42,7 @@ public class SystemId implements java.io.Serializable {
 		this.viewsSystem = viewsSystem;
 	}
 
-	@Column(name = "Date", nullable = false, length = 19)
+	@Column(name = "Date", nullable = false)
 	public Date getDate() {
 		return this.date;
 	}

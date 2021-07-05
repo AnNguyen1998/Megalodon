@@ -52,7 +52,7 @@ public class SlideShow implements java.io.Serializable {
 		this.games = games;
 	}
 
-	@Column(name = "image", length = 45)
+	@Column(name = "image")
 	public String getImage() {
 		return this.image;
 	}

@@ -24,9 +24,40 @@ import javax.persistence.TemporalType;
 @Table(name = "games", catalog = "megalodondb")
 public class Games implements java.io.Serializable {
 
+	public String getProcessor() {
+		return Processor;
+	}
+
+	public void setProcessor(String processor) {
+		Processor = processor;
+	}
+
+	public String getRam() {
+		return Ram;
+	}
+
+	public void setRam(String ram) {
+		Ram = ram;
+	}
+
+	public String getFreeStorage() {
+		return FreeStorage;
+	}
+
+	public void setFreeStorage(String freeStorage) {
+		FreeStorage = freeStorage;
+	}
+
+	public String getVGA() {
+		return VGA;
+	}
+
+	public void setVGA(String vGA) {
+		VGA = vGA;
+	}
+
 	private Integer idGame;
 	private Discount discount;
-	private SystemRequirements systemRequirements;
 	private String nameGame;
 	private String producterGame;
 	private String publisherGame;
@@ -46,21 +77,30 @@ public class Games implements java.io.Serializable {
 	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
 	private Set<SlideShow> slideShows = new HashSet<SlideShow>(0);
 
+	@Column(name = "Processor")
+	private String Processor;
+	@Column(name = "RAM")
+	private String Ram;
+	@Column(name = "Free_storage")
+	private String FreeStorage;
+	@Column(name = "VGA")
+	private String VGA;
+
 	public Games() {
 	}
 
-	public Games(SystemRequirements systemRequirements, String nameGame) {
-		this.systemRequirements = systemRequirements;
+	public Games(String nameGame) {
+
 		this.nameGame = nameGame;
 	}
 
-	public Games(Discount discount, SystemRequirements systemRequirements, String nameGame, String producterGame,
-			String publisherGame, Date releaseYearGame, String descriptionGame, String linkVideo, Long price,
-			Long priceFix, Float rateGame, Integer countSell, String linkGame, Integer countRate,
-			Set<ImageData> imageDatas, Set<GameCategory> gameCategories, Set<ActiveGame> activeGames,
-			Set<CommentGame> commentGames, Set<BillDetail> billDetails, Set<SlideShow> slideShows) {
+	public Games(Discount discount, String nameGame, String producterGame, String publisherGame, Date releaseYearGame,
+			String descriptionGame, String linkVideo, Long price, Long priceFix, Float rateGame, Integer countSell,
+			String linkGame, Integer countRate, Set<ImageData> imageDatas, Set<GameCategory> gameCategories,
+			Set<ActiveGame> activeGames, Set<CommentGame> commentGames, Set<BillDetail> billDetails,
+			Set<SlideShow> slideShows) {
 		this.discount = discount;
-		this.systemRequirements = systemRequirements;
+
 		this.nameGame = nameGame;
 		this.producterGame = producterGame;
 		this.publisherGame = publisherGame;
@@ -103,17 +143,7 @@ public class Games implements java.io.Serializable {
 		this.discount = discount;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_system", nullable = false)
-	public SystemRequirements getSystemRequirements() {
-		return this.systemRequirements;
-	}
-
-	public void setSystemRequirements(SystemRequirements systemRequirements) {
-		this.systemRequirements = systemRequirements;
-	}
-
-	@Column(name = "Name_game", nullable = false, length = 45)
+	@Column(name = "Name_game", nullable = false)
 	public String getNameGame() {
 		return this.nameGame;
 	}
@@ -122,7 +152,7 @@ public class Games implements java.io.Serializable {
 		this.nameGame = nameGame;
 	}
 
-	@Column(name = "Producter_game", length = 45)
+	@Column(name = "Producter_game")
 	public String getProducterGame() {
 		return this.producterGame;
 	}
@@ -131,7 +161,7 @@ public class Games implements java.io.Serializable {
 		this.producterGame = producterGame;
 	}
 
-	@Column(name = "Publisher_game", length = 45)
+	@Column(name = "Publisher_game")
 	public String getPublisherGame() {
 		return this.publisherGame;
 	}
@@ -141,7 +171,7 @@ public class Games implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ReleaseYear_game", length = 10)
+	@Column(name = "ReleaseYear_game")
 	public Date getReleaseYearGame() {
 		return this.releaseYearGame;
 	}
@@ -150,7 +180,7 @@ public class Games implements java.io.Serializable {
 		this.releaseYearGame = releaseYearGame;
 	}
 
-	@Column(name = "Description_game", length = 500)
+	@Column(name = "Description_game")
 	public String getDescriptionGame() {
 		return this.descriptionGame;
 	}
@@ -159,7 +189,7 @@ public class Games implements java.io.Serializable {
 		this.descriptionGame = descriptionGame;
 	}
 
-	@Column(name = "Link_video", length = 100)
+	@Column(name = "Link_video")
 	public String getLinkVideo() {
 		return this.linkVideo;
 	}
@@ -204,7 +234,7 @@ public class Games implements java.io.Serializable {
 		this.countSell = countSell;
 	}
 
-	@Column(name = "Link_game", length = 150)
+	@Column(name = "Link_game")
 	public String getLinkGame() {
 		return this.linkGame;
 	}

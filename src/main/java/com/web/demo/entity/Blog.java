@@ -86,7 +86,7 @@ public class Blog implements java.io.Serializable {
 		this.viewBlog = viewBlog;
 	}
 
-	@Column(name = "Title_blog", nullable = false, length = 45)
+	@Column(name = "Title_blog", nullable = false)
 	public String getTitleBlog() {
 		return this.titleBlog;
 	}
@@ -95,7 +95,7 @@ public class Blog implements java.io.Serializable {
 		this.titleBlog = titleBlog;
 	}
 
-	@Column(name = "Content_blog", length = 45)
+	@Column(name = "Content_blog")
 	public String getContentBlog() {
 		return this.contentBlog;
 	}
@@ -105,7 +105,7 @@ public class Blog implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_blog", length = 10)
+	@Column(name = "Date_blog")
 	public Date getDateBlog() {
 		return this.dateBlog;
 	}
@@ -114,7 +114,7 @@ public class Blog implements java.io.Serializable {
 		this.dateBlog = dateBlog;
 	}
 
-	@Column(name = "Image_blog", nullable = false, length = 45)
+	@Column(name = "Image_blog", nullable = false)
 	public String getImageBlog() {
 		return this.imageBlog;
 	}
