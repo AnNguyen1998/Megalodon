@@ -262,14 +262,14 @@ public class Games implements java.io.Serializable {
 //		this.imageDatas = imageDatas;
 //	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
-//	public Set<GameCategory> getGameCategories() {
-//		return this.gameCategories;
-//	}
-//
-//	public void setGameCategories(Set<GameCategory> gameCategories) {
-//		this.gameCategories = gameCategories;
-//	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
+	public Set<GameCategory> getGameCategories() {
+		return this.gameCategories;
+	}
+
+	public void setGameCategories(Set<GameCategory> gameCategories) {
+		this.gameCategories = gameCategories;
+	}
 
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
 //	public Set<ActiveGame> getActiveGames() {

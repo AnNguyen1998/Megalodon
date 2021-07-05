@@ -21,14 +21,14 @@ public class Category implements java.io.Serializable {
 
 	private Integer idCategory;
 	private String nameCategory;
-//	private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
+	private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
 
 	public Category() {
 	}
 
 	public Category(String nameCategory) {
 		this.nameCategory = nameCategory;
-//		this.gameCategories = gameCategories;
+		this.gameCategories = gameCategories;
 	}
 
 	@Id
@@ -52,13 +52,13 @@ public class Category implements java.io.Serializable {
 		this.nameCategory = nameCategory;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-//	public Set<GameCategory> getGameCategories() {
-//		return this.gameCategories;
-//	}
-//
-//	public void setGameCategories(Set<GameCategory> gameCategories) {
-//		this.gameCategories = gameCategories;
-//	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	public Set<GameCategory> getGameCategories() {
+		return this.gameCategories;
+	}
+
+	public void setGameCategories(Set<GameCategory> gameCategories) {
+		this.gameCategories = gameCategories;
+	}
 
 }
