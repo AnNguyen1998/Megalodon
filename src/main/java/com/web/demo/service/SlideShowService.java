@@ -10,7 +10,7 @@ import com.web.demo.entity.SlideShow;
 
 public interface SlideShowService {
 
-	List<SlideShow> findAll();
+	
 
 	<S extends SlideShow> S save(S entity);
 
@@ -18,6 +18,10 @@ public interface SlideShowService {
 
 	void deleteById(Integer id);
 
-	<S extends SlideShow> List<S> findAll(Example<S> example);
+	List<SlideShow> findAll();
+
+	
+
+	
 
 }

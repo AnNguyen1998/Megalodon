@@ -11,9 +11,12 @@ import com.web.demo.entity.SlideShow;
 import com.web.demo.repository.SlideShowRepository;
 @Service
 public class SlideShowServiceImp implements SlideShowService{
+
+
+
 @Override
-public <S extends SlideShow> List<S> findAll(Example<S> example) {
-		return slideshowRepository.findAll(example);
+public List<SlideShow> findAll() {
+		return slideshowRepository.findAll();
 	}
 
 @Override
@@ -31,10 +34,7 @@ public <S extends SlideShow> S save(S entity) {
 		return slideshowRepository.save(entity);
 	}
 
-@Override
-public List<SlideShow> findAll() {
-		return slideshowRepository.findAll();
-	}
+
 
 @Autowired
 SlideShowRepository slideshowRepository;
