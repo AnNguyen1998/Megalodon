@@ -52,7 +52,7 @@ public class Category implements java.io.Serializable {
 		this.nameCategory = nameCategory;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 	public Set<GameCategory> getGameCategories() {
 		return this.gameCategories;
 	}
