@@ -46,7 +46,7 @@ public class AdminUserServiceImpAn implements AdminUserServiceAn {
 		usernew.setPhoneUsers(entity.getPhoneUsers());
 		
 		if(entity.getImageUsers()==null||entity.getImageUsers().equals("")) {	
-			usernew.setImageUsers("source");
+			usernew.setImageUsers("noavatar.png");
 		}else {
 			usernew.setImageUsers(entity.getImageUsers());
 		}

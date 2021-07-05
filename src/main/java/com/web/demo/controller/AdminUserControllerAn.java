@@ -21,4 +21,8 @@ public class AdminUserControllerAn {
 	public String listcustomer() {
 		return "admin/customer";
 	}
+	@GetMapping("admin/addgame")
+	public String addgame() {
+		return "admin/newgame";
+	}
 }

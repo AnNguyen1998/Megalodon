@@ -301,7 +301,7 @@
 
                                     <tbody>
                                         <tr class="gradeX" v-for="u in filteredUsers" v-if="u.role.idRole ==1 || u.role.idRole ==2 ">
-                                            <td>{{u.usernameUsers}}</td>
+                                            <td th:utext="{{u.usernameUsers}}"></td>
                                             <td>{{u.nameUsers}}</td>
                                             <td>{{u.emailUsers}}</td>
                                             <td>{{u.phoneUsers}}</td>
