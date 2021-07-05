@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -36,12 +36,12 @@ public class Users implements java.io.Serializable {
 	private Date dateOfBirthday;
 	private Integer gender;
 	private Integer status;
-	private Set<TokenUser> tokenUsers = new HashSet<TokenUser>(0);
-	private Set<Bill> bills = new HashSet<Bill>(0);
-	private Set<Blog> blogs = new HashSet<Blog>(0);
-	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
-	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
-	private Set<ActiveGame> activeGames = new HashSet<ActiveGame>(0);
+//	private Set<TokenUser> tokenUsers = new HashSet<TokenUser>(0);
+//	private Set<Bill> bills = new HashSet<Bill>(0);
+//	private Set<Blog> blogs = new HashSet<Blog>(0);
+//	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
+//	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
+//	private Set<ActiveGame> activeGames = new HashSet<ActiveGame>(0);
 
 	public Users() {
 	}
@@ -55,8 +55,7 @@ public class Users implements java.io.Serializable {
 
 	public Users(Role role, String nameUsers, String usernameUsers, String passwordUsers, String emailUsers,
 			String phoneUsers, String imageUsers, String addressUsers, Date dateOfBirthday, Integer gender,
-			Integer status, Set<TokenUser> tokenUsers, Set<Bill> bills, Set<Blog> blogs, Set<CommentBlog> commentBlogs,
-			Set<CommentGame> commentGames, Set<ActiveGame> activeGames) {
+			Integer status) {
 		this.role = role;
 		this.nameUsers = nameUsers;
 		this.usernameUsers = usernameUsers;
@@ -68,12 +67,12 @@ public class Users implements java.io.Serializable {
 		this.dateOfBirthday = dateOfBirthday;
 		this.gender = gender;
 		this.status = status;
-		this.tokenUsers = tokenUsers;
-		this.bills = bills;
-		this.blogs = blogs;
-		this.commentBlogs = commentBlogs;
-		this.commentGames = commentGames;
-		this.activeGames = activeGames;
+//		this.tokenUsers = tokenUsers;
+//		this.bills = bills;
+//		this.blogs = blogs;
+//		this.commentBlogs = commentBlogs;
+//		this.commentGames = commentGames;
+//		this.activeGames = activeGames;
 	}
 
 	@Id
@@ -98,7 +97,7 @@ public class Users implements java.io.Serializable {
 		this.role = role;
 	}
 
-	@Column(name = "Name_users")
+	@Column(name = "Name_users", length = 45)
 	public String getNameUsers() {
 		return this.nameUsers;
 	}
@@ -107,7 +106,7 @@ public class Users implements java.io.Serializable {
 		this.nameUsers = nameUsers;
 	}
 
-	@Column(name = "Username_users", nullable = false)
+	@Column(name = "Username_users", nullable = false, length = 45)
 	public String getUsernameUsers() {
 		return this.usernameUsers;
 	}
@@ -116,7 +115,7 @@ public class Users implements java.io.Serializable {
 		this.usernameUsers = usernameUsers;
 	}
 
-	@Column(name = "Password_users", nullable = false)
+	@Column(name = "Password_users", nullable = false, length = 100)
 	public String getPasswordUsers() {
 		return this.passwordUsers;
 	}
@@ -125,7 +124,7 @@ public class Users implements java.io.Serializable {
 		this.passwordUsers = passwordUsers;
 	}
 
-	@Column(name = "Email_users", nullable = false)
+	@Column(name = "Email_users", nullable = false, length = 45)
 	public String getEmailUsers() {
 		return this.emailUsers;
 	}
@@ -134,7 +133,7 @@ public class Users implements java.io.Serializable {
 		this.emailUsers = emailUsers;
 	}
 
-	@Column(name = "Phone_users")
+	@Column(name = "Phone_users", length = 45)
 	public String getPhoneUsers() {
 		return this.phoneUsers;
 	}
@@ -143,7 +142,7 @@ public class Users implements java.io.Serializable {
 		this.phoneUsers = phoneUsers;
 	}
 
-	@Column(name = "Image_users")
+	@Column(name = "Image_users", length = 45)
 	public String getImageUsers() {
 		return this.imageUsers;
 	}
@@ -152,7 +151,7 @@ public class Users implements java.io.Serializable {
 		this.imageUsers = imageUsers;
 	}
 
-	@Column(name = "Address_users")
+	@Column(name = "Address_users", length = 45)
 	public String getAddressUsers() {
 		return this.addressUsers;
 	}
@@ -162,7 +161,7 @@ public class Users implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_of_birthday")
+	@Column(name = "Date_of_birthday", length = 10)
 	public Date getDateOfBirthday() {
 		return this.dateOfBirthday;
 	}
@@ -189,58 +188,58 @@ public class Users implements java.io.Serializable {
 		this.status = status;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
 //	public Set<TokenUser> getTokenUsers() {
 //		return this.tokenUsers;
 //	}
+//
+//	public void setTokenUsers(Set<TokenUser> tokenUsers) {
+//		this.tokenUsers = tokenUsers;
+//	}
 
-	public void setTokenUsers(Set<TokenUser> tokenUsers) {
-		this.tokenUsers = tokenUsers;
-	}
-
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
 //	public Set<Bill> getBills() {
 //		return this.bills;
 //	}
+//
+//	public void setBills(Set<Bill> bills) {
+//		this.bills = bills;
+//	}
 
-	public void setBills(Set<Bill> bills) {
-		this.bills = bills;
-	}
-
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
 //	public Set<Blog> getBlogs() {
 //		return this.blogs;
 //	}
+//
+//	public void setBlogs(Set<Blog> blogs) {
+//		this.blogs = blogs;
+//	}
 
-	public void setBlogs(Set<Blog> blogs) {
-		this.blogs = blogs;
-	}
-
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
 //	public Set<CommentBlog> getCommentBlogs() {
 //		return this.commentBlogs;
 //	}
-
-	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
-		this.commentBlogs = commentBlogs;
-	}
-
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//
+//	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
+//		this.commentBlogs = commentBlogs;
+//	}
+//
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
 //	public Set<CommentGame> getCommentGames() {
 //		return this.commentGames;
 //	}
+//
+//	public void setCommentGames(Set<CommentGame> commentGames) {
+//		this.commentGames = commentGames;
+//	}
 
-	public void setCommentGames(Set<CommentGame> commentGames) {
-		this.commentGames = commentGames;
-	}
-
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
 //	public Set<ActiveGame> getActiveGames() {
 //		return this.activeGames;
 //	}
-
-	public void setActiveGames(Set<ActiveGame> activeGames) {
-		this.activeGames = activeGames;
-	}
+//
+//	public void setActiveGames(Set<ActiveGame> activeGames) {
+//		this.activeGames = activeGames;
+//	}
 
 }

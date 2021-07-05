@@ -1,15 +1,11 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,17 +20,15 @@ public class SystemRequirements implements java.io.Serializable {
 	private String ram;
 	private String vga;
 	private String storage;
-	private Set<Games> gameses = new HashSet<Games>(0);
 
 	public SystemRequirements() {
 	}
 
-	public SystemRequirements(String processor, String ram, String vga, String storage, Set<Games> gameses) {
+	public SystemRequirements(String processor, String ram, String vga, String storage) {
 		this.processor = processor;
 		this.ram = ram;
 		this.vga = vga;
 		this.storage = storage;
-		this.gameses = gameses;
 	}
 
 	@Id
@@ -49,7 +43,7 @@ public class SystemRequirements implements java.io.Serializable {
 		this.idSystemRerequirements = idSystemRerequirements;
 	}
 
-	@Column(name = "Processor")
+	@Column(name = "Processor", length = 45)
 	public String getProcessor() {
 		return this.processor;
 	}
@@ -58,7 +52,7 @@ public class SystemRequirements implements java.io.Serializable {
 		this.processor = processor;
 	}
 
-	@Column(name = "RAM")
+	@Column(name = "RAM", length = 45)
 	public String getRam() {
 		return this.ram;
 	}
@@ -67,7 +61,7 @@ public class SystemRequirements implements java.io.Serializable {
 		this.ram = ram;
 	}
 
-	@Column(name = "VGA")
+	@Column(name = "VGA", length = 45)
 	public String getVga() {
 		return this.vga;
 	}
@@ -76,22 +70,13 @@ public class SystemRequirements implements java.io.Serializable {
 		this.vga = vga;
 	}
 
-	@Column(name = "Storage")
+	@Column(name = "Storage", length = 45)
 	public String getStorage() {
 		return this.storage;
 	}
 
 	public void setStorage(String storage) {
 		this.storage = storage;
-	}
-
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "systemRequirements")
-//	public Set<Games> getGameses() {
-//		return this.gameses;
-//	}
-
-	public void setGameses(Set<Games> gameses) {
-		this.gameses = gameses;
 	}
 
 }

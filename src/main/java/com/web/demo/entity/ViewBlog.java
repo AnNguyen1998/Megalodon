@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -25,15 +25,15 @@ public class ViewBlog implements java.io.Serializable {
 	private Integer idViewBlog;
 	private Date date;
 	private Integer countView;
-	private Set<Blog> blogs = new HashSet<Blog>(0);
+//	private Set<Blog> blogs = new HashSet<Blog>(0);
 
 	public ViewBlog() {
 	}
 
-	public ViewBlog(Date date, Integer countView, Set<Blog> blogs) {
+	public ViewBlog(Date date, Integer countView) {
 		this.date = date;
 		this.countView = countView;
-		this.blogs = blogs;
+//		this.blogs = blogs;
 	}
 
 	@Id
@@ -49,7 +49,7 @@ public class ViewBlog implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date")
+	@Column(name = "Date", length = 10)
 	public Date getDate() {
 		return this.date;
 	}
@@ -67,13 +67,13 @@ public class ViewBlog implements java.io.Serializable {
 		this.countView = countView;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "viewBlog")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "viewBlog")
 //	public Set<Blog> getBlogs() {
 //		return this.blogs;
 //	}
-
-	public void setBlogs(Set<Blog> blogs) {
-		this.blogs = blogs;
-	}
+//
+//	public void setBlogs(Set<Blog> blogs) {
+//		this.blogs = blogs;
+//	}
 
 }
