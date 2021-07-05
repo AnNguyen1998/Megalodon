@@ -25,7 +25,7 @@ public class ImageControllerSon {
 @Autowired
 private SlideShowService slideshowservice;
 
-@RequestMapping(value = "admin/getimage/{id}",method = RequestMethod.GET)
+@RequestMapping(value = "getimage/{id}",method = RequestMethod.GET)
 @ResponseBody
 public ResponseEntity<ByteArrayResource> dowloadLinkImage(@PathVariable int id){
 	Optional<SlideShow> sp=slideshowservice.findById(id);
