@@ -3,6 +3,7 @@ package com.web.demo.service;
  * @author An Nguyen
  */
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,11 @@ import com.web.demo.repository.AdminGameRepoAn;
 
 @Service
 public class AdminGameServiceImpAn implements AdminGameServiceAn {
+
+	@Override
+	public Optional<Games> findById(Integer id) {
+		return game.findById(id);
+	}
 
 	@Override
 	public void deleteById(Integer id) {

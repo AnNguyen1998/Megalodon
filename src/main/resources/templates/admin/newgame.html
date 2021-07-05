@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
 
-    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <link rel="shortcut icon" th:href="@{../assets/images/favicon.ico}">
 
     <title>Megalodon</title>
 
@@ -15,16 +15,16 @@
 
 
     <!-- App css -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/core.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/components.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/pages.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/menu.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
-    <link href="../plugins/jquery.filer/css/jquery.filer.css" rel="stylesheet" />
-    <link href="../plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" />
+    <link th:href="@{../assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/core.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/components.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/icons.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/pages.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/menu.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{../assets/css/responsive.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{../plugins/switchery/switchery.min.css}">
+    <link th:href="@{../plugins/jquery.filer/css/jquery.filer.css}" rel="stylesheet" />
+    <link th:href="@{../plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css}" rel="stylesheet" />
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-    <script src="../assets/js/modernizr.min.js"></script>
+    <script th:src="@{../assets/js/modernizr.min.js}"></script>
 
 </head>
 
@@ -53,7 +53,7 @@
                     <!--</a>-->
                     <!-- Image Logo -->
                     <a href="/admin" class="logo">
-                        <img src="../assets/images/logo.png" alt="" height="30">
+                        <img th:src="@{../assets/images/logo.png}" alt="" height="30">
                     </a>
 
                 </div>
@@ -66,7 +66,7 @@
             
                         <li class="dropdown navbar-c-items">
                             <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
-                                aria-expanded="true"><img src="../assets/images/users/avatar-1.jpg" alt="user-img"
+                                aria-expanded="true"><img th:src="@{../assets/images/users/avatar-1.jpg}" alt="user-img"
                                     class="img-circle"> </a>
                             <ul
                                 class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
@@ -194,7 +194,7 @@
                 <div class="col-xs-12">
                     <div class="card-box">
                         <div class="row">
-                            <form action="#" data-parsley-validate validate >
+                            <form method="post" action="#" th:action="@{/savegame}" th:object="${game}" data-parsley-validate validate >
                                 <div class="col-sm-12 col-xs-12 col-md-6">
 
                                     <h4 class="header-title m-t-0">NEW GAME</h4>
@@ -208,23 +208,25 @@
                                         <div class="form-group">
                                             <label for="Name Game">Name Game<span class="text-danger">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter Name Game" class="form-control" id="Name Game">
+                                                placeholder="Enter Name Game" class="form-control" id="Name Game" th:field="*{nameGame}">
+                                            <input type="hidden" name="nick" parsley-trigger="change" required
+                                            placeholder="Enter Name Game" class="form-control" id="Name Game" th:field="*{idGame}">
                                         </div>
                                         <div class="form-group">
                                             <label for="Producer">Producer<span class="text-danger">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter Producer" class="form-control" id="Producer">
+                                                placeholder="Enter Producer" class="form-control" id="Producer" th:field="*{producterGame}">
                                         </div>
                                         <div class="form-group">
                                             <label for="Publisher">Publisher<span class="Publisher">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter Publisher" class="form-control" id="Publisher">
+                                                placeholder="Enter Publisher" class="form-control" id="Publisher" th:field="*{publisherGame}">
                                         </div>
                                         <div class="form-group">
                                             <label for="Release year">Release year<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter Release year" class="form-control" id="Release year">
+                                                placeholder="Enter Release year" class="form-control" id="Release year" th:field="*{releaseYearGame}">
                                         </div>
                                         <h4 class="header-title m-t-0">DESCRIPTION</h4>
 
@@ -232,7 +234,7 @@
                                             <div class="col-sm-12">
                                                 <div class="card-box">
                                                     
-                                                        <textarea id="elm1" name="area"></textarea>
+                                                        <textarea id="elm1" name="area" th:field="*{descriptionGame}"></textarea>
                                                     
                                                 </div>
                                             </div>
@@ -251,29 +253,29 @@
                                         <div class="form-group">
                                             <label for="Processor">Processor<span class="text-danger">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter Processor" class="form-control" id="Processor">
+                                                placeholder="Enter Processor" class="form-control" id="Processor" th:field="*{processor}">
                                         </div>
                                         <div class="form-group">
                                             <label for="RAM">RAM<span class="text-danger">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter RAM" class="form-control" id="RAM">
+                                                placeholder="Enter RAM" class="form-control" id="RAM" th:field="*{ram}">
                                         </div>
                                         <div class="form-group">
                                             <label for="VGA">VGA<span class="text-danger">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter VGA" class="form-control" id="VGA">
+                                                placeholder="Enter VGA" class="form-control" id="VGA" th:field="*{vga}">
                                         </div>
                                         <div class="form-group">
                                             <label for="Storage">Free Storage<span class="text-danger">*</span></label>
                                             <input type="text" name="nick" parsley-trigger="change" required
-                                                placeholder="Enter Free Storage" class="form-control" id="Storage">
+                                                placeholder="Enter Free Storage" class="form-control" id="Storage" th:field="*{freeStorage}">
                                         </div>
 
                                         <div class="form-group row">
                                             <h4 class="header-title m-t-0">CATEGORIES</h4>
                                             <br>
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info1" />
+                                                <input type="checkbox" id="input-btn-switch-info1" value="1" th:field="*{}"/>
                                                 <label for="input-btn-switch-info1"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -283,7 +285,7 @@
                                             </div>
                                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info2" />
+                                                <input type="checkbox" id="input-btn-switch-info2" value="2" th:field="*{}"/>
                                                 <label for="input-btn-switch-info2"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -293,7 +295,7 @@
                                             &emsp;&emsp;&ensp;&emsp; &emsp; &emsp; &emsp;
 
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info3" />
+                                                <input type="checkbox" id="input-btn-switch-info3" value="3" th:field="*{}"/>
                                                 <label for="input-btn-switch-info3"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -305,7 +307,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info4" />
+                                                <input type="checkbox" id="input-btn-switch-info4" value="4" th:field="*{}"/>
                                                 <label for="input-btn-switch-info4"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -314,7 +316,7 @@
                                             </div>
                                             &emsp;&ensp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info5" />
+                                                <input type="checkbox" id="input-btn-switch-info5" value="5" th:field="*{}"/>
                                                 <label for="input-btn-switch-info5"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -323,7 +325,7 @@
                                             </div>
                                             &emsp;&emsp;&nbsp;&ensp;&emsp; &emsp; &emsp; &emsp; &nbsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info6" />
+                                                <input type="checkbox" id="input-btn-switch-info6" value="6" th:field="*{}"/>
                                                 <label for="input-btn-switch-info6"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -334,7 +336,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info7" />
+                                                <input type="checkbox" id="input-btn-switch-info7" value="7" th:field="*{}"/>
                                                 <label for="input-btn-switch-info7"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -344,7 +346,7 @@
                                             </div>
                                             &emsp;&emsp;&emsp;&nbsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info8" />
+                                                <input type="checkbox" id="input-btn-switch-info8" value="8" th:field="*{}"/>
                                                 <label for="input-btn-switch-info8"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -353,7 +355,7 @@
                                             </div>
                                             &emsp;&emsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info9" />
+                                                <input type="checkbox" id="input-btn-switch-info9" value="9" th:field="*{}"/>
                                                 <label for="input-btn-switch-info9"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -363,7 +365,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info10" />
+                                                <input type="checkbox" id="input-btn-switch-info10" value="10" th:field="*{}"/>
                                                 <label for="input-btn-switch-info10"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -372,7 +374,7 @@
                                             </div>
                                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info11" />
+                                                <input type="checkbox" id="input-btn-switch-info11" value="11" th:field="*{}"/>
                                                 <label for="input-btn-switch-info11"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -381,7 +383,7 @@
                                             </div>
                                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info12" />
+                                                <input type="checkbox" id="input-btn-switch-info12" value="12" th:field="*{}"/>
                                                 <label for="input-btn-switch-info12"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -391,7 +393,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info13" />
+                                                <input type="checkbox" id="input-btn-switch-info13" value="13" th:field="*{}"/>
                                                 <label for="input-btn-switch-info13"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -401,7 +403,7 @@
                                             </div>
                                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info14" />
+                                                <input type="checkbox" id="input-btn-switch-info14" value="14" th:field="*{}"/>
                                                 <label for="input-btn-switch-info14"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -411,7 +413,7 @@
                                             </div>
                                             &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info15" />
+                                                <input type="checkbox" id="input-btn-switch-info15" value="15" th:field="*{}"/>
                                                 <label for="input-btn-switch-info15"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -422,7 +424,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="btn-switch btn-switch-info">
-                                                <input type="checkbox" id="input-btn-switch-info16" />
+                                                <input type="checkbox" id="input-btn-switch-info16" value="16" th:field="*{}"/>
                                                 <label for="input-btn-switch-info16"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
@@ -502,37 +504,37 @@
     </div>
     </div>
     <!-- jQuery  -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/detect.js"></script>
-    <script src="../assets/js/fastclick.js"></script>
-    <script src="../assets/js/jquery.blockUI.js"></script>
-    <script src="../assets/js/waves.js"></script>
-    <script src="../assets/js/jquery.slimscroll.js"></script>
-    <script src="../assets/js/jquery.scrollTo.min.js"></script>
-    <script src="../plugins/switchery/switchery.min.js"></script>
+    <script th:src="@{../assets/js/jquery.min.js}"></script>
+    <script th:src="@{../assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{../assets/js/detect.js}"></script>
+    <script th:src="@{../assets/js/fastclick.js}"></script>
+    <script th:src="@{../assets/js/jquery.blockUI.js}"></script>
+    <script th:src="@{../assets/js/waves.js}"></script>
+    <script th:src="@{../assets/js/jquery.slimscroll.js}"></script>
+    <script th:src="@{../assets/js/jquery.scrollTo.min.js}"></script>
+    <script th:src="@{../plugins/switchery/switchery.min.js}"></script>
 
     <!-- Counter js  -->
-    <script src="../plugins/waypoints/jquery.waypoints.min.js"></script>
-    <script src="../plugins/counterup/jquery.counterup.min.js"></script>
+    <script th:src="@{../plugins/waypoints/jquery.waypoints.min.js}"></script>
+    <script th:src="@{../plugins/counterup/jquery.counterup.min.js}"></script>
 
     <!--Morris Chart-->
-    <script src="../plugins/morris/morris.min.js"></script>
-    <script src="../plugins/raphael/raphael-min.js"></script>
+    <script th:src="@{../plugins/morris/morris.min.js}"></script>
+    <script th:src="@{../plugins/raphael/raphael-min.js}"></script>
 
     <!-- Dashboard init -->
-    <script src="../assets/pages/jquery.dashboard.js"></script>
+    <script th:src="@{../assets/pages/jquery.dashboard.js}"></script>
 
     <!--Wysiwig js-->
-    <script src="../plugins/tinymce/tinymce.min.js"></script>
+    <script th:src="@{../plugins/tinymce/tinymce.min.js}"></script>
 
     <!-- App js -->
-    <script src="../assets/js/jquery.core.js"></script>
-    <script src="../assets/js/jquery.app.js"></script>
+    <script th:src="@{../assets/js/jquery.core.js}"></script>
+    <script th:src="@{../assets/js/jquery.app.js}"></script>
 
-    <script type="text/javascript" src="../plugins/parsleyjs/parsley.min.js"></script>
-    <script src="../plugins/jquery.filer/js/jquery.filer.min.js"></script>
-    <script src="../assets/pages/jquery.fileuploads.init.js"></script>
+    <script type="text/javascript" th:src="@{../plugins/parsleyjs/parsley.min.js}"></script>
+    <script th:src="@{../plugins/jquery.filer/js/jquery.filer.min.js}"></script>
+    <script th:src="@{../assets/pages/jquery.fileuploads.init.js}"></script>
     <script>
         $(document).ready(function () {
             if ($("#elm1").length > 0) {

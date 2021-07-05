@@ -3,6 +3,7 @@ package com.web.demo.service;
  * @author An Nguyen
  */
 import java.util.List;
+import java.util.Optional;
 
 import com.web.demo.entity.Games;
 
@@ -14,4 +15,6 @@ public interface AdminGameServiceAn {
 	Games getById(Integer id);
 
 	void deleteById(Integer id);
+
+	Optional<Games> findById(Integer id);
 }

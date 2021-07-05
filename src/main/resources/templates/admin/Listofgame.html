@@ -184,7 +184,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="m-b-30">
-                                        <button href="#" id="addToTable" class="btn btn-success waves-effect waves-light">Add <i class="mdi mdi-plus-circle-outline"></i></button>
+                                        <a href="addgame" id="addToTable" class="btn btn-success waves-effect waves-light">Add <i class="mdi mdi-plus-circle-outline"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -223,13 +223,8 @@
                                             <td>{{g.price}}$</td>
                                             <td>{{g.rateGame}}</td>
                                             <td class="actions">
-                                                <a href="#" class="hidden on-editing save-row"><i
-                                                        class="fa fa-save"></i></a>
-                                                <a href="#" class="hidden on-editing cancel-row"><i
-                                                        class="fa fa-times"></i></a>
-                                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i
-                                                        class="fa fa-trash-o"></i></a>
+                                                <a v-bind:href="'/editgame/' + g.idGame"><i class="fa fa-pencil"></i></a>
+                                                <a v-on:click="deleteGame(g)"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -315,6 +310,11 @@
             fetchGame: function () {
                 axios.get("http://localhost:8080/api/game").then(response => (
                     this.game = response.data))
+            },
+            deleteGame: async function (id) {
+                await axios
+                    .delete("http://localhost:8080/api/deletegame/" + id.idGame);
+                this.fetchGame();
             },
         },
         computed: {
