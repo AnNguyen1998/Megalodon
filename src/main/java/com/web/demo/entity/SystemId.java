@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ public class SystemId implements java.io.Serializable {
 		this.viewsSystem = viewsSystem;
 	}
 
-	@Column(name = "Date", nullable = false)
+	@Column(name = "Date", nullable = false, length = 19)
 	public Date getDate() {
 		return this.date;
 	}

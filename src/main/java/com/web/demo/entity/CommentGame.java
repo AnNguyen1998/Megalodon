@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,16 +25,16 @@ public class CommentGame implements java.io.Serializable {
 	private Games games;
 	private Users users;
 	private String contentCommentGame;
-	private Set<ReplyCommentGame> replyCommentGames = new HashSet<ReplyCommentGame>(0);
+//	private Set<ReplyCommentGame> replyCommentGames = new HashSet<ReplyCommentGame>(0);
 
 	public CommentGame() {
 	}
 
-	public CommentGame(Games games, Users users, String contentCommentGame, Set<ReplyCommentGame> replyCommentGames) {
+	public CommentGame(Games games, Users users, String contentCommentGame) {
 		this.games = games;
 		this.users = users;
 		this.contentCommentGame = contentCommentGame;
-		this.replyCommentGames = replyCommentGames;
+//		this.replyCommentGames = replyCommentGames;
 	}
 
 	@Id
@@ -69,7 +69,7 @@ public class CommentGame implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "Content_comment_game")
+	@Column(name = "Content_comment_game", length = 65535)
 	public String getContentCommentGame() {
 		return this.contentCommentGame;
 	}
@@ -78,13 +78,13 @@ public class CommentGame implements java.io.Serializable {
 		this.contentCommentGame = contentCommentGame;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commentGame")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commentGame")
 //	public Set<ReplyCommentGame> getReplyCommentGames() {
 //		return this.replyCommentGames;
 //	}
-
-	public void setReplyCommentGames(Set<ReplyCommentGame> replyCommentGames) {
-		this.replyCommentGames = replyCommentGames;
-	}
+//
+//	public void setReplyCommentGames(Set<ReplyCommentGame> replyCommentGames) {
+//		this.replyCommentGames = replyCommentGames;
+//	}
 
 }

@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +45,6 @@ public class ImageData implements java.io.Serializable {
 	public void setIdImage(Integer idImage) {
 		this.idImage = idImage;
 	}
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Id_game", nullable = false)
 	public Games getGames() {
@@ -56,7 +55,7 @@ public class ImageData implements java.io.Serializable {
 		this.games = games;
 	}
 
-	@Column(name = "Name_image")
+	@Column(name = "Name_image", length = 45)
 	public String getNameImage() {
 		return this.nameImage;
 	}

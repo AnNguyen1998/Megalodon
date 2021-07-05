@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,17 +27,17 @@ public class Discount implements java.io.Serializable {
 	private Date dateEnd;
 	private Integer value;
 	private Integer status;
-	private Set<Games> gameses = new HashSet<Games>(0);
+//	private Set<Games> gameses = new HashSet<Games>(0);
 
 	public Discount() {
 	}
 
-	public Discount(Date dateStart, Date dateEnd, Integer value, Integer status, Set<Games> gameses) {
+	public Discount(Date dateStart, Date dateEnd, Integer value, Integer status) {
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.value = value;
 		this.status = status;
-		this.gameses = gameses;
+//		this.gameses = gameses;
 	}
 
 	@Id
@@ -53,7 +53,7 @@ public class Discount implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_start")
+	@Column(name = "Date_start", length = 10)
 	public Date getDateStart() {
 		return this.dateStart;
 	}
@@ -63,7 +63,7 @@ public class Discount implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_end")
+	@Column(name = "Date_end", length = 10)
 	public Date getDateEnd() {
 		return this.dateEnd;
 	}
@@ -90,13 +90,13 @@ public class Discount implements java.io.Serializable {
 		this.status = status;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "discount")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "discount")
 //	public Set<Games> getGameses() {
 //		return this.gameses;
 //	}
-
-	public void setGameses(Set<Games> gameses) {
-		this.gameses = gameses;
-	}
+//
+//	public void setGameses(Set<Games> gameses) {
+//		this.gameses = gameses;
+//	}
 
 }

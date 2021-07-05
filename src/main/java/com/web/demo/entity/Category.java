@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,14 +21,14 @@ public class Category implements java.io.Serializable {
 
 	private Integer idCategory;
 	private String nameCategory;
-	private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
+//	private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
 
 	public Category() {
 	}
 
-	public Category(String nameCategory, Set<GameCategory> gameCategories) {
+	public Category(String nameCategory) {
 		this.nameCategory = nameCategory;
-		this.gameCategories = gameCategories;
+//		this.gameCategories = gameCategories;
 	}
 
 	@Id
@@ -43,7 +43,7 @@ public class Category implements java.io.Serializable {
 		this.idCategory = idCategory;
 	}
 
-	@Column(name = "Name_category")
+	@Column(name = "Name_category", length = 45)
 	public String getNameCategory() {
 		return this.nameCategory;
 	}
@@ -52,13 +52,13 @@ public class Category implements java.io.Serializable {
 		this.nameCategory = nameCategory;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
 //	public Set<GameCategory> getGameCategories() {
 //		return this.gameCategories;
 //	}
-
-	public void setGameCategories(Set<GameCategory> gameCategories) {
-		this.gameCategories = gameCategories;
-	}
+//
+//	public void setGameCategories(Set<GameCategory> gameCategories) {
+//		this.gameCategories = gameCategories;
+//	}
 
 }

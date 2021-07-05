@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -28,16 +28,16 @@ public class Bill implements java.io.Serializable {
 	private Users users;
 	private Date date;
 	private Long totalPrice;
-	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
+//	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
 
 	public Bill() {
 	}
 
-	public Bill(Users users, Date date, Long totalPrice, Set<BillDetail> billDetails) {
+	public Bill(Users users, Date date, Long totalPrice) {
 		this.users = users;
 		this.date = date;
 		this.totalPrice = totalPrice;
-		this.billDetails = billDetails;
+//		this.billDetails = billDetails;
 	}
 
 	@Id
@@ -63,7 +63,7 @@ public class Bill implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Date")
+	@Column(name = "Date", length = 19)
 	public Date getDate() {
 		return this.date;
 	}
@@ -81,13 +81,13 @@ public class Bill implements java.io.Serializable {
 		this.totalPrice = totalPrice;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "bill")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
 //	public Set<BillDetail> getBillDetails() {
 //		return this.billDetails;
 //	}
-
-	public void setBillDetails(Set<BillDetail> billDetails) {
-		this.billDetails = billDetails;
-	}
+//
+//	public void setBillDetails(Set<BillDetail> billDetails) {
+//		this.billDetails = billDetails;
+//	}
 
 }
