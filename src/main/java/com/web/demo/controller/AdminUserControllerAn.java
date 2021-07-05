@@ -27,6 +27,7 @@ public class AdminUserControllerAn {
 	}
 	@GetMapping("admin/listgame")
 	public String listgame() {
+		
 		return "admin/Listofgame";
 	}
 }
