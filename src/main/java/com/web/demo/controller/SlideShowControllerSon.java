@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.web.demo.dto.SlideShowDTO;
 import com.web.demo.entity.Games;
 import com.web.demo.entity.SlideShow;
+import com.web.demo.service.GamesServiceSon;
 import com.web.demo.service.SlideShowService;
 
 
@@ -28,38 +29,58 @@ import com.web.demo.service.SlideShowService;
 public class SlideShowControllerSon {
 @Autowired
 private SlideShowService slideshowservice;
+@Autowired
+private GamesServiceSon gameservice;
 
 @GetMapping("admin/slide")
-public String index(SlideShowDTO slide,Model model) {
-	model.addAttribute("slidedto", new SlideShowDTO());
+public String index(Model model) {
+	SlideShowDTO slide=new SlideShowDTO();
+	model.addAttribute("slidedto", slide);
 	List<SlideShow> listslide=slideshowservice.findAll();
 	model.addAttribute("listslide", listslide);
+	List<Games>  listgame= gameservice.findAll();
+	model.addAttribute("listgames", listgame);
 	return "admin/slideshowSon";
 	
 }
 @PostMapping("slide/add")
 public String AddorUpdate(Model model,@ModelAttribute("slidedto")SlideShowDTO slide) {
-	Path path=Paths.get("images/");
+	Path path=Paths.get("images");
 	try(InputStream inputstream=slide.getImage().getInputStream()) {
-		String filename=slide.getImage().getOriginalFilename();
-		Files.copy(inputstream, path.resolve(filename),StandardCopyOption.REPLACE_EXISTING);
 		
+		Files.copy(inputstream, path.resolve(slide.getImage().getOriginalFilename()),
+				StandardCopyOption.REPLACE_EXISTING);
+		String filename=slide.getImage().getOriginalFilename();
+		System.out.println(filename);
+		System.out.println(path);
 	}catch (Exception e) {
 		e.printStackTrace();
 	}
 	SlideShow slideshow=new SlideShow();
-	Games game=new Games();
-	game.setIdGame(1);
-	slide.setGames(game );
+	Games gm=new Games();
+	gm.setIdGame(slide.getGames());
+	slideshow.setGames(gm);
 	if(!slide.getImage().isEmpty()&&slide.getImage().getOriginalFilename()!=null) {
 		slideshow.setImage(slide.getImage().getOriginalFilename());
+		model.addAttribute("message", "Add");
+		slideshowservice.save(slideshow);
 	}else {
 		Optional<SlideShow> sl=slideshowservice.findById(slide.getIdSlideShow());
 		if(sl.isPresent()) {
+			
+			slideshow.setIdSlideShow(sl.get().getIdSlideShow());
 			slideshow.setImage(sl.get().getImage());
+			model.addAttribute("message", "Update");
+			System.out.println(slideshow.getIdSlideShow());
+			System.out.println(slideshow.getImage());
+			System.out.println(slideshow.getGames().getIdGame());
+			
+			slideshowservice.save(slideshow);
+			
 		}
 	}
-	slideshowservice.save(slideshow);
+	
+	
 	model.addAttribute("slidedto", slide);
 	
 	
@@ -70,13 +91,16 @@ public String AddorUpdate(Model model,@ModelAttribute("slidedto")SlideShowDTO sl
 public String editslide(@PathVariable(name = "id")Integer id,Model model) {
 	Optional<SlideShow> slide=slideshowservice.findById(id);
 	if (slide.isPresent()) {
+		List<Games>  listgame= gameservice.findAll();
+		model.addAttribute("listgames", listgame);
+		System.out.println(slide.get().getImage());
 		model.addAttribute("slidedto", slide.get());
+		return "admin/slideshowSon";
 	}else {
 		return "redirect:/admin/slide";
+		
 	}
 	
-	
-	return "admin/slideshowSon";
 	
 }
 @GetMapping("slideDel/{id}")

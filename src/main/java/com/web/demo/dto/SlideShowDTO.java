@@ -19,13 +19,13 @@ import com.web.demo.entity.Games;
 public class SlideShowDTO implements java.io.Serializable {
 
 	private Integer idSlideShow;
-	private Games games;
+	private Integer games;
 	private MultipartFile  image;
 
 	public SlideShowDTO() {
 	}
 
-	public SlideShowDTO(Games games, MultipartFile  image) {
+	public SlideShowDTO(Integer games, MultipartFile  image) {
 		this.games = games;
 		this.image = image;
 	}
@@ -43,11 +43,11 @@ public class SlideShowDTO implements java.io.Serializable {
 	}
 
 	
-	public Games getGames() {
+	public Integer getGames() {
 		return this.games;
 	}
 
-	public void setGames(Games games) {
+	public void setGames(Integer games) {
 		this.games = games;
 	}
 

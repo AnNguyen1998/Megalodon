@@ -287,20 +287,30 @@
                                         
                                         <form method="Post" th:action="@{/slide/add}" th:object="${slidedto}"
                                            enctype="multipart/form-data">
+                                           <input type="text" class="form-control" th:field="*{idSlideShow}">
                                             <div class="p-20">
                                                 <div class="form-group clearfix">
                                                     <h4 class="header-title m-t-0">Please choose Images
                                                         Upload</h4>
+                                                       
                                                     <div class="col-sm-12 padding-left-0 padding-right-0">
-                                                        <input type="file" th:field="*{image}">
+                                                   
+                                                        <input  type="file" th:field="*{image}" >
+                                                       
+                                                    </div>
+                                                    <div class="col-sm-12 padding-left-0 padding-right-0">
+                                                   
+                                                        <img th:if="${slidedto.image != null && !slidedto.image.empty}"
+                                                        th:src="@{'../getimage/'+${slidedto.idSlideShow}}" th:alt="${slidedto.image}"
+                                                                class="img-responsive img-rounded" width="200" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group clearfix">
                                                     <h4>Game</h4>
                                                     <div class="col-sm-12 padding-left-0 padding-right-0">
-                                                        <select class="form-control select2">
+                                                        <select class="form-control select2"  th:field="*{games}">
 
-                                                            <option>ssss</option>
+                                                            <option th:each="ig :${listgames}" th:value="${ig.idGame}" th:text="${ig.nameGame}"></option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -328,9 +338,16 @@
                                                             <img th:src="@{'../getimage/'+${item.idSlideShow}}" alt=""
                                                                 class="img-responsive img-rounded" width="200" />
                                                             <p class="m-t-15 m-b-0">
+                                                            <div class="col-sm-4">
                                                                 <a th:href="@{'../slideDel/'+${item.idSlideShow}}"><i
                                                                         class="glyphicon glyphicon-remove-sign"></i>Delete
-                                                                    image</a>
+                                                                </a>
+                                                                </div>
+                                                                 <div class="col-sm-4">
+                                                                <a  th:href="@{'../slideEdit/'+${item.idSlideShow}}"><i
+                                                                        class="glyphicon glyphicon-remove-sign"></i>Edit
+                                                                </a>
+                                                                </div>
                                                             </p>
                                                         </div>
                                                     </div>
