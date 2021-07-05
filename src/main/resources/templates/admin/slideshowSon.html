@@ -324,64 +324,15 @@
                                                 <div class="col-md-12">
                                                     <h4 class="m-t-0 header-title"><b>Images SlideShow</b></h4>
                                                     <div class="row">
-                                                        <div class="col-sm-3">
-                                                            <img th:src="@{../getimage/1}" alt="image"
+                                                        <div class="col-sm-3" th:each="item : ${listslide}">
+                                                            <img th:src="@{'../getimage/'+${item.idSlideShow}}" alt=""
                                                                 class="img-responsive img-rounded" width="200" />
                                                             <p class="m-t-15 m-b-0">
-                                                                <a href="#"><i
+                                                                <a th:href="@{'../slideDel/'+${item.idSlideShow}}"><i
                                                                         class="glyphicon glyphicon-remove-sign"></i>Delete
                                                                     image</a>
                                                             </p>
                                                         </div>
-
-                                                        <div class="col-sm-3">
-                                                            <img src="../assets/images/small/img-1.jpg" alt="image"
-                                                                class="img-responsive img-rounded" width="200" />
-                                                            <p class="m-t-15 m-b-0">
-                                                                <a href="#"><i
-                                                                        class="glyphicon glyphicon-remove-sign"></i>Delete
-                                                                    image</a>
-                                                            </p>
-                                                        </div>
-
-                                                        <div class="col-sm-3">
-                                                            <img src="../assets/images/small/img-1.jpg" alt="image"
-                                                                class="img-responsive img-rounded" width="200" />
-                                                            <p class="m-t-15 m-b-0">
-                                                                <a href="#"><i
-                                                                        class="glyphicon glyphicon-remove-sign"></i>Delete
-                                                                    image</a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-3">
-                                                            <img src="../assets/images/small/img-1.jpg" alt="image"
-                                                                class="img-responsive img-rounded" width="200" />
-                                                            <p class="m-t-15 m-b-0">
-                                                                <a href="#"><i
-                                                                        class="glyphicon glyphicon-remove-sign"></i>Delete
-                                                                    image</a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-3">
-                                                            <img src="../assets/images/small/img-1.jpg" alt="image"
-                                                                class="img-responsive img-rounded" width="200" />
-                                                            <p class="m-t-15 m-b-0">
-                                                                <a href="#"><i
-                                                                        class="glyphicon glyphicon-remove-sign"></i>Delete
-                                                                    image</a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-3">
-                                                            <img src="../assets/images/small/img-1.jpg" alt="image"
-                                                                class="img-responsive img-rounded" width="200" />
-                                                            <p class="m-t-15 m-b-0">
-                                                                <a href="#"><i
-                                                                        class="glyphicon glyphicon-remove-sign"></i>Delete
-                                                                    image</a>
-                                                            </p>
-                                                        </div>
-
-
                                                     </div>
                                                 </div>
                                             </div>

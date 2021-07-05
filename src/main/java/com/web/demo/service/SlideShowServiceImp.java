@@ -4,12 +4,23 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.SlideShow;
 import com.web.demo.repository.SlideShowRepository;
 @Service
 public class SlideShowServiceImp implements SlideShowService{
+@Override
+public <S extends SlideShow> List<S> findAll(Example<S> example) {
+		return slideshowRepository.findAll(example);
+	}
+
+@Override
+public void deleteById(Integer id) {
+		slideshowRepository.deleteById(id);
+	}
+
 @Override
 public Optional<SlideShow> findById(Integer id) {
 		return slideshowRepository.findById(id);

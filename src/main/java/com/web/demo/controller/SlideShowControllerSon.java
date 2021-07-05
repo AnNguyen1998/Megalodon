@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.web.demo.dto.SlideShowDTO;
@@ -30,7 +32,8 @@ private SlideShowService slideshowservice;
 @GetMapping("admin/slide")
 public String index(SlideShowDTO slide,Model model) {
 	model.addAttribute("slidedto", new SlideShowDTO());
-	
+	List<SlideShow> listslide=slideshowservice.findAll();
+	model.addAttribute("listslide", listslide);
 	return "admin/slideshowSon";
 	
 }
@@ -62,6 +65,24 @@ public String AddorUpdate(Model model,@ModelAttribute("slidedto")SlideShowDTO sl
 	
 	return "redirect:/admin/slide";
 	
+}
+@GetMapping("slideEdit/{id}")
+public String editslide(@PathVariable(name = "id")Integer id,Model model) {
+	Optional<SlideShow> slide=slideshowservice.findById(id);
+	if (slide.isPresent()) {
+		model.addAttribute("slidedto", slide.get());
+	}else {
+		return "redirect:/admin/slide";
+	}
+	
+	
+	return "admin/slideshowSon";
+	
+}
+@GetMapping("slideDel/{id}")
+public String del(@PathVariable(name = "id")Integer id) {
+	slideshowservice.deleteById(id);
+	return"redirect:/admin/slide";
 }
 
 }
