@@ -113,7 +113,7 @@ public class Games implements java.io.Serializable {
 		this.systemRequirements = systemRequirements;
 	}
 
-	@Column(name = "Name_game", nullable = false, length = 45)
+	@Column(name = "Name_game", nullable = false)
 	public String getNameGame() {
 		return this.nameGame;
 	}
@@ -122,7 +122,7 @@ public class Games implements java.io.Serializable {
 		this.nameGame = nameGame;
 	}
 
-	@Column(name = "Producter_game", length = 45)
+	@Column(name = "Producter_game")
 	public String getProducterGame() {
 		return this.producterGame;
 	}
@@ -131,7 +131,7 @@ public class Games implements java.io.Serializable {
 		this.producterGame = producterGame;
 	}
 
-	@Column(name = "Publisher_game", length = 45)
+	@Column(name = "Publisher_game")
 	public String getPublisherGame() {
 		return this.publisherGame;
 	}
@@ -141,7 +141,7 @@ public class Games implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "ReleaseYear_game", length = 10)
+	@Column(name = "ReleaseYear_game")
 	public Date getReleaseYearGame() {
 		return this.releaseYearGame;
 	}
@@ -150,7 +150,7 @@ public class Games implements java.io.Serializable {
 		this.releaseYearGame = releaseYearGame;
 	}
 
-	@Column(name = "Description_game", length = 500)
+	@Column(name = "Description_game")
 	public String getDescriptionGame() {
 		return this.descriptionGame;
 	}
@@ -159,7 +159,7 @@ public class Games implements java.io.Serializable {
 		this.descriptionGame = descriptionGame;
 	}
 
-	@Column(name = "Link_video", length = 100)
+	@Column(name = "Link_video")
 	public String getLinkVideo() {
 		return this.linkVideo;
 	}
@@ -204,7 +204,7 @@ public class Games implements java.io.Serializable {
 		this.countSell = countSell;
 	}
 
-	@Column(name = "Link_game", length = 150)
+	@Column(name = "Link_game")
 	public String getLinkGame() {
 		return this.linkGame;
 	}

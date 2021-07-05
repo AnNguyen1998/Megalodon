@@ -43,7 +43,7 @@ public class Role implements java.io.Serializable {
 		this.idRole = idRole;
 	}
 
-	@Column(name = "Name_role", length = 45)
+	@Column(name = "Name_role")
 	public String getNameRole() {
 		return this.nameRole;
 	}

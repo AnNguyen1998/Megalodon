@@ -53,7 +53,7 @@ public class Discount implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_start", length = 10)
+	@Column(name = "Date_start")
 	public Date getDateStart() {
 		return this.dateStart;
 	}
@@ -63,7 +63,7 @@ public class Discount implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_end", length = 10)
+	@Column(name = "Date_end")
 	public Date getDateEnd() {
 		return this.dateEnd;
 	}

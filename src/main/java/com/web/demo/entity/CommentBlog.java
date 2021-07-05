@@ -77,7 +77,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "Content_comment_blog", length = 150)
+	@Column(name = "Content_comment_blog")
 	public String getContentCommentBlog() {
 		return this.contentCommentBlog;
 	}
@@ -86,7 +86,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.contentCommentBlog = contentCommentBlog;
 	}
 
-	@Column(name = "Name_user", nullable = false, length = 45)
+	@Column(name = "Name_user", nullable = false)
 	public String getNameUser() {
 		return this.nameUser;
 	}

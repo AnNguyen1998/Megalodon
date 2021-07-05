@@ -69,7 +69,7 @@ public class CommentGame implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "Content_comment_game", length = 150)
+	@Column(name = "Content_comment_game")
 	public String getContentCommentGame() {
 		return this.contentCommentGame;
 	}

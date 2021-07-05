@@ -56,7 +56,7 @@ public class ImageData implements java.io.Serializable {
 		this.games = games;
 	}
 
-	@Column(name = "Name_image", length = 45)
+	@Column(name = "Name_image")
 	public String getNameImage() {
 		return this.nameImage;
 	}
