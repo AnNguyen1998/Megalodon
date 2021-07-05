@@ -43,7 +43,7 @@ public class Category implements java.io.Serializable {
 		this.idCategory = idCategory;
 	}
 
-	@Column(name = "Name_category", length = 45)
+	@Column(name = "Name_category")
 	public String getNameCategory() {
 		return this.nameCategory;
 	}

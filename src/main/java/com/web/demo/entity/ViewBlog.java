@@ -49,7 +49,7 @@ public class ViewBlog implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date", length = 10)
+	@Column(name = "Date")
 	public Date getDate() {
 		return this.date;
 	}

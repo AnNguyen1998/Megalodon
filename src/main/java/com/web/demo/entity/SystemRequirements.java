@@ -49,7 +49,7 @@ public class SystemRequirements implements java.io.Serializable {
 		this.idSystemRerequirements = idSystemRerequirements;
 	}
 
-	@Column(name = "Processor", length = 45)
+	@Column(name = "Processor")
 	public String getProcessor() {
 		return this.processor;
 	}
@@ -58,7 +58,7 @@ public class SystemRequirements implements java.io.Serializable {
 		this.processor = processor;
 	}
 
-	@Column(name = "RAM", length = 45)
+	@Column(name = "RAM")
 	public String getRam() {
 		return this.ram;
 	}
@@ -67,7 +67,7 @@ public class SystemRequirements implements java.io.Serializable {
 		this.ram = ram;
 	}
 
-	@Column(name = "VGA", length = 45)
+	@Column(name = "VGA")
 	public String getVga() {
 		return this.vga;
 	}
@@ -76,7 +76,7 @@ public class SystemRequirements implements java.io.Serializable {
 		this.vga = vga;
 	}
 
-	@Column(name = "Storage", length = 45)
+	@Column(name = "Storage")
 	public String getStorage() {
 		return this.storage;
 	}

@@ -63,7 +63,7 @@ public class Bill implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Date", length = 19)
+	@Column(name = "Date")
 	public Date getDate() {
 		return this.date;
 	}

@@ -98,7 +98,7 @@ public class Users implements java.io.Serializable {
 		this.role = role;
 	}
 
-	@Column(name = "Name_users", length = 45)
+	@Column(name = "Name_users")
 	public String getNameUsers() {
 		return this.nameUsers;
 	}
@@ -107,7 +107,7 @@ public class Users implements java.io.Serializable {
 		this.nameUsers = nameUsers;
 	}
 
-	@Column(name = "Username_users", nullable = false, length = 45)
+	@Column(name = "Username_users", nullable = false)
 	public String getUsernameUsers() {
 		return this.usernameUsers;
 	}
@@ -116,7 +116,7 @@ public class Users implements java.io.Serializable {
 		this.usernameUsers = usernameUsers;
 	}
 
-	@Column(name = "Password_users", nullable = false, length = 45)
+	@Column(name = "Password_users", nullable = false)
 	public String getPasswordUsers() {
 		return this.passwordUsers;
 	}
@@ -125,7 +125,7 @@ public class Users implements java.io.Serializable {
 		this.passwordUsers = passwordUsers;
 	}
 
-	@Column(name = "Email_users", nullable = false, length = 45)
+	@Column(name = "Email_users", nullable = false)
 	public String getEmailUsers() {
 		return this.emailUsers;
 	}
@@ -134,7 +134,7 @@ public class Users implements java.io.Serializable {
 		this.emailUsers = emailUsers;
 	}
 
-	@Column(name = "Phone_users", length = 45)
+	@Column(name = "Phone_users")
 	public String getPhoneUsers() {
 		return this.phoneUsers;
 	}
@@ -143,7 +143,7 @@ public class Users implements java.io.Serializable {
 		this.phoneUsers = phoneUsers;
 	}
 
-	@Column(name = "Image_users", length = 45)
+	@Column(name = "Image_users")
 	public String getImageUsers() {
 		return this.imageUsers;
 	}
@@ -152,7 +152,7 @@ public class Users implements java.io.Serializable {
 		this.imageUsers = imageUsers;
 	}
 
-	@Column(name = "Address_users", length = 45)
+	@Column(name = "Address_users")
 	public String getAddressUsers() {
 		return this.addressUsers;
 	}
@@ -162,7 +162,7 @@ public class Users implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_of_birthday", length = 10)
+	@Column(name = "Date_of_birthday")
 	public Date getDateOfBirthday() {
 		return this.dateOfBirthday;
 	}
