@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AdminUserControllerAn {
+public class AdminControllerAn {
 	
 	@GetMapping("admin")
 	public String adminindex() {
@@ -27,7 +27,6 @@ public class AdminUserControllerAn {
 	}
 	@GetMapping("admin/listgame")
 	public String listgame() {
-		
 		return "admin/Listofgame";
 	}
 }

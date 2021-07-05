@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -184,7 +184,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="m-b-30">
-                                        <button id="addToTable" class="btn btn-success waves-effect waves-light">Add <i class="mdi mdi-plus-circle-outline"></i></button>
+                                        <button href="#" id="addToTable" class="btn btn-success waves-effect waves-light">Add <i class="mdi mdi-plus-circle-outline"></i></button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -205,23 +205,23 @@
                                     id="datatable-editable">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>Phone</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Service</th>
+                                            <th>Game Name</th>
+                                            <th>Producter</th>
+                                            <th>Publisher</th>
+                                            <th>Release Year</th>
+                                            <th>Price</th>
+                                            <th>Rate Game</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="gradeX">
-                                            <td>Trident</td>
-                                            <td>Trident</td>
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0
-                                            </td>
-                                            <td>Win 95+</td>
+                                        <tr class="gradeX" v-for="g in filteredGame">
+                                            <td>{{g.nameGame}}</td>
+                                            <td>{{g.producterGame}}</td>
+                                            <td>{{g.publisherGame}}</td>
+                                            <td>{{g.releaseYearGame}}</td>
+                                            <td>{{g.price}}$</td>
+                                            <td>{{g.rateGame}}</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i
                                                         class="fa fa-save"></i></a>
@@ -297,6 +297,8 @@
     <script src="../assets/js/jquery.app.js"></script>
 
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://vuejs.org/js/vue.js"></script>
 <script>
     var app = new Vue({
         el: '.wrapper',
@@ -316,9 +318,9 @@
             },
         },
         computed: {
-			filteredgGame: function (){
+			filteredGame: function (){
 				return this.game.filter((g)=>{
-					return u.nameGame.toLowerCase().match(this.search.toLowerCase());
+					return g.nameGame.toLowerCase().match(this.search.toLowerCase());
 					})	
 			}	
         }, 
