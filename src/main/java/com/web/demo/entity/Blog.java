@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public class Blog implements java.io.Serializable {
 	private String contentBlog;
 	private Date dateBlog;
 	private String imageBlog;
-	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
+//	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
 
 	public Blog() {
 	}
@@ -43,15 +43,14 @@ public class Blog implements java.io.Serializable {
 		this.imageBlog = imageBlog;
 	}
 
-	public Blog(Users users, ViewBlog viewBlog, String titleBlog, String contentBlog, Date dateBlog, String imageBlog,
-			Set<CommentBlog> commentBlogs) {
+	public Blog(Users users, ViewBlog viewBlog, String titleBlog, String contentBlog, Date dateBlog, String imageBlog) {
 		this.users = users;
 		this.viewBlog = viewBlog;
 		this.titleBlog = titleBlog;
 		this.contentBlog = contentBlog;
 		this.dateBlog = dateBlog;
 		this.imageBlog = imageBlog;
-		this.commentBlogs = commentBlogs;
+//		this.commentBlogs = commentBlogs;
 	}
 
 	@Id
@@ -86,7 +85,7 @@ public class Blog implements java.io.Serializable {
 		this.viewBlog = viewBlog;
 	}
 
-	@Column(name = "Title_blog", nullable = false)
+	@Column(name = "Title_blog", nullable = false, length = 45)
 	public String getTitleBlog() {
 		return this.titleBlog;
 	}
@@ -95,7 +94,7 @@ public class Blog implements java.io.Serializable {
 		this.titleBlog = titleBlog;
 	}
 
-	@Column(name = "Content_blog")
+	@Column(name = "Content_blog", length = 65535)
 	public String getContentBlog() {
 		return this.contentBlog;
 	}
@@ -105,7 +104,7 @@ public class Blog implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_blog")
+	@Column(name = "Date_blog", length = 10)
 	public Date getDateBlog() {
 		return this.dateBlog;
 	}
@@ -114,7 +113,7 @@ public class Blog implements java.io.Serializable {
 		this.dateBlog = dateBlog;
 	}
 
-	@Column(name = "Image_blog", nullable = false)
+	@Column(name = "Image_blog", nullable = false, length = 45)
 	public String getImageBlog() {
 		return this.imageBlog;
 	}
@@ -123,13 +122,13 @@ public class Blog implements java.io.Serializable {
 		this.imageBlog = imageBlog;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "blog")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "blog")
 //	public Set<CommentBlog> getCommentBlogs() {
 //		return this.commentBlogs;
 //	}
-
-	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
-		this.commentBlogs = commentBlogs;
-	}
+//
+//	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
+//		this.commentBlogs = commentBlogs;
+//	}
 
 }

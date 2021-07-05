@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +26,7 @@ public class CommentBlog implements java.io.Serializable {
 	private Users users;
 	private String contentCommentBlog;
 	private String nameUser;
-	private Set<ReplyCommentBlog> replyCommentBlogs = new HashSet<ReplyCommentBlog>(0);
+//	private Set<ReplyCommentBlog> replyCommentBlogs = new HashSet<ReplyCommentBlog>(0);
 
 	public CommentBlog() {
 	}
@@ -36,13 +36,12 @@ public class CommentBlog implements java.io.Serializable {
 		this.nameUser = nameUser;
 	}
 
-	public CommentBlog(Blog blog, Users users, String contentCommentBlog, String nameUser,
-			Set<ReplyCommentBlog> replyCommentBlogs) {
+	public CommentBlog(Blog blog, Users users, String contentCommentBlog, String nameUser) {
 		this.blog = blog;
 		this.users = users;
 		this.contentCommentBlog = contentCommentBlog;
 		this.nameUser = nameUser;
-		this.replyCommentBlogs = replyCommentBlogs;
+//		this.replyCommentBlogs = replyCommentBlogs;
 	}
 
 	@Id
@@ -77,7 +76,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "Content_comment_blog")
+	@Column(name = "Content_comment_blog", length = 65535)
 	public String getContentCommentBlog() {
 		return this.contentCommentBlog;
 	}
@@ -86,7 +85,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.contentCommentBlog = contentCommentBlog;
 	}
 
-	@Column(name = "Name_user", nullable = false)
+	@Column(name = "Name_user", nullable = false, length = 45)
 	public String getNameUser() {
 		return this.nameUser;
 	}
@@ -95,13 +94,13 @@ public class CommentBlog implements java.io.Serializable {
 		this.nameUser = nameUser;
 	}
 
-//	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commentBlog")
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commentBlog")
 //	public Set<ReplyCommentBlog> getReplyCommentBlogs() {
 //		return this.replyCommentBlogs;
 //	}
-
-	public void setReplyCommentBlogs(Set<ReplyCommentBlog> replyCommentBlogs) {
-		this.replyCommentBlogs = replyCommentBlogs;
-	}
+//
+//	public void setReplyCommentBlogs(Set<ReplyCommentBlog> replyCommentBlogs) {
+//		this.replyCommentBlogs = replyCommentBlogs;
+//	}
 
 }

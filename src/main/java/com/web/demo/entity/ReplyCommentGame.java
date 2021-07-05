@@ -1,5 +1,5 @@
 package com.web.demo.entity;
-// Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
+// Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,7 +63,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 		this.idUsers = idUsers;
 	}
 
-	@Column(name = "Content_comment")
+	@Column(name = "Content_comment", length = 65535)
 	public String getContentComment() {
 		return this.contentComment;
 	}
