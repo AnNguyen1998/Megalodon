@@ -94,13 +94,17 @@ public class Games implements java.io.Serializable {
 		this.nameGame = nameGame;
 	}
 
-	public Games(Discount discount, String nameGame, String producterGame, String publisherGame, Date releaseYearGame,
-			String descriptionGame, String linkVideo, Long price, Long priceFix, Float rateGame, Integer countSell,
-			String linkGame, Integer countRate, Set<ImageData> imageDatas, Set<GameCategory> gameCategories,
-			Set<ActiveGame> activeGames, Set<CommentGame> commentGames, Set<BillDetail> billDetails,
-			Set<SlideShow> slideShows) {
-		this.discount = discount;
+	
 
+	public Games(Integer idGame, Discount discount, String nameGame, String producterGame, String publisherGame,
+			Date releaseYearGame, String descriptionGame, String linkVideo, Long price, Long priceFix, Float rateGame,
+			Integer countSell, String linkGame, Integer countRate, Set<ImageData> imageDatas,
+			Set<GameCategory> gameCategories, Set<ActiveGame> activeGames, Set<CommentGame> commentGames,
+			Set<BillDetail> billDetails, Set<SlideShow> slideShows, String processor, String ram, String freeStorage,
+			String vGA) {
+		super();
+		this.idGame = idGame;
+		this.discount = discount;
 		this.nameGame = nameGame;
 		this.producterGame = producterGame;
 		this.publisherGame = publisherGame;
@@ -119,6 +123,10 @@ public class Games implements java.io.Serializable {
 		this.commentGames = commentGames;
 		this.billDetails = billDetails;
 		this.slideShows = slideShows;
+		Processor = processor;
+		Ram = ram;
+		FreeStorage = freeStorage;
+		VGA = vGA;
 	}
 
 	@Id
