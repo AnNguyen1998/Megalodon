@@ -4,7 +4,10 @@ package com.web.demo.service;
  */
 
 
+import java.util.Optional;
+
 import com.web.demo.entity.TokenUser;
+import com.web.demo.entity.Users;
 
 
 public interface TokenServiceSon {
@@ -12,6 +15,9 @@ public interface TokenServiceSon {
 	TokenUser findByValueTokenUsers(String valueTokenUsers);
 
 	<S extends TokenUser> S save(S entity);
+
+	TokenUser findByUsers(Optional<Users> users);
+
 
 
 	
