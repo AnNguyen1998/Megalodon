@@ -26,6 +26,7 @@ public class Games implements java.io.Serializable {
 
 	private Integer idGame;
 	private Discount discount;
+	private SystemRequirements systemRequirements;
 	private String nameGame;
 	private String producterGame;
 	private String publisherGame;
@@ -52,13 +53,15 @@ public class Games implements java.io.Serializable {
 	public Games() {
 	}
 
-	public Games(String nameGame) {
+	public Games(String nameGame, SystemRequirements systemRequirements, Discount discount) {
 		this.nameGame = nameGame;
+		this.systemRequirements = systemRequirements;
+		this.discount = discount;
 	}
 
 	public Games(Discount discount, String nameGame, String producterGame, String publisherGame, Date releaseYearGame,
 			String descriptionGame, String linkVideo, Long price, Long priceFix, Float rateGame, Integer countSell,
-			String linkGame, Integer countRate, String processor, String ram, String freeStorage, String vga,
+			String linkGame, Integer countRate, SystemRequirements systemRequirements,
 			Set<ImageData> imageDatas, Set<GameCategory> gameCategories, Set<ActiveGame> activeGames,
 			Set<CommentGame> commentGames, Set<BillDetail> billDetails, Set<SlideShow> slideShows) {
 		this.discount = discount;
@@ -74,10 +77,7 @@ public class Games implements java.io.Serializable {
 		this.countSell = countSell;
 		this.linkGame = linkGame;
 		this.countRate = countRate;
-		this.processor = processor;
-		this.ram = ram;
-		this.freeStorage = freeStorage;
-		this.vga = vga;
+		this.systemRequirements = systemRequirements;
 		this.imageDatas = imageDatas;
 		this.gameCategories = gameCategories;
 		this.activeGames = activeGames;
@@ -99,13 +99,23 @@ public class Games implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_discount")
+	@JoinColumn(name = "Id_discount", nullable = false)
 	public Discount getDiscount() {
 		return this.discount;
 	}
 
 	public void setDiscount(Discount discount) {
 		this.discount = discount;
+	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_system", nullable = false)
+	public SystemRequirements getSystemRequirements() {
+		return this.systemRequirements;
+	}
+
+	public void setSystemRequirements(SystemRequirements systemRequirements) {
+		this.systemRequirements = systemRequirements;
 	}
 
 	@Column(name = "Name_game", nullable = false, length = 45)
@@ -217,41 +227,28 @@ public class Games implements java.io.Serializable {
 		this.countRate = countRate;
 	}
 
-	@Column(name = "Processor", length = 50)
-	public String getProcessor() {
-		return this.processor;
-	}
-
-	public void setProcessor(String processor) {
-		this.processor = processor;
-	}
-
-	@Column(name = "RAM", length = 50)
-	public String getRam() {
-		return this.ram;
-	}
-
-	public void setRam(String ram) {
-		this.ram = ram;
-	}
-
-	@Column(name = "Free_storage", length = 50)
-	public String getFreeStorage() {
-		return this.freeStorage;
-	}
-
-	public void setFreeStorage(String freeStorage) {
-		this.freeStorage = freeStorage;
-	}
-
-	@Column(name = "VGA", length = 50)
-	public String getVga() {
-		return this.vga;
-	}
-
-	public void setVga(String vga) {
-		this.vga = vga;
-	}
+	/*
+	 * @Column(name = "Processor", length = 50) public String getProcessor() {
+	 * return this.processor; }
+	 * 
+	 * public void setProcessor(String processor) { this.processor = processor; }
+	 * 
+	 * @Column(name = "RAM", length = 50) public String getRam() { return this.ram;
+	 * }
+	 * 
+	 * public void setRam(String ram) { this.ram = ram; }
+	 * 
+	 * @Column(name = "Free_storage", length = 50) public String getFreeStorage() {
+	 * return this.freeStorage; }
+	 * 
+	 * public void setFreeStorage(String freeStorage) { this.freeStorage =
+	 * freeStorage; }
+	 * 
+	 * @Column(name = "VGA", length = 50) public String getVga() { return this.vga;
+	 * }
+	 * 
+	 * public void setVga(String vga) { this.vga = vga; }
+	 */
 
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
 //	public Set<ImageData> getImageDatas() {
@@ -262,14 +259,14 @@ public class Games implements java.io.Serializable {
 //		this.imageDatas = imageDatas;
 //	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
-//	public Set<GameCategory> getGameCategories() {
-//		return this.gameCategories;
-//	}
-//
-//	public void setGameCategories(Set<GameCategory> gameCategories) {
-//		this.gameCategories = gameCategories;
-//	}
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+	public Set<GameCategory> getGameCategories() {
+		return this.gameCategories;
+	}
+
+	public void setGameCategories(Set<GameCategory> gameCategories) {
+		this.gameCategories = gameCategories;
+	}
 
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
 //	public Set<ActiveGame> getActiveGames() {
