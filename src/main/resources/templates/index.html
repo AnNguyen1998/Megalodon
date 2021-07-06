@@ -239,7 +239,10 @@
                                         class="menu-arr"></a>
 
                             </li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="about.html">Category</a>
+                            <ul>
+                            <li th:each="category : ${listcate}"><a href="#" th:text="${category.nameCategory}"></a></li>
+                            </ul></li>
                             <li><a href="shop-3.html">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
 
                             </li>
