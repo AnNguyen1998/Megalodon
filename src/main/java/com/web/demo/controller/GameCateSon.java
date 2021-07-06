@@ -41,11 +41,15 @@ public class GameCateSon {
 	}
 	@GetMapping("edit/{id}")
 	public String find(Model model,@PathVariable Integer id) {
-		Optional<Games> gameid= game.findById(id);
-		model.addAttribute("game", gameid);
+		Games gm=new Games();
+		gm.setIdGame(id);
+		
 		List<Category> listcate=cate.findAll();
 		model.addAttribute("listcate", listcate);
-		List<GameCategory> listcates=gamecate.findByGames(gameid.get());
+		List<GameCategory> listcates=gamecate.findByGames(gm);
+		Games gameid= listcates.get(0).getGames();
+		System.out.println("2"+gameid.getNameGame());
+		model.addAttribute("game", gameid);
 		for(GameCategory gc:listcates) {
 			//System.out.println(gc.getCategory().getNameCategory()); 
 		}

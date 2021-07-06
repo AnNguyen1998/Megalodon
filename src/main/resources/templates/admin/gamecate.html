@@ -382,8 +382,8 @@
                                             <h4 class="header-title m-t-0">CATEGORIES</h4>
                                             <br>
                                             <div class="btn-switch btn-switch-info" th:each="ct : ${listcate}">
-                                                <input type="checkbox" id="input-btn-switch-info1" th:value="${ct.idCategory}"/>
-                                                <label for="input-btn-switch-info1"
+                                                <input  type="checkbox" th:id="'input-btn-switch-info'+${ct.idCategory}" th:value="${ct.idCategory}"/>
+                                                <label th:for="'input-btn-switch-info'+${ct.idCategory}"
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
                                                     <em class="glyphicon glyphicon-ok"></em>
                                                     <strong th:utext="${ct.nameCategory}">
