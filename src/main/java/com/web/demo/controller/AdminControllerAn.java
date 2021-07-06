@@ -34,7 +34,8 @@ public class AdminControllerAn {
 		return "admin/customer";
 	}
 	@GetMapping("admin/addgame")
-	public String addgame() {
+	public String addgame(Model model) {
+		model.addAttribute("game", new Games());
 		return "admin/newgame";
 	}
 	@GetMapping("editgame/{id}")
