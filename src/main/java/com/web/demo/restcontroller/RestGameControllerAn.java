@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.web.demo.converter.GamesConverterAn;
+import com.web.demo.dto.GamesDtoAn;
 import com.web.demo.entity.Games;
 import com.web.demo.service.AdminGameServiceAn;
 @RestController
@@ -23,7 +25,10 @@ public class RestGameControllerAn {
 	public ResponseEntity<?> getListgame(){
 		System.out.println("/api/game");
 		List<Games> list=gameService.findAll();
-		return ResponseEntity.ok(list);
+		List<GamesDtoAn> listDto = GamesConverterAn.getInstance().touserDtoList(list);
+		
+		return ResponseEntity.ok(listDto);
+		
 	}
 //	@PostMapping("/api/addgame")
 //	public  ResponseEntity<Games> addgame(@RequestBody Games game){	
