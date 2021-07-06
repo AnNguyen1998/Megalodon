@@ -25,11 +25,11 @@ public class RestGameControllerAn {
 		List<Games> list=gameService.findAll();
 		return ResponseEntity.ok(list);
 	}
-	@PostMapping("/api/addgame")
-	public  ResponseEntity<Games> addgame(@RequestBody Games game){	
-		Games us = gameService.save(game);
-		return new ResponseEntity<Games>(us,HttpStatus.OK);
-	}
+//	@PostMapping("/api/addgame")
+//	public  ResponseEntity<Games> addgame(@RequestBody Games game){	
+//		Games us = gameService.save(game);
+//		return new ResponseEntity<Games>(us,HttpStatus.OK);
+//	}
 //	@GetMapping("/api/edit/{id}")
 //	public Games edit(@PathVariable(name="id")Integer id){
 //		Optional<Games> gm=gameService.findById(id);
