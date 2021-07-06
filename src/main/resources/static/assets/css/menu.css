@@ -12,11 +12,9 @@ File: Menu
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
-  
 }
 .wrapper {
   padding-top: 114px;
-  
 }
 .page-title-box {
   padding: 30px 0;
@@ -26,7 +24,6 @@ File: Menu
   margin-bottom: 0;
   margin-top: 0;
   font-weight: 600;
-  
 }
 .page-title-box .btn-group {
   box-shadow: none;
@@ -42,9 +39,7 @@ File: Menu
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
   min-height: 62px;
-  width:600px;
 }
-
 #topnav .has-submenu.active a {
   color: #00acc1;
 }
@@ -71,7 +66,6 @@ File: Menu
   position: absolute;
   top: -8px;
   right: 0;
-  
 }
 #topnav .topbar-main .nav > li > a {
   height: 36px;
@@ -565,20 +559,3 @@ File: Menu
 .notify-list .all-msgs a:hover {
   color: #f5707a;
 }
-.toppic {width:910px;height:30px;background:#2c2c2c;border-top:0px solid #444;margin:0 auto;padding:0;overflow:hidden;text-shadow:1px 1px 2px #002851}
-.topwrapper {width:910px;height:30px;margin:0 auto;padding:0}
-.clearit {clear: both;height: 0;line-height: 0.0;font-size: 0;}
-.top {width:100%;}
-.top, #top ul {padding: 0;margin: 0;list-style: none;}
-.top a {border-right:1px solid #444;border-left:1px solid #111;text-align:left;display: block;text-decoration: none;padding:6px 12px 8px;font:12px Arial;text-transform:none;color:#eee;}
-.top a:hover {background:#111;}
-.top a.trigger {background-image: url(http://3.bp.blogspot.com/-LzmPTNyR6po/TwETZufjSTI/AAAAAAAAATo/oisHmXUjmSY/s1600/arrow_white.gif);background-repeat: no-repeat;padding: 6px 24px 8px 12px;background-position: right center;}
-.top li {float: left;position: relative;}
-.top li {position: static; width: auto;}
-.top li ul, #top ul li {width:500px;}
-.top ul li a  {text-align:left;padding: 6px 10px;font-size:13px;font-weight:normal;text-transform:none;font-family:Arial, sans-serif;border:none;}
-.top li ul {z-index:100;position: absolute;display: none;background-color:#111;margin-left:-60px;padding:10px 0;-moz-border-radius-bottomleft:6px; -moz-border-radius-bottomright:6px; -webkit-border-bottom-left-radius:6px; -webkit-border-bottom-right-radius:6px; border-bottom-left-radius:6px; border-bottom-right-radius:6px;-moz-box-shadow:0 2px 2px rgba(0,0,0,0.6);-webkit-box-shadow:0 2px 2px rgba(0,0,0,0.6)}
-.top li ul li {width:120px;float:left;margin:0;padding:0}
-.top li:hover ul, #top li.hvr ul {display: block;}
-.top li:hover ul a, #top li.hvr ul a {color:#ddd;background-color:transparent;text-decoration:none;}
-.top ul a:hover {text-decoration:underline!important;color:yellow}
