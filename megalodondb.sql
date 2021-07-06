@@ -155,6 +155,22 @@ INSERT INTO `discount` (`Id_discount`, `Date_start`, `Date_end`, `Value`, `Statu
 	(1, '2021-07-05', '2021-07-05', 0, 1);
 /*!40000 ALTER TABLE `discount` ENABLE KEYS */;
 
+-- Dumping structure for table megalodondb.system_requirements
+CREATE TABLE IF NOT EXISTS `system_requirements` (
+  `Id_system_rerequirements` int(11) NOT NULL AUTO_INCREMENT,
+  `Processor` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RAM` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `VGA` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Storage` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`Id_system_rerequirements`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table megalodondb.system_requirements: ~0 rows (approximately)
+/*!40000 ALTER TABLE `system_requirements` DISABLE KEYS */;
+INSERT INTO `system_requirements` (`Id_system_rerequirements`, `Processor`, `RAM`, `VGA`, `Storage`) VALUES
+	(1, 'Intel I5', '4GB', 'Nvidia 1050', '40GB');
+/*!40000 ALTER TABLE `system_requirements` ENABLE KEYS */;
+
 -- Dumping structure for table megalodondb.games
 CREATE TABLE IF NOT EXISTS `games` (
   `Id_game` int(11) NOT NULL AUTO_INCREMENT,
@@ -162,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `games` (
   `Producter_game` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Publisher_game` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ReleaseYear_game` date DEFAULT NULL,
+  `id_system` int(11) NOT NULL,
   `Description_game` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Link_video` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Price` decimal(18,0) DEFAULT NULL,
@@ -169,21 +186,19 @@ CREATE TABLE IF NOT EXISTS `games` (
   `Rate_game` float DEFAULT NULL,
   `Count_sell` int(11) DEFAULT NULL,
   `Link_game` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Id_discount` int(11) DEFAULT NULL,
+  `Id_discount` int(11) NOT NULL,
   `count_rate` int(11) DEFAULT NULL,
-  `Processor` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RAM` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Free_storage` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `VGA` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id_game`),
   KEY `FK_Game_Id_discount_Discount_Id_discount` (`Id_discount`),
-  CONSTRAINT `FK_Game_Id_discount_Discount_Id_discount` FOREIGN KEY (`Id_discount`) REFERENCES `discount` (`Id_discount`)
+  CONSTRAINT `FK_Game_Id_discount_Discount_Id_discount` FOREIGN KEY (`Id_discount`) REFERENCES `discount` (`Id_discount`),
+  KEY `FK_Game_id_system_System_requirements_Id_system_rerequirements` (`id_system`),
+  CONSTRAINT `FK_Game_id_system_System_requirements_Id_system_rerequirements` FOREIGN KEY (`id_system`) REFERENCES `system_requirements` (`Id_system_rerequirements`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table megalodondb.games: ~0 rows (approximately)
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` (`Id_game`, `Name_game`, `Producter_game`, `Publisher_game`, `ReleaseYear_game`, `Description_game`, `Link_video`, `Price`, `Price_fix`, `Rate_game`, `Count_sell`, `Link_game`, `Id_discount`, `count_rate`, `Processor`, `RAM`, `Free_storage`, `VGA`) VALUES
-	(3, '123', '123', '123', '1231-07-05', '123', 'linkneverdie', 70, 50, 4.8, 18, 'linkneverdie.com', 1, 17, 'Intel i5', '4GB', '20GB', 'Nvidia 1080Ti Super');
+INSERT INTO `games` (`Id_game`, `Name_game`, `Producter_game`, `Publisher_game`, `ReleaseYear_game`, `id_system`, `Description_game`, `Link_video`, `Price`, `Price_fix`, `Rate_game`, `Count_sell`, `Link_game`, `Id_discount`, `count_rate`) VALUES
+	(3, '123', '123', '123', '1231-07-05', 1 , '123', 'linkneverdie', 70, 50, 4.8, 18, 'linkneverdie.com', 1, 17);
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 
 -- Dumping structure for table megalodondb.game_category
@@ -290,21 +305,6 @@ CREATE TABLE IF NOT EXISTS `system` (
 /*!40000 ALTER TABLE `system` DISABLE KEYS */;
 /*!40000 ALTER TABLE `system` ENABLE KEYS */;
 
--- Dumping structure for table megalodondb.system_requirements
-CREATE TABLE IF NOT EXISTS `system_requirements` (
-  `Id_system_rerequirements` int(11) NOT NULL AUTO_INCREMENT,
-  `Processor` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RAM` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `VGA` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Storage` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`Id_system_rerequirements`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table megalodondb.system_requirements: ~0 rows (approximately)
-/*!40000 ALTER TABLE `system_requirements` DISABLE KEYS */;
-INSERT INTO `system_requirements` (`Id_system_rerequirements`, `Processor`, `RAM`, `VGA`, `Storage`) VALUES
-	(1, 'Intel I5', '4GB', 'Nvidia 1050', '40GB');
-/*!40000 ALTER TABLE `system_requirements` ENABLE KEYS */;
 
 -- Dumping structure for table megalodondb.token_user
 CREATE TABLE IF NOT EXISTS `token_user` (
