@@ -182,7 +182,7 @@
                                 </li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Form Validation</h4>
+                        
                     </div>
                 </div>
             </div>
@@ -296,40 +296,38 @@
                                         <div class="form-group row">
                                             <h4 class="header-title m-t-0">CATEGORIES</h4>
                                             <br>
-                                            <th:block th:each="ct : ${listcate}">
-                                            <div>
-                                                <input th:field="*{categories}" type="checkbox" th:id="'input-btn-switch-info'+${ct.idCategory}" th:value="${ct.idCategory}"/>
-                                                <label th:for="'input-btn-switch-info'+${ct.idCategory}"
+                                            
+                                            <div class="btn-switch btn-switch-info" th:each="ct : ${listcate}"> 
+                                            <div class="form-group row">
+                                            <div class="col-sm-12">
+                                               <label th:for="'input-btn-switch-info'+${ct.idCategory}"  
                                                     class="btn btn-rounded btn-info waves-effect waves-light">
-                                                    <strong th:text="${ct.nameCategory}">
-                                                    </strong>
+                                                    <input th:id="'input-btn-switch-info'+${ct.idCategory}" type="checkbox" th:field="*{categories}" th:value="${ct.idCategory}" />
+                                                    <strong th:text="${ct.nameCategory}"></strong>
                                                 </label>
+                                                </div>
+                                                </div>
+                                                </div>
                                             </div>
-                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-sm-12 col-xs-12">
+                                            <div class="row">
+                                   			 <div class="col-sm-12 col-xs-12">
                                         <h4 class="header-title m-t-0">UPLOAD IMAGE</h4>
                                         <p class="text-muted font-13 m-b-30">
             								Choose picture you want to upload here.
                                         </p>
-
                                         <div class="p-20">
                                             <div class="form-group clearfix">
                                                 <div class="col-sm-12 padding-left-0 padding-right-0">
-                                                    <input type="file" name="files[]" id="filer_input1"
+                                                    <input type="file" name="image" id="filer_input1"
                                                         multiple="multiple">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                               
+                                        </div>
+                                    </div>
+                                </div>         
                                 <div class="form-group text-right m-b-0">
                                     <button class="btn btn-primary waves-effect waves-light" type="submit">
                                         Submit
@@ -389,13 +387,6 @@
     <!-- Counter js  -->
     <script th:src="@{../plugins/waypoints/jquery.waypoints.min.js}"></script>
     <script th:src="@{../plugins/counterup/jquery.counterup.min.js}"></script>
-
-    <!--Morris Chart-->
-    <script th:src="@{../plugins/morris/morris.min.js}"></script>
-    <script th:src="@{../plugins/raphael/raphael-min.js}"></script>
-
-    <!-- Dashboard init -->
-    <script th:src="@{../assets/pages/jquery.dashboard.js}"></script>
 
     <!--Wysiwig js-->
     <script th:src="@{../plugins/tinymce/tinymce.min.js}"></script>

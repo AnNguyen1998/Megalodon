@@ -17,4 +17,6 @@ public interface AdminGameServiceAn {
 	void deleteById(Integer id);
 
 	Optional<Games> findById(Integer id);
+
+	List<Games> findAllTop();
 }

@@ -29,9 +29,12 @@ public class AdminControllerAn {
 	@Autowired
 	CategoryService cate;
 	@GetMapping("admin")
-	public String adminindex() {
+	public String adminindex(Model model) {
+		List<Games> topgame = gameService.findAllTop();
+		model.addAttribute("topgame", topgame);
 		return "admin/index";
 	}
+	//Users
 	@GetMapping("admin/listusers")
 	public String userlist() {
 		System.out.println("Admin/listuser");
@@ -41,6 +44,7 @@ public class AdminControllerAn {
 	public String listcustomer() {
 		return "admin/customer";
 	}
+	//Games
 	@GetMapping("admin/addgame")
 	public String addgame(Model model) {
 		model.addAttribute("game", new Games());
@@ -67,4 +71,5 @@ public class AdminControllerAn {
 	public String listgame() {
 		return "admin/Listofgame";
 	}
+
 }
