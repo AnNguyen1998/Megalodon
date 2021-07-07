@@ -51,9 +51,14 @@ public class AdminGameServiceImpAn implements AdminGameServiceAn {
 		}
 		return game.save(entity);
 	}
-
+	
 	@Override
 	public Games getById(Integer id) {
 		return game.getById(id);
+	}
+
+	@Override
+	public List<Games> findAllTop() {
+		return game.findAllTop();
 	}
 }

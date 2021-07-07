@@ -273,7 +273,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card-box">
-                            <h4 class="header-title m-t-0 m-b-30">Top 5 Most Users Buy</h4>
+                            <h4 class="header-title m-t-0 m-b-30">Top 5 User Buy Games Most</h4>
 
                             <div class="table-responsive">
                                 <table class="table table table-hover m-0">
@@ -310,31 +310,30 @@
 
                     <div class="col-lg-6">
                         <div class="card-box">
-                            <h4 class="header-title m-t-0 m-b-30">Top 5 Most Games Dowloads</h4>
+                            <h4 class="header-title m-t-0 m-b-30">Top 5 Most Bought Games</h4>
 
                             <div class="table-responsive">
                                 <table class="table table table-hover m-0">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>User Name</th>
-                                            <th>Phone</th>
-                                            <th>Location</th>
-                                            <th>Date</th>
+                                            <th>Name Game</th>
+                                            <th>Producter</th>
+                                            <th>Pulisher</th>
+                                            <th>Release Year</th>
+                                            <th>Rate Game</th>
+                                            <th>Price</th>
+                                            <th>Purchases</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th>
-                                                <span class="avatar-sm-box bg-success">L</span>
-                                            </th>
-                                            <td>
-                                                <h5 class="m-0">Louis Hansen</h5>
-                                                <p class="m-0 text-muted font-13"><small>Web designer</small></p>
-                                            </td>
-                                            <td>+12 3456 789</td>
-                                            <td>USA</td>
-                                            <td>07/08/2016</td>
+                                        <tr th:each="game : ${topgame}">
+                                            <td th:text="${game.nameGame}"></td>
+                                            <td th:text="${game.producterGame}"></td>
+                                            <td th:text="${game.publisherGame}"></td>
+                                            <td th:text="${game.releaseYearGame}"></td>
+                                            <td th:text="${game.rateGame}"></td>
+                                            <td th:text="${game.price}"></td>
+                                            <td th:text="${game.countSell}"></td>
                                         </tr>
 
                                     </tbody>
