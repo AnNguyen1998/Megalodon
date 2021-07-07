@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,14 +22,14 @@ public class Category implements java.io.Serializable {
 
 	private Integer idCategory;
 	private String nameCategory;
-	private Set<GameCategory> gameCategories = new HashSet<GameCategory>(0);
+	private Set<Games> games = new HashSet<Games>(0);
 
 	public Category() {
 	}
 
 	public Category(String nameCategory) {
 		this.nameCategory = nameCategory;
-		this.gameCategories = gameCategories;
+		
 	}
 
 	@Id
@@ -52,13 +53,13 @@ public class Category implements java.io.Serializable {
 		this.nameCategory = nameCategory;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
-	public Set<GameCategory> getGameCategories() {
-		return this.gameCategories;
+	@ManyToMany(mappedBy = "categories")
+	public Set<Games> getgames() {
+		return this.games;
 	}
 
-	public void setGameCategories(Set<GameCategory> gameCategories) {
-		this.gameCategories = gameCategories;
+	public void setgames(Set<Games> games) {
+		this.games = games;
 	}
 
 }
