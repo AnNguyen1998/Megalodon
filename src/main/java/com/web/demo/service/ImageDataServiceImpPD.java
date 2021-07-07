@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import com.web.demo.entity.ImageData;
 import com.web.demo.repository.ImageDataRepositoryPD;
 
+/*
+ * 
+ * @author PhatDat
+ */
 @Service
 public class ImageDataServiceImpPD implements ImageDataServicePD {
 	@Autowired
@@ -30,5 +34,14 @@ public class ImageDataServiceImpPD implements ImageDataServicePD {
 	@Override
 	public List<ImageData> getImageList(){
 		return imageGameRepository.findAll();
+	}
+	
+	/*
+	 * get a game's list of images
+	 * @author PhatDat
+	 */
+	@Override
+	public List<ImageData> getImageDetailGame(int id){
+		return imageGameRepository.findImageGame(id);
 	}
 }

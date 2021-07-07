@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- author Phat Dat 
-	 Home Page with all games or list of games is arranged by a specific filter
+	 Second Home Page with all games or list of games is arranged by a specific filter
 -->
 
 <head>
@@ -130,7 +130,7 @@
 
     <header class="header header-style-1">
         <div class="navigation flex-align">
-            <a href="home_1.html" class="logo"><img src="img/logo.png" alt="delice"><img src="img/logo2.png"
+            <a href="http://localhost:8080/hometest2" class="logo"><img src="img/logo.png" alt="delice"><img src="img/logo2.png"
                     alt="delice" class="logo-type-2"></a>
             <div class="burger-menu"><i></i></div>
             <div class="nav">
@@ -138,12 +138,12 @@
                     
                     <nav>
                         <ul class="header-menu">
-                            <li class="active"><a href="home_1.html">Home<img src="img/down-arrow.png" alt=""
+                            <li class="active"><a href="http://localhost:8080/hometest2">Home<img src="img/down-arrow.png" alt=""
                                         class="menu-arr"></a>
 
                             </li>
                             <li><a href="about.html">About</a></li>
-                            <li><a href="shop-3.html">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                            <li><a href="http://localhost:8080/shoptest/1">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
 
                             </li>
 
@@ -181,12 +181,15 @@
                     <div class="col-md-3 col-sm-6 col-xs-12" th:each="game, gameStat : ${games1}">
 					
                         <div class="menu-item menu-item-1">
-                            <div class="image">
+                            <div class="image" th:each="img : ${images1}">
                                 <span class="page-span-1 page-span"></span>
                                 <span class="page-span-2 page-span type-2"></span>
-                                <img th:src="@{*{images1[__${game.idGame}__-1].nameImage}}" alt="">
+								<div th:if="${game.idGame == img.games.idGame}">
+									<img th:src="@{*{img.nameImage}}" alt="">
+								</div>
                                 <div class="vertical-align full menu-button">
-                                    <a href="#" class="page-button button-style-1"><span class="txt">view
+                                    <a th:href="@{'http://localhost:8080/shop/game?id=' + ${game.idGame}}" 
+									class="page-button button-style-1"><span class="txt">view
                                             more</span></a>
                                 </div>
                             </div>
@@ -205,7 +208,7 @@
                     <div class="text-center">
                         <div class="empty-sm-20 empty-xs-20"></div>
 								
-							<div th:if="${totalPages > 1}">
+							<div th:if="${totalPages >=1 }">
 								<div class="row col-sm-10">
 									<div class="col-sm-2">
 										Total: [[${totalItems}]] games

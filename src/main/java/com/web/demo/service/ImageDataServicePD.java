@@ -10,5 +10,6 @@ import com.web.demo.entity.ImageData;
  */
 public interface ImageDataServicePD {
 	public ImageData getImageGame(int i);
+	public List<ImageData> getImageDetailGame(int i);
 	public List<ImageData> getImageList();
 }

@@ -68,5 +68,17 @@ public class GamesServiceImpPD implements GamesServicePD {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, Sort.Direction.DESC, field);
 		return this.gamesRepository.findGamesByFilterPaginated(pageable);
 	}
+	
+	/**
+	 * @author PhatDat
+	 * search result of games by term from user with Pagination
+	 */
+	@Override
+	public Page<Games> listAllGamesPaginated(String keyword, int pageNo, int pageSize) {
+        if (keyword != null) {
+            return this.gamesRepository.search(keyword, PageRequest.of(pageNo - 1, pageSize));
+        }
+        return this.findAllPaginated(pageNo, pageSize);
+    }
 
 }
