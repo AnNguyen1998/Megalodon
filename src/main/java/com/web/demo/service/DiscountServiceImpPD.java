@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import com.web.demo.entity.Discount;
 
 import com.web.demo.repository.DiscountRepositoryPD;
-
+/**
+ * @author PhatDat
+ *
+ */
 
 @Service
 public class DiscountServiceImpPD implements DiscountServicePD{
