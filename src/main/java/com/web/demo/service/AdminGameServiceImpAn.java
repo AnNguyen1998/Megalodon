@@ -32,12 +32,23 @@ public class AdminGameServiceImpAn implements AdminGameServiceAn {
 
 	@Override
 	public List<Games> findAll() {
-
 		return game.findAll();
 	}
 
 	@Override
 	public <S extends Games> Games save(S entity) {
+		if(entity.getPriceFix() == null) {
+			entity.setPriceFix((long)0);
+		}
+		if(entity.getRateGame() == null) {
+			entity.setRateGame((float) 0);
+		}
+		if(entity.getCountSell() == null) {
+			entity.setCountSell((int) 0);
+		}
+		if(entity.getCountRate() == null) {
+			entity.setCountRate((int) 0);
+		}
 		return game.save(entity);
 	}
 
