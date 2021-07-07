@@ -3,6 +3,8 @@ package com.web.demo.restcontroller;
  * @author An Nguyen
  */
 import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,12 +43,12 @@ public class RestUserControllerAn {
 			us= userService.save(users);
 			TokenUser token = new TokenUser(us);
 			tokenservice.save(token);
-		}//else {
-//			us = userService.save(users);
-//			TokenUser token = tokenservice.findByUsers(us);
-//			token.setValueTokenUsers(UUID.randomUUID().toString());
-//			tokenservice.save(token);
-//		}
+		}else {
+			us = userService.save(users);
+			TokenUser token = tokenservice.findByUsers(us);
+			token.setValueTokenUsers(UUID.randomUUID().toString());
+			tokenservice.save(token);
+		}
 		return new ResponseEntity<Users>(us,HttpStatus.OK);
 	}
 	@DeleteMapping("/api/delete/{id}")
