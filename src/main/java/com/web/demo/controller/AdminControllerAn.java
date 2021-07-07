@@ -41,7 +41,7 @@ public class AdminControllerAn {
 	@GetMapping("editgame/{id}")
 	public String editgame(@PathVariable(name="id") Integer id, Model model) {
 		Games game = gameService.getById(id);
-		System.out.println(game.getGameCategories().toString());
+	//	System.out.println(game.getGameCategories().toString());
 		model.addAttribute("game", game);
 		return "admin/newgame";
 	}
