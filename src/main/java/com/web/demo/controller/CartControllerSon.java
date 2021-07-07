@@ -18,14 +18,14 @@ import com.web.demo.dto.CartDTOSon;
 import com.web.demo.entity.Games;
 import com.web.demo.service.AdminGameServiceAn;
 import com.web.demo.service.GamesServicePD;
-@RequestMapping("/cart")
+
 public class CartControllerSon {
 
 	@Autowired
 	AdminGameServiceAn gameservice;
 	
 	
-	@GetMapping("/add/{id}")
+	@GetMapping("cart/add/{id}")
 	public String  addcart(Model model,HttpSession session,@PathVariable int id) {
 		HashMap<Integer, CartDTOSon>Cartitems=(HashMap<Integer, CartDTOSon>)session.getAttribute("mycartitem");
 		if(Cartitems==null) {
@@ -53,7 +53,7 @@ public class CartControllerSon {
 		}
 		return count;
 	}
-	@GetMapping("/remove/{id}")
+	@GetMapping("cart/remove/{id}")
 	public String remove(Model model, HttpSession session,@PathVariable("id") Integer id) {
 		HashMap<Integer, CartDTOSon> cartitems=(HashMap<Integer, CartDTOSon>)session.getAttribute("mycartitem");
 		if(cartitems==null) {
