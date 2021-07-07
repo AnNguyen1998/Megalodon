@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.web.demo.entity.Category;
 import com.web.demo.entity.Games;
 import com.web.demo.repository.AdminGameRepoAn;
 
@@ -61,4 +62,10 @@ public class AdminGameServiceImpAn implements AdminGameServiceAn {
 	public List<Games> findAllTop() {
 		return game.findAllTop();
 	}
+
+	@Override
+	public List<Games> findBycategories(Category cate) {
+		return game.findBycategories(cate);
+	}
+	
 }
