@@ -2,6 +2,8 @@ package com.web.demo.service;
 
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.User;
+
 import com.web.demo.entity.Users;
 
 public interface UserServiceSon {
@@ -17,5 +19,17 @@ public interface UserServiceSon {
 
 
 	Optional<Users> findByUsernameUsers(String usernameUsers);
+
+
+
+	<S extends Users> Users addUser(Users user, int roles);
+
+
+
+	Users confirmEmail(Users user, Optional<Users> us);
+
+
+
+
 
 }
