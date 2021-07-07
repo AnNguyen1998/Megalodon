@@ -19,7 +19,7 @@ public class AdminControllerAn {
 	
 	@Autowired
 	AdminGameServiceAn gameService;
-	
+	@Autowired
 	@GetMapping("admin")
 	public String adminindex() {
 		return "admin/index";
