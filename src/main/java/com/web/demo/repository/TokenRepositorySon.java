@@ -20,5 +20,5 @@ public interface TokenRepositorySon extends JpaRepository<TokenUser, String> {
 
 	TokenUser findByValueTokenUsers(String valueTokenUsers);
 	TokenUser findByUsers(Optional<Users> users);
-  
+	TokenUser findByUsers (Users users);
 }

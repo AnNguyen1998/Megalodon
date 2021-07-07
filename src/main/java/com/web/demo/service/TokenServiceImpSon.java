@@ -18,6 +18,10 @@ public class TokenServiceImpSon implements TokenServiceSon{
 
 	
 	@Override
+	public TokenUser findByUsers(Users users) {
+		return confirmtoken.findByUsers(users);
+	}
+	@Override
 	public TokenUser findByUsers(Optional<Users> users) {
 		return confirmtoken.findByUsers(users);
 	}
