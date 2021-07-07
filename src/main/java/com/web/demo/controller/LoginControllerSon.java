@@ -39,10 +39,7 @@ public class LoginControllerSon {
 	UserServiceSon userservice;
 	@Autowired
 	TokenServiceSon tokenservice;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	@Autowired
-	public JavaMailSender emailSender;
+
 
 	// Login
 	@GetMapping("/shop")
@@ -72,6 +69,9 @@ public class LoginControllerSon {
 	@PostMapping("/regis")
 	public String savecustomer(@Validated @ModelAttribute("user") Users user, ModelMap model,
 			@RequestParam(required = false) String pre_password) {
+
+	
+
 		Optional<Users> userbyusername = userservice.findByUsernameUsers(user.getUsernameUsers());
 		Optional<Users> userbyemail = userservice.findByEmailUsers(user.getEmailUsers());
 
@@ -87,37 +87,23 @@ public class LoginControllerSon {
 			model.addAttribute("message2", "Password not match");
 			return "shop/shop-3";
 		} else {
-			Role role = new Role();
-			role.setIdRole(3);
-			user.setRole(role);
-			user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
-
-			userservice.save(user);
-			TokenUser token = new TokenUser(user);
-
-			tokenservice.save(token);
-			model.addAttribute(user);
-			return "redirect:/shop";
+			int roles = 3;
+			Users us = userservice.addUser(user, roles);
+			model.addAttribute(us);
 		}
+		return "redirect:/shop";
 	}
+
+//	}
 
 	@PostMapping("/forgot")
 	public String forgot(Model model, @ModelAttribute("user") Users user) {
 		Optional<Users> userbyemail = userservice.findByEmailUsers(user.getEmailUsers());
 
 		if (userbyemail.isPresent()) {
-			TokenUser tokenuser = tokenservice.findByUsers(userbyemail);
-			tokenuser.setValueTokenUsers(UUID.randomUUID().toString());
-			tokenservice.save(tokenuser);
-			//
-			SimpleMailMessage message = new SimpleMailMessage();
-			message.setTo(user.getEmailUsers());
-			message.setSubject("Fogot Password");
-			message.setText("Hi, we confirm you forgot your password, please click this link:  "
-					+ "http://localhost:8080/confirm-reset?token=" + tokenuser.getValueTokenUsers());
-			this.emailSender.send(message);
+			Users us= userservice.confirmEmail(user, userbyemail);
 			model.addAttribute("message3", "Please check your email");
-			model.addAttribute("user", user);
+			model.addAttribute("user", us);
 			return "shop/shop-3";
 		} else {
 			model.addAttribute("message3", "Email not exist");
@@ -160,10 +146,7 @@ public class LoginControllerSon {
 			model.addAttribute("mes", "Password not match");
 			return "redirect:/confirm-reset?token=" + linktoken+"&mess=P";
 		} else {
-			tokenuser.setValueTokenUsers(UUID.randomUUID().toString());
-			users.get().setPasswordUsers(passwordEncoder.encode(pass));
-			userservice.save(users.get());
-			tokenservice.save(tokenuser);
+			userservice.addUser(users.get(), users.get().getRole().getIdRole());
 			return "redirect:/shop";
 		}
 
