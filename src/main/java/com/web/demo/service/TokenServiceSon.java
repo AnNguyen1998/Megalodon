@@ -18,6 +18,8 @@ public interface TokenServiceSon {
 
 	TokenUser findByUsers(Optional<Users> users);
 
+	TokenUser findByUsers(Users users);
+
 
 
 	
