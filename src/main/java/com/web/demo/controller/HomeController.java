@@ -15,11 +15,7 @@ import com.web.demo.service.GamesServicePD;
 import com.web.demo.service.ImageDataServicePD;
 
 /**
- * @author DELL
- *
- */
-/**
- * @author DELL
+ * @author PhatDat
  *
  */
 @Controller

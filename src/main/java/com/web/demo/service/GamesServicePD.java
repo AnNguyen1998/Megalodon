@@ -19,4 +19,6 @@ public interface GamesServicePD {
 	public Page<Games> findAllPaginated(int pageNo, int pageSize);
 	
 	public Page<Games> findGamesByFilterPaginated(int pageNo, int pageSize, String field);
+	
+	public Page<Games> listAllGamesPaginated(String keyword, int pageNo, int pageSize);
 }
