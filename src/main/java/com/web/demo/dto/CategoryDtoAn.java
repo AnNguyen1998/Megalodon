@@ -1,8 +1,12 @@
 package com.web.demo.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class CategoryDtoAn {
 	private Integer idCategory;
 	private String nameCategory;
+//	private Set<GamesDtoAn2> games = new HashSet<GamesDtoAn2>(0);
 	public Integer getIdCategory() {
 		return idCategory;
 	}
@@ -15,4 +19,11 @@ public class CategoryDtoAn {
 	public void setNameCategory(String nameCategory) {
 		this.nameCategory = nameCategory;
 	}
+//	public Set<GamesDtoAn2> getGames() {
+//		return games;
+//	}
+//	public void setGames(Set<GamesDtoAn2> games) {
+//		this.games = games;
+//	}
+	
 }

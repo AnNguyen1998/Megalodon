@@ -195,8 +195,6 @@
                                     <th>Phone</th>
                                 </tr>
                             </thead>
-
-
                             <tbody>
                                 <tr v-for="u in filteredUsers" v-if="u.role.idRole ==3">
                                     <td>{{u.usernameUsers}}</td>
@@ -206,8 +204,8 @@
                                     <td>{{u.dateOfBirthday}}</td>
                                     <td>{{u.phoneUsers}}</td>
                                 </tr>
-                                
                             </tbody>
+                           
                         </table>
                     </div>
                 </div>
@@ -260,6 +258,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://vuejs.org/js/vue.js"></script>
 <script>
+
     var app = new Vue({
         el: '.wrapper',
         data() {
@@ -269,11 +268,11 @@
             }
         },
         mounted() {
-            this.fetchUser();
-        },
+           this.fetchUser();
+       },
         methods: {
-            fetchUser: function () {
-                axios.get("http://localhost:8080/api/user").then(response => (
+        	fetchUser: function () {
+               axios.get("http://localhost:8080/api/user").then(response => (
                     this.users = response.data))
             },
         },
