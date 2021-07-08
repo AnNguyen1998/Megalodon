@@ -1,6 +1,8 @@
 package com.web.demo.dto;
 // Generated Jun 29, 2021, 8:56:47 AM by Hibernate Tools 5.0.6.Final
-
+/**
+ * @author Nguyen Phuong
+ */
 
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;

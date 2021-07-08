@@ -1,8 +1,8 @@
 package com.web.demo.service;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
-/**
- * @author NguyenHuuSon
- */
 import java.util.Optional;
 import java.util.UUID;
 
@@ -56,33 +56,15 @@ public class UserServiceImpSon implements UserServiceSon {
 		return usersRepository.findByEmailUsers(emailUsers);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public Users addUser(Users user, int roles) {
 		Role role = new Role();
 		role.setIdRole(roles);
 		user.setRole(role);
 		user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
-		if (user.getImageUsers()==null|| user.getImageUsers().equals("")) {
-			user.setImageUsers("noavatar.png");
-		}
-		if(user.getGender()==null) {
-			user.setGender(1);
-		}
-		if(user.getStatus()==null) {
-			user.setStatus(1);
-		}
-		if(user.getPhoneUsers()==null) {
-			user.setPhoneUsers(" ");
-		}
-		if(user.getAddressUsers()==null) {
-			user.setAddressUsers(" ");
-		}
-		if(user.getDateOfBirthday()==null) {
-			user.setDateOfBirthday(new Date());
-		}
-		usersRepository.save(user);
-		TokenUser token = new TokenUser(user);
+		Users u= usersRepository.save(user);
+		TokenUser token = new TokenUser(u);
 		tokenrepository.save(token);
 		return user;
 
@@ -101,5 +83,15 @@ public class UserServiceImpSon implements UserServiceSon {
 		
 		return user;
 		
+	}
+	
+	@Override
+	public Users channgepass(Optional<Users> u,String pass) {
+		u.get().setPasswordUsers(passwordEncoder.encode(pass));
+		Users user= usersRepository.save(u.get());
+		TokenUser token =tokenrepository.findByUsers(user);
+		token.setValueTokenUsers(UUID.randomUUID().toString());
+		tokenrepository.save(token);
+		return user;
 	}
 }

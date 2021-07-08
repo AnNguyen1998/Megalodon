@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().successHandler(customizeAuthenticationSuccessHandler)
 				.loginProcessingUrl("/login")
 				
-				.loginPage("/shop-3").usernameParameter("usernameUsers").passwordParameter("passwordUsers")
+				.loginPage("/shop").usernameParameter("usernameUsers").passwordParameter("passwordUsers")
 				.failureUrl("/shop?message=error")
 				.and()
 				.logout().logoutUrl("/logout").logoutSuccessUrl("/shop?message=logout");
