@@ -1,4 +1,5 @@
 package com.web.demo.restcontroller;
+import java.util.Date;
 /**
  * @author An Nguyen
  */
@@ -42,11 +43,13 @@ public class RestUserControllerAn {
 		if(users.getIdUsers() == null) {
 			us= userService.save(users);
 			TokenUser token = new TokenUser(us);
+			
 			tokenservice.save(token);
 		}else {
 			us = userService.save(users);
 			TokenUser token = tokenservice.findByUsers(us);
 			token.setValueTokenUsers(UUID.randomUUID().toString());
+			token.setDate(new Date());
 			tokenservice.save(token);
 		}
 		return new ResponseEntity<Users>(us,HttpStatus.OK);
