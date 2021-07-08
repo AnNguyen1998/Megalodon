@@ -123,8 +123,7 @@
                 transform: scale3D(0, 0, 1);
             }
         }
-		
-		
+
     </style>
 </head>
 
@@ -142,15 +141,22 @@
                         <ul class="header-menu">
                             <li class="active"><a href="http://localhost:8080/hometest2">Home<img src="../img/down-arrow.png" alt=""
                                         class="menu-arr"></a>
+                            </li>
+                            <li><a href="#">Category</a>
+                            <ul>
+                            <li th:each="category : ${listcate}"><a href="#" th:text="${category.nameCategory}"></a></li>
+                            </ul></li>
+							
+							<li><a href="http://localhost:8080/shoptest/1">Shop<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
 
                             </li>
+							
+							<li><a href="blog-1.html">Blog<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
+                            </li>
+							
                             <li><a href="about.html">About</a></li>
-                            <li><a href="http://localhost:8080/shoptest/1">Shop<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
+                            
 
-                            </li>
-
-                            <li><a href="blog-1.html">Blog<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                            </li>
                             <li><a href="contact-2.html">Contact<img src="../img/down-arrow.png" alt=""
                                         class="menu-arr"></a>
 
@@ -175,13 +181,22 @@
                             <div class="simple-text md simple-sub-text">
                                 <p th:text="${game.descriptionGame}"></p>
                             </div>
-                            <div class="empty-sm-35 empty-xs-35"></div>
+                            <div class="empty-sm-20 empty-xs-20"></div>
                             <div class="simple-text">
 								<p>Price:</p>
                                 <p style="display: inline-block;" th:text="${'- ' + game.discount.value + ' %'}"></p>
 								<p style="display: inline-block; margin-left: 20px;" th:text="${game.priceFix + ' VND'}"></p>
 								<p style="display: inline-block; margin-left: 20px;" ><strike th:text="${game.price + ' VND'}"></strike></p>
                             </div>
+							<div class="empty-sm-15 empty-xs-15"></div>
+							<!-- Quantity button -->
+							<div class="quantity buttons_added">
+								<input type="button" value="-" class="minus">
+								<input type="number" step="1" min="1" max="" name="quantity" value="1" 
+								title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+								<input type="button" value="+" class="plus">
+							</div>
+							<!-- End Quantity button -->
                             <div class="empty-sm-45  empty-xs-45"></div>
                             <a href="#" class="page-button button-style-2"><span class="bg"
                                     style="background-image: url(../img/home-1/button_img_2.jpg)"></span><span
@@ -382,7 +397,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
     <link href="../../css/style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../../css/style1.css" />
+    
 	
+	<!-- added -->
+
 
     <script>
         function subscribeForm() {
@@ -394,6 +413,7 @@
             });
             return false;
         }
+		
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -406,6 +426,10 @@
     <script src="../../js/jquery.classycountdown.js"></script>
     <script src="../../js/jarallax.js"></script>
     <script src="../../js/color.picker.js"></script>
+	
+	
+	<script src="../../js/script.js"></script>	
+	<script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
 </body>

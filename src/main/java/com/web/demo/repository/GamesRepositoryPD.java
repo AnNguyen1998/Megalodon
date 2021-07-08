@@ -41,4 +41,13 @@ public interface GamesRepositoryPD extends JpaRepository<Games, Integer>, Paging
 	public Page<Games> search(String keyword, Pageable pageable);
 	
 	
+	/*
+	 * @author PhatDat
+	 * method get games by term because user searched with Pagination
+	 */
+	@Query(value = "SELECT * FROM games WHERE NOT Id_game=?1 ORDER BY Id_game LIMIT 5",
+			countQuery = "SELECT count(*) FROM games",
+			nativeQuery = true)
+	public List<Games> getRecommendGames(int id);
+	
 }

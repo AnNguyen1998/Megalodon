@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.web.demo.entity.Category;
 import com.web.demo.entity.Games;
+import com.web.demo.service.CategoryService;
 import com.web.demo.service.DiscountServicePD;
 import com.web.demo.service.GamesServicePD;
 import com.web.demo.service.ImageDataServicePD;
+import com.web.demo.service.UserCommentGameServicePD;
 
 /**
  * @author PhatDat
@@ -33,6 +37,11 @@ public class ShopControllerPhatDat {
 	@Autowired
 	private GamesServicePD gameService;
 	
+	@Autowired
+	CategoryService cateService;
+	
+	@Autowired
+	private UserCommentGameServicePD comment;
 	
 	@GetMapping(value = "/shoptest/{pageNo}")
     public String shop1(@PathVariable(value = "pageNo") int pageNo, Model model) {
@@ -40,7 +49,8 @@ public class ShopControllerPhatDat {
 		//model.addAttribute("game", gameService.getGame(1));
 		//model.addAttribute("discount", discountService.getDiscount(1));
 		//System.out.println(imageGameService.getImageGame(1));
-		
+		List<Category> listcate= cateService.findAll();
+		model.addAttribute("listcate",listcate);
 		int pageSize = 4;
 
 	    Page<Games> page = gameService.findAllPaginated(pageNo, pageSize);
@@ -80,9 +90,36 @@ public class ShopControllerPhatDat {
 	
 	@RequestMapping(value = "/shop/game")
     public String gameDetail(Model model, @RequestParam("id") int id) {
+		List<Category> listcate= cateService.findAll();
+		model.addAttribute("listcate",listcate);
         model.addAttribute("game", gameService.getGame(id));		
 		model.addAttribute("images", imageGameService.getImageDetailGame(id));   
         return "shop/gamedetails";
+    }
+	
+	@GetMapping(value = "/shop/detailgame")
+    public String gameDetail1(Model model, @RequestParam("id") int id) {
+		model.addAttribute("game", gameService.getGame(id));		
+		model.addAttribute("images", imageGameService.getImageDetailGame(id));
+		//add comment game
+		model.addAttribute("cmts", comment.getCommentGame(id));
+		model.addAttribute("recGames", gameService.getRelatedGames(id));
+		model.addAttribute("recImgGames", imageGameService.getRelatedImageList(id));
+        return "shop/gameinfo";
+    }
+	
+	@GetMapping(value = "/shop1")
+    public String shop1(Model model) {
+		//model.addAttribute("img", imageGameService.getImageGame(1));
+		//model.addAttribute("game", gameService.getGame(1));
+		//model.addAttribute("discount", discountService.getDiscount(1));
+		//System.out.println(imageGameService.getImageGame(1));
+	
+		
+		model.addAttribute("images1", imageGameService.getImageList());
+		model.addAttribute("listAllGames", gameService.getGameList());
+		
+        return "shop/shop1";
     }
 	
 	
