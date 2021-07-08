@@ -56,7 +56,7 @@ public class AdminUserServiceImpAn implements AdminUserServiceAn {
 		if(entity.getGender()==null) {
 			usernew.setGender(1);
 		}else {
-			usernew.setStatus(entity.getStatus());
+			usernew.setGender(entity.getGender());
 		}
 		if(entity.getStatus()==null) {
 			usernew.setStatus(1);
