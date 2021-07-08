@@ -30,6 +30,18 @@ public interface UserServiceSon {
 
 
 
+	Users channgepass(Optional<Users> u,String pass);
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

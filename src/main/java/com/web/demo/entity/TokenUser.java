@@ -2,6 +2,8 @@ package com.web.demo.entity;
 // Generated Jul 5, 2021, 11:28:02 AM by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,14 +33,9 @@ public class TokenUser implements java.io.Serializable {
 
 	public TokenUser(Users users) {
 		this.users = users;
+		date = new Date();
+	     valueTokenUsers = UUID.randomUUID().toString();
 	}
-
-	public TokenUser(Users users, String valueTokenUsers, Date date) {
-		this.users = users;
-		this.valueTokenUsers = valueTokenUsers;
-		this.date = date;
-	}
-
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
