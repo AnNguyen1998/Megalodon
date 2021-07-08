@@ -1,4 +1,5 @@
 package com.web.demo.service;
+import java.util.Date;
 /**
  * @author NguyenHuuSon
  */
@@ -62,6 +63,24 @@ public class UserServiceImpSon implements UserServiceSon {
 		role.setIdRole(roles);
 		user.setRole(role);
 		user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
+		if (user.getImageUsers()==null|| user.getImageUsers().equals("")) {
+			user.setImageUsers("noavatar.png");
+		}
+		if(user.getGender()==null) {
+			user.setGender(1);
+		}
+		if(user.getStatus()==null) {
+			user.setStatus(1);
+		}
+		if(user.getPhoneUsers()==null) {
+			user.setPhoneUsers(" ");;
+		}
+		if(user.getAddressUsers()==null) {
+			user.setAddressUsers(" ");
+		}
+		if(user.getDateOfBirthday()==null) {
+			user.setDateOfBirthday(new Date());
+		}
 		usersRepository.save(user);
 		TokenUser token = new TokenUser(user);
 		tokenrepository.save(token);
