@@ -73,7 +73,7 @@ public class UserServiceImpSon implements UserServiceSon {
 			user.setStatus(1);
 		}
 		if(user.getPhoneUsers()==null) {
-			user.setPhoneUsers(" ");;
+			user.setPhoneUsers(" ");
 		}
 		if(user.getAddressUsers()==null) {
 			user.setAddressUsers(" ");
