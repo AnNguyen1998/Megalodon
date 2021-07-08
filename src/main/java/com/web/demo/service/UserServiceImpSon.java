@@ -63,6 +63,25 @@ public class UserServiceImpSon implements UserServiceSon {
 		role.setIdRole(roles);
 		user.setRole(role);
 		user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
+		if(user.getAddressUsers()==null) {
+			user.setAddressUsers(" ");
+		}
+		if(user.getGender()==null) {
+			user.setGender(1);
+		}
+		if(user.getImageUsers()==null) {
+			user.setImageUsers("noavatar.png");
+			
+		}
+		if(user.getStatus()==null) {
+			user.setStatus(1);
+		}
+		if(user.getPhoneUsers()==null) {
+			user.setPhoneUsers(" ");
+		}
+		if(user.getDateOfBirthday()==null) {
+			user.setDateOfBirthday(new Date());
+		}
 		Users u= usersRepository.save(user);
 		TokenUser token = new TokenUser(u);
 		tokenrepository.save(token);
