@@ -36,6 +36,8 @@ public class UserDetailsServiceImp implements UserDetailsService{
 		String rolename=user.getRole().getNameRole();
 		authoritie.add(new SimpleGrantedAuthority(rolename));
 		System.out.println(user.getEmailUsers());
+		System.out.println(user.getUsernameUsers());
+		System.out.println(user.getPasswordUsers());
 		boolean enabled=true;
 		boolean accountNonExpired=true;
 		boolean credentialIsNonExpired= true;

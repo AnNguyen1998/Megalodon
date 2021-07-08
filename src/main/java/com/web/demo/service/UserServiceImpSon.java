@@ -1,5 +1,8 @@
 package com.web.demo.service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -53,15 +56,15 @@ public class UserServiceImpSon implements UserServiceSon {
 		return usersRepository.findByEmailUsers(emailUsers);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public Users addUser(Users user, int roles) {
 		Role role = new Role();
 		role.setIdRole(roles);
 		user.setRole(role);
 		user.setPasswordUsers(passwordEncoder.encode(user.getPasswordUsers()));
-		usersRepository.save(user);
-		TokenUser token = new TokenUser(user);
+		Users u= usersRepository.save(user);
+		TokenUser token = new TokenUser(u);
 		tokenrepository.save(token);
 		return user;
 
@@ -80,5 +83,15 @@ public class UserServiceImpSon implements UserServiceSon {
 		
 		return user;
 		
+	}
+	
+	@Override
+	public Users channgepass(Optional<Users> u,String pass) {
+		u.get().setPasswordUsers(passwordEncoder.encode(pass));
+		Users user= usersRepository.save(u.get());
+		TokenUser token =tokenrepository.findByUsers(user);
+		token.setValueTokenUsers(UUID.randomUUID().toString());
+		tokenrepository.save(token);
+		return user;
 	}
 }

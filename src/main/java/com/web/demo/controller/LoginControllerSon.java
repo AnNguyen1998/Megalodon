@@ -146,7 +146,7 @@ public class LoginControllerSon {
 			model.addAttribute("mes", "Password not match");
 			return "redirect:/confirm-reset?token=" + linktoken+"&mess=P";
 		} else {
-			userservice.addUser(users.get(), users.get().getRole().getIdRole());
+			userservice.channgepass(users,pass);
 			return "redirect:/shop";
 		}
 
