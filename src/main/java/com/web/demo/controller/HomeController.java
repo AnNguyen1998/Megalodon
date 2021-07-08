@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.web.demo.entity.Category;
 import com.web.demo.entity.Games;
+import com.web.demo.service.CategoryService;
 import com.web.demo.service.DiscountServicePD;
 import com.web.demo.service.GamesServicePD;
 import com.web.demo.service.ImageDataServicePD;
@@ -29,6 +32,10 @@ public class HomeController {
 	
 	@Autowired
 	private GamesServicePD gameService;
+	
+	@Autowired
+	CategoryService cateService;
+	
 	/*
 	 * get list of all games and list of games by filters with Pagination
 	 * @author PhatDat
@@ -80,6 +87,8 @@ public class HomeController {
 	 */
 	@GetMapping(value = "/hometest2")
     public String hometest2(Model model) {
+		List<Category> listcate= cateService.findAll();
+		model.addAttribute("listcate",listcate);
 		//model.addAttribute("img", imageGameService.getImageGame(1));
 		//model.addAttribute("game", gameService.getGame(1));
 		//model.addAttribute("discount", discountService.getDiscount(1));
