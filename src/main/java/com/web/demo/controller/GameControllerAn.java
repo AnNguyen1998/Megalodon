@@ -1,12 +1,14 @@
 package com.web.demo.controller;
-import java.security.Principal;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 /**
  * @author An Nguyen
  */
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,60 +20,64 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.web.demo.config.WebUtilsAn;
-import com.web.demo.entity.Bill;
 import com.web.demo.entity.Category;
+import com.web.demo.entity.Discount;
 import com.web.demo.entity.Games;
 import com.web.demo.service.AdminBillServiceAn;
 import com.web.demo.service.AdminGameServiceAn;
-import com.web.demo.service.AdminUserServiceAn;
 import com.web.demo.service.CategoryService;
-
+import com.web.demo.service.DiscountServiceAn;
 @Controller
-public class AdminControllerAn {
+public class GameControllerAn {
 	
 	@Autowired
 	AdminGameServiceAn gameService;
 	
 	@Autowired
-	AdminUserServiceAn userService;
+	CategoryService cate;
 	
 	@Autowired
 	AdminBillServiceAn billService;
 	
-	@GetMapping("admin")
-	public String adminindex(Model model, Principal principal) {
-		List<Games> topgame = gameService.findAllTop();
-		model.addAttribute("topgame", topgame);
-		List<Bill> topuser = billService.findAllTop();
-		model.addAttribute("topuser", topuser);
-		for(Bill b:topuser) {
-			System.out.println(b.getUsers().getNameUsers());
-		}
+	@GetMapping("admin/addgame")
+	public String addgame(Model model, Principal principal) {
+		model.addAttribute("game", new Games());
+		List<Category> listcate = cate.findAll();
+		model.addAttribute("listcate", listcate);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
 			model.addAttribute("userInfo", userInfo);
 		}
-		return "admin/index";
+		return "admin/newgame";
 	}
-	//Users
-	@GetMapping("admin/listusers")
-	public String userlist(Model model, Principal principal) {
-		System.out.println("Admin/listuser");
+	@GetMapping("editgame/{id}")
+	public String editgame(@PathVariable(name="id") Integer id, Model model, Principal principal) {
+		//get game
+		Games game = gameService.getById(id);	
+		model.addAttribute("game", game);
+		//get category
+		List<Category> listcate = cate.findAll();
+		model.addAttribute("listcate", listcate);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
 			model.addAttribute("userInfo", userInfo);
 		}
-		return "admin/listuser";
+		return "admin/newgame";
 	}
-	@GetMapping("admin/listcustomers")
-	public String listcustomer(Model model, Principal principal) {
+	@RequestMapping(value = "/savegame", method = RequestMethod.POST)
+	public String savegame(@ModelAttribute("game") Games game, @RequestParam("multiimage") MultipartFile[] images ) {
+		gameService.save(game);
+		return "redirect:/admin/Listofgame";
+	}
+	@GetMapping("admin/listgame")
+	public String listgame(Model model, Principal principal) {
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
 			model.addAttribute("userInfo", userInfo);
 		}
-		return "admin/customer";
+		return "admin/Listofgame";
 	}
 }
