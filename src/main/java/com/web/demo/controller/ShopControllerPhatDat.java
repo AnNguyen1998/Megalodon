@@ -110,21 +110,31 @@ public class ShopControllerPhatDat {
         return "shop/gameinfo";
     }
 	
-	@GetMapping(value = "/shop1")
-    public String shop1(Model model) {
+	
+	
+	@GetMapping(value = "/shop1/{pageNo}")
+    public String shop1(Model model, @PathVariable(value = "pageNo") int pageNo) {
 		//model.addAttribute("img", imageGameService.getImageGame(1));
 		//model.addAttribute("game", gameService.getGame(1));
 		//model.addAttribute("discount", discountService.getDiscount(1));
 		//System.out.println(imageGameService.getImageGame(1));
-	
+		int pageSize = 3;
+		Page<Games> page = gameService.findAllPaginatedSorted(pageNo, pageSize);
+		
+	    List<Games> listAllGames = page.getContent();
 		
 		model.addAttribute("images1", imageGameService.getImageList());
-		model.addAttribute("listAllGames", gameService.getGameList());
-		/**
+		model.addAttribute("listAllGames", listAllGames);
+		model.addAttribute("currentPage", pageNo);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    model.addAttribute("totalItems", page.getTotalElements());
+	    
+	    /**
 		 * @author Dat Ha
 		 */
 		List<Category> listcate= cateservice.findAll();
 		model.addAttribute("listcate",listcate);
+		
         return "shop/shop1";
     }
 	
