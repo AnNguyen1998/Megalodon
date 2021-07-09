@@ -39,11 +39,17 @@ public class GameControllerAn {
 	@Autowired
 	AdminBillServiceAn billService;
 	
+	@Autowired
+	DiscountServiceAn discount;
+	
 	@GetMapping("admin/addgame")
 	public String addgame(Model model, Principal principal) {
 		model.addAttribute("game", new Games());
 		List<Category> listcate = cate.findAll();
 		model.addAttribute("listcate", listcate);
+		//get discount
+		List<Discount> disct = discount.findAll();
+		model.addAttribute("discount", disct);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
@@ -59,6 +65,9 @@ public class GameControllerAn {
 		//get category
 		List<Category> listcate = cate.findAll();
 		model.addAttribute("listcate", listcate);
+		//get discount
+		List<Discount> disct = discount.findAll();
+		model.addAttribute("discount", disct);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
