@@ -260,7 +260,7 @@ public class Games implements java.io.Serializable {
 		this.vga = vga;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
 	public Set<ImageData> getImageDatas() {
 		return this.imageDatas;
 	}
