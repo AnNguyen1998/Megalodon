@@ -44,4 +44,16 @@ public class ImageDataServiceImpPD implements ImageDataServicePD {
 	public List<ImageData> getImageDetailGame(int id){
 		return imageGameRepository.findImageGame(id);
 	}
+
+	/*
+	 * get a game's list of images
+	 * @author PhatDat
+	 */
+	@Override
+	public List<ImageData> getRelatedImageList(int i) {
+		return imageGameRepository.findRecommendGame(i);
+	}
+	
+	
+	
 }

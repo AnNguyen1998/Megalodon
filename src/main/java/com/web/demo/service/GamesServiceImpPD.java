@@ -80,5 +80,15 @@ public class GamesServiceImpPD implements GamesServicePD {
         }
         return this.findAllPaginated(pageNo, pageSize);
     }
+	
+	/**
+	 * @author PhatDat
+	 * search result of games by term from user with Pagination
+	 */
+	@Override
+	public List<Games> getRelatedGames(int id) {
+        return gamesRepository.getRecommendGames(id);
+    }
+	
 
 }
