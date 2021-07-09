@@ -1,6 +1,6 @@
 package com.web.demo.converter;
 /**
- * @author An Nguyen
+ * @author An Nguyen thanks to Tan
  */
 import java.util.List;
 import java.util.stream.Collectors;
