@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="format-detection" content="telephone=no" /> 
         <link rel="shortcut icon" href="favicon.ico"/>    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">  
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
       <title>Delice</title>
       <style id="dynamic-css"></style>
       <style type="text/css">
@@ -55,6 +57,11 @@
           -webkit-transform: scale3D(0, 0, 1);
           transform: scale3D(0, 0, 1); } }
     </style>
+    <style>
+                    li.cate{
+                    overflow: auto;
+                    }
+                    </style>
   </head>
 <body class="page-color-style-6 page-style-6">
    
@@ -283,70 +290,18 @@
             <nav>
               <ul class="header-menu">
                 <li><a href="home_1.html">Home<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="home_1.html">Home 1</a></li>
-                            <li><a href="home_2.html">Home 2</a></li>
-                            <li><a href="home_3.html">Home 3</a></li>
-                            <li><a href="home_4.html">Home 4</a></li>
-                            <li><a href="home_5.html">Home 5</a></li>
-                            <li><a href="home_6.html">Home 6</a></li>
-                            <li><a href="home_7.html">Home 7</a></li>
-                            <li><a href="home_8.html">Home 8</a></li>
-                           <li><a href="home_9.html">Home 9</a></li>
-                        </ul>
+                       
                     </li>
-                    <li><a href="about.html">About</a></li>
+                    
+                    <li><a href="#">Category</a>
+                            <ul>
+                            <li class="cate" th:each="category : ${listcate}"><a href="#" th:text="${category.nameCategory}"></a></li>
+                            </ul></li>
                     <li class="active"><a href="shop-1.html">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="shop-1.html">Shop 1</a></li>
-                            <li><a href="shop-2.html">Shop 2</a></li>
-                            <li><a href="shop-3.html">Shop 3</a></li>
-                            <li><a href="shop-detail-1.html">Shop Detail<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="shop-detail-1.html">Shop Detail 1</a></li>
-                                    <li><a href="shop-detail-2.html">Shop Detail 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="checkout-1.html">Order<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="checkout-1.html">Checkout 1</a></li>
-                                    <li><a href="checkout-2.html">Checkout 2</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                       
                     </li>
-                    <li><a href="reservation.html">Page<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="reservation.html">Reservation</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="team.html">Chefs</a></li>
-                            <li><a href="menu-1.html">Menu<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="menu-1.html">Menu 1</a></li>
-                                    <li><a href="menu-2.html">Menu 2</a></li>
-                                    <li><a href="menu-3.html">Menu 3</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="gallery-1.html">Gallery<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="gallery-1.html">Dessert</a></li>
-                                    <li><a href="gallery-2.html">Breakfast</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="coming-soon.html">Coming soon</a></li>
-                        </ul>
-                    </li>
+                   
                     <li><a href="blog-1.html">Blog<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="blog-1.html">Blog 1</a></li>
-                            <li><a href="blog-2.html">Blog 2</a></li>
-                            <li><a href="blog-detail-1.html">Blog Detail<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="blog-detail-1.html">Blog Detail 1</a></li>
-                                    <li><a href="blog-detail-2.html">Blog Detail 2</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </li>
                      <li><a href="contact-1.html">Contact<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
                         <ul>
@@ -669,13 +624,14 @@
               </div>
               <div class="empty-sm-15 empty-xs-30"></div>
             </div>
-            <div class="tab-container-wraps" >
+        <div class="tab-container-wraps">
               <div class="tab-container-item min-h-430">
-                <div class="row row-4-columns row-3-columns row-2-columns" th:each="game : ${listAllGames}">
-                  <div class="row-lg-3 row-md-4 row-sm-6 row-xs-12">
-                      <div class="empty-sm-50 empty-xs-30"></div>
+                <div class="row row-4-columns row-3-columns row-2-columns">
+                <th:block th:each="game : ${listAllGames}">
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                      <div class="empty-sm-50 empty-xs-50"></div>
                       <div class="menu-item menu-item-2 type-3">
-                          <div class="image hover-zoom" >
+                          <div class="image hover-zoom">
                             <a href="#" class="like-product main-fill-col">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
                                     <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
@@ -691,53 +647,30 @@
                               <div class="vertical-align full menu-button">
                                   <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
                                   <div class="empty-sm-10 empty-xs-10"></div>
-                                  <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery" data-rel="1"><span class="txt">quick view</span></a>
+                                  <a href="#" class="page-button button-style-1 type-2 open-popup" th:data-open="'popup-'+${game.idGame}" th:data-rel="${game.nameGame}"><span class="txt">quick view</span></a>
                               </div>
                           </div>
                           <div class="text">
                               <div class="empty-sm-15 empty-xs-10"></div>
-                              <h5 class="h5 caption"><a href="#" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
+                              <h5 class="h5 caption" ><a href="#" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
                               <div class="empty-sm-5 empty-xs-5"></div>
                               <div class="simple-text">
-                                  <p th:text="${game.discount.Value}"></p>
+                                 <p th:text="'-'+${game.discount.value}+'%'"></p>
                               </div>
                               <div class="empty-sm-10 empty-xs-10"></div>
-                              <div class="menu-price style-2 title main-col" th:text="${game.price}"></div>
+                              <div class="menu-price style-2 title main-col" th:text="'$'+${game.price}"></div>
                           </div>
                       </div>
                   </div>
                   
-				</div>
-            </div>
-		  </div>
-
-            <div class="empty-lg-70 empty-md-50 empty-sm-40 empty-xs-30"></div>
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <div class="page-navigation">
-                 <a href="#" class="left-arr">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve">
-                  <g><path d="M222.979,5.424C219.364,1.807,215.08,0,210.132,0c-4.949,0-9.233,1.807-12.848,5.424L69.378,133.331   c-3.615,3.617-5.424,7.898-5.424,12.847c0,4.949,1.809,9.233,5.424,12.847l127.906,127.907c3.614,3.617,7.898,5.428,12.848,5.428   c4.948,0,9.232-1.811,12.847-5.428c3.617-3.614,5.427-7.898,5.427-12.847V18.271C228.405,13.322,226.596,9.042,222.979,5.424z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                  </svg>  
-                 </a>
-                 <a href="#">1</a>
-                 <a href="#">2</a>
-                 <a href="#">3</a>
-                 <a href="#">4</a>
-                 <span>...</span>
-                 <a href="#">29</a>
-                 <a href="#" class="right-arr">
-                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g>
-                     <path d="M222.979,133.331L95.073,5.424C91.456,1.807,87.178,0,82.226,0c-4.952,0-9.233,1.807-12.85,5.424   c-3.617,3.617-5.424,7.898-5.424,12.847v255.813c0,4.948,1.807,9.232,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428   c4.949,0,9.23-1.811,12.847-5.428l127.906-127.907c3.614-3.613,5.428-7.897,5.428-12.847   C228.407,141.229,226.594,136.948,222.979,133.331z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                   </svg>
-                 </a>
+                  </th:block>
+                  
+                  
                 </div>
-                <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
-              </div>
             </div>
+            
           </div>
-        </div>
-      </div>
+          
     </section>
 	</div>
    
@@ -854,174 +787,7 @@
        </div>
    </footer>
 
-    <div class="popup index-popup-gallery" data-rel="1">
-       <div class="popup-wrap type-2">
-          <div class="empty-sm-0 empty-xs-15"></div>
-          <div class="container quick-wrapp"> 
-          <div class="close-popup type-2">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9" width="14px" height="14px">
-            <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z" fill="#484848"/>
-            </svg> 
-         </div> 
-            <div class="row left-right-item">
-              <div class="col-md-6 col-xs-12">
-                <img src="img/shop/pop-up.png" alt="" class="full-img">
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="quick-content">
-                  <div class="empty-sm-0 empty-xs-30"></div>
-                  <aside>
-                    <div class="empty-sm-20 empty-xs-20"></div>
-                    <h4 class="h3 sm tt color-2">Mediterranean Shrimp Pizza</h4>
-                    <div class="empty-sm-20 empty-xs-20"></div>
-                    <h5 class="h5 sm color-2">Price: <span class="h4 main-col"><b>$8.40</b></span></h5>
-                  </aside>
-                  <div class="empty-sm-20 empty-xs-20"></div>
-                  <aside class="product-size">
-                    <h5 class="h5 sm color-2 inline-box">Size:</h5>
-                    <div class="checkbox-entry-wrap">  
-                      <label class="checkbox-entry">
-                          <input type="radio" name="1" checked="">
-                          <span>
-                            <i></i>
-                            <p>25cm <span>(250g)</span></p>  
-                          </span>
-                      </label>
-                    </div>
-                    <div class="checkbox-entry-wrap">  
-                      <label class="checkbox-entry">
-                          <input type="radio" name="1">
-                          <span>
-                            <i></i>
-                            <p>30cm <span>(450g)</span></p>  
-                          </span>
-                      </label>
-                    </div>
-                    <div class="checkbox-entry-wrap">  
-                      <label class="checkbox-entry">
-                          <input type="radio" name="1">
-                          <span>
-                            <i></i>
-                            <p>40cm <span>(550g)</span></p>  
-                          </span>
-                      </label>
-                    </div>
-                  </aside>
-                  <div class="empty-sm-25 empty-xs-20"></div>
-                  <aside>
-                    <div class="simple-text">
-                      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat null eiusmod tempor incididunt ut labore tore veritatis </p>
-                    </div>
-                  </aside>
-                  <div class="empty-sm-25 empty-xs-20"></div>
-                  <aside>
-                    <h5 class="tt h5 sm color-2">Choose Ingredients:</h5>
-                    <div class="empty-sm-25 empty-xs-15"></div>
-                    <div class="arrow-closest item-padd-30">
-                     <div class="swiper-container checkbox-wrapp" data-mode="horizontal" data-effect="slide" data-add-slides="3" data-slides-per-view="responsive" data-lg-slides="3" data-md-slides="3" data-xs-slides="2" data-sm-slides="4" data-loop="0" data-speed="800" data-space="13">
-                        <div class="swiper-wrapper">
-                          <div class="swiper-slide" > 
-                            <div class="checkbox-entry-wrap ">  
-                            <label class="checkbox-entry">
-                              <input type="checkbox" checked="">
-                                <div class="content-check">
-                                  <img src="img/product-detail/сhoose-1.jpg" alt="" class="full-img">
-                                  <div class="empty-sm-10 empty-xs-10"></div>
-                                  <div class="simple-text">
-                                    <p><b>Peperoni</b></p>
-                                  </div>
-                              </div>
-                            </label>
-                            </div>
-                          </div>
-                          <div class="swiper-slide" > 
-                            <div class="checkbox-entry-wrap ">  
-                            <label class="checkbox-entry">
-                              <input type="checkbox" checked="">
-                                <div class="content-check">
-                                  <img src="img/product-detail/сhoose-2.jpg" alt="" class="full-img">
-                                  <div class="empty-sm-10 empty-xs-10"></div>
-                                  <div class="simple-text">
-                                    <p><b>Ham</b></p>
-                                  </div>
-                              </div>
-                            </label>
-                            </div>
-                          </div>
-                          <div class="swiper-slide" > 
-                            <div class="checkbox-entry-wrap ">  
-                            <label class="checkbox-entry">
-                              <input type="checkbox">
-                                <div class="content-check">
-                                  <img src="img/product-detail/сhoose-3.jpg" alt="" class="full-img">
-                                  <div class="empty-sm-10 empty-xs-10"></div>
-                                  <div class="simple-text">
-                                    <p><b>Mashrooms</b></p>
-                                  </div>
-                              </div>
-                            </label>
-                            </div>
-                          </div>
-                          <div class="swiper-slide" > 
-                            <div class="checkbox-entry-wrap ">  
-                            <label class="checkbox-entry">
-                              <input type="checkbox">
-                                <div class="content-check">
-                                  <img src="img/product-detail/сhoose-4.jpg" alt="" class="full-img">
-                                  <div class="empty-sm-10 empty-xs-10"></div>
-                                  <div class="simple-text">
-                                    <p><b>Ruccola</b></p>
-                                  </div>
-                              </div>
-                            </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="swiper-arrow-left swiper-arrow type-3 style-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">
-                          <g>
-                          <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z" fill="#FFFFFF"/>
-                          </g>
-                        </svg> 
-                      </div> 
-                      <div class="swiper-arrow-right swiper-arrow type-3 style-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">
-                          <g>
-                          <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" fill="#FFFFFF"/>
-                          </g>
-                        </svg>  
-                      </div>
-                    </div>
-                  </aside>
-                  <div class="empty-sm-40 empty-xs-25"></div>
-                  <aside>
-                  <div class="buy-bar type-2">
-                     <div class="fl">
-                        <h5 class="h5 sm follow-title quntity">Quantity:</h5>
-                        <div class="custom-input-number type-2">
-                          <button type="button" class="cin-btn cin-decrement">
-                            <img src="img/left_arr.png" alt="">
-                          </button>
-                          <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                          <button type="button" class="cin-btn cin-increment">
-                            <img src="img/right_arr.png" alt="">
-                          </button>
-                        </div>
-                        <div class="empty-sm-0 empty-xs-15"></div>
-                     </div>
-                     <div class="fr">
-                         <a href="#" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
-                     </div>
-                  </div>
-                  </aside>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="empty-sm-0 empty-xs-15"></div>
-       </div> 
-   </div>
+    
 
 <!-- POPUP LOGIN -->
     <div class="popup index-popup-login" data-rel="3">
@@ -1085,7 +851,53 @@
         </div>
       </div> 
     </div>
-
+<th:block th:each="game : ${listAllGames}">
+          <div th:class="'popup index-popup-'+${game.idGame}" th:data-rel="game.nameGame">
+       	<div class="popup-wrap type-2">
+          <div class="empty-sm-0 empty-xs-15"></div>
+          <div class="container quick-wrapp"> 
+          <div class="close-popup type-2">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9" width="14px" height="14px">
+            <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z" fill="#484848"/>
+            </svg> 
+         </div> 
+            <div class="row left-right-item">
+              <div class="col-md-6 col-xs-12">
+                <img src="img/game/jedi.jpg"  alt="" class="full-img">
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="quick-content">
+                  <div class="empty-sm-0 empty-xs-30"></div>
+                  <aside>
+                    <div class="empty-sm-20 empty-xs-20"></div>
+                    <h1 class="h2 sm tt color-2" th:text="${game.nameGame}"></h1>
+                    <div class="empty-sm-20 empty-xs-20"></div>
+                    <h5 class="h3 sm color-2">Price: <span class="h2 main-col" th:text="${game.price}"><b></b></span></h5>
+                  </aside>
+                  
+                  <div class="empty-sm-20 empty-xs-20"></div>
+                   <h5 class="h5 sm color-2">Release Year: <span class="h4 main-col" th:text="${#dates.format(game.releaseYearGame, 'dd-MM-yyyy')}"><b></b></span></h5>
+                       <h5 class="h5 sm color-2">Publisher: <span class="h4 main-col" th:text="${game.publisherGame}"><b></b></span></h5>
+                  <div class="empty-sm-25 empty-xs-20"></div>
+                  <div class="empty-sm-25 empty-xs-20"></div>
+                  
+                  <div class="empty-sm-40 empty-xs-25"></div>
+                  <aside>
+                  <div class="buy-bar type-2">
+                     
+                     <div class="fr">
+                         <a href="#" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
+                     </div>
+                  </div>
+                  </aside>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="empty-sm-0 empty-xs-15"></div>
+       </div> 
+   </div>
+          </th:block>
    <!-- POPUP REGISTER -->
     <div class="popup index-popup-register" data-rel="4">
       <div class="popup-wrap popup-layer">
@@ -1162,8 +974,7 @@
         </div> 
       </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">  
-<link href="../css/style.css" rel="stylesheet" type="text/css"/>  
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>

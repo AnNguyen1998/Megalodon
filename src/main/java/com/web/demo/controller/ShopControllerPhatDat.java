@@ -42,6 +42,8 @@ public class ShopControllerPhatDat {
 	
 	@Autowired
 	private UserCommentGameServicePD comment;
+	@Autowired
+	CategoryService cateservice;
 	
 	@GetMapping(value = "/shoptest/{pageNo}")
     public String shop1(@PathVariable(value = "pageNo") int pageNo, Model model) {
@@ -118,7 +120,11 @@ public class ShopControllerPhatDat {
 		
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("listAllGames", gameService.getGameList());
-		
+		/**
+		 * @author Dat Ha
+		 */
+		List<Category> listcate= cateservice.findAll();
+		model.addAttribute("listcate",listcate);
         return "shop/shop1";
     }
 	
