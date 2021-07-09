@@ -260,14 +260,14 @@ public class Games implements java.io.Serializable {
 		this.vga = vga;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
-//	public Set<ImageData> getImageDatas() {
-//		return this.imageDatas;
-//	}
-//
-//	public void setImageDatas(Set<ImageData> imageDatas) {
-//		this.imageDatas = imageDatas;
-//	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
+	public Set<ImageData> getImageDatas() {
+		return this.imageDatas;
+	}
+
+	public void setImageDatas(Set<ImageData> imageDatas) {
+		this.imageDatas = imageDatas;
+	}
 
 	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	 @JoinTable(name = "game_category",
