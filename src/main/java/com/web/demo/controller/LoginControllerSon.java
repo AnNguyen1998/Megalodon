@@ -7,6 +7,8 @@ import java.security.Principal;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -40,10 +42,14 @@ public class LoginControllerSon {
 	@Autowired
 	TokenServiceSon tokenservice;
 
-
+@GetMapping("/403")
+public String error() {
+	return "403";
+}
+	
 	// Login
 	@GetMapping("/shop")
-	public String game(Model model, Principal principal, @RequestParam(required = false) String message, Users user) {
+	public String game(Model model, Principal principal, @RequestParam(required = false) String message, Users user,HttpSession session) {
 		// Regis
 		model.addAttribute("user", user);
 
@@ -54,12 +60,25 @@ public class LoginControllerSon {
 			}
 			if (message.equals("error")) {
 				model.addAttribute("message", "Login Failed!");
+				session.removeAttribute("userinfoname");
+				session.removeAttribute("userinfoemail");
+				session.removeAttribute("userinfoid");
+				session.removeAttribute("userinfophone");
+				
+			}if(message.equals("loginreq")) {
+				model.addAttribute("message", "Please Login");
 			}
 
 		}
 		System.out.println(message);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			Users us= userservice.findByusernameUsers(loginedUser.getUsername());
+			session.setAttribute("userinfoname", us.getNameUsers());
+			session.setAttribute("userinfoemail", us.getEmailUsers());
+			session.setAttribute("userinfoid", us.getIdUsers());
+			session.setAttribute("userinfophone", us.getPhoneUsers());
+			System.out.println(session.getAttribute("userinfoname")+"a"+session.getAttribute("userinfoemail"));
 			String userInfo = WebUtils.toString(loginedUser);
 			model.addAttribute("userInfo", userInfo);
 		}
