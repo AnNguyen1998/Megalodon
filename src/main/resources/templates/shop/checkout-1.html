@@ -444,7 +444,8 @@
 						<div class="empty-sm-50 empty-xs-50"></div>
 						<div class="fr button-full-width">
 						   <a href="#" class="page-button button-style-1 type-2"><span class="txt">Back to order</span></a>
-						   <button type="submit" class="page-button button-style-1 type-4"><span class="txt" >Go to payment</span></button>
+						   <button type="submit" class="page-button button-style-1 type-4" th:if="${session.mycarttotal!=null}"><span class="txt" >Go to payment</span></button>
+						    <button disabled="disabled" type="submit" class="page-button button-style-1 type-4" th:if="${session.mycarttotal==null}"><span class="txt" >No Product</span></button>
 					   </div>    
 				   </form>
                 </div>
