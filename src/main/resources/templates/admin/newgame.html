@@ -384,32 +384,32 @@
                                         <div class="card-box">
                                             <h4 class="header-title m-t-0">INFORMATION DISCOUNT</h4>
                                             <div class="row">
-                                                <form method="post" action="addgame" data-parsley-validate novalidate>
+                                                <form method="post" th:action="@{/savediscount}" th:object="${discounts}" data-parsley-validate novalidate>
 
                                                     <div class="form-group">
                                                         <label for="Date">Start Day<span
                                                                 class="text-danger">*</span></label>
                                                         <div class="input-group">
-                                                            <input type="date" class="form-control" id=""
-                                                                name="datestart">
+                                                            <input type="date" class="form-control" 
+                                                                name="datestart" th:field="*{dateStart}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="Date">End Day<span
                                                                     class="text-danger">*</span></label>
                                                             <div class="input-group">
-                                                                <input type="date" class="form-control" id=""
-                                                                    name="dateend">
+                                                                <input type="date" class="form-control" 
+                                                                    name="dateend" th:field="*{dateEnd}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="Value">Value<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="Value" parsley-trigger="change"
                                                                     required placeholder="Enter Value"
-                                                                    class="form-control" id="Value">
-                                                                <input type="hidden" name="idDiscount" parsley-trigger="change" class="form-control">
+                                                                    class="form-control" th:field="*{value}">
+                                                                <input type="hidden" name="idDiscount" th:field="*{idDiscount}" parsley-trigger="change" class="form-control">
                                                             </div>
                                                             <div class="form-group text-right m-b-0">
-                                                                <input class="btn btn-primary " type="submit" id="save"
+                                                                <input class="btn btn-primary " type="submit"
                                                                     value="Create">
                                                             </div>
                                                         </div>
@@ -442,8 +442,7 @@
                                                                 <td th:text="${disc.dateEnd}"></td>
                                                                 <td th:text="${disc.value}"></td>
                                                                 <td class="actions">
-                                                                    <a><i class="fa fa-pencil"></i></a>
-                                                                    <a><i class="fa fa-trash-o"></i></a>
+                                                                    <a th:href="'/editdiscount/'+ ${disc.idDiscount}"><i class="fa fa-pencil"></i></a>
                                                                 </td>
                                                             </tr>
                                                         </tbody>

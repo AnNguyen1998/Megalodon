@@ -45,6 +45,7 @@ public class GameControllerAn {
 	@GetMapping("admin/addgame")
 	public String addgame(Model model, Principal principal) {
 		model.addAttribute("game", new Games());
+		model.addAttribute("discounts", new Discount());
 		List<Category> listcate = cate.findAll();
 		model.addAttribute("listcate", listcate);
 		//get discount
