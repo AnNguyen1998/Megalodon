@@ -25,9 +25,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Discount implements java.io.Serializable {
 
 	private Integer idDiscount;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date dateStart;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date dateEnd;
 	private Integer value;
 	private Integer status;
