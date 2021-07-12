@@ -12,6 +12,11 @@ import com.web.demo.repository.GameImageRepository;
 @Service
 public class GameImageServiceImpSon implements GameImageServiceSon{
 @Override
+public <S extends ImageData> S save(S entity) {
+		return gameimage.save(entity);
+	}
+
+@Override
 public Optional<ImageData> findById(Integer id) {
 		return gameimage.findById(id);
 	}

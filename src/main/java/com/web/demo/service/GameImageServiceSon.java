@@ -11,4 +11,6 @@ public interface GameImageServiceSon {
 
 	Optional<ImageData> findById(Integer id);
 
+	<S extends ImageData> S save(S entity);
+
 }
