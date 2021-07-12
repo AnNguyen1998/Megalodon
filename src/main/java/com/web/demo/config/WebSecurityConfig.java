@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('EMPLOYEE')");
 		
-		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/");
+		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and()
 				.formLogin().successHandler(customizeAuthenticationSuccessHandler)
 				.loginProcessingUrl("/login")

@@ -175,9 +175,9 @@
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129" width="16px" height="16px">
                       <g><g><path d="m109.1,36.8c-0.3-2-2-3.4-4-3.4h-23v-9.4c0-9.7-7.9-17.6-17.6-17.6-9.7,0-17.6,7.9-17.6,17.6v9.4h-23c-2,0-3.7,1.4-4,3.4l-13.4,81c-0.2,1.2 0.1,2.4 0.9,3.3 0.8,0.9 1.9,1.4 3.1,1.4h108c0,0 0,0 0.1,0 2.3,0 4.1-1.8 4.1-4.1 0-0.5-0.1-0.9-0.2-1.3l-13.4-80.3zm-54-12.8c0-5.2 4.2-9.4 9.4-9.4s9.4,4.2 9.4,9.4v9.4h-18.8v-9.4zm-39.8,90.4l12.1-72.8h19.5v22.9c0,2.3 1.8,4.1 4.1,4.1 2.3,0 4.1-1.8 4.1-4.1v-22.9h18.8v22.9c0,2.3 1.8,4.1 4.1,4.1 2.3,0 4.1-1.8 4.1-4.1v-22.9h19.5l12.1,72.8h-98.4z"></path></g></g>
                     </svg>
-                    <div class="shop-number">2</div>
+                  <div class="shop-number" th:text="${session.mycartnum != null}? ${session.mycartnum}:'0'"></div>
                    </div>  
-                   <span class="shop-card-price">Total: <b class="main-col">$19.60</b></span>
+                   <span class="shop-card-price">Total: <b class="main-col" th:text="${session.mycarttotal!=null}? ${session.mycarttotal}+'$':'0'"></b></span>
                    <div class="shop-card-list">
                      <div class="shop-card-align-mobile">
                        <div class="close-card-mobile main-fill-col">
@@ -186,76 +186,28 @@
                             </svg>
                        </div>  
                        <ul>
-                           <li class="flex-align">
-                               <div class="img hover-zoom">
-                                  <a href="#"><img src="img/shop_list_img_1.png" alt=""></a>
-                               </div>
-                               <h5 class="h5 caption"><a href="#" class="link-hover">Mediterranean  Shrimp Pizza</a></h5>
-                               <div class="shop-counter">
-                                   <div class="custom-input-number">
-                                      <button type="button" class="cin-btn cin-decrement">
-                                        <img src="img/left_arr.png" alt="">
-                                      </button>
-                                      <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                                      <button type="button" class="cin-btn cin-increment">
-                                        <img src="img/right_arr.png" alt="">
-                                      </button>
-                                  </div>
-                              </div>
-                              <div class="menu-price main-col">$16.80</div>
-                              <div class="close-item main-fill-hover">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background=  "new 0 0 64 64"><g><path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/></g>
-                                </svg>
-                              </div>
-                           </li>
-                           <li class="flex-align">
-                               <div class="img hover-zoom">
-                                   <a href="#"><img src="img/shop_list_img_1.png" alt=""></a>
-                               </div>
-                               <h5 class="h5 caption"><a href="#" class="link-hover">Mediterranean  Shrimp Pizza</a></h5>
-                               <div class="shop-counter">
-                                   <div class="custom-input-number">
-                                      <button type="button" class="cin-btn cin-decrement">
-                                        <img src="img/left_arr.png" alt="">
-                                      </button>
-                                      <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                                      <button type="button" class="cin-btn cin-increment">
-                                        <img src="img/right_arr.png" alt="">
-                                      </button>
-                                  </div>
-                              </div>
-                              <div class="menu-price main-col">$16.80</div>
-                              <div class="close-item main-fill-hover">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background=  "new 0 0 64 64"><g><path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/></g>
-                                </svg>
-                              </div>
-                           </li>
+                       <th:block th:each="map : ${session.mycartitem}">
                            <li class="flex-align">
                                <div class="img hover-zoom">
                                   <a href="#"><img src="img/shop_list_img_2.png" alt=""></a>
                                </div>
-                               <h5 class="h5 caption"><a href="#" class="link-hover">Big Coca-Cola 2L</a></h5>
-                               <div class="shop-counter">
-                                   <div class="custom-input-number">
-                                      <button type="button" class="cin-btn cin-decrement">
-                                        <img src="img/left_arr.png" alt="">
-                                      </button>
-                                      <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
-                                      <button type="button" class="cin-btn cin-increment">
-                                        <img src="img/right_arr.png" alt="">
-                                      </button>
-                                  </div>
+                                <div class="shop-counter">
+                                  
                               </div>
-                              <div class="menu-price main-col">$2.80</div>
-                              <div class="close-item main-fill-hover">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background=  "new 0 0 64 64"><g><path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/></g>
-                                </svg>
+                               <h5 class="h5 caption"><a href="#" class="link-hover" th:text="${map.value.games.nameGame}"></a></h5>
+                               <div class="shop-counter">
+                                  
+                              </div>
+                              <div class="menu-price main-col" th:text="${map.value.games.priceFix}+'$'"></div>
+                               <div class="shop-counter">
+                                  
                               </div>
                            </li>
+                           </th:block>
                        </ul>
                        <div class="buy-bar">
                            <div class="fl">
-                              <h4 class="h4 caption">Total:<b class="main-col">$19.60</b></h4>  
+                              <h4 class="h4 caption">Total:<b class="main-col" th:text="${session.mycarttotal!=null}? ${session.mycarttotal}+'$':'0$'"></b></h4>  
                            </div>
                            <div class="fr">
                                <a href="#" class="page-button button-style-1 type-2"><span class="txt">Go to the cart</span></a>
@@ -643,9 +595,9 @@
                                     C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
                                 </svg>
                             </a>  
-                              <img src="img/game/jedi.jpg" alt="">
+                              <img src="../img/game/jedi.jpg" alt="">
                               <div class="vertical-align full menu-button">
-                                  <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
+                                  <a  class="page-button button-style-1 type-4" th:href="@{'/cart/add/'+${game.idGame}}"><span class="txt">Add to cart</span></a>
                                   <div class="empty-sm-10 empty-xs-10"></div>
                                   <a href="#" class="page-button button-style-1 type-2 open-popup" th:data-open="'popup-'+${game.idGame}" th:data-rel="${game.nameGame}"><span class="txt">quick view</span></a>
                               </div>
@@ -670,7 +622,31 @@
             </div>
             
           </div>
-          
+          <div class="empty-lg-70 empty-md-50 empty-sm-40 empty-xs-30"></div>
+			
+            <div class="row" th:if="${totalPages > 1}">
+              <div class="col-md-10 col-md-offset-1 col-xs-12">
+                <div class="page-navigation">
+                 <a href="#" class="left-arr" >
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve">
+                  <g><path d="M222.979,5.424C219.364,1.807,215.08,0,210.132,0c-4.949,0-9.233,1.807-12.848,5.424L69.378,133.331   c-3.615,3.617-5.424,7.898-5.424,12.847c0,4.949,1.809,9.233,5.424,12.847l127.906,127.907c3.614,3.617,7.898,5.428,12.848,5.428   c4.948,0,9.232-1.811,12.847-5.428c3.617-3.614,5.427-7.898,5.427-12.847V18.271C228.405,13.322,226.596,9.042,222.979,5.424z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                  </svg>  
+                 </a>
+				 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+					<a th:if="${currentPage != i}" th:href="@{'/shop1/' + ${i} }">[[${i}]]</a>
+					<span th:unless="${currentPage != i}">[[${i}]]</span> 
+				 </span>
+                 <a href="#" class="right-arr">
+                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g>
+                     <path d="M222.979,133.331L95.073,5.424C91.456,1.807,87.178,0,82.226,0c-4.952,0-9.233,1.807-12.85,5.424   c-3.617,3.617-5.424,7.898-5.424,12.847v255.813c0,4.948,1.807,9.232,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428   c4.949,0,9.23-1.811,12.847-5.428l127.906-127.907c3.614-3.613,5.428-7.897,5.428-12.847   C228.407,141.229,226.594,136.948,222.979,133.331z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                   </svg>
+                 </a>
+                </div>
+                <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
+              </div>
+            </div>
+          </div>
+          </div>
     </section>
 	</div>
    
@@ -750,7 +726,7 @@
                    <h5 class="h5">Join Us On Instagram</h5>
                    <div class="empty-sm-20 empty-xs-20"></div> 
                    <div class="f-instagram">
-                       <a href="#"><img src="img/inst_1.jpg" alt=""></a>
+                       <a href="#"><img src="../img/inst_1.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_2.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_3.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_4.jpg" alt=""></a>

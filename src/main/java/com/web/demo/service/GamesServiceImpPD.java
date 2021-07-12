@@ -90,5 +90,14 @@ public class GamesServiceImpPD implements GamesServicePD {
         return gamesRepository.getRecommendGames(id);
     }
 	
+	/*
+	 * @author PhatDat
+	 * get list of all games with Pagination
+	 */
+	@Override
+	public Page<Games> findAllPaginatedSorted(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return this.gamesRepository.findAllGameSorted(pageable);
+	}
 
 }
