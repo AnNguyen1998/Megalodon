@@ -7,7 +7,7 @@
     <meta name="format-detection" content="telephone=no" /> 
         <link rel="shortcut icon" href="favicon.ico"/>    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">  
-<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<link href="/css/style.css" rel="stylesheet" type="text/css"/>
       <title>Delice</title>
       <style id="dynamic-css"></style>
       <style type="text/css">
@@ -244,11 +244,14 @@
                 <li><a href="home_1.html">Home<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
                        
                     </li>
-                    
-                    <li><a href="#">Category</a>
+                    <li>
+						<a href="#">Category</a>
                             <ul>
-                            <li class="cate" th:each="category : ${listcate}"><a href="#" th:text="${category.nameCategory}"></a></li>
-                            </ul></li>
+								<li class="cate" th:each="category : ${listcate}">
+									<a th:href="@{'/shop1/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
+								</li>
+                            </ul>
+					</li>
                     <li class="active"><a href="shop-1.html">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
                        
                     </li>
@@ -256,11 +259,8 @@
                     <li><a href="blog-1.html">Blog<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
                     </li>
                      <li><a href="contact-1.html">Contact<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="contact-1.html">Contact 1</a></li>
-                            <li><a href="contact-2.html">Contact 2</a></li>
-                      </ul>
                     </li>
+					<li><a href="about.html">About</a></li>
                 </ul>
             </nav>
             </div>
@@ -301,8 +301,8 @@
         <div class="row">
           <div class="col-lg-2 col-md-3 col-xs-12">
             <aside>
-              <form action="#" class="search-form type-2">
-                 <input type="text" placeholder="Search for..." class="input-search" required="">
+              <form th:action="@{'/shop1/' + ${pageNo}}" class="search-form type-2">
+                 <input type="text" placeholder="Search for..." class="input-search" required="" th:name="keyword">
                  <div class="submit-search">
                     <input type="submit" value="">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="14px" height="14px">
@@ -330,14 +330,13 @@
              </div>
               <aside>
                 <div class="empty-sm-65 empty-xs-65"></div>
-                <h5 class="tt h5 color-2">Categories</h5>
+                <h5 class="tt h5 color-2">Filters</h5>
                 <div class="empty-sm-20 empty-xs-10"></div>
                 <ul class="list-style-4 type-2 ul-list">
-                  <li><a href="#" class="link-hover">Soups</a></li>
-                  <li><a href="#" class="link-hover">Meat</a></li>
-                  <li><a href="#" class="link-hover">Salats</a></li>
-                  <li><a href="#" class="link-hover">Pizzas</a></li>
-                  <li><a href="#" class="link-hover">Other</a></li>
+                  <li><a th:href="@{/shop1/games/bestSelling/1}" class="link-hover">Top Selling</a></li>
+                  <li><a th:href="@{/shop1/games/recommended/1}" class="link-hover">Recommended</a></li>
+                  <li><a th:href="@{/shop1/games/newRelease/1}" class="link-hover">Newest</a></li>
+                  <li><a th:href="@{/shop1/games/offers/1}" class="link-hover">Special Offers</a></li>
                 </ul>
               </aside>
               <aside>
@@ -525,7 +524,7 @@
                 <div class="shop-filter">
                   <div class="found-items">
                     <div class="simple-text">
-                        <p>Found <span class="main-col"><b>27</b></span> items</p>
+                        <p>Found <span class="main-col"><b th:text="${countSearch}"></b></span> items</p>
                     </div>
                   </div>
                   <div class="shop-select">
@@ -535,12 +534,18 @@
                             <p>Shown items per page</p>
                         </div>
                       </div>
-                      <select class="input-field type-2 main-col">
-                        <option value="val1">10</option>
-                        <option value="val1">40</option>
-                        <option value="val1">25</option>
-                        <option value="val1">38</option>
-                      </select> 
+					  
+					  <form th:action="@{'/shop1/games/' + ${term} + '/' + ${pageNo}}" method="get" >
+						<select th:name="size" class="input-field type-2 main-col" onchange="this.form.submit()">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+					  </form>
+                      
                     </div>
                     <div class="sort-by">
                       <div class="title-select">
@@ -583,7 +588,7 @@
                   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                       <div class="empty-sm-50 empty-xs-50"></div>
                       <div class="menu-item menu-item-2 type-3">
-                          <div class="image hover-zoom">
+                          <div class="image hover-zoom" th:each="img : ${images1}">
                             <a href="#" class="like-product main-fill-col">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
                                     <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
@@ -594,8 +599,10 @@
                                     c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
                                     C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
                                 </svg>
-                            </a>  
-                              <img src="img/game/jedi.jpg" alt="">
+                            </a>
+							  <div th:if="${game.idGame == img.games.idGame}">
+								  <img th:src="@{'../../../' + ${img.nameImage}}" alt="">
+							  </div>
                               <div class="vertical-align full menu-button">
                                   <a  class="page-button button-style-1 type-4" th:href="@{'/cart/add/'+${game.idGame}}"><span class="txt">Add to cart</span></a>
                                   <div class="empty-sm-10 empty-xs-10"></div>
@@ -604,7 +611,7 @@
                           </div>
                           <div class="text">
                               <div class="empty-sm-15 empty-xs-10"></div>
-                              <h5 class="h5 caption" ><a href="#" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
+                              <h5 class="h5 caption" ><a th:href="@{'http://localhost:8080/shop1/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
                               <div class="empty-sm-5 empty-xs-5"></div>
                               <div class="simple-text">
                                  <p th:text="'-'+${game.discount.value}+'%'"></p>
@@ -633,7 +640,7 @@
                   </svg>  
                  </a>
 				 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-					<a th:if="${currentPage != i}" th:href="@{'/shop1/' + ${i} }">[[${i}]]</a>
+					<a th:if="${currentPage != i}" th:href="@{'/shop1/games/' + ${term} + '/' + ${i} }">[[${i}]]</a>
 					<span th:unless="${currentPage != i}">[[${i}]]</span> 
 				 </span>
                  <a href="#" class="right-arr">
@@ -726,7 +733,7 @@
                    <h5 class="h5">Join Us On Instagram</h5>
                    <div class="empty-sm-20 empty-xs-20"></div> 
                    <div class="f-instagram">
-                       <a href="#"><img src="../img/inst_1.jpg" alt=""></a>
+                       <a href="#"><img src="/img/inst_1.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_2.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_3.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_4.jpg" alt=""></a>
@@ -838,9 +845,11 @@
             </svg> 
          </div> 
             <div class="row left-right-item">
-              <div class="col-md-6 col-xs-12">
-                <img src="img/game/jedi.jpg"  alt="" class="full-img">
-              </div>
+              <div class="col-md-6 col-xs-12" th:each="img : ${images1}">
+				<div th:if="${game.idGame == img.games.idGame}">
+				  <img th:src="@{'../../../' + ${img.nameImage}}"  alt="" class="full-img">
+				</div>
+              </div>  
               <div class="col-md-6 col-xs-12">
                 <div class="quick-content">
                   <div class="empty-sm-0 empty-xs-30"></div>
@@ -954,14 +963,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
-<script src="../js/jscolor.min.js"></script>
-<script src="../js/jquery.knob.js"></script>
-<script src="../js/jquery.throttle.js"></script>
-<script src="../js/jquery.classycountdown.js"></script>
-<script src="../js/jarallax.js"></script>
-<script src="../js/all.js"></script>
-<script src="../js/color.picker.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/jscolor.min.js"></script>
+<script src="/js/jquery.knob.js"></script>
+<script src="/js/jquery.throttle.js"></script>
+<script src="/js/jquery.classycountdown.js"></script>
+<script src="/js/jarallax.js"></script>
+<script src="/js/all.js"></script>
+<script src="/js/color.picker.js"></script>
 
 </body>
 </html>	

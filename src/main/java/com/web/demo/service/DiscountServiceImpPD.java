@@ -24,7 +24,7 @@ public class DiscountServiceImpPD implements DiscountServicePD{
 	 */
 	@Override
 	public Discount getDiscount(int i) {
-		return discountRepository.getById(1);
+		return discountRepository.getById(i);
 	}
 	
 	/*
