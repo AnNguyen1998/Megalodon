@@ -120,7 +120,6 @@ public class ShopControllerPhatDat {
 	@PostMapping(value = "/shop1/detail")
     public String saveCommentGame(Model model, 
     		@RequestParam("name") String name, 
-    		@RequestParam("email") String email, 
     		@RequestParam("cmt") String cmt) {
 		int idGame, idUser;
 		idGame = (Integer)model.getAttribute("idGame");
@@ -167,6 +166,7 @@ public class ShopControllerPhatDat {
 		model.addAttribute("currentPage", pageNo);
 	    model.addAttribute("totalPages", page.getTotalPages());
 	    model.addAttribute("totalItems", page.getTotalElements());
+	    System.out.println(imageGameService.getImageList());
 	    
 	    /**
 		 * @author Dat Ha
