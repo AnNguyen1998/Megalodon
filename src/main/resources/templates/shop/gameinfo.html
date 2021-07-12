@@ -283,59 +283,20 @@
             <nav>
               <ul class="header-menu">
                 <li><a href="home_1.html">Home<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="home_1.html">Home 1</a></li>
-                            <li><a href="home_2.html">Home 2</a></li>
-                            <li><a href="home_3.html">Home 3</a></li>
-                            <li><a href="home_4.html">Home 4</a></li>
-                            <li><a href="home_5.html">Home 5</a></li>
-                            <li><a href="home_6.html">Home 6</a></li>
-                            <li><a href="home_7.html">Home 7</a></li>
-                            <li><a href="home_8.html">Home 8</a></li>
-                           <li><a href="home_9.html">Home 9</a></li>
-                        </ul>
                     </li>
-                    <li><a href="about.html">About</a></li>
-                    <li class="active"><a href="shop-1.html">Shop<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="shop-1.html">Shop 1</a></li>
-                            <li><a href="shop-2.html">Shop 2</a></li>
-                            <li><a href="shop-3.html">Shop 3</a></li>
-                            <li><a href="shop-detail-1.html">Shop Detail<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="shop-detail-1.html">Shop Detail 1</a></li>
-                                    <li><a href="shop-detail-2.html">Shop Detail 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="checkout-1.html">Order<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="checkout-1.html">Checkout 1</a></li>
-                                    <li><a href="checkout-2.html">Checkout 2</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+					<li>
+						<a href="#">Category</a>
+                            <ul>
+								<li class="cate" th:each="category : ${listcate}">
+									<a th:href="@{'/shop1/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
+								</li>
+                            </ul>
+					</li>
+					
+                    
+                    <li class="active"><a href="shop-1.html">Shop<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>  
                     </li>
-                    <li><a href="reservation.html">Page<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="reservation.html">Reservation</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="team.html">Chefs</a></li>
-                            <li><a href="menu-1.html">Menu<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="menu-1.html">Menu 1</a></li>
-                                    <li><a href="menu-2.html">Menu 2</a></li>
-                                    <li><a href="menu-3.html">Menu 3</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="gallery-1.html">Gallery<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                                <ul>
-                                    <li><a href="gallery-1.html">Dessert</a></li>
-                                    <li><a href="gallery-2.html">Breakfast</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="coming-soon.html">Coming soon</a></li>
-                        </ul>
-                    </li>
+
                     <li><a href="blog-1.html">Blog<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
                         <ul>
                             <li><a href="blog-1.html">Blog 1</a></li>
@@ -349,11 +310,8 @@
                         </ul>
                     </li>
                      <li><a href="contact-1.html">Contact<img src="../img/down-arrow.png" alt="" class="menu-arr"></a>
-                        <ul>
-                            <li><a href="contact-1.html">Contact 1</a></li>
-                            <li><a href="contact-2.html">Contact 2</a></li>
-                      </ul>
                     </li>
+					<li><a href="about.html">About</a></li>
                 </ul>
             </nav>
             </div>
@@ -573,18 +531,18 @@
                         <h4 class="h4 tt color-type-1">leave Your comment</h4>
                       </div>
                       <div class="empty-sm-45 empty-xs-30"></div>
-                      <form action="#">
+                      <form th:action="@{/shop1/detail}" method="post">
                         <div class="row">
                           <div class="col-sm-6 col-xs-12">
-                            <input type="text" class="input-field" placeholder="Name *" required="">
+                            <input type="text" class="input-field" placeholder="Name *" required="" th:value="${name}">
                             <div class="empty-sm-20 empty-xs-20"></div>   
                           </div>
                           <div class="col-sm-6 col-xs-12">
-                            <input type="email" class="input-field" placeholder="Email *" required="">
+                            <input type="email" class="input-field" placeholder="Email *" required="" th:value="${email}">
                             <div class="empty-sm-20 empty-xs-20"></div>  
                           </div> 
                         </div>
-                          <textarea placeholder="Comment..." class="input-field" required=""></textarea>
+                          <textarea placeholder="Comment..." class="input-field" required="" th:value="${cmt}"></textarea>
                         <div class="empty-sm-30 empty-xs-30"></div>
                         <div class="text-left"> 
                           <div class="page-button button-style-1 type-2">

@@ -1,11 +1,15 @@
 package com.web.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.demo.entity.Games;
 import com.web.demo.entity.ImageData;
+import com.web.demo.repository.GameRepository;
+import com.web.demo.repository.GamesRepositoryPD;
 import com.web.demo.repository.ImageDataRepositoryPD;
 
 /*
@@ -16,6 +20,11 @@ import com.web.demo.repository.ImageDataRepositoryPD;
 public class ImageDataServiceImpPD implements ImageDataServicePD {
 	@Autowired
 	ImageDataRepositoryPD imageGameRepository;
+	
+	@Autowired
+	private GamesRepositoryPD gamesRepository;
+
+	
 	
 	/*
 	 * get a game image
@@ -33,7 +42,22 @@ public class ImageDataServiceImpPD implements ImageDataServicePD {
 	 */
 	@Override
 	public List<ImageData> getImageList(){
-		return imageGameRepository.findAll();
+		List<Games> listGame = gamesRepository.findAll();
+		List<ImageData> listImage = imageGameRepository.findAll();
+		List<ImageData> listImg = new ArrayList<ImageData>();
+		Boolean flag = false;
+		for (Games g : listGame) {
+			for (ImageData img : listImage) {
+				if(g.getIdGame() == img.getGames().getIdGame() && !flag) {			
+					listImg.add(img);
+					flag = true;
+				}
+				
+			}
+			flag = false;
+		}
+		
+		return listImg;
 	}
 	
 	/*

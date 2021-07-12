@@ -32,6 +32,7 @@ public class UserServiceImpSon implements UserServiceSon {
 
 	@Autowired
 	UsersRepositorySon usersRepository;
+	
 	@Autowired
 	public JavaMailSender emailSender;
 

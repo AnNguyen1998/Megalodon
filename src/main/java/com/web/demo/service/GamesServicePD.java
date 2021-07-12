@@ -25,4 +25,6 @@ public interface GamesServicePD {
 	public List<Games> getRelatedGames(int id);
 	
 	public Page<Games> findAllPaginatedSorted(int pageNo, int pageSize);
+	
+	public Page<Games> findGamesByCategoryPaginated(int pageNo, int pageSize, int idCate);
 }
