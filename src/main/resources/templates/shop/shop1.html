@@ -599,10 +599,9 @@
                                     c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
                                     C444.801,187.101,434.001,213.101,414.401,232.701z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
                                 </svg>
-                            </a>
-							  <div th:if="${game.idGame == img.games.idGame}">
-								  <img th:src="@{'../../../' + ${img.nameImage}}" alt="">
-							  </div>
+                            </a>  
+                              <img src="../img/game/jedi.jpg" alt="">
+
                               <div class="vertical-align full menu-button">
                                   <a  class="page-button button-style-1 type-4" th:href="@{'/cart/add/'+${game.idGame}}"><span class="txt">Add to cart</span></a>
                                   <div class="empty-sm-10 empty-xs-10"></div>
