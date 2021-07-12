@@ -1,5 +1,7 @@
 package com.web.demo.config;
-
+/**
+ * @author NguyenHuuSon
+ */
 import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
