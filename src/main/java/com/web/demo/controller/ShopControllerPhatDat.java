@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.web.demo.entity.Category;
 import com.web.demo.entity.CommentGame;
 import com.web.demo.entity.Games;
+import com.web.demo.entity.ImageData;
 import com.web.demo.service.CategoryService;
 import com.web.demo.service.DiscountServicePD;
+import com.web.demo.service.GameImageServiceSon;
 import com.web.demo.service.GamesServicePD;
 import com.web.demo.service.ImageDataServicePD;
 import com.web.demo.service.UserCommentGameServicePD;
@@ -48,6 +50,8 @@ public class ShopControllerPhatDat {
 	
 	@Autowired
 	CategoryService cateservice;
+	@Autowired
+	GameImageServiceSon idataservice;
 	
 	@Autowired
 	UserServiceSon userService;
@@ -157,9 +161,10 @@ public class ShopControllerPhatDat {
 		else {
 			page = gameService.findAllPaginated(pageNo, pageSize);
 		}
-		
+		 
 	    List<Games> listAllGames = page.getContent();
-		
+	    
+	    
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("listAllGames", listAllGames);
 		model.addAttribute("countSearch", listAllGames.size());
