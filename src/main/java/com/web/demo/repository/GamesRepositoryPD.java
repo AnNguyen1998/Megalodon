@@ -35,7 +35,7 @@ public interface GamesRepositoryPD extends JpaRepository<Games, Integer>, Paging
 	 * @author PhatDat
 	 * method get games by term because user searched with Pagination
 	 */
-	@Query(value = "SELECT * FROM games WHERE CONCAT(Name_game, Producter_game, Publisher_game, ReleaseYear_game, Description_game) LIKE %?1%",
+	@Query(value = "SELECT * FROM games WHERE Name_game LIKE %?1%",
 			countQuery = "SELECT count(*) FROM games",
 			nativeQuery = true)
 	public Page<Games> search(String keyword, Pageable pageable);
@@ -58,5 +58,17 @@ public interface GamesRepositoryPD extends JpaRepository<Games, Integer>, Paging
 			countQuery = "SELECT count(*) FROM games",
 			nativeQuery = true)
 	public Page<Games> findAllGameSorted(Pageable pageable);
+	
+	/*
+	 * @author PhatDat
+	 * method get games by Filters with Pagination
+	 */
+	@Query(value = "SELECT * FROM games WHERE Id_game IN "
+			+ "(SELECT Id_game FROM game_category WHERE Id_category = ?1)",
+			countQuery = "SELECT count(*) FROM games",
+			nativeQuery = true)
+	Page<Games> findGamesByCateGoryPaginated(int idCate, Pageable pageable);
+	
+
 	
 }

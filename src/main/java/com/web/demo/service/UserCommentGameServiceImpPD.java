@@ -8,7 +8,9 @@ import com.web.demo.entity.CommentGame;
 import com.web.demo.entity.ReplyCommentGame;
 import com.web.demo.repository.CommentGameRepositoryPD;
 import com.web.demo.repository.DiscountRepositoryPD;
+import com.web.demo.repository.GamesRepositoryPD;
 import com.web.demo.repository.ReplyCommentGameRepoPD;
+import com.web.demo.repository.UsersRepositorySon;
 
 /*
  * @author PhatDat
@@ -19,6 +21,10 @@ public class UserCommentGameServiceImpPD implements UserCommentGameServicePD{
 	CommentGameRepositoryPD cmtGameRepo;
 	@Autowired
 	ReplyCommentGameRepoPD repCmtGameRepo;
+	@Autowired
+	private GamesRepositoryPD gamesRepository;
+	@Autowired
+	UsersRepositorySon usersRepository;
 	
 	@Override
 	public List<CommentGame> getCommentGame(int idGame) {
@@ -29,6 +35,13 @@ public class UserCommentGameServiceImpPD implements UserCommentGameServicePD{
 	public List<ReplyCommentGame> getUserReplyComment(int idCommentGame) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public CommentGame addCommentGame(int idGame, int idUser, String cmt) {
+		return cmtGameRepo.saveAndFlush(
+				new CommentGame(gamesRepository.getById(idGame),
+						usersRepository.getById(idUser), cmt));
 	}
 	
 }

@@ -100,4 +100,10 @@ public class GamesServiceImpPD implements GamesServicePD {
 		return this.gamesRepository.findAllGameSorted(pageable);
 	}
 
+	@Override
+	public Page<Games> findGamesByCategoryPaginated(int pageNo, int pageSize, int idCate) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return this.gamesRepository.findGamesByCateGoryPaginated(idCate, pageable);
+	}
+
 }

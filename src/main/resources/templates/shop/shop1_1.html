@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="format-detection" content="telephone=no" /> 
         <link rel="shortcut icon" href="favicon.ico"/>    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">  
-<link href="/css/style.css" rel="stylesheet" type="text/css"/>
-      <title>Delice</title>
+      <title>Megalodon Game Shop</title>
       <style id="dynamic-css"></style>
       <style type="text/css">
       .preloader {position: fixed;left: 0;top: 0;width: 100%;height: 100%;background: #fff;text-align: center;z-index: 6001; }
@@ -57,11 +55,6 @@
           -webkit-transform: scale3D(0, 0, 1);
           transform: scale3D(0, 0, 1); } }
     </style>
-    <style>
-                    li.cate{
-                    overflow: auto;
-                    }
-                    </style>
   </head>
 <body class="page-color-style-6 page-style-6">
    
@@ -175,9 +168,9 @@
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129" width="16px" height="16px">
                       <g><g><path d="m109.1,36.8c-0.3-2-2-3.4-4-3.4h-23v-9.4c0-9.7-7.9-17.6-17.6-17.6-9.7,0-17.6,7.9-17.6,17.6v9.4h-23c-2,0-3.7,1.4-4,3.4l-13.4,81c-0.2,1.2 0.1,2.4 0.9,3.3 0.8,0.9 1.9,1.4 3.1,1.4h108c0,0 0,0 0.1,0 2.3,0 4.1-1.8 4.1-4.1 0-0.5-0.1-0.9-0.2-1.3l-13.4-80.3zm-54-12.8c0-5.2 4.2-9.4 9.4-9.4s9.4,4.2 9.4,9.4v9.4h-18.8v-9.4zm-39.8,90.4l12.1-72.8h19.5v22.9c0,2.3 1.8,4.1 4.1,4.1 2.3,0 4.1-1.8 4.1-4.1v-22.9h18.8v22.9c0,2.3 1.8,4.1 4.1,4.1 2.3,0 4.1-1.8 4.1-4.1v-22.9h19.5l12.1,72.8h-98.4z"></path></g></g>
                     </svg>
-                  <div class="shop-number" th:text="${session.mycartnum != null}? ${session.mycartnum}:'0'"></div>
+                    <div class="shop-number">2</div>
                    </div>  
-                   <span class="shop-card-price">Total: <b class="main-col" th:text="${session.mycarttotal!=null}? ${session.mycarttotal}+'$':'0'"></b></span>
+                   <span class="shop-card-price">Total: <b class="main-col">$19.60</b></span>
                    <div class="shop-card-list">
                      <div class="shop-card-align-mobile">
                        <div class="close-card-mobile main-fill-col">
@@ -186,28 +179,76 @@
                             </svg>
                        </div>  
                        <ul>
-                       <th:block th:each="map : ${session.mycartitem}">
+                           <li class="flex-align">
+                               <div class="img hover-zoom">
+                                  <a href="#"><img src="img/shop_list_img_1.png" alt=""></a>
+                               </div>
+                               <h5 class="h5 caption"><a href="#" class="link-hover">Mediterranean  Shrimp Pizza</a></h5>
+                               <div class="shop-counter">
+                                   <div class="custom-input-number">
+                                      <button type="button" class="cin-btn cin-decrement">
+                                        <img src="img/left_arr.png" alt="">
+                                      </button>
+                                      <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
+                                      <button type="button" class="cin-btn cin-increment">
+                                        <img src="img/right_arr.png" alt="">
+                                      </button>
+                                  </div>
+                              </div>
+                              <div class="menu-price main-col">$16.80</div>
+                              <div class="close-item main-fill-hover">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background=  "new 0 0 64 64"><g><path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/></g>
+                                </svg>
+                              </div>
+                           </li>
+                           <li class="flex-align">
+                               <div class="img hover-zoom">
+                                   <a href="#"><img src="img/shop_list_img_1.png" alt=""></a>
+                               </div>
+                               <h5 class="h5 caption"><a href="#" class="link-hover">Mediterranean  Shrimp Pizza</a></h5>
+                               <div class="shop-counter">
+                                   <div class="custom-input-number">
+                                      <button type="button" class="cin-btn cin-decrement">
+                                        <img src="img/left_arr.png" alt="">
+                                      </button>
+                                      <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
+                                      <button type="button" class="cin-btn cin-increment">
+                                        <img src="img/right_arr.png" alt="">
+                                      </button>
+                                  </div>
+                              </div>
+                              <div class="menu-price main-col">$16.80</div>
+                              <div class="close-item main-fill-hover">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background=  "new 0 0 64 64"><g><path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/></g>
+                                </svg>
+                              </div>
+                           </li>
                            <li class="flex-align">
                                <div class="img hover-zoom">
                                   <a href="#"><img src="img/shop_list_img_2.png" alt=""></a>
                                </div>
-                                <div class="shop-counter">
-                                  
-                              </div>
-                               <h5 class="h5 caption"><a href="#" class="link-hover" th:text="${map.value.games.nameGame}"></a></h5>
+                               <h5 class="h5 caption"><a href="#" class="link-hover">Big Coca-Cola 2L</a></h5>
                                <div class="shop-counter">
-                                  
+                                   <div class="custom-input-number">
+                                      <button type="button" class="cin-btn cin-decrement">
+                                        <img src="img/left_arr.png" alt="">
+                                      </button>
+                                      <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
+                                      <button type="button" class="cin-btn cin-increment">
+                                        <img src="img/right_arr.png" alt="">
+                                      </button>
+                                  </div>
                               </div>
-                              <div class="menu-price main-col" th:text="${map.value.games.priceFix}+'$'"></div>
-                               <div class="shop-counter">
-                                  
+                              <div class="menu-price main-col">$2.80</div>
+                              <div class="close-item main-fill-hover">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background=  "new 0 0 64 64"><g><path fill="#1D1D1B" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/></g>
+                                </svg>
                               </div>
                            </li>
-                           </th:block>
                        </ul>
                        <div class="buy-bar">
                            <div class="fl">
-                              <h4 class="h4 caption">Total:<b class="main-col" th:text="${session.mycarttotal!=null}? ${session.mycarttotal}+'$':'0$'"></b></h4>  
+                              <h4 class="h4 caption">Total:<b class="main-col">$19.60</b></h4>  
                            </div>
                            <div class="fr">
                                <a href="#" class="page-button button-style-1 type-2"><span class="txt">Go to the cart</span></a>
@@ -242,25 +283,77 @@
             <nav>
               <ul class="header-menu">
                 <li><a href="home_1.html">Home<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                       
+                        <ul>
+                            <li><a href="home_1.html">Home 1</a></li>
+                            <li><a href="home_2.html">Home 2</a></li>
+                            <li><a href="home_3.html">Home 3</a></li>
+                            <li><a href="home_4.html">Home 4</a></li>
+                            <li><a href="home_5.html">Home 5</a></li>
+                            <li><a href="home_6.html">Home 6</a></li>
+                            <li><a href="home_7.html">Home 7</a></li>
+                            <li><a href="home_8.html">Home 8</a></li>
+                           <li><a href="home_9.html">Home 9</a></li>
+                        </ul>
                     </li>
-                    <li>
-						<a href="#">Category</a>
-                            <ul>
-								<li class="cate" th:each="category : ${listcate}">
-									<a th:href="@{'/shop1/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
-								</li>
-                            </ul>
-					</li>
+                    <li><a href="about.html">About</a></li>
                     <li class="active"><a href="shop-1.html">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                       
+                        <ul>
+                            <li><a href="shop-1.html">Shop 1</a></li>
+                            <li><a href="shop-2.html">Shop 2</a></li>
+                            <li><a href="shop-3.html">Shop 3</a></li>
+                            <li><a href="shop-detail-1.html">Shop Detail<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                                <ul>
+                                    <li><a href="shop-detail-1.html">Shop Detail 1</a></li>
+                                    <li><a href="shop-detail-2.html">Shop Detail 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="checkout-1.html">Order<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                                <ul>
+                                    <li><a href="checkout-1.html">Checkout 1</a></li>
+                                    <li><a href="checkout-2.html">Checkout 2</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
-                   
+                    <li><a href="reservation.html">Page<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                        <ul>
+                            <li><a href="reservation.html">Reservation</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="team.html">Chefs</a></li>
+                            <li><a href="menu-1.html">Menu<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                                <ul>
+                                    <li><a href="menu-1.html">Menu 1</a></li>
+                                    <li><a href="menu-2.html">Menu 2</a></li>
+                                    <li><a href="menu-3.html">Menu 3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="gallery-1.html">Gallery<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                                <ul>
+                                    <li><a href="gallery-1.html">Dessert</a></li>
+                                    <li><a href="gallery-2.html">Breakfast</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="coming-soon.html">Coming soon</a></li>
+                        </ul>
+                    </li>
                     <li><a href="blog-1.html">Blog<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                        <ul>
+                            <li><a href="blog-1.html">Blog 1</a></li>
+                            <li><a href="blog-2.html">Blog 2</a></li>
+                            <li><a href="blog-detail-1.html">Blog Detail<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                                <ul>
+                                    <li><a href="blog-detail-1.html">Blog Detail 1</a></li>
+                                    <li><a href="blog-detail-2.html">Blog Detail 2</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                      <li><a href="contact-1.html">Contact<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                        <ul>
+                            <li><a href="contact-1.html">Contact 1</a></li>
+                            <li><a href="contact-2.html">Contact 2</a></li>
+                      </ul>
                     </li>
-					<li><a href="about.html">About</a></li>
                 </ul>
             </nav>
             </div>
@@ -301,8 +394,8 @@
         <div class="row">
           <div class="col-lg-2 col-md-3 col-xs-12">
             <aside>
-              <form th:action="@{'/shop1/' + ${pageNo}}" class="search-form type-2">
-                 <input type="text" placeholder="Search for..." class="input-search" required="" th:name="keyword">
+              <form action="#" class="search-form type-2">
+                 <input type="text" placeholder="Search for..." class="input-search" required="">
                  <div class="submit-search">
                     <input type="submit" value="">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="14px" height="14px">
@@ -330,13 +423,14 @@
              </div>
               <aside>
                 <div class="empty-sm-65 empty-xs-65"></div>
-                <h5 class="tt h5 color-2">Filters</h5>
+                <h5 class="tt h5 color-2">Categories</h5>
                 <div class="empty-sm-20 empty-xs-10"></div>
                 <ul class="list-style-4 type-2 ul-list">
-                  <li><a th:href="@{/shop1/games/bestSelling/1}" class="link-hover">Top Selling</a></li>
-                  <li><a th:href="@{/shop1/games/recommended/1}" class="link-hover">Recommended</a></li>
-                  <li><a th:href="@{/shop1/games/newRelease/1}" class="link-hover">Newest</a></li>
-                  <li><a th:href="@{/shop1/games/offers/1}" class="link-hover">Special Offers</a></li>
+                  <li><a href="#" class="link-hover">Soups</a></li>
+                  <li><a href="#" class="link-hover">Meat</a></li>
+                  <li><a href="#" class="link-hover">Salats</a></li>
+                  <li><a href="#" class="link-hover">Pizzas</a></li>
+                  <li><a href="#" class="link-hover">Other</a></li>
                 </ul>
               </aside>
               <aside>
@@ -524,7 +618,7 @@
                 <div class="shop-filter">
                   <div class="found-items">
                     <div class="simple-text">
-                        <p>Found <span class="main-col"><b th:text="${countSearch}"></b></span> items</p>
+                        <p>Found <span class="main-col"><b>27</b></span> items</p>
                     </div>
                   </div>
                   <div class="shop-select">
@@ -534,18 +628,12 @@
                             <p>Shown items per page</p>
                         </div>
                       </div>
-					  
-					  <form th:action="@{'/shop1/games/' + ${term} + '/' + ${pageNo}}" method="get" >
-						<select th:name="size" class="input-field type-2 main-col" onchange="this.form.submit()">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-						</select>
-					  </form>
-                      
+                      <select class="input-field type-2 main-col">
+                        <option value="val1">10</option>
+                        <option value="val1">40</option>
+                        <option value="val1">25</option>
+                        <option value="val1">38</option>
+                      </select> 
                     </div>
                     <div class="sort-by">
                       <div class="title-select">
@@ -581,14 +669,13 @@
               </div>
               <div class="empty-sm-15 empty-xs-30"></div>
             </div>
-        <div class="tab-container-wraps">
+            <div class="tab-container-wraps" >
               <div class="tab-container-item min-h-430">
-                <div class="row row-4-columns row-3-columns row-2-columns">
-                <th:block th:each="game : ${listAllGames}">
+                <div class="row row-4-columns row-3-columns row-2-columns" th:each="game : ${listAllGames}">
                   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                      <div class="empty-sm-50 empty-xs-50"></div>
+                      <div class="empty-sm-50 empty-xs-30"></div>
                       <div class="menu-item menu-item-2 type-3">
-                          <div class="image hover-zoom" th:each="img : ${images1}">
+                          <div class="image hover-zoom" >
                             <a href="#" class="like-product main-fill-col">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
                                     <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
@@ -601,36 +688,32 @@
                                 </svg>
                             </a>  
                               <img src="../img/game/jedi.jpg" alt="">
-
                               <div class="vertical-align full menu-button">
-                                  <a  class="page-button button-style-1 type-4" th:href="@{'/cart/add/'+${game.idGame}}"><span class="txt">Add to cart</span></a>
+                                  <a href="#" class="page-button button-style-1 type-4"><span class="txt">Add to cart</span></a>
                                   <div class="empty-sm-10 empty-xs-10"></div>
-                                  <a href="#" class="page-button button-style-1 type-2 open-popup" th:data-open="'popup-'+${game.idGame}" th:data-rel="${game.nameGame}"><span class="txt">quick view</span></a>
+                                  <a href="#" class="page-button button-style-1 type-2 open-popup" data-open="popup-gallery" data-rel="1"><span class="txt">quick view</span></a>
                               </div>
                           </div>
                           <div class="text">
                               <div class="empty-sm-15 empty-xs-10"></div>
-                              <h5 class="h5 caption" ><a th:href="@{'http://localhost:8080/shop1/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
+                              <h5 class="h5 caption"><a href="#" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
                               <div class="empty-sm-5 empty-xs-5"></div>
                               <div class="simple-text">
-                                 <p th:text="'-'+${game.discount.value}+'%'"></p>
+                                  <p th:text="${game.discount.Value}"></p>
                               </div>
                               <div class="empty-sm-10 empty-xs-10"></div>
-                              <div class="menu-price style-2 title main-col" th:text="'$'+${game.price}"></div>
+                              <div class="menu-price style-2 title main-col" th:text="${game.price}"></div>
                           </div>
                       </div>
                   </div>
                   
-                  </th:block>
-                  
-                  
-                </div>
+				</div>
             </div>
-            
-          </div>
-          <div class="empty-lg-70 empty-md-50 empty-sm-40 empty-xs-30"></div>
+		  </div>
+
+            <div class="empty-lg-70 empty-md-50 empty-sm-40 empty-xs-30"></div>
 			
-            <div class="row" th:if="${totalPages > 1}">
+            <div class="row" th:if="${totalPages > 3}">
               <div class="col-md-10 col-md-offset-1 col-xs-12">
                 <div class="page-navigation">
                  <a href="#" class="left-arr" >
@@ -639,7 +722,7 @@
                   </svg>  
                  </a>
 				 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-					<a th:if="${currentPage != i}" th:href="@{'/shop1/games/' + ${term} + '/' + ${i} }">[[${i}]]</a>
+					<a th:if="${currentPage != i}" th:href="@{'/shop1/' + ${i} }">[[${i}]]</a>
 					<span th:unless="${currentPage != i}">[[${i}]]</span> 
 				 </span>
                  <a href="#" class="right-arr">
@@ -651,8 +734,10 @@
                 <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
               </div>
             </div>
+			
           </div>
-          </div>
+        </div>
+      </div>
     </section>
 	</div>
    
@@ -732,7 +817,7 @@
                    <h5 class="h5">Join Us On Instagram</h5>
                    <div class="empty-sm-20 empty-xs-20"></div> 
                    <div class="f-instagram">
-                       <a href="#"><img src="/img/inst_1.jpg" alt=""></a>
+                       <a href="#"><img src="img/inst_1.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_2.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_3.jpg" alt=""></a>
                        <a href="#"><img src="img/inst_4.jpg" alt=""></a>
@@ -769,7 +854,174 @@
        </div>
    </footer>
 
-    
+    <div class="popup index-popup-gallery" data-rel="1">
+       <div class="popup-wrap type-2">
+          <div class="empty-sm-0 empty-xs-15"></div>
+          <div class="container quick-wrapp"> 
+          <div class="close-popup type-2">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9" width="14px" height="14px">
+            <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z" fill="#484848"/>
+            </svg> 
+         </div> 
+            <div class="row left-right-item">
+              <div class="col-md-6 col-xs-12">
+                <img src="img/shop/pop-up.png" alt="" class="full-img">
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="quick-content">
+                  <div class="empty-sm-0 empty-xs-30"></div>
+                  <aside>
+                    <div class="empty-sm-20 empty-xs-20"></div>
+                    <h4 class="h3 sm tt color-2">Mediterranean Shrimp Pizza</h4>
+                    <div class="empty-sm-20 empty-xs-20"></div>
+                    <h5 class="h5 sm color-2">Price: <span class="h4 main-col"><b>$8.40</b></span></h5>
+                  </aside>
+                  <div class="empty-sm-20 empty-xs-20"></div>
+                  <aside class="product-size">
+                    <h5 class="h5 sm color-2 inline-box">Size:</h5>
+                    <div class="checkbox-entry-wrap">  
+                      <label class="checkbox-entry">
+                          <input type="radio" name="1" checked="">
+                          <span>
+                            <i></i>
+                            <p>25cm <span>(250g)</span></p>  
+                          </span>
+                      </label>
+                    </div>
+                    <div class="checkbox-entry-wrap">  
+                      <label class="checkbox-entry">
+                          <input type="radio" name="1">
+                          <span>
+                            <i></i>
+                            <p>30cm <span>(450g)</span></p>  
+                          </span>
+                      </label>
+                    </div>
+                    <div class="checkbox-entry-wrap">  
+                      <label class="checkbox-entry">
+                          <input type="radio" name="1">
+                          <span>
+                            <i></i>
+                            <p>40cm <span>(550g)</span></p>  
+                          </span>
+                      </label>
+                    </div>
+                  </aside>
+                  <div class="empty-sm-25 empty-xs-20"></div>
+                  <aside>
+                    <div class="simple-text">
+                      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat null eiusmod tempor incididunt ut labore tore veritatis </p>
+                    </div>
+                  </aside>
+                  <div class="empty-sm-25 empty-xs-20"></div>
+                  <aside>
+                    <h5 class="tt h5 sm color-2">Choose Ingredients:</h5>
+                    <div class="empty-sm-25 empty-xs-15"></div>
+                    <div class="arrow-closest item-padd-30">
+                     <div class="swiper-container checkbox-wrapp" data-mode="horizontal" data-effect="slide" data-add-slides="3" data-slides-per-view="responsive" data-lg-slides="3" data-md-slides="3" data-xs-slides="2" data-sm-slides="4" data-loop="0" data-speed="800" data-space="13">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide" > 
+                            <div class="checkbox-entry-wrap ">  
+                            <label class="checkbox-entry">
+                              <input type="checkbox" checked="">
+                                <div class="content-check">
+                                  <img src="img/product-detail/сhoose-1.jpg" alt="" class="full-img">
+                                  <div class="empty-sm-10 empty-xs-10"></div>
+                                  <div class="simple-text">
+                                    <p><b>Peperoni</b></p>
+                                  </div>
+                              </div>
+                            </label>
+                            </div>
+                          </div>
+                          <div class="swiper-slide" > 
+                            <div class="checkbox-entry-wrap ">  
+                            <label class="checkbox-entry">
+                              <input type="checkbox" checked="">
+                                <div class="content-check">
+                                  <img src="img/product-detail/сhoose-2.jpg" alt="" class="full-img">
+                                  <div class="empty-sm-10 empty-xs-10"></div>
+                                  <div class="simple-text">
+                                    <p><b>Ham</b></p>
+                                  </div>
+                              </div>
+                            </label>
+                            </div>
+                          </div>
+                          <div class="swiper-slide" > 
+                            <div class="checkbox-entry-wrap ">  
+                            <label class="checkbox-entry">
+                              <input type="checkbox">
+                                <div class="content-check">
+                                  <img src="img/product-detail/сhoose-3.jpg" alt="" class="full-img">
+                                  <div class="empty-sm-10 empty-xs-10"></div>
+                                  <div class="simple-text">
+                                    <p><b>Mashrooms</b></p>
+                                  </div>
+                              </div>
+                            </label>
+                            </div>
+                          </div>
+                          <div class="swiper-slide" > 
+                            <div class="checkbox-entry-wrap ">  
+                            <label class="checkbox-entry">
+                              <input type="checkbox">
+                                <div class="content-check">
+                                  <img src="img/product-detail/сhoose-4.jpg" alt="" class="full-img">
+                                  <div class="empty-sm-10 empty-xs-10"></div>
+                                  <div class="simple-text">
+                                    <p><b>Ruccola</b></p>
+                                  </div>
+                              </div>
+                            </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="swiper-arrow-left swiper-arrow type-3 style-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">
+                          <g>
+                          <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z" fill="#FFFFFF"/>
+                          </g>
+                        </svg> 
+                      </div> 
+                      <div class="swiper-arrow-right swiper-arrow type-3 style-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129" width="19px" height="19px">
+                          <g>
+                          <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" fill="#FFFFFF"/>
+                          </g>
+                        </svg>  
+                      </div>
+                    </div>
+                  </aside>
+                  <div class="empty-sm-40 empty-xs-25"></div>
+                  <aside>
+                  <div class="buy-bar type-2">
+                     <div class="fl">
+                        <h5 class="h5 sm follow-title quntity">Quantity:</h5>
+                        <div class="custom-input-number type-2">
+                          <button type="button" class="cin-btn cin-decrement">
+                            <img src="img/left_arr.png" alt="">
+                          </button>
+                          <input type="number" class="cin-input input-field" step="1" value="1" min="0" max="1000">
+                          <button type="button" class="cin-btn cin-increment">
+                            <img src="img/right_arr.png" alt="">
+                          </button>
+                        </div>
+                        <div class="empty-sm-0 empty-xs-15"></div>
+                     </div>
+                     <div class="fr">
+                         <a href="#" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
+                     </div>
+                  </div>
+                  </aside>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="empty-sm-0 empty-xs-15"></div>
+       </div> 
+   </div>
 
 <!-- POPUP LOGIN -->
     <div class="popup index-popup-login" data-rel="3">
@@ -833,55 +1085,7 @@
         </div>
       </div> 
     </div>
-<th:block th:each="game : ${listAllGames}">
-          <div th:class="'popup index-popup-'+${game.idGame}" th:data-rel="game.nameGame">
-       	<div class="popup-wrap type-2">
-          <div class="empty-sm-0 empty-xs-15"></div>
-          <div class="container quick-wrapp"> 
-          <div class="close-popup type-2">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9" width="14px" height="14px">
-            <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z" fill="#484848"/>
-            </svg> 
-         </div> 
-            <div class="row left-right-item">
-              <div class="col-md-6 col-xs-12" th:each="img : ${images1}">
-				<div th:if="${game.idGame == img.games.idGame}">
-				  <img th:src="@{'../../../' + ${img.nameImage}}"  alt="" class="full-img">
-				</div>
-              </div>  
-              <div class="col-md-6 col-xs-12">
-                <div class="quick-content">
-                  <div class="empty-sm-0 empty-xs-30"></div>
-                  <aside>
-                    <div class="empty-sm-20 empty-xs-20"></div>
-                    <h1 class="h2 sm tt color-2" th:text="${game.nameGame}"></h1>
-                    <div class="empty-sm-20 empty-xs-20"></div>
-                    <h5 class="h3 sm color-2">Price: <span class="h2 main-col" th:text="${game.price}"><b></b></span></h5>
-                  </aside>
-                  
-                  <div class="empty-sm-20 empty-xs-20"></div>
-                   <h5 class="h5 sm color-2">Release Year: <span class="h4 main-col" th:text="${#dates.format(game.releaseYearGame, 'dd-MM-yyyy')}"><b></b></span></h5>
-                       <h5 class="h5 sm color-2">Publisher: <span class="h4 main-col" th:text="${game.publisherGame}"><b></b></span></h5>
-                  <div class="empty-sm-25 empty-xs-20"></div>
-                  <div class="empty-sm-25 empty-xs-20"></div>
-                  
-                  <div class="empty-sm-40 empty-xs-25"></div>
-                  <aside>
-                  <div class="buy-bar type-2">
-                     
-                     <div class="fr">
-                         <a href="#" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
-                     </div>
-                  </div>
-                  </aside>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="empty-sm-0 empty-xs-15"></div>
-       </div> 
-   </div>
-          </th:block>
+
    <!-- POPUP REGISTER -->
     <div class="popup index-popup-register" data-rel="4">
       <div class="popup-wrap popup-layer">
@@ -958,18 +1162,19 @@
         </div> 
       </div>
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">  
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-<script src="/js/jquery-ui.min.js"></script>
-<script src="/js/jscolor.min.js"></script>
-<script src="/js/jquery.knob.js"></script>
-<script src="/js/jquery.throttle.js"></script>
-<script src="/js/jquery.classycountdown.js"></script>
-<script src="/js/jarallax.js"></script>
-<script src="/js/all.js"></script>
-<script src="/js/color.picker.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/jscolor.min.js"></script>
+<script src="../js/jquery.knob.js"></script>
+<script src="../js/jquery.throttle.js"></script>
+<script src="../js/jquery.classycountdown.js"></script>
+<script src="../js/jarallax.js"></script>
+<script src="../js/all.js"></script>
+<script src="../js/color.picker.js"></script>
 
 </body>
 </html>	
