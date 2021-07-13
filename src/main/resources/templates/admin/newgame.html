@@ -358,12 +358,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-b-20">
-                                                    <label th:object="imgdt">File Uploads</label>
+                                               <!--   <th:block th:object="${imgdt}">  -->
+                                                    <label >File Uploads</label>
                                                     <input type="file" name="files[]" id="filer_input1"
-                                                        multiple="multiple" th:field="*{nameImage}">
+                                                        multiple="multiple" >
                                                     <div class="col-sm-12 padding-left-0 padding-right-0" >
                                                         <img class="img-responsive img-rounded" width="200" />
                                                     </div>
+                                                   <!-- </th:block> -->
                                                 </div>
                                             </div>
                                         </div>
