@@ -4,6 +4,7 @@ package com.web.demo.controller;
  * @author NguyenHuuSon
  */
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,9 +30,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.demo.config.WebUtils;
+import com.web.demo.entity.Category;
 import com.web.demo.entity.Role;
 import com.web.demo.entity.TokenUser;
 import com.web.demo.entity.Users;
+import com.web.demo.service.CategoryService;
 import com.web.demo.service.TokenServiceSon;
 import com.web.demo.service.UserServiceSon;
 
@@ -41,7 +44,8 @@ public class LoginControllerSon {
 	UserServiceSon userservice;
 	@Autowired
 	TokenServiceSon tokenservice;
-
+	@Autowired
+	CategoryService cateservice;
 @GetMapping("/403")
 public String error() {
 	return "403";
@@ -52,7 +56,8 @@ public String error() {
 	public String game(Model model, Principal principal, @RequestParam(required = false) String message, Users user,HttpSession session) {
 		// Regis
 		model.addAttribute("user", user);
-
+		List<Category> listcate= cateservice.findAll();
+		model.addAttribute("listcate",listcate);
 		//
 		if (message != null && !message.isEmpty()) {
 			if (message.equals("logout")) {
