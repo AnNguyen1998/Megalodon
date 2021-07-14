@@ -33,7 +33,7 @@ public class GamesDtoAn {
 	private String ram;
 	private String freeStorage;
 	private String vga;
-	private Set<ImageData> imageDatas = new HashSet<ImageData>(0);
+	private Set<ImageDataDtoAn> imageDatas = new HashSet<ImageDataDtoAn>(0);
 	private Set<CategoryDtoAn> categories = new HashSet<CategoryDtoAn>(0);
 	private Set<ActiveGame> activeGames = new HashSet<ActiveGame>(0);
 	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
@@ -147,10 +147,10 @@ public class GamesDtoAn {
 	public void setVga(String vga) {
 		this.vga = vga;
 	}
-	public Set<ImageData> getImageDatas() {
+	public Set<ImageDataDtoAn> getImageDatas() {
 		return imageDatas;
 	}
-	public void setImageDatas(Set<ImageData> imageDatas) {
+	public void setImageDatas(Set<ImageDataDtoAn> imageDatas) {
 		this.imageDatas = imageDatas;
 	}
 	

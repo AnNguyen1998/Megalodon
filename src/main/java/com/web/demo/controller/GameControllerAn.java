@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,6 +69,7 @@ public class GameControllerAn {
 	}
 	@GetMapping("editgame/{id}")
 	public String editgame(@PathVariable(name="id") Integer id, Model model, Principal principal) {
+		model.addAttribute("discounts", new Discount());
 		//get game
 		Games game = gameService.getById(id);	
 		model.addAttribute("game", game);
@@ -88,14 +90,18 @@ public class GameControllerAn {
 	public String savegame(@ModelAttribute("game") Games game, @RequestParam("files[]") MultipartFile[] images,
 			 Model model ) {
 		Games g = gameService.save(game);
-		Arrays.asList(images).stream().forEach(image -> {
-			imageService.store(image);
-			String file=StringUtils.cleanPath(image.getOriginalFilename());
-			ImageData imagedata=new ImageData();
-			imagedata.setGames(g);
-			imagedata.setNameImage(file);
-			imageService.save(imagedata);
-		});
+		try {
+			Arrays.asList(images).stream().forEach(image -> {
+				imageService.store(image);
+				String file=StringUtils.cleanPath(image.getOriginalFilename());
+				ImageData imagedata=new ImageData();
+				imagedata.setGames(g);
+				imagedata.setNameImage(file);
+				imageService.save(imagedata);	
+			});
+		}catch(Exception e) {
+			System.out.println("Empty file name !!!");
+		}
 		return "redirect:/admin/listgame";
 	}
 	@GetMapping("admin/listgame")
@@ -106,5 +112,13 @@ public class GameControllerAn {
 			model.addAttribute("userInfo", userInfo);
 		}
 		return "admin/Listofgame";
+	}
+	@GetMapping("/delgameimage/{id}")
+	public String delete(@PathVariable Integer id){
+			 ImageData img = imageService.getById(id);
+			 Games g = img.getGames();
+			 int idg = g.getIdGame();
+			 imageService.deleteById(id);
+			 return "redirect:/editgame/"+idg;
 	}
 }
