@@ -200,8 +200,7 @@
 									<td><a th:href="'#custom-modal'+${bill.idBill}"
 										class="btn btn-primary waves-effect waves-light m-r-5 m-b-10"
 										data-animation="fadein" data-plugin="custommodal"
-										data-overlaySpeed="200" data-overlayColor="#36404a">Fade
-											in</a>
+										data-overlaySpeed="200" data-overlayColor="#36404a">View Detail Bill</a>
 										<div th:id="'custom-modal'+${bill.idBill}" class="modal-demo">
 											<button type="button" class="close"
 												onclick="Custombox.close();">
@@ -215,31 +214,20 @@
 													<table class="table">
 														<thead>
 															<tr>
-																<th>#</th>
-																<th>First Name</th>
-																<th>Last Name</th>
-																<th>Username</th>
+																
+																<th>Bill</th>
+																<th>Game</th>
+																<th>Price Game</th>
 															</tr>
 														</thead>
-														<tbody>
+														<tbody th:each="billdt: ${bill.billDetails}">
 															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
+																
+																<td th:text="${billdt.bill.idBill}"></td>
+																<td th:text="${billdt.games.nameGame}"></td>
+																<td th:text="${billdt.games.price}"></td>
 															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
+															
 														</tbody>
 													</table>
 												</div>
