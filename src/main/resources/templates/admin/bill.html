@@ -9,7 +9,9 @@
 <meta name="author" content="Coderthemes">
 <link href="../plugins/custombox/css/custombox.min.css" rel="stylesheet">
 <link rel="shortcut icon" href="../assets/images/favicon.ico">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Megalodon</title>
 
 <!-- App css -->
@@ -173,6 +175,17 @@
 					</div>
 				</div>
 			</div>
+			<script>
+$(document).ready(function(){
+  $("#search-input").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablebill tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+			
 			<!-- database-table -->
 
 			<div class="row">
@@ -191,11 +204,11 @@
 									<th>View</th>
 								</tr>
 							</thead>
-							<tbody th:each="bill : ${listbill}">
+							<tbody id="tablebill" th:each="bill : ${listbill}">
 								<tr>
 									<td th:text="${bill.idBill}"></td>
 									<td th:text="${bill.users.nameUsers}"></td>
-									<td th:text="${bill.date}"></td>
+									<td th:text="${#dates.format(bill.date,'dd-MM-yyyy hh:mm')}"></td>
 									<td th:text="${bill.totalPrice}"></td>
 									<td><a th:href="'#custom-modal'+${bill.idBill}"
 										class="btn btn-primary waves-effect waves-light m-r-5 m-b-10"
