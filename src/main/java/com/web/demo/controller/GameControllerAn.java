@@ -3,14 +3,14 @@ package com.web.demo.controller;
  * @author An Nguyen
  */
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +23,12 @@ import com.web.demo.config.WebUtilsAn;
 import com.web.demo.entity.Category;
 import com.web.demo.entity.Discount;
 import com.web.demo.entity.Games;
+import com.web.demo.entity.ImageData;
 import com.web.demo.service.AdminBillServiceAn;
 import com.web.demo.service.AdminGameServiceAn;
 import com.web.demo.service.CategoryService;
 import com.web.demo.service.DiscountServiceAn;
+import com.web.demo.service.ImageServiceAn;
 @Controller
 public class GameControllerAn {
 	
@@ -39,11 +41,24 @@ public class GameControllerAn {
 	@Autowired
 	AdminBillServiceAn billService;
 	
+	@Autowired
+	DiscountServiceAn discount;
+	
+	@Autowired
+	ImageServiceAn imageService;
+	
 	@GetMapping("admin/addgame")
 	public String addgame(Model model, Principal principal) {
+		
 		model.addAttribute("game", new Games());
+		
+		model.addAttribute("discounts", new Discount());
+		
 		List<Category> listcate = cate.findAll();
 		model.addAttribute("listcate", listcate);
+		//get discount
+		List<Discount> disct = discount.findAll();
+		model.addAttribute("discount", disct);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
@@ -59,6 +74,9 @@ public class GameControllerAn {
 		//get category
 		List<Category> listcate = cate.findAll();
 		model.addAttribute("listcate", listcate);
+		//get discount
+		List<Discount> disct = discount.findAll();
+		model.addAttribute("discount", disct);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
@@ -67,9 +85,18 @@ public class GameControllerAn {
 		return "admin/newgame";
 	}
 	@RequestMapping(value = "/savegame", method = RequestMethod.POST)
-	public String savegame(@ModelAttribute("game") Games game, @RequestParam("multiimage") MultipartFile[] images ) {
-		gameService.save(game);
-		return "redirect:/admin/Listofgame";
+	public String savegame(@ModelAttribute("game") Games game, @RequestParam("files[]") MultipartFile[] images,
+			 Model model ) {
+		Games g = gameService.save(game);
+		Arrays.asList(images).stream().forEach(image -> {
+			imageService.store(image);
+			String file=StringUtils.cleanPath(image.getOriginalFilename());
+			ImageData imagedata=new ImageData();
+			imagedata.setGames(g);
+			imagedata.setNameImage(file);
+			imageService.save(imagedata);
+		});
+		return "redirect:/admin/listgame";
 	}
 	@GetMapping("admin/listgame")
 	public String listgame(Model model, Principal principal) {
