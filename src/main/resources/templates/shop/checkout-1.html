@@ -373,7 +373,7 @@
 						<h4 class="h4 sm color-2">Your Order</h4>
 					</div>
 					<div class="empty-sm-40 empty-xs-20"></div>
-           <table class="order-list" cols="4" cellspacing="0" >
+           <table class="order-list" cols="5" cellspacing="0" >
            <th:block th:each="item : ${session.mycartitem}">
              <tr>
                <td>                     
@@ -387,13 +387,12 @@
                    <h5 class="h5 caption"><a href="#" class="link-hover" th:text="${item.value.games.nameGame}"></a></h5>
                  </td>
                  <td>
-                  <div class="shop-item">
-                     <h6 class="h6">1 items</h6>
-                  </div>
-                 </td>
-                 <td>
                    <h5 class="h5 sm order-price main-col"th:text="${item.value.games.priceFix}+'$'"></h5>
                  </td>
+                 <td>
+                   <h5 class="h5 caption"> <a th:href="@{'cart/remove/'+${item.value.games.idGame}}" class="link-hover" th:text="Delete" ></a></h5>
+                 </td>
+                
               </tr>
              </th:block>
            </table>
