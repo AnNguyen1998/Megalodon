@@ -28,7 +28,7 @@ public class Bill implements java.io.Serializable {
 	private Users users;
 	private Date date;
 	private Long totalPrice;
-//	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
+	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
 
 	public Bill() {
 	}
@@ -81,13 +81,13 @@ public class Bill implements java.io.Serializable {
 		this.totalPrice = totalPrice;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
-//	public Set<BillDetail> getBillDetails() {
-//		return this.billDetails;
-//	}
-//
-//	public void setBillDetails(Set<BillDetail> billDetails) {
-//		this.billDetails = billDetails;
-//	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
+	public Set<BillDetail> getBillDetails() {
+		return this.billDetails;
+	}
+
+	public void setBillDetails(Set<BillDetail> billDetails) {
+		this.billDetails = billDetails;
+	}
 
 }
