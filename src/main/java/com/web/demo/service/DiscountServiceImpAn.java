@@ -6,7 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.Discount;
 import com.web.demo.repository.DiscountRepositoryAn;
-
+/**
+ * 
+ * @author AnNguyen
+ *
+ */
 @Service
 public class DiscountServiceImpAn implements DiscountServiceAn{
 	
