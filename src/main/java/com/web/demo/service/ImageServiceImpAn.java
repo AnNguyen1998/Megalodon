@@ -1,5 +1,7 @@
 package com.web.demo.service;
-
+/**
+ * @author AnNguyen
+ */
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,6 +33,16 @@ public class ImageServiceImpAn implements ImageServiceAn {
 	@Override
 	public <S extends ImageData> S save(S entity) {
 		return image.save(entity);
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		image.deleteById(id);
+	}
+
+	@Override
+	public ImageData getById(Integer id) {
+		return image.getById(id);
 	}
 	
 	
