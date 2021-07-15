@@ -189,13 +189,14 @@ public class ShopControllerPhatDat {
 	 * return "redirect:/shop/detailgame"; }
 	 */
 
-	@GetMapping(value = { "/shop/{pageNo}", "/shop" })
+	@GetMapping(value = { "/shop/{pageNo}", "/shops" })
 	public String shop1(Model model, @PathVariable(value = "pageNo", required = false) Integer pageNo,
 			@Param("keyword") String keyword, Principal principal, @RequestParam(required = false) String message,
 			Users user, HttpSession session) {
 
 		// Regis
 		model.addAttribute("user", user);
+		model.addAttribute("user", new Users());
 
 		//
 		if (message != null && !message.isEmpty()) {

@@ -64,9 +64,9 @@ public String error() {
 	@GetMapping("/shop")
 	public String game(Model model, Principal principal, @RequestParam(required = false) String message, Users user,HttpSession session) {
 		// Regis
+		LocalDate today = LocalDate.now();
 		
-		 
-		Systems sys=systemservice.findByDateLike("2021-07-14");
+		Systems sys=systemservice.findByDateLike(today.toString());
 		if(sys!=null) {
 			sys.setViewsSystem(sys.getViewsSystem()+1);
 			systemservice.save(sys);
@@ -78,7 +78,7 @@ public String error() {
 			system.setViewsSystem(1);
 			systemservice.save(system);
 			
-			System.out.println(sys.getDate());
+			
 		}
 		model.addAttribute("user", user);
 		List<Category> listcate= cateservice.findAll();
