@@ -60,6 +60,7 @@ public String error() {
 }
 	
 	// Login
+
 	@GetMapping("/shop")
 	public String game(Model model, Principal principal, @RequestParam(required = false) String message, Users user,HttpSession session) {
 		// Regis
@@ -113,6 +114,7 @@ public String error() {
 		}
 		return "shop/shop-3";
 	}
+
 
 	@PostMapping("/regis")
 	public String savecustomer(@Validated @ModelAttribute("user") Users user, ModelMap model,
