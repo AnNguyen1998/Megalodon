@@ -268,7 +268,9 @@
                 data-slides-per-view="1" data-loop="0" data-speed="1000" data-parallax="1">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="parallax-bg bg" style="background-image: url(../img/game/slider1.jpg)"
+                        <div class="parallax-bg bg" 
+							th:style="'background: url(' + @{ '/getgameimage/'+${slider[0].idSlideShow}}+ ');
+							background-repeat: no-repeat;background-size: cover;'"
                             data-swiper-parallax="50%"></div>
                         <div class="table-view mobile-rel-block">
                             <div class="table-cell">
@@ -296,7 +298,9 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="parallax-bg layer bg"
-                            style="background-image: url(../img/game/slider2.jpg)" data-swiper-parallax="50%">
+							th:style="'background: url(' + @{ '/getgameimage/'+${slider[1].idSlideShow}}+ ');
+							background-repeat: no-repeat;background-size: cover;'"
+							data-swiper-parallax="50%">
                         </div>
                         <div class="table-view mobile-rel-block">
                             <div class="table-cell">
@@ -323,7 +327,9 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="parallax-bg bg" style="background-image: url(../img/game/slider3.jpg)"
+                        <div class="parallax-bg bg" 
+							th:style="'background: url(' + @{ '/getgameimage/'+${slider[2].idSlideShow}}+ ');
+							background-repeat: no-repeat;background-size: cover;'"
                             data-swiper-parallax="50%"></div>
                         <div class="table-view mobile-rel-block">
                             <div class="table-cell">
