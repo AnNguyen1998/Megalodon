@@ -269,7 +269,7 @@ public class Games implements java.io.Serializable {
 		this.imageDatas = imageDatas;
 	}
 
-	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	 @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	 @JoinTable(name = "game_category",
 			 joinColumns = @JoinColumn(name = "Id_game"),
 					 inverseJoinColumns = @JoinColumn(name = "Id_category")
