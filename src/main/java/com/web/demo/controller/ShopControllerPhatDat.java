@@ -143,6 +143,8 @@ public class ShopControllerPhatDat {
 		model.addAttribute("game", gameService.getGame(idGame));
 		model.addAttribute("images", imageGameService.getImageDetailGame(idGame));
 		model.addAttribute("id", idGame);
+		
+		model.addAttribute("user", new Users());
 
 		// add comment game
 		model.addAttribute("cmts", commentService.getCommentGame(idGame));
@@ -189,7 +191,7 @@ public class ShopControllerPhatDat {
 	 * return "redirect:/shop/detailgame"; }
 	 */
 
-	@GetMapping(value = { "/shop/{pageNo}", "/shop" })
+	@GetMapping(value = { "/shop/{pageNo}", "/shops" })
 	public String shop1(Model model, @PathVariable(value = "pageNo", required = false) Integer pageNo,
 			@Param("keyword") String keyword, Principal principal, @RequestParam(required = false) String message,
 			Users user, HttpSession session) {
@@ -228,7 +230,7 @@ public class ShopControllerPhatDat {
 			model.addAttribute("userInfo", userInfo);
 		}
 
-		int pageSize = 12;
+		int pageSize = 4;
 		if (pageNo == null) {
 			pageNo = 1;
 		} else if (pageNo.intValue() == 0) {
@@ -273,6 +275,7 @@ public class ShopControllerPhatDat {
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
 		model.addAttribute("images1", imageGameService.getImageList());
+		model.addAttribute("user", new Users());
 		// model.addAttribute("listGames", listEmployees);
 
 		model.addAttribute("images1", imageGameService.getImageList());
@@ -323,6 +326,7 @@ public class ShopControllerPhatDat {
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("user", new Users());
 
 		/**
 		 * @author Dat Ha
