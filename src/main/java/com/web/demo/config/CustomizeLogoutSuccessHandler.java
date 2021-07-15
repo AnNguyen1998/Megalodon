@@ -31,7 +31,11 @@ public class CustomizeLogoutSuccessHandler implements LogoutSuccessHandler{
 		
 		response.setStatus(HttpServletResponse.SC_OK);
         //redirect to login
+		if(!re.equals("http://localhost:8080/shops?message=error")) {
 		response.sendRedirect(re);
+		}else {
+			response.sendRedirect("/shops");
+		}
 	}
 
 }
