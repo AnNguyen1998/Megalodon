@@ -265,7 +265,7 @@ public class ShopControllerPhatDat {
 
 	@GetMapping(value = { "/shop/games/{term}/{pageNo}" })
 	public String shop2(Model model, @PathVariable(value = "pageNo") int pageNo,
-			@PathVariable(value = "term") String term, @RequestParam(value = "size", defaultValue = "4") int pageSize) {
+			@PathVariable(value = "term", required = false) String term, @RequestParam(value = "size", defaultValue = "4") int pageSize) {
 		// pageSize = 5;
 
 		Page<Games> page = gameService.findAllPaginated(pageNo, pageSize);
@@ -320,6 +320,7 @@ public class ShopControllerPhatDat {
 
 		List<Games> listAllGames = page.getContent();
 
+		model.addAttribute("cate", idCate);
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("listAllGames", listAllGames);
 		model.addAttribute("countSearch", listAllGames.size());
