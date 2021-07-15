@@ -227,7 +227,7 @@
 
     <header class="header header-style-1">
         <div class="navigation flex-align">
-            <a href="home_1.html" class="logo"><img src="img/logo.png" alt="delice"><img src="img/logo2.png"
+            <a href="http://localhost:8080/" class="logo"><img src="img/logo.png" alt="delice"><img src="img/logo2.png"
                     alt="delice" class="logo-type-2"></a>
             <div class="burger-menu"><i></i></div>
             <div class="nav">
@@ -235,17 +235,17 @@
                     
                     <nav>
                         <ul class="header-menu">
-                            <li class="active"><a href="home_1.html">Home<img src="img/down-arrow.png" alt=""
+                            <li class="active"><a href="http://localhost:8080/">Home<img src="img/down-arrow.png" alt=""
                                         class="menu-arr"></a>
 
                             </li>
-                            <li><a href="#">Category</a>
-                            <ul>
-                            <li th:each="category : ${listcate}">
-							<a th:href="@{'/shop1/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
+                            <li><a href="#">Category<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                            <ul style="width: 190px; height: 400px; overflow: auto" class="header-menu">
+                            <li th:each="category : ${listcate}" style="background-color: #000000;width: 180px;">
+							<a th:href="@{'/shop/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
 							</li>
                             </ul></li>
-                            <li><a href="shop-3.html">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                            <li><a href="http://localhost:8080/shop">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
 
                             </li>
 
@@ -287,7 +287,7 @@
                                         </div>
                                         <div class="empty-sm-45  empty-xs-45"></div>
                                         <div class="button-wrap">
-                                            <a href="http://localhost:8080/shop1/1" class="page-button button-style-1"><span class="txt">Buy Now</span></a>
+                                            <a href="http://localhost:8080/shop/1" class="page-button button-style-1"><span class="txt">Buy Now</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -315,7 +315,7 @@
                                         </div>
                                         <div class="empty-sm-45  empty-xs-45"></div>
                                         <div class="button-wrap">
-                                            <a href="http://localhost:8080/shop1/1" class="page-button button-style-1"><span class="txt">Buy now</span></a>
+                                            <a href="http://localhost:8080/shop/1" class="page-button button-style-1"><span class="txt">Buy now</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -342,7 +342,7 @@
                                         </div>
                                         <div class="empty-sm-45  empty-xs-45"></div>
                                         <div class="button-wrap">
-                                            <a href="http://localhost:8080/shop1/1" class="page-button button-style-1"><span class="txt">Buy Now</span></a>
+                                            <a href="http://localhost:8080/shop/1" class="page-button button-style-1"><span class="txt">Buy Now</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -419,7 +419,7 @@
                     </div>
                     <div class="empty-sm-40  empty-xs-40"></div>
                     <div class="button-wrap">
-                        <a href="http://localhost:8080/shop1/1" class="page-button button-style-1"><span class="txt">our games</span></a>
+                        <a href="http://localhost:8080/shop/1" class="page-button button-style-1"><span class="txt">our games</span></a>
                     </div>
                 </div>
             </div>
@@ -448,10 +448,10 @@
                                 <span class="page-span-1 page-span"></span>
                                 <span class="page-span-2 page-span type-2"></span>
 								<div th:if="${game.idGame == img.games.idGame}">
-									<img th:src="@{${img.nameImage}}" alt="">
+									<img th:src="@{'/getgameimage/'+${img.idImage}}" alt="">
 								</div>
                                 <div class="vertical-align full menu-button">
-                                    <a th:href="@{'http://localhost:8080/shop1/detailgame?id=' + ${game.idGame}}" 
+                                    <a th:href="@{'http://localhost:8080/shop/detailgame?id=' + ${game.idGame}}" 
 									class="page-button button-style-1"><span class="txt">view
                                             more</span></a>
                                 </div>
@@ -470,7 +470,7 @@
 
                     <div class="text-center">
                         <div class="empty-sm-20 empty-xs-20"></div>
-                        <a href="http://localhost:8080/shop1/games/bestSelling/1" class="page-button button-style-2"><span class="bg"
+                        <a href="http://localhost:8080/shop/games/bestSelling/1" class="page-button button-style-2"><span class="bg"
                                 style="background-image: url(img/home-1/button_img_1.jpg)"></span><span class="txt">View
                                 All</span></a>
                     </div>
@@ -482,8 +482,8 @@
 
         <section class="section">
             <div class="empty-lg-170 empty-md-70 empty-sm-50 empty-xs-20"></div>
-            <div class="bg layer ready data-jarallax" data-jarallax="5" 
-                th:style="'background: url(' + @{ '../' + *{images4.nameImage}}+ ');'"></div>
+            <div class="bg layer ready data-jarallax" data-jarallax="5"
+                th:style="'background: url(' + @{ '/getgameimage/'+${images4.idImage}}+ ');'"></div>
             <div class="container item-animation scroll-type-1">
                 <div class="simple-item text-center color-type-1 simple-item-style-1">
                     <div class="first-div sub-title">New Release</div>
@@ -500,8 +500,8 @@
                     </div>
                     <div class="empty-sm-40  empty-xs-40"></div>
                     <div class="button-wrap">
-                        <a th:href="@{'http://localhost:8080/shop1/detailgame?id=' + ${games_New.idGame}}" class="page-button button-style-1"><span class="txt">View More</span></a>
-						<a href="http://localhost:8080/shop1/games/newRelease/1" class="page-button button-style-1"><span class="txt">View All</span></a>
+                        <a th:href="@{'http://localhost:8080/shop/detailgame?id=' + ${games_New.idGame}}" class="page-button button-style-1"><span class="txt">View More</span></a>
+						<a href="http://localhost:8080/shop/games/newRelease/1" class="page-button button-style-1"><span class="txt">View All</span></a>
                     </div>
                 </div>
             </div>
@@ -532,11 +532,11 @@
 								<p style="display: inline-block; margin-left: 20px;" ><strike th:text="${games_Recommended.price + ' VND'}"></strike></p>
                             </div>
                             <div class="empty-sm-45  empty-xs-45"></div>
-                            <a th:href="@{'http://localhost:8080/shop1/detailgame?id=' + ${games_Recommended.idGame}}" 
+                            <a th:href="@{'http://localhost:8080/shop/detailgame?id=' + ${games_Recommended.idGame}}" 
 							class="page-button button-style-2"><span class="bg"
                                     style="background-image: url(../img/home-1/button_img_2.jpg)"></span><span
                                     class="txt">View More</span></a>
-							<a href="http://localhost:8080/shop1/games/recommended/1" class="page-button button-style-2" style="margin-left: 20px;"><span class="bg"
+							<a href="http://localhost:8080/shop/games/recommended/1" class="page-button button-style-2" style="margin-left: 20px;"><span class="bg"
                                     style="background-image: url(../img/home-1/button_img_2.jpg)"></span><span
                                     class="txt">View All</span></a>
                         </div>
@@ -547,14 +547,14 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="simple-item-style-2 simple-item">
                                     <span class="page-span-3 page-span"></span>
-                                    <img th:src="@{'../' + *{images3[0].nameImage}}" alt="" class="resp-img">
+                                    <img th:src="@{'/getgameimage/'+${images3[0].idImage}}" alt="" class="resp-img">
                                 </div>
                                 <div class="empty-sm-30 empty-xs-30"></div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="simple-item-style-2 simple-item">
                                     <span class="page-span-1 page-span type-2"></span>
-                                    <img th:src="@{'../' + *{images3[1].nameImage}}" alt="" class="resp-img">
+                                    <img th:src="@{'/getgameimage/'+${images3[1].idImage}}" alt="" class="resp-img">
                                 </div>
                                 <div class="empty-sm-30 empty-xs-30"></div>
                             </div>
@@ -563,7 +563,7 @@
                         <div class="simple-item-style-2 simple-item">
                             <span class="page-span-4 page-span"></span>
                             <span class="page-span-2 page-span type-2"></span>
-							<img th:src="@{'../' + *{images3[2].nameImage}}" alt="" class="resp-img">
+							<img th:src="@{'/getgameimage/'+${images3[2].idImage}}" alt="" class="resp-img">
                         </div>
                     </div>
                 </div>

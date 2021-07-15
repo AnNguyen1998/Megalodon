@@ -81,7 +81,7 @@ public class HomeController {
 	 * @author PhatDat
 	 * display home page with games classified by filters
 	 */
-	@GetMapping(value = "/home1")
+	@GetMapping(value = "/")
     public String hometest2(Model model) {
 		List<Category> listcate= cateService.findAll();
 		model.addAttribute("listcate",listcate);
@@ -113,11 +113,11 @@ public class HomeController {
 	 * @author PhatDat
 	 */
 	
-	@GetMapping(value = "/")
-    public String index(Model model) {
-		//model.addAttribute("discount", discountService.getDiscount(1));
-        return "index";
-    }
+//	@GetMapping(value = "/")
+//    public String index(Model model) {
+//		//model.addAttribute("discount", discountService.getDiscount(1));
+//        return "index";
+//    }
 	
 
 	

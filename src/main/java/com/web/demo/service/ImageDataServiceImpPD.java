@@ -76,7 +76,9 @@ public class ImageDataServiceImpPD implements ImageDataServicePD {
 	@Override
 	public List<ImageData> getRelatedImageList(int i) {
 		return imageGameRepository.findRecommendGame(i);
+		
 	}
+	
 	
 	
 	
