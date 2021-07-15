@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -30,31 +31,70 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "games", catalog = "megalodondb")
 public class Games implements java.io.Serializable {
 
-	private Integer idGame;
-	private Discount discount;
-	private String nameGame;
-	private String producterGame;
-	private String publisherGame;
-	private Date releaseYearGame;
-	private String descriptionGame;
-	private String linkVideo;
-	private Long price;
-	private Long priceFix;
-	private Float rateGame;
-	private Integer countSell;
-	private String linkGame;
-	private Integer countRate;
-	private String processor;
-	private String ram;
-	private String freeStorage;
-	private String vga;
-	private Set<ImageData> imageDatas = new HashSet<ImageData>(0);
-	private Set<Category> categories = new HashSet<Category>(0);
-	private Set<ActiveGame> activeGames = new HashSet<ActiveGame>(0);
-	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
-	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
-	private Set<SlideShow> slideShows = new HashSet<SlideShow>(0);
+	
+	
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+
+	@Column(name = "Id_game", unique = true, nullable = false)
+	private Integer idGame;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_discount")
+	private Discount discount;
+	@Column(name = "Name_game", nullable = false, length = 45)
+	private String nameGame;
+	@Column(name = "Producter_game", length = 45)
+	private String producterGame;
+	@Column(name = "Publisher_game", length = 45)
+	private String publisherGame;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "ReleaseYear_game", length = 10)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date releaseYearGame;
+	@Column(name = "Description_game", length = 65535)
+	private String descriptionGame;
+	@Column(name = "Link_video", length = 100)
+	private String linkVideo;
+	@Column(name = "Price", precision = 18, scale = 0)
+	private Long price;
+	@Column(name = "Price_fix", precision = 18, scale = 0)
+	private Long priceFix;
+	@Column(name = "Rate_game", precision = 12, scale = 0)
+	private Float rateGame;
+	@Column(name = "Count_sell")
+	private Integer countSell;
+	@Column(name = "Link_game", length = 150)
+	private String linkGame;
+	@Column(name = "count_rate")
+	private Integer countRate;
+	@Column(name = "Processor", length = 50)
+	private String processor;
+	@Column(name = "RAM", length = 50)
+	private String ram;
+	@Column(name = "Free_storage", length = 50)
+	private String freeStorage;
+	@Column(name = "VGA", length = 50)
+	private String vga;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+	private Set<ImageData> imageDatas = new HashSet<ImageData>(0);
+	 @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	 @JoinTable(name = "game_category",
+			 joinColumns = @JoinColumn(name = "Id_game"),
+					 inverseJoinColumns = @JoinColumn(name = "Id_category")
+	 )
+	private Set<Category> categories = new HashSet<Category>(0);
+	 @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	 @JoinTable(name = "active_game",
+			 joinColumns = @JoinColumn(name = "Id_game"),
+					 inverseJoinColumns = @JoinColumn(name = "Id_users")
+	 )
+	private Set<Users> UsersActive = new HashSet<Users>(0);
+//	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
+//	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
+//	private Set<SlideShow> slideShows = new HashSet<SlideShow>(0);
+	
+	
 	public Games() {
 	}
 
@@ -62,40 +102,15 @@ public class Games implements java.io.Serializable {
 		this.nameGame = nameGame;
 	}
 
-	public Games(Discount discount, String nameGame, String producterGame, String publisherGame, Date releaseYearGame,
-			String descriptionGame, String linkVideo, Long price, Long priceFix, Float rateGame, Integer countSell,
-			String linkGame, Integer countRate, String processor, String ram, String freeStorage, String vga,
-			Set<ImageData> imageDatas, Set<Category> gameCategories, Set<ActiveGame> activeGames,
-			Set<CommentGame> commentGames, Set<BillDetail> billDetails, Set<SlideShow> slideShows) {
-		this.discount = discount;
-		this.nameGame = nameGame;
-		this.producterGame = producterGame;
-		this.publisherGame = publisherGame;
-		this.releaseYearGame = releaseYearGame;
-		this.descriptionGame = descriptionGame;
-		this.linkVideo = linkVideo;
-		this.price = price;
-		this.priceFix = priceFix;
-		this.rateGame = rateGame;
-		this.countSell = countSell;
-		this.linkGame = linkGame;
-		this.countRate = countRate;
-		this.processor = processor;
-		this.ram = ram;
-		this.freeStorage = freeStorage;
-		this.vga = vga;
-		this.imageDatas = imageDatas;
-		this.categories = gameCategories;
-		this.activeGames = activeGames;
-		this.commentGames = commentGames;
-		this.billDetails = billDetails;
-		this.slideShows = slideShows;
+
+	public Set<Users> getUsersActive() {
+		return UsersActive;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	public void setUsersActive(Set<Users> usersActive) {
+		UsersActive = usersActive;
+	}
 
-	@Column(name = "Id_game", unique = true, nullable = false)
 	public Integer getIdGame() {
 		return this.idGame;
 	}
@@ -103,9 +118,8 @@ public class Games implements java.io.Serializable {
 	public void setIdGame(Integer idGame) {
 		this.idGame = idGame;
 	}
+	
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_discount")
 	public Discount getDiscount() {
 		return this.discount;
 	}
@@ -114,7 +128,7 @@ public class Games implements java.io.Serializable {
 		this.discount = discount;
 	}
 
-	@Column(name = "Name_game", nullable = false, length = 45)
+	
 	public String getNameGame() {
 		return this.nameGame;
 	}
@@ -123,7 +137,7 @@ public class Games implements java.io.Serializable {
 		this.nameGame = nameGame;
 	}
 
-	@Column(name = "Producter_game", length = 45)
+	
 	public String getProducterGame() {
 		return this.producterGame;
 	}
@@ -132,7 +146,7 @@ public class Games implements java.io.Serializable {
 		this.producterGame = producterGame;
 	}
 
-	@Column(name = "Publisher_game", length = 45)
+	
 	public String getPublisherGame() {
 		return this.publisherGame;
 	}
@@ -141,9 +155,7 @@ public class Games implements java.io.Serializable {
 		this.publisherGame = publisherGame;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "ReleaseYear_game", length = 10)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+
 	public Date getReleaseYearGame() {
 		return this.releaseYearGame;
 	}
@@ -152,7 +164,7 @@ public class Games implements java.io.Serializable {
 		this.releaseYearGame = releaseYearGame;
 	}
 
-	@Column(name = "Description_game", length = 65535)
+
 	public String getDescriptionGame() {
 		return this.descriptionGame;
 	}
@@ -161,7 +173,7 @@ public class Games implements java.io.Serializable {
 		this.descriptionGame = descriptionGame;
 	}
 
-	@Column(name = "Link_video", length = 100)
+	
 	public String getLinkVideo() {
 		return this.linkVideo;
 	}
@@ -170,7 +182,7 @@ public class Games implements java.io.Serializable {
 		this.linkVideo = linkVideo;
 	}
 
-	@Column(name = "Price", precision = 18, scale = 0)
+	
 	public Long getPrice() {
 		return this.price;
 	}
@@ -179,7 +191,7 @@ public class Games implements java.io.Serializable {
 		this.price = price;
 	}
 
-	@Column(name = "Price_fix", precision = 18, scale = 0)
+	
 	public Long getPriceFix() {
 		return this.priceFix;
 	}
@@ -188,7 +200,7 @@ public class Games implements java.io.Serializable {
 		this.priceFix = priceFix;
 	}
 
-	@Column(name = "Rate_game", precision = 12, scale = 0)
+	
 	public Float getRateGame() {
 		return this.rateGame;
 	}
@@ -197,7 +209,7 @@ public class Games implements java.io.Serializable {
 		this.rateGame = rateGame;
 	}
 
-	@Column(name = "Count_sell")
+	
 	public Integer getCountSell() {
 		return this.countSell;
 	}
@@ -206,7 +218,7 @@ public class Games implements java.io.Serializable {
 		this.countSell = countSell;
 	}
 
-	@Column(name = "Link_game", length = 150)
+	
 	public String getLinkGame() {
 		return this.linkGame;
 	}
@@ -215,7 +227,7 @@ public class Games implements java.io.Serializable {
 		this.linkGame = linkGame;
 	}
 
-	@Column(name = "count_rate")
+	
 	public Integer getCountRate() {
 		return this.countRate;
 	}
@@ -224,7 +236,7 @@ public class Games implements java.io.Serializable {
 		this.countRate = countRate;
 	}
 
-	@Column(name = "Processor", length = 50)
+	
 	public String getProcessor() {
 		return this.processor;
 	}
@@ -233,7 +245,7 @@ public class Games implements java.io.Serializable {
 		this.processor = processor;
 	}
 
-	@Column(name = "RAM", length = 50)
+	
 	public String getRam() {
 		return this.ram;
 	}
@@ -242,7 +254,7 @@ public class Games implements java.io.Serializable {
 		this.ram = ram;
 	}
 
-	@Column(name = "Free_storage", length = 50)
+
 	public String getFreeStorage() {
 		return this.freeStorage;
 	}
@@ -251,7 +263,7 @@ public class Games implements java.io.Serializable {
 		this.freeStorage = freeStorage;
 	}
 
-	@Column(name = "VGA", length = 50)
+	
 	public String getVga() {
 		return this.vga;
 	}
@@ -260,7 +272,7 @@ public class Games implements java.io.Serializable {
 		this.vga = vga;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "games")
+	
 	public Set<ImageData> getImageDatas() {
 		return this.imageDatas;
 	}
@@ -269,11 +281,7 @@ public class Games implements java.io.Serializable {
 		this.imageDatas = imageDatas;
 	}
 
-	 @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	 @JoinTable(name = "game_category",
-			 joinColumns = @JoinColumn(name = "Id_game"),
-					 inverseJoinColumns = @JoinColumn(name = "Id_category")
-	 )
+	
 	 
 	public Set<Category> getcategories() {
 		return this.categories;
@@ -282,7 +290,7 @@ public class Games implements java.io.Serializable {
 	public void setcategories(Set<Category> categories) {
 		this.categories = categories;
 	}
-
+	
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "games")
 //	public Set<ActiveGame> getActiveGames() {
 //		return this.activeGames;

@@ -23,13 +23,22 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "discount", catalog = "megalodondb")
 public class Discount implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_discount", unique = true, nullable = false)
 	private Integer idDiscount;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Date_start", length = 10)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateStart;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Date_end", length = 10)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateEnd;
+	@Column(name = "Value")
 	private Integer value;
+	@Column(name = "Status")
 	private Integer status;
 //	private Set<Games> gameses = new HashSet<Games>(0);
 
@@ -44,10 +53,7 @@ public class Discount implements java.io.Serializable {
 //		this.gameses = gameses;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_discount", unique = true, nullable = false)
 	public Integer getIdDiscount() {
 		return this.idDiscount;
 	}
@@ -56,8 +62,7 @@ public class Discount implements java.io.Serializable {
 		this.idDiscount = idDiscount;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_start", length = 10)
+
 	public Date getDateStart() {
 		return this.dateStart;
 	}
@@ -66,8 +71,7 @@ public class Discount implements java.io.Serializable {
 		this.dateStart = dateStart;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_end", length = 10)
+
 	public Date getDateEnd() {
 		return this.dateEnd;
 	}
@@ -76,7 +80,7 @@ public class Discount implements java.io.Serializable {
 		this.dateEnd = dateEnd;
 	}
 
-	@Column(name = "Value")
+	
 	public Integer getValue() {
 		return this.value;
 	}
@@ -85,7 +89,7 @@ public class Discount implements java.io.Serializable {
 		this.value = value;
 	}
 
-	@Column(name = "Status")
+	
 	public Integer getStatus() {
 		return this.status;
 	}

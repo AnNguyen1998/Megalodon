@@ -17,9 +17,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "slide_show", catalog = "megalodondb")
 public class SlideShow implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_slide_show", unique = true, nullable = false)
 	private Integer idSlideShow;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_game")
 	private Games games;
+	@Column(name = "image", length = 45)
 	private String image;
 
 	public SlideShow() {
@@ -30,10 +36,7 @@ public class SlideShow implements java.io.Serializable {
 		this.image = image;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_slide_show", unique = true, nullable = false)
 	public Integer getIdSlideShow() {
 		return this.idSlideShow;
 	}
@@ -42,8 +45,7 @@ public class SlideShow implements java.io.Serializable {
 		this.idSlideShow = idSlideShow;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_game")
+	
 	public Games getGames() {
 		return this.games;
 	}
@@ -52,7 +54,7 @@ public class SlideShow implements java.io.Serializable {
 		this.games = games;
 	}
 
-	@Column(name = "image", length = 45)
+
 	public String getImage() {
 		return this.image;
 	}
