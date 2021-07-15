@@ -212,10 +212,6 @@ public class ShopControllerPhatDat {
 				session.removeAttribute("userinfophone");
 
 			}
-			if (message.equals("loginreq")) {
-				model.addAttribute("message", "Please Login");
-			}
-
 		}
 		System.out.println(message);
 		if (principal != null) {
