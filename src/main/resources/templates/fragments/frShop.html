@@ -138,7 +138,7 @@
                        <th:block th:each="map : ${session.mycartitem}">
                            <li class="flex-align">
                                <div class="img hover-zoom">
-                                  <a href="#"><img src="img/shop_list_img_2.png" alt=""></a>
+                                  <a th:href="@{'http://localhost:8080/shop/detailgame?id='+${map.value.games.idGame}}"><img style="width: 200px;height: 100px" th:src="@{'/getgameimage/'+${map.value.games.imageDatas[0].idImage}}" alt=""></a>
                                </div>
                                 <div class="shop-counter">
                                   
@@ -159,8 +159,8 @@
                               <h4 class="h4 caption">Total:<b class="main-col" th:text="${session.mycarttotal!=null}? ${session.mycarttotal}+'$':'0$'"></b></h4>  
                            </div>
                            <div class="fr">
-                               <a href="#" class="page-button button-style-1 type-2"><span class="txt">Go to the cart</span></a>
-                               <a href="#" class="page-button button-style-1 type-4"><span class="txt">go to checkout</span></a>
+                               <a th:href="@{/cart}" class="page-button button-style-1 type-2"><span class="txt">Go to the cart</span></a>
+                             
                            </div>
                        </div>
                      </div>   

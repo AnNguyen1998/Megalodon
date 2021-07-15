@@ -1,6 +1,7 @@
 package com.web.demo.controller;
 
 
+import java.net.http.HttpRequest;
 /**
  * @author NguyenHuuSon
  */
@@ -59,7 +60,9 @@ public class CartControllerSon {
 	public static final String URL_PAYPAL_CANCEL = "pay/cancel";
 	private Logger log = LoggerFactory.getLogger(getClass());
 	@GetMapping("cart/add/{id}")
-	public String  addcart(Model model,HttpSession session,@PathVariable int id) {
+	public String  addcart(Model model,HttpSession session,@PathVariable int id,HttpServletRequest req) {
+		String fe=req.getHeader("REFERER");
+		System.out.println(fe);
 		@SuppressWarnings("unchecked")
 		HashMap<Integer, CartDTOSon>Cartitems=(HashMap<Integer, CartDTOSon>)session.getAttribute("mycartitem");
 		if(Cartitems==null) {
@@ -76,7 +79,7 @@ public class CartControllerSon {
 		session.setAttribute("mycartitem", Cartitems);
 		session.setAttribute("mycarttotal",totalPrice(Cartitems));
 		session.setAttribute("mycartnum", Cartitems.size());
-		return "redirect:/shop1";
+		return "redirect:"+fe;
 	}
 	public double totalPrice(HashMap<Integer, CartDTOSon> cartitems) {
 		int count=0;
