@@ -20,12 +20,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "comment_game", catalog = "megalodondb")
 public class CommentGame implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_comment_game", unique = true, nullable = false)
 	private Integer idCommentGame;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_game")
 	private Games games;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_users")
 	private Users users;
+	@Column(name = "Content_comment_game", length = 65535)
 	private String contentCommentGame;
-//	private Set<ReplyCommentGame> replyCommentGames = new HashSet<ReplyCommentGame>(0);
+	@OneToMany( fetch = FetchType.EAGER, mappedBy = "commentGame")
+	private Set<ReplyCommentGame> replyCommentGames = new HashSet<ReplyCommentGame>(0);
 
 	public CommentGame() {
 	}
@@ -37,10 +46,7 @@ public class CommentGame implements java.io.Serializable {
 //		this.replyCommentGames = replyCommentGames;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_comment_game", unique = true, nullable = false)
 	public Integer getIdCommentGame() {
 		return this.idCommentGame;
 	}
@@ -49,8 +55,7 @@ public class CommentGame implements java.io.Serializable {
 		this.idCommentGame = idCommentGame;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_game")
+
 	public Games getGames() {
 		return this.games;
 	}
@@ -59,8 +64,7 @@ public class CommentGame implements java.io.Serializable {
 		this.games = games;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_users")
+
 	public Users getUsers() {
 		return this.users;
 	}
@@ -69,7 +73,7 @@ public class CommentGame implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "Content_comment_game", length = 65535)
+	
 	public String getContentCommentGame() {
 		return this.contentCommentGame;
 	}
@@ -78,13 +82,13 @@ public class CommentGame implements java.io.Serializable {
 		this.contentCommentGame = contentCommentGame;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commentGame")
-//	public Set<ReplyCommentGame> getReplyCommentGames() {
-//		return this.replyCommentGames;
-//	}
-//
-//	public void setReplyCommentGames(Set<ReplyCommentGame> replyCommentGames) {
-//		this.replyCommentGames = replyCommentGames;
-//	}
+	
+	public Set<ReplyCommentGame> getReplyCommentGames() {
+		return this.replyCommentGames;
+	}
+
+	public void setReplyCommentGames(Set<ReplyCommentGame> replyCommentGames) {
+		this.replyCommentGames = replyCommentGames;
+	}
 
 }

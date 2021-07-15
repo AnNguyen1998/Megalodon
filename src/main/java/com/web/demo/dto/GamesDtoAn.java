@@ -6,13 +6,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.web.demo.entity.ActiveGame;
+
 import com.web.demo.entity.BillDetail;
 import com.web.demo.entity.Category;
 import com.web.demo.entity.CommentGame;
 import com.web.demo.entity.Discount;
 import com.web.demo.entity.ImageData;
 import com.web.demo.entity.SlideShow;
+import com.web.demo.entity.Users;
 
 public class GamesDtoAn {
 	private Integer idGame;
@@ -35,7 +36,7 @@ public class GamesDtoAn {
 	private String vga;
 	private Set<ImageDataDtoAn> imageDatas = new HashSet<ImageDataDtoAn>(0);
 	private Set<CategoryDtoAn> categories = new HashSet<CategoryDtoAn>(0);
-	private Set<ActiveGame> activeGames = new HashSet<ActiveGame>(0);
+	private Set<Users> UsersActive = new HashSet<Users>(0);
 	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
 	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
 	private Set<SlideShow> slideShows = new HashSet<SlideShow>(0);
@@ -160,11 +161,12 @@ public class GamesDtoAn {
 	public void setCategories(Set<CategoryDtoAn> categories) {
 		this.categories = categories;
 	}
-	public Set<ActiveGame> getActiveGames() {
-		return activeGames;
+	public Set<Users> getUsersActive() {
+		return UsersActive;
 	}
-	public void setActiveGames(Set<ActiveGame> activeGames) {
-		this.activeGames = activeGames;
+
+	public void setUsersActive(Set<Users> usersActive) {
+		UsersActive = usersActive;
 	}
 	public Set<CommentGame> getCommentGames() {
 		return commentGames;

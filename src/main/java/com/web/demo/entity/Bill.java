@@ -23,11 +23,20 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "bill", catalog = "megalodondb")
 public class Bill implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_bill", unique = true, nullable = false)
 	private Integer idBill;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_users")
 	private Users users;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Date", length = 19)
 	private Date date;
+	@Column(name = "Total_price", precision = 18, scale = 0)
 	private Long totalPrice;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
 	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
 
 	public Bill() {
@@ -40,10 +49,7 @@ public class Bill implements java.io.Serializable {
 //		this.billDetails = billDetails;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_bill", unique = true, nullable = false)
 	public Integer getIdBill() {
 		return this.idBill;
 	}
@@ -52,8 +58,7 @@ public class Bill implements java.io.Serializable {
 		this.idBill = idBill;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_users")
+	
 	public Users getUsers() {
 		return this.users;
 	}
@@ -62,8 +67,7 @@ public class Bill implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Date", length = 19)
+	
 	public Date getDate() {
 		return this.date;
 	}
@@ -72,7 +76,7 @@ public class Bill implements java.io.Serializable {
 		this.date = date;
 	}
 
-	@Column(name = "Total_price", precision = 18, scale = 0)
+	
 	public Long getTotalPrice() {
 		return this.totalPrice;
 	}
@@ -81,7 +85,7 @@ public class Bill implements java.io.Serializable {
 		this.totalPrice = totalPrice;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
+	
 	public Set<BillDetail> getBillDetails() {
 		return this.billDetails;
 	}

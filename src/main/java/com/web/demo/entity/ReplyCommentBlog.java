@@ -17,10 +17,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "reply_comment_blog", catalog = "megalodondb")
 public class ReplyCommentBlog implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_reply_comment_blog", unique = true, nullable = false)
 	private Integer idReplyCommentBlog;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_commnet_blog", nullable = false)
 	private CommentBlog commentBlog;
+	@Column(name = "Id_users", nullable = false)
 	private int idUsers;
+	@Column(name = "Content_comment", length = 65535)
 	private String contentComment;
 
 	public ReplyCommentBlog() {
@@ -37,10 +44,7 @@ public class ReplyCommentBlog implements java.io.Serializable {
 		this.contentComment = contentComment;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "Id_reply_comment_blog", unique = true, nullable = false)
+	
 	public Integer getIdReplyCommentBlog() {
 		return this.idReplyCommentBlog;
 	}
@@ -49,8 +53,7 @@ public class ReplyCommentBlog implements java.io.Serializable {
 		this.idReplyCommentBlog = idReplyCommentBlog;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_commnet_blog", nullable = false)
+
 	public CommentBlog getCommentBlog() {
 		return this.commentBlog;
 	}
@@ -59,7 +62,7 @@ public class ReplyCommentBlog implements java.io.Serializable {
 		this.commentBlog = commentBlog;
 	}
 
-	@Column(name = "Id_users", nullable = false)
+
 	public int getIdUsers() {
 		return this.idUsers;
 	}
@@ -68,7 +71,7 @@ public class ReplyCommentBlog implements java.io.Serializable {
 		this.idUsers = idUsers;
 	}
 
-	@Column(name = "Content_comment", length = 65535)
+	
 	public String getContentComment() {
 		return this.contentComment;
 	}

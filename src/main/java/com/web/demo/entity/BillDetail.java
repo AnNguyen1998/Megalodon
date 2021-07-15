@@ -17,10 +17,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "bill_detail", catalog = "megalodondb")
 public class BillDetail implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_bill_detail", unique = true, nullable = false)
 	private Integer idBillDetail;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_bill")
 	private Bill bill;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_game")
 	private Games games;
+	@Column(name = "Price", precision = 18, scale = 0)
 	private Long price;
 
 	public BillDetail() {
@@ -32,10 +41,7 @@ public class BillDetail implements java.io.Serializable {
 		this.price = price;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "Id_bill_detail", unique = true, nullable = false)
+	
 	public Integer getIdBillDetail() {
 		return this.idBillDetail;
 	}
@@ -44,8 +50,7 @@ public class BillDetail implements java.io.Serializable {
 		this.idBillDetail = idBillDetail;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_bill")
+	
 	public Bill getBill() {
 		return this.bill;
 	}
@@ -54,8 +59,6 @@ public class BillDetail implements java.io.Serializable {
 		this.bill = bill;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_game")
 	public Games getGames() {
 		return this.games;
 	}
@@ -64,7 +67,7 @@ public class BillDetail implements java.io.Serializable {
 		this.games = games;
 	}
 
-	@Column(name = "Price", precision = 18, scale = 0)
+	
 	public Long getPrice() {
 		return this.price;
 	}

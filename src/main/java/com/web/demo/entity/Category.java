@@ -19,9 +19,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "category", catalog = "megalodondb")
 public class Category implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_category", unique = true, nullable = false)
 	private Integer idCategory;
+	@Column(name = "Name_category", length = 45)
 	private String nameCategory;
+	@ManyToMany(mappedBy = "categories")
 	private Set<Games> games = new HashSet<Games>(0);
 
 	public Category() {
@@ -32,10 +37,7 @@ public class Category implements java.io.Serializable {
 		
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "Id_category", unique = true, nullable = false)
+	
 	public Integer getIdCategory() {
 		return this.idCategory;
 	}
@@ -44,7 +46,7 @@ public class Category implements java.io.Serializable {
 		this.idCategory = idCategory;
 	}
 
-	@Column(name = "Name_category", length = 45)
+	
 	public String getNameCategory() {
 		return this.nameCategory;
 	}
@@ -53,7 +55,7 @@ public class Category implements java.io.Serializable {
 		this.nameCategory = nameCategory;
 	}
 
-	@ManyToMany(mappedBy = "categories")
+	
 	public Set<Games> getgames() {
 		return this.games;
 	}

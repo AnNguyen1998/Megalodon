@@ -6,14 +6,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.web.demo.entity.ActiveGame;
 import com.web.demo.entity.Bill;
 import com.web.demo.entity.Blog;
 import com.web.demo.entity.CommentBlog;
 import com.web.demo.entity.CommentGame;
+import com.web.demo.entity.Games;
 import com.web.demo.entity.TokenUser;
 
 public class UserDto2An {
+	
 	private Integer idUsers;
 	private String nameUsers;
 	private String usernameUsers;
@@ -30,7 +31,7 @@ public class UserDto2An {
 	private Set<Blog> blogs = new HashSet<Blog>(0);
 	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
 	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
-	private Set<ActiveGame> activeGames = new HashSet<ActiveGame>(0);
+	private Set<Games> GamesActive = new HashSet<Games>(0);
 	public Integer getIdUsers() {
 		return idUsers;
 	}
@@ -127,11 +128,11 @@ public class UserDto2An {
 	public void setCommentGames(Set<CommentGame> commentGames) {
 		this.commentGames = commentGames;
 	}
-	public Set<ActiveGame> getActiveGames() {
-		return activeGames;
-	}
-	public void setActiveGames(Set<ActiveGame> activeGames) {
-		this.activeGames = activeGames;
-	}
 	
+	public Set<Games> getGamesActive() {
+		return GamesActive;
+	}
+	public void setGamesActive(Set<Games> gamesActive) {
+		GamesActive = gamesActive;
+	}
 }

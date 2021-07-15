@@ -23,15 +23,28 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "blog", catalog = "megalodondb")
 public class Blog implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_blog", unique = true, nullable = false)
 	private Integer idBlog;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Author_blog", nullable = false)
 	private Users users;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_view_blog", nullable = false)
 	private ViewBlog viewBlog;
+	@Column(name = "Title_blog", nullable = false, length = 45)
 	private String titleBlog;
+	@Column(name = "Content_blog", length = 65535)
 	private String contentBlog;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Date_blog", length = 10)
 	private Date dateBlog;
+	@Column(name = "Image_blog", nullable = false, length = 45)
 	private String imageBlog;
-//	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "blog")
+	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
 
 	public Blog() {
 	}
@@ -53,10 +66,7 @@ public class Blog implements java.io.Serializable {
 //		this.commentBlogs = commentBlogs;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_blog", unique = true, nullable = false)
 	public Integer getIdBlog() {
 		return this.idBlog;
 	}
@@ -65,8 +75,7 @@ public class Blog implements java.io.Serializable {
 		this.idBlog = idBlog;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Author_blog", nullable = false)
+
 	public Users getUsers() {
 		return this.users;
 	}
@@ -75,8 +84,7 @@ public class Blog implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_view_blog", nullable = false)
+	
 	public ViewBlog getViewBlog() {
 		return this.viewBlog;
 	}
@@ -85,7 +93,7 @@ public class Blog implements java.io.Serializable {
 		this.viewBlog = viewBlog;
 	}
 
-	@Column(name = "Title_blog", nullable = false, length = 45)
+	
 	public String getTitleBlog() {
 		return this.titleBlog;
 	}
@@ -94,7 +102,7 @@ public class Blog implements java.io.Serializable {
 		this.titleBlog = titleBlog;
 	}
 
-	@Column(name = "Content_blog", length = 65535)
+	
 	public String getContentBlog() {
 		return this.contentBlog;
 	}
@@ -103,8 +111,7 @@ public class Blog implements java.io.Serializable {
 		this.contentBlog = contentBlog;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_blog", length = 10)
+	
 	public Date getDateBlog() {
 		return this.dateBlog;
 	}
@@ -113,7 +120,7 @@ public class Blog implements java.io.Serializable {
 		this.dateBlog = dateBlog;
 	}
 
-	@Column(name = "Image_blog", nullable = false, length = 45)
+	
 	public String getImageBlog() {
 		return this.imageBlog;
 	}
@@ -122,13 +129,13 @@ public class Blog implements java.io.Serializable {
 		this.imageBlog = imageBlog;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "blog")
-//	public Set<CommentBlog> getCommentBlogs() {
-//		return this.commentBlogs;
-//	}
-//
-//	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
-//		this.commentBlogs = commentBlogs;
-//	}
+
+	public Set<CommentBlog> getCommentBlogs() {
+		return this.commentBlogs;
+	}
+
+	public void setCommentBlogs(Set<CommentBlog> commentBlogs) {
+		this.commentBlogs = commentBlogs;
+	}
 
 }

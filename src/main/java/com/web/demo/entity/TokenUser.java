@@ -22,10 +22,18 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "token_user", catalog = "megalodondb")
 public class TokenUser implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_token_users", unique = true, nullable = false)
 	private Integer idTokenUsers;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_users", nullable = false)
 	private Users users;
+	@Column(name = "value_token_users", length = 45)
 	private String valueTokenUsers;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Date", length = 19)
 	private Date date;
 
 	public TokenUser() {
@@ -36,10 +44,7 @@ public class TokenUser implements java.io.Serializable {
 		date = new Date();
 	     valueTokenUsers = UUID.randomUUID().toString();
 	}
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "Id_token_users", unique = true, nullable = false)
+	
 	public Integer getIdTokenUsers() {
 		return this.idTokenUsers;
 	}
@@ -48,8 +53,7 @@ public class TokenUser implements java.io.Serializable {
 		this.idTokenUsers = idTokenUsers;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_users", nullable = false)
+
 	public Users getUsers() {
 		return this.users;
 	}
@@ -58,7 +62,7 @@ public class TokenUser implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "value_token_users", length = 45)
+
 	public String getValueTokenUsers() {
 		return this.valueTokenUsers;
 	}
@@ -67,8 +71,7 @@ public class TokenUser implements java.io.Serializable {
 		this.valueTokenUsers = valueTokenUsers;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Date", length = 19)
+	
 	public Date getDate() {
 		return this.date;
 	}
