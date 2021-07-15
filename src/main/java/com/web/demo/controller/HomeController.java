@@ -1,4 +1,5 @@
 package com.web.demo.controller;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,10 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.demo.entity.Category;
 import com.web.demo.entity.Games;
+import com.web.demo.entity.SlideShow;
+import com.web.demo.entity.Systems;
 import com.web.demo.service.CategoryService;
 import com.web.demo.service.DiscountServicePD;
 import com.web.demo.service.GamesServicePD;
 import com.web.demo.service.ImageDataServicePD;
+import com.web.demo.service.SlideShowService;
+import com.web.demo.service.SystemsService;
 
 /**
  * @author PhatDat
@@ -35,6 +40,12 @@ public class HomeController {
 	
 	@Autowired
 	CategoryService cateService;
+	
+	@Autowired
+	SystemsService systemservice;
+	
+	@Autowired
+	SlideShowService slideshowService;
 	
 	/*
 	 * get list of all games and list of games by filters with Pagination
@@ -84,6 +95,25 @@ public class HomeController {
 	@GetMapping(value = "/")
     public String hometest2(Model model) {
 		List<Category> listcate= cateService.findAll();
+		List<SlideShow> sliders = slideshowService.findAll();
+		
+		model.addAttribute("slider", sliders);
+		Systems sys = systemservice.findByDateLike("2021-07-15");
+		if(sys!=null) {
+			sys.setViewsSystem(sys.getViewsSystem()+1);
+			systemservice.save(sys);
+			
+		}else {
+			Systems system = new Systems();
+			system.setDate(new Date());
+			system.setDowloadSystem(0);
+			system.setViewsSystem(1);
+			systemservice.save(system);
+			
+			//System.out.println(sys.getDate());
+		}
+		
+		
 		model.addAttribute("listcate",listcate);
 		//model.addAttribute("img", imageGameService.getImageGame(1));
 		//model.addAttribute("game", gameService.getGame(1));
