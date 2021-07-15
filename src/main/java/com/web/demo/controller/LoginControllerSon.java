@@ -4,6 +4,10 @@ package com.web.demo.controller;
  * @author NguyenHuuSon
  */
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -32,9 +36,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.web.demo.config.WebUtils;
 import com.web.demo.entity.Category;
 import com.web.demo.entity.Role;
+import com.web.demo.entity.Systems;
 import com.web.demo.entity.TokenUser;
 import com.web.demo.entity.Users;
 import com.web.demo.service.CategoryService;
+import com.web.demo.service.SystemsService;
 import com.web.demo.service.TokenServiceSon;
 import com.web.demo.service.UserServiceSon;
 
@@ -46,41 +52,69 @@ public class LoginControllerSon {
 	TokenServiceSon tokenservice;
 	@Autowired
 	CategoryService cateservice;
+	@Autowired
+	SystemsService systemservice;
 @GetMapping("/403")
 public String error() {
 	return "403";
 }
 	
 	// Login
-	/*
-	 * @GetMapping("/shop") public String game(Model model, Principal
-	 * principal, @RequestParam(required = false) String message, Users
-	 * user,HttpSession session) { // Regis model.addAttribute("user", user);
-	 * List<Category> listcate= cateservice.findAll();
-	 * model.addAttribute("listcate",listcate); // if (message != null &&
-	 * !message.isEmpty()) { if (message.equals("logout")) {
-	 * model.addAttribute("message", "Logout!"); } if (message.equals("error")) {
-	 * model.addAttribute("message", "Login Failed!");
-	 * session.removeAttribute("userinfoname");
-	 * session.removeAttribute("userinfoemail");
-	 * session.removeAttribute("userinfoid");
-	 * session.removeAttribute("userinfophone");
-	 * 
-	 * }if(message.equals("loginreq")) { model.addAttribute("message",
-	 * "Please Login"); }
-	 * 
-	 * } System.out.println(message); if (principal != null) { User loginedUser =
-	 * (User) ((Authentication) principal).getPrincipal(); Users us=
-	 * userservice.findByusernameUsers(loginedUser.getUsername());
-	 * session.setAttribute("userinfoname", us.getNameUsers());
-	 * session.setAttribute("userinfoemail", us.getEmailUsers());
-	 * session.setAttribute("userinfoid", us.getIdUsers());
-	 * session.setAttribute("userinfophone", us.getPhoneUsers());
-	 * System.out.println(session.getAttribute("userinfoname")+"a"+session.
-	 * getAttribute("userinfoemail")); String userInfo =
-	 * WebUtils.toString(loginedUser); model.addAttribute("userInfo", userInfo); }
-	 * return "shop/shop-3"; }
-	 */
+
+	@GetMapping("/shop")
+	public String game(Model model, Principal principal, @RequestParam(required = false) String message, Users user,HttpSession session) {
+		// Regis
+		
+		 
+		Systems sys=systemservice.findByDateLike("2021-07-14");
+		if(sys!=null) {
+			sys.setViewsSystem(sys.getViewsSystem()+1);
+			systemservice.save(sys);
+			
+		}else {
+			Systems system=new Systems();
+			system.setDate(new Date());
+			system.setDowloadSystem(0);
+			system.setViewsSystem(1);
+			systemservice.save(system);
+			
+			System.out.println(sys.getDate());
+		}
+		model.addAttribute("user", user);
+		List<Category> listcate= cateservice.findAll();
+		model.addAttribute("listcate",listcate);
+		//
+		if (message != null && !message.isEmpty()) {
+			if (message.equals("logout")) {
+				model.addAttribute("message", "Logout!");
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");
+				session.removeAttribute("userinfoname");
+				session.removeAttribute("userinfoemail");
+				session.removeAttribute("userinfoid");
+				session.removeAttribute("userinfophone");
+				
+			}if(message.equals("loginreq")) {
+				model.addAttribute("message", "Please Login");
+			}
+
+		}
+		System.out.println(message);
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			Users us= userservice.findByusernameUsers(loginedUser.getUsername());
+			session.setAttribute("userinfoname", us.getNameUsers());
+			session.setAttribute("userinfoemail", us.getEmailUsers());
+			session.setAttribute("userinfoid", us.getIdUsers());
+			session.setAttribute("userinfophone", us.getPhoneUsers());
+			System.out.println(session.getAttribute("userinfoname")+"a"+session.getAttribute("userinfoemail"));
+			String userInfo = WebUtils.toString(loginedUser);
+			model.addAttribute("userInfo", userInfo);
+		}
+		return "shop/shop-3";
+	}
+
 
 	@PostMapping("/regis")
 	public String savecustomer(@Validated @ModelAttribute("user") Users user, ModelMap model,

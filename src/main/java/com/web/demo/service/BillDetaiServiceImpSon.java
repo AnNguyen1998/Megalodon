@@ -1,4 +1,6 @@
 package com.web.demo.service;
+import java.util.List;
+
 /**
  * @author NguyenHuuSon
  */
@@ -12,6 +14,12 @@ import com.web.demo.repository.BillDetailRepositorySon;
 
 @Service
 public class BillDetaiServiceImpSon implements BillDetailServiceSon{
+@Override
+public List<BillDetail> findByBill(Bill bill) {
+		return billdetail.findByBill(bill);
+	}
+
+
 @Override
 public <S extends BillDetail> S save(S entity) {
 		return billdetail.save(entity);
