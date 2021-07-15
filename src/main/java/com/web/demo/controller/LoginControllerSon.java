@@ -4,6 +4,11 @@ package com.web.demo.controller;
  * @author NguyenHuuSon
  */
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,9 +34,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.demo.config.WebUtils;
+import com.web.demo.entity.Category;
 import com.web.demo.entity.Role;
+import com.web.demo.entity.Systems;
 import com.web.demo.entity.TokenUser;
 import com.web.demo.entity.Users;
+import com.web.demo.service.CategoryService;
+import com.web.demo.service.SystemsService;
 import com.web.demo.service.TokenServiceSon;
 import com.web.demo.service.UserServiceSon;
 
@@ -41,7 +50,10 @@ public class LoginControllerSon {
 	UserServiceSon userservice;
 	@Autowired
 	TokenServiceSon tokenservice;
-
+	@Autowired
+	CategoryService cateservice;
+	@Autowired
+	SystemsService systemservice;
 @GetMapping("/403")
 public String error() {
 	return "403";
@@ -51,8 +63,25 @@ public String error() {
 	@GetMapping("/shop")
 	public String game(Model model, Principal principal, @RequestParam(required = false) String message, Users user,HttpSession session) {
 		// Regis
+		
+		 
+		Systems sys=systemservice.findByDateLike("2021-07-14");
+		if(sys!=null) {
+			sys.setViewsSystem(sys.getViewsSystem()+1);
+			systemservice.save(sys);
+			
+		}else {
+			Systems system=new Systems();
+			system.setDate(new Date());
+			system.setDowloadSystem(0);
+			system.setViewsSystem(1);
+			systemservice.save(system);
+			
+			System.out.println(sys.getDate());
+		}
 		model.addAttribute("user", user);
-
+		List<Category> listcate= cateservice.findAll();
+		model.addAttribute("listcate",listcate);
 		//
 		if (message != null && !message.isEmpty()) {
 			if (message.equals("logout")) {
