@@ -211,6 +211,7 @@ public class ShopControllerPhatDat {
 
 		// Regis
 		model.addAttribute("user", user);
+		model.addAttribute("user", new Users());
 
 		//
 //		if (message != null && !message.isEmpty()) {
