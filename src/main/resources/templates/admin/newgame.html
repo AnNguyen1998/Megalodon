@@ -164,7 +164,7 @@
                                                     <select class="selectpicker show-tick" th:field="*{discount}"
                                                         data-style="btn-default">
                                                         <option th:each="dc : ${discount}" th:value="${dc.idDiscount}"
-                                                            th:text="${dc.value}"></option>
+                                                            th:text="${dc.value}+'%'"></option>
                                                     </select>
                                                 </div>
                                                 <h4 class="header-title m-t-0">DESCRIPTION</h4>
