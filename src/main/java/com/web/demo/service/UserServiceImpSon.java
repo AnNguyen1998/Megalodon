@@ -24,6 +24,11 @@ import antlr.Token;
 @Service
 public class UserServiceImpSon implements UserServiceSon {
 
+	@Override
+	public Optional<Users> findById(Integer id) {
+		return usersRepository.findById(id);
+	}
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -56,7 +61,7 @@ public class UserServiceImpSon implements UserServiceSon {
 		// TODO Auto-generated method stub
 		return usersRepository.findByEmailUsers(emailUsers);
 	}
-
+	
 	
 	@Override
 	public Users addUser(Users user, int roles) {
