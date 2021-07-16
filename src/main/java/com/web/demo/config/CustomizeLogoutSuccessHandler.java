@@ -34,7 +34,7 @@ public class CustomizeLogoutSuccessHandler implements LogoutSuccessHandler{
 		if(!re.equals("http://localhost:8080/shops?message=error")) {
 		response.sendRedirect(re);
 		}else {
-			response.sendRedirect("/shops");
+			response.sendRedirect("/shop");
 		}
 	}
 
