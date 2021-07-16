@@ -4,6 +4,7 @@
 <div class="navigation flex-align">
 			<a href="home_1.html" class="logo"><img th:src="@{~/img/logo.png}"
 				alt="delice"><img th:src="@{~/img/logo2.png}" alt="delice"
+
 				class="logo-type-2"></a>
 			<div class="burger-menu">
 				<i></i>
@@ -188,26 +189,26 @@
 					</div>
 					<nav>
 						<ul class="header-menu">
-                <li><a href="http://localhost:8080/">Home<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                <li><a th:href="@{/}">Home<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
                        
                     </li>
                     <li>
 						<a href="#">Category</a>
-                            <ul>
-								<li class="cate" th:each="category : ${listcate}">
+                            <ul style="height: 400px; overflow: auto;">
+								<li class="cate" th:each="category : ${listcate}" >
 									<a th:href="@{'/shop/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
 								</li>
                             </ul>
 					</li>
-                    <li class="active"><a href="http://localhost:8080/shop">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                    <li class="active"><a th:href="@{/shop}">Shop<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
                        
                     </li>
                    
-                    <li><a href="blog-1.html">Blog<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                    <li><a href="#">Blog<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
                     </li>
-                     <li><a href="contact-1.html">Contact<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
+                   
                     </li>
-					<li><a href="about.html">About</a></li>
+					<li><a href="#">About</a></li>
                 </ul>
 					</nav>
 				</div>
@@ -415,7 +416,7 @@
 		<div class="copyright text-center">
 			<div class="empty-sm-20 empty-xs-20"></div>
 			<div class="container">
-				<span>© 2017 All Rights Reserved. Development by <a href="#">UnionAgency</a></span>
+				<span>ï¿½ 2017 All Rights Reserved. Development by <a href="#">UnionAgency</a></span>
 			</div>
 			<div class="empty-sm-20 empty-xs-20"></div>
 		</div>

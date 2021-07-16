@@ -139,6 +139,7 @@ public class HomeController {
 		model.addAttribute("images4", imageGameService.getImageDetailGame(gameService.getGamesByFilter("ReleaseYear_game", 1).get(0).getIdGame()).get(0));
 		
         return "index";
+ 
     }
 	
 	/*

@@ -170,11 +170,16 @@ public class CartControllerSon {
 					Optional<Games> game=gameservice.findById(entry.getValue().getGames().getIdGame());
 					billdetailservice.addbilldetail(addbill, game.get());
 				}
+
 				cartitems=new HashMap<>();
 				session.setAttribute("mycartitem", cartitems);
 				session.setAttribute("mycarttotal",0);
 				session.setAttribute("mycartnum", 0);
 				return "redirect:/shops";
+
+				
+				
+
 			}
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());
