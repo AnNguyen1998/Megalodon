@@ -66,6 +66,8 @@ public class ShopControllerPhatDat {
 
 	@Autowired
 	UserServiceSon userService;
+	
+	private String addPath = "";
 
 	/*
 	 * @GetMapping(value = "/shoptest/{pageNo}") public String
@@ -116,6 +118,7 @@ public class ShopControllerPhatDat {
 			@ModelAttribute("comment") CommentGame comment, HttpServletRequest request) {
 		// String username = comment.getUsers().getUsernameUsers();
 		// Integer idGame = Integer.parseInt(params.get("id"));
+		
 		String url = request.getRequestURL().toString() + "?id=" + idGame.toString();
 		model.addAttribute("URL", url);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -193,8 +196,10 @@ public class ShopControllerPhatDat {
 
 	@GetMapping(value = { "/shop/{pageNo}", "/shops" })
 	public String shop1(Model model, @PathVariable(value = "pageNo", required = false) Integer pageNo,
-			@Param("keyword") String keyword, Principal principal, @RequestParam(required = false) String message,
-			Users user, HttpSession session) {
+			@Param("keyword") String keyword, Principal principal, 
+			@RequestParam(required = false) String message,
+			@RequestParam(value = "size", defaultValue = "4") int pageSize,
+			Users user, HttpSession session, HttpServletRequest request) {
 
 		// Regis
 		model.addAttribute("user", user);
@@ -229,26 +234,48 @@ public class ShopControllerPhatDat {
 			String userInfo = WebUtils.toString(loginedUser);
 			model.addAttribute("userInfo", userInfo);
 		}
-
-		int pageSize = 4;
+		
+		
+		addPath = "..";
+		model.addAttribute("addPath", addPath);
+		//int pageSize = 4;
 		if (pageNo == null) {
 			pageNo = 1;
-		} else if (pageNo.intValue() == 0) {
+		} 
+		else if (pageNo.intValue() == 0) {
 			pageNo = 1;
 		}
+		
+		String url = request.getRequestURL().toString();
+		String urlPage = url.substring(url.lastIndexOf('/'));
+		if(urlPage.matches(".*\\d.*")) {
+			int i = url.lastIndexOf('/');
+			urlPage = url.substring(0, i);
+		}
+		model.addAttribute("URLPage", urlPage);
+		
+		
 
 		Page<Games> page = null;
+		int count = 0;
 		if (keyword != null && !keyword.isEmpty()) {
 			page = gameService.listAllGamesPaginated(keyword, pageNo, pageSize);
+			count = gameService.countSearchGames(keyword);
+			//url=request.getHeader("REFERER");
+			
 		} else {
 			page = gameService.findAllPaginated(pageNo, pageSize);
 		}
 
 		List<Games> listAllGames = page.getContent();
+		
 
+		model.addAttribute("URL", url);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("size", pageSize);
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("listAllGames", listAllGames);
-		model.addAttribute("countSearch", listAllGames.size());
+		model.addAttribute("countSearch", count);
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
@@ -265,7 +292,9 @@ public class ShopControllerPhatDat {
 
 	@GetMapping(value = { "/shop/games/{term}/{pageNo}" })
 	public String shop2(Model model, @PathVariable(value = "pageNo") int pageNo,
-			@PathVariable(value = "term", required = false) String term, @RequestParam(value = "size", defaultValue = "4") int pageSize) {
+			@PathVariable(value = "term", required = false) String term, 
+			@RequestParam(value = "size", defaultValue = "4") int pageSize,
+			HttpServletRequest request) {
 		// pageSize = 5;
 
 		Page<Games> page = gameService.findAllPaginated(pageNo, pageSize);
@@ -277,6 +306,15 @@ public class ShopControllerPhatDat {
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("user", new Users());
 		// model.addAttribute("listGames", listEmployees);
+		String url = request.getRequestURL().toString();
+		String urlPage = url.substring(url.lastIndexOf('/'));
+		if(urlPage.matches(".*\\d.*")) {
+			int i = url.lastIndexOf('/');
+			urlPage = url.substring(0, i);
+		}
+		model.addAttribute("URL", url);
+		model.addAttribute("URLPage", urlPage);
+		model.addAttribute("size", pageSize);
 
 		model.addAttribute("images1", imageGameService.getImageList());
 		if (term == null || term.isEmpty()) {
@@ -297,6 +335,13 @@ public class ShopControllerPhatDat {
 			// model.addAttribute("games1", gameService.getGamesByFilter("ReleaseYear_game",
 			// Integer.MAX_VALUE));
 		}
+		else if (term.equalsIgnoreCase("offers")) {
+			page = gameService.findGamesByFilterPaginated(pageNo, pageSize, "discount");
+			model.addAttribute("listAllGames", page.getContent());
+			// model.addAttribute("games1", gameService.getGamesByFilter("ReleaseYear_game",
+			// Integer.MAX_VALUE));
+		}
+		
 
 		/**
 		 * @author Dat Ha
@@ -309,17 +354,19 @@ public class ShopControllerPhatDat {
 
 	@GetMapping(value = "/shop/categories/{cate}/{pageNo}")
 	public String shopCategory(Model model, @PathVariable(value = "pageNo") Integer pageNo,
-			@PathVariable(value = "cate") int idCate) {
+			@PathVariable(value = "cate") int idCate,
+			@RequestParam(value = "size", defaultValue = "12", required = false) int pageSize,
+			HttpServletRequest request) {
 		// model.addAttribute("img", imageGameService.getImageGame(1));
 		// model.addAttribute("game", gameService.getGame(1));
 		// model.addAttribute("discount", discountService.getDiscount(1));
 		// System.out.println(imageGameService.getImageGame(1));
-		int pageSize = 12;
 
 		Page<Games> page = gameService.findGamesByCategoryPaginated(pageNo, pageSize, idCate);
 
 		List<Games> listAllGames = page.getContent();
-
+		
+		model.addAttribute("size", pageSize);
 		model.addAttribute("cate", idCate);
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("listAllGames", listAllGames);
@@ -328,6 +375,14 @@ public class ShopControllerPhatDat {
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
 		model.addAttribute("user", new Users());
+		String url = request.getRequestURL().toString();
+		String urlPage = url.substring(url.lastIndexOf('/'));
+		if(urlPage.matches(".*\\d.*")) {
+			int i = url.lastIndexOf('/');
+			urlPage = url.substring(0, i);
+		}
+		model.addAttribute("URL", url);
+		model.addAttribute("URLPage", urlPage);
 
 		/**
 		 * @author Dat Ha

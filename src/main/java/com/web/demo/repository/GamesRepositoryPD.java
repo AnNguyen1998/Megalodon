@@ -31,6 +31,17 @@ public interface GamesRepositoryPD extends JpaRepository<Games, Integer>, Paging
 			nativeQuery = true)
 	Page<Games> findGamesByFilterPaginated(Pageable pageable);
 	
+	
+	/*
+	 * @author PhatDat
+	 * method get games by high discount filter with Pagination
+	 */
+	@Query(value = "SELECT * FROM games INNER JOIN discount "
+			+ "ON games.Id_discount = discount.Id_discount "
+			+ "ORDER BY discount.Value DESC",
+			nativeQuery = true)
+	Page<Games> findGamesByDiscountPaginated(Pageable pageable);
+	
 	/*
 	 * @author PhatDat
 	 * method get games by term because user searched with Pagination
@@ -39,6 +50,15 @@ public interface GamesRepositoryPD extends JpaRepository<Games, Integer>, Paging
 			countQuery = "SELECT count(*) FROM games",
 			nativeQuery = true)
 	public Page<Games> search(String keyword, Pageable pageable);
+	
+	
+	/*
+	 * @author PhatDat
+	 * method count number of games by term because user searched
+	 */
+	@Query(value = "SELECT Count(*) FROM games WHERE Name_game LIKE %?1%",
+			nativeQuery = true)
+	public int countSearch(String keyword);
 	
 	
 	/*

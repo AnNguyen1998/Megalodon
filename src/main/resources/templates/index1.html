@@ -240,7 +240,7 @@
 
                             </li>
                             <li><a href="#">Category<img src="img/down-arrow.png" alt="" class="menu-arr"></a>
-                            <ul style="width: 190px; height: 400px; overflow: auto" class="header-menu">
+                            <ul style="width: 190px; height: 400px; overflow: auto;" class="header-menu">
                             <li th:each="category : ${listcate}" style="background-color: #000000;width: 180px;">
 							<a th:href="@{'/shop/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
 							</li>

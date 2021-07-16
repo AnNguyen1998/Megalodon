@@ -2,7 +2,7 @@
 <!-- HEADER -->
 <header class="header header-style-5 type-2 card-include" xmlns:th="http://www.thymeleaf.org" th:fragment="headershop">
 <div class="navigation flex-align">
-			<a href="home_1.html" class="logo"><img src="img/logo.png"
+			<a href="http://localhost:8080/" class="logo"><img src="img/logo.png"
 				alt="delice"><img src="img/logo2.png" alt="delice"
 				class="logo-type-2"></a>
 			<div class="burger-menu">
@@ -193,8 +193,8 @@
                     </li>
                     <li>
 						<a href="#">Category</a>
-                            <ul>
-								<li class="cate" th:each="category : ${listcate}">
+                            <ul style="height: 400px; overflow: auto;">
+								<li class="cate" th:each="category : ${listcate}" >
 									<a th:href="@{'/shop/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
 								</li>
                             </ul>
