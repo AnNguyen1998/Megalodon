@@ -1,5 +1,7 @@
 package com.web.demo.controller;
-
+/**
+ * @author Phat Dat
+ */
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
@@ -112,9 +114,20 @@ public class ShopControllerPhatDat {
 	 */
 
 	@RequestMapping(value = "/shop/detailgame")
-	public String gameDetail1(Model model, @RequestParam("id") Integer idGame,
-			@ModelAttribute("comment") CommentGame comment, HttpServletRequest request) {
+	public String gameDetail1(Model model, @RequestParam("id") Integer idGame,Principal principal,
+			@ModelAttribute("comment") CommentGame comment, HttpServletRequest request,HttpSession session) {
 		// String username = comment.getUsers().getUsernameUsers();
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			Users us = userService.findByusernameUsers(loginedUser.getUsername());
+			session.setAttribute("userinfoname", us.getNameUsers());
+			session.setAttribute("userinfoemail", us.getEmailUsers());
+			session.setAttribute("userinfoid", us.getIdUsers());
+			session.setAttribute("userinfophone", us.getPhoneUsers());
+			System.out.println(session.getAttribute("userinfoname") + "a" + session.getAttribute("userinfoemail"));
+			String userInfo = WebUtils.toString(loginedUser);
+			model.addAttribute("userInfo", userInfo);
+		}
 		// Integer idGame = Integer.parseInt(params.get("id"));
 		String url = request.getRequestURL().toString() + "?id=" + idGame.toString();
 		model.addAttribute("URL", url);
@@ -122,7 +135,7 @@ public class ShopControllerPhatDat {
 		Users user = userService.findByusernameUsers(username);
 		String cmt = comment.getContentCommentGame();
 		// String cmt = params.get("cmt");
-
+		
 		if (user != null) {
 			Integer idUser = user.getIdUsers();
 			model.addAttribute("avatar", user.getImageUsers());
@@ -143,6 +156,8 @@ public class ShopControllerPhatDat {
 		model.addAttribute("game", gameService.getGame(idGame));
 		model.addAttribute("images", imageGameService.getImageDetailGame(idGame));
 		model.addAttribute("id", idGame);
+		
+		model.addAttribute("user", new Users());
 
 		// add comment game
 		model.addAttribute("cmts", commentService.getCommentGame(idGame));
@@ -199,24 +214,24 @@ public class ShopControllerPhatDat {
 		model.addAttribute("user", new Users());
 
 		//
-		if (message != null && !message.isEmpty()) {
-			if (message.equals("logout")) {
-				model.addAttribute("message", "Logout!");
-			}
-			if (message.equals("error")) {
-				model.addAttribute("message", "Login Failed!");
-				session.removeAttribute("userinfoname");
-				session.removeAttribute("userinfoemail");
-				session.removeAttribute("userinfoid");
-				session.removeAttribute("userinfophone");
-
-			}
-			if (message.equals("loginreq")) {
-				model.addAttribute("message", "Please Login");
-			}
-
-		}
-		System.out.println(message);
+//		if (message != null && !message.isEmpty()) {
+//			if (message.equals("logout")) {
+//				model.addAttribute("message", "Logout!");
+//			}
+//			if (message.equals("error")) {
+//				model.addAttribute("message", "Login Failed!");
+//				session.removeAttribute("userinfoname");
+//				session.removeAttribute("userinfoemail");
+//				session.removeAttribute("userinfoid");
+//				session.removeAttribute("userinfophone");
+//
+//			}
+//			if (message.equals("loginreq")) {
+//				model.addAttribute("message", "Please Login");
+//			}
+//
+//		}
+//		System.out.println(message);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			Users us = userService.findByusernameUsers(loginedUser.getUsername());
@@ -229,7 +244,7 @@ public class ShopControllerPhatDat {
 			model.addAttribute("userInfo", userInfo);
 		}
 
-		int pageSize = 12;
+		int pageSize = 4;
 		if (pageNo == null) {
 			pageNo = 1;
 		} else if (pageNo.intValue() == 0) {
@@ -264,7 +279,7 @@ public class ShopControllerPhatDat {
 
 	@GetMapping(value = { "/shop/games/{term}/{pageNo}" })
 	public String shop2(Model model, @PathVariable(value = "pageNo") int pageNo,
-			@PathVariable(value = "term") String term, @RequestParam(value = "size", defaultValue = "4") int pageSize) {
+			@PathVariable(value = "term", required = false) String term, @RequestParam(value = "size", defaultValue = "4") int pageSize) {
 		// pageSize = 5;
 
 		Page<Games> page = gameService.findAllPaginated(pageNo, pageSize);
@@ -274,6 +289,7 @@ public class ShopControllerPhatDat {
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
 		model.addAttribute("images1", imageGameService.getImageList());
+		model.addAttribute("user", new Users());
 		// model.addAttribute("listGames", listEmployees);
 
 		model.addAttribute("images1", imageGameService.getImageList());
@@ -307,23 +323,35 @@ public class ShopControllerPhatDat {
 
 	@GetMapping(value = "/shop/categories/{cate}/{pageNo}")
 	public String shopCategory(Model model, @PathVariable(value = "pageNo") Integer pageNo,
-			@PathVariable(value = "cate") int idCate) {
+			@PathVariable(value = "cate") int idCate,Principal principal,HttpSession session) {
 		// model.addAttribute("img", imageGameService.getImageGame(1));
 		// model.addAttribute("game", gameService.getGame(1));
 		// model.addAttribute("discount", discountService.getDiscount(1));
 		// System.out.println(imageGameService.getImageGame(1));
 		int pageSize = 12;
-
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			Users us = userService.findByusernameUsers(loginedUser.getUsername());
+			session.setAttribute("userinfoname", us.getNameUsers());
+			session.setAttribute("userinfoemail", us.getEmailUsers());
+			session.setAttribute("userinfoid", us.getIdUsers());
+			session.setAttribute("userinfophone", us.getPhoneUsers());
+			System.out.println(session.getAttribute("userinfoname") + "a" + session.getAttribute("userinfoemail"));
+			String userInfo = WebUtils.toString(loginedUser);
+			model.addAttribute("userInfo", userInfo);
+		}
 		Page<Games> page = gameService.findGamesByCategoryPaginated(pageNo, pageSize, idCate);
 
 		List<Games> listAllGames = page.getContent();
 
+		model.addAttribute("cate", idCate);
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("listAllGames", listAllGames);
 		model.addAttribute("countSearch", listAllGames.size());
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("user", new Users());
 
 		/**
 		 * @author Dat Ha

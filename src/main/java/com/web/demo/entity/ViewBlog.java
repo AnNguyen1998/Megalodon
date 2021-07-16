@@ -21,11 +21,18 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "view_blog", catalog = "megalodondb")
 public class ViewBlog implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_view_blog", unique = true, nullable = false)
 	private Integer idViewBlog;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Date", length = 10)
 	private Date date;
+	@Column(name = "count_view")
 	private Integer countView;
-//	private Set<Blog> blogs = new HashSet<Blog>(0);
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "viewBlog")
+	private Set<Blog> blogs = new HashSet<Blog>(0);
 
 	public ViewBlog() {
 	}
@@ -36,10 +43,7 @@ public class ViewBlog implements java.io.Serializable {
 //		this.blogs = blogs;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "Id_view_blog", unique = true, nullable = false)
+	
 	public Integer getIdViewBlog() {
 		return this.idViewBlog;
 	}
@@ -48,8 +52,7 @@ public class ViewBlog implements java.io.Serializable {
 		this.idViewBlog = idViewBlog;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Date", length = 10)
+
 	public Date getDate() {
 		return this.date;
 	}
@@ -58,7 +61,7 @@ public class ViewBlog implements java.io.Serializable {
 		this.date = date;
 	}
 
-	@Column(name = "count_view")
+
 	public Integer getCountView() {
 		return this.countView;
 	}
@@ -67,13 +70,13 @@ public class ViewBlog implements java.io.Serializable {
 		this.countView = countView;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "viewBlog")
-//	public Set<Blog> getBlogs() {
-//		return this.blogs;
-//	}
-//
-//	public void setBlogs(Set<Blog> blogs) {
-//		this.blogs = blogs;
-//	}
+	
+	public Set<Blog> getBlogs() {
+		return this.blogs;
+	}
+
+	public void setBlogs(Set<Blog> blogs) {
+		this.blogs = blogs;
+	}
 
 }

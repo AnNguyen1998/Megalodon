@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,25 +24,53 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "users", catalog = "megalodondb")
 public class Users implements java.io.Serializable {
+	
 
+	public Set<Games> getGamesActive() {
+		return GamesActive;
+	}
+
+	public void setGamesActive(Set<Games> gamesActive) {
+		GamesActive = gamesActive;
+	}
+
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+
+	@Column(name = "Id_users", unique = true, nullable = false)
 	private Integer idUsers;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_role", nullable = false)
 	private Role role;
+	@Column(name = "Name_users", length = 45)
 	private String nameUsers;
+	@Column(name = "Username_users", nullable = false, length = 45)
 	private String usernameUsers;
+	@Column(name = "Password_users", nullable = false, length = 100)
 	private String passwordUsers;
+	@Column(name = "Email_users", nullable = false, length = 45)
 	private String emailUsers;
+	@Column(name = "Phone_users", length = 45)
 	private String phoneUsers;
+	@Column(name = "Image_users", length = 45)
 	private String imageUsers;
+	@Column(name = "Address_users", length = 45)
 	private String addressUsers;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Date_of_birthday", length = 10)
 	private Date dateOfBirthday;
+	@Column(name = "Gender")
 	private Integer gender;
+	@Column(name = "Status")
 	private Integer status;
+	@ManyToMany(mappedBy = "UsersActive")
+	private Set<Games> GamesActive = new HashSet<Games>(0);
 //	private Set<TokenUser> tokenUsers = new HashSet<TokenUser>(0);
 //	private Set<Bill> bills = new HashSet<Bill>(0);
 //	private Set<Blog> blogs = new HashSet<Blog>(0);
 //	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
 //	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
-//	private Set<ActiveGame> activeGames = new HashSet<ActiveGame>(0);
+
 
 	public Users() {
 	}
@@ -75,10 +104,7 @@ public class Users implements java.io.Serializable {
 //		this.activeGames = activeGames;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "Id_users", unique = true, nullable = false)
+	
 	public Integer getIdUsers() {
 		return this.idUsers;
 	}
@@ -87,8 +113,7 @@ public class Users implements java.io.Serializable {
 		this.idUsers = idUsers;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_role", nullable = false)
+	
 	public Role getRole() {
 		return this.role;
 	}
@@ -97,7 +122,7 @@ public class Users implements java.io.Serializable {
 		this.role = role;
 	}
 
-	@Column(name = "Name_users", length = 45)
+	
 	public String getNameUsers() {
 		return this.nameUsers;
 	}
@@ -106,7 +131,7 @@ public class Users implements java.io.Serializable {
 		this.nameUsers = nameUsers;
 	}
 
-	@Column(name = "Username_users", nullable = false, length = 45)
+	
 	public String getUsernameUsers() {
 		return this.usernameUsers;
 	}
@@ -115,7 +140,7 @@ public class Users implements java.io.Serializable {
 		this.usernameUsers = usernameUsers;
 	}
 
-	@Column(name = "Password_users", nullable = false, length = 100)
+	
 	public String getPasswordUsers() {
 		return this.passwordUsers;
 	}
@@ -124,7 +149,7 @@ public class Users implements java.io.Serializable {
 		this.passwordUsers = passwordUsers;
 	}
 
-	@Column(name = "Email_users", nullable = false, length = 45)
+
 	public String getEmailUsers() {
 		return this.emailUsers;
 	}
@@ -133,7 +158,7 @@ public class Users implements java.io.Serializable {
 		this.emailUsers = emailUsers;
 	}
 
-	@Column(name = "Phone_users", length = 45)
+	
 	public String getPhoneUsers() {
 		return this.phoneUsers;
 	}
@@ -142,7 +167,7 @@ public class Users implements java.io.Serializable {
 		this.phoneUsers = phoneUsers;
 	}
 
-	@Column(name = "Image_users", length = 45)
+	
 	public String getImageUsers() {
 		return this.imageUsers;
 	}
@@ -151,7 +176,7 @@ public class Users implements java.io.Serializable {
 		this.imageUsers = imageUsers;
 	}
 
-	@Column(name = "Address_users", length = 45)
+	
 	public String getAddressUsers() {
 		return this.addressUsers;
 	}
@@ -160,8 +185,7 @@ public class Users implements java.io.Serializable {
 		this.addressUsers = addressUsers;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Date_of_birthday", length = 10)
+	
 	public Date getDateOfBirthday() {
 		return this.dateOfBirthday;
 	}
@@ -170,7 +194,7 @@ public class Users implements java.io.Serializable {
 		this.dateOfBirthday = dateOfBirthday;
 	}
 
-	@Column(name = "Gender")
+	
 	public Integer getGender() {
 		return this.gender;
 	}
@@ -179,7 +203,7 @@ public class Users implements java.io.Serializable {
 		this.gender = gender;
 	}
 
-	@Column(name = "Status")
+	
 	public Integer getStatus() {
 		return this.status;
 	}

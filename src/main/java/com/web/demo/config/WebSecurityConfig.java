@@ -1,5 +1,9 @@
 package com.web.demo.config;
 
+import java.net.http.HttpRequest;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	CustomizeAuthenticationSuccessHandler customizeAuthenticationSuccessHandler;
 	@Autowired
+	CustomizeLogoutSuccessHandler customizeLogout;
+	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 		
@@ -51,10 +57,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().successHandler(customizeAuthenticationSuccessHandler)
 				.loginProcessingUrl("/login")
 				
-				.loginPage("/shop").usernameParameter("usernameUsers").passwordParameter("passwordUsers")
-				.failureUrl("/shop?message=error")
+				.loginPage("/shops").usernameParameter("usernameUsers").passwordParameter("passwordUsers")
+				.failureUrl("/shops")
 				.and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/shop?message=logout");
+				.logout().logoutUrl("/logout").logoutSuccessHandler(customizeLogout);
 		http.sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 	}

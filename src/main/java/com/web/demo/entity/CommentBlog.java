@@ -20,13 +20,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "comment_blog", catalog = "megalodondb")
 public class CommentBlog implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_commnet_blog", unique = true, nullable = false)
 	private Integer idCommnetBlog;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_blog", nullable = false)
 	private Blog blog;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_users")
 	private Users users;
+	@Column(name = "Content_comment_blog", length = 65535)
 	private String contentCommentBlog;
+	@Column(name = "Name_user", nullable = false, length = 45)
 	private String nameUser;
-//	private Set<ReplyCommentBlog> replyCommentBlogs = new HashSet<ReplyCommentBlog>(0);
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commentBlog")
+	private Set<ReplyCommentBlog> replyCommentBlogs = new HashSet<ReplyCommentBlog>(0);
 
 	public CommentBlog() {
 	}
@@ -44,10 +54,7 @@ public class CommentBlog implements java.io.Serializable {
 //		this.replyCommentBlogs = replyCommentBlogs;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_commnet_blog", unique = true, nullable = false)
 	public Integer getIdCommnetBlog() {
 		return this.idCommnetBlog;
 	}
@@ -56,8 +63,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.idCommnetBlog = idCommnetBlog;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_blog", nullable = false)
+
 	public Blog getBlog() {
 		return this.blog;
 	}
@@ -66,8 +72,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.blog = blog;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_users")
+
 	public Users getUsers() {
 		return this.users;
 	}
@@ -76,7 +81,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.users = users;
 	}
 
-	@Column(name = "Content_comment_blog", length = 65535)
+
 	public String getContentCommentBlog() {
 		return this.contentCommentBlog;
 	}
@@ -85,7 +90,7 @@ public class CommentBlog implements java.io.Serializable {
 		this.contentCommentBlog = contentCommentBlog;
 	}
 
-	@Column(name = "Name_user", nullable = false, length = 45)
+
 	public String getNameUser() {
 		return this.nameUser;
 	}
@@ -94,13 +99,13 @@ public class CommentBlog implements java.io.Serializable {
 		this.nameUser = nameUser;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commentBlog")
-//	public Set<ReplyCommentBlog> getReplyCommentBlogs() {
-//		return this.replyCommentBlogs;
-//	}
-//
-//	public void setReplyCommentBlogs(Set<ReplyCommentBlog> replyCommentBlogs) {
-//		this.replyCommentBlogs = replyCommentBlogs;
-//	}
+	
+	public Set<ReplyCommentBlog> getReplyCommentBlogs() {
+		return this.replyCommentBlogs;
+	}
+
+	public void setReplyCommentBlogs(Set<ReplyCommentBlog> replyCommentBlogs) {
+		this.replyCommentBlogs = replyCommentBlogs;
+	}
 
 }
