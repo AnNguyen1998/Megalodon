@@ -126,7 +126,7 @@ public class CartControllerSon {
 		String successUrl = PaypalUtils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
 		double price=(double) session.getAttribute("mycarttotal");
 		if(session.getAttribute("userinfoname")==null) {
-			return "redirect:/shop?message=loginreq";
+			return "redirect:/shops";
 		}else {
 		try {
 			Payment payment = paypalService.createPayment(
@@ -171,7 +171,7 @@ public class CartControllerSon {
 					billdetailservice.addbilldetail(addbill, game.get());
 				}
 				
-				return "redirect:/shop";
+				return "redirect:/shops";
 			}
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());
