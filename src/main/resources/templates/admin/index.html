@@ -39,123 +39,7 @@
 
 
         <!-- Navigation Bar-->
-        <header id="topnav">
-            <div class="topbar-main">
-                <div class="container">
-
-                    <!-- Logo container-->
-                    <div class="logo">
-                        <!-- Text Logo -->
-                        <!--<a href="index.html" class="logo">-->
-                            <!--Zircos-->
-                        <!--</a>-->
-                        <!-- Image Logo -->
-                        <a href="/admin" class="logo">
-                            <img alt="Megalodon" height="50" width="70">
-                        </a>
-
-                    </div>
-                    <!-- End Logo container-->
-
-
-                    <div class="menu-extras">
-
-                        <ul class="nav navbar-nav navbar-right pull-right">
-                            <li class="dropdown navbar-c-items">
-                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="noavatar.png" alt="user-img" class="img-circle"> </a>
-                                <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
-                                    <li class="text-center">
-                                        <h5 th:text="'Hi, '+${userInfo}"></h5>
-                                    </li>
-                                    <li><a href="javascript:void(0)"><i class="ti-user m-r-5"></i> Profile</a></li>
-                                    <li><a th:href="@{/logout}" href="javascript:void(0)"><i class="ti-power-off m-r-5"></i> Logout</a></li>
-                                </ul>
-
-                            </li>
-                        </ul>
-                        <div class="menu-item">
-                            <!-- Mobile menu toggle-->
-                            <a class="navbar-toggle">
-                                <div class="lines">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <!-- End mobile menu toggle-->
-                        </div>
-                    </div>
-                    <!-- end menu-extras -->
-
-                </div> <!-- end container -->
-            </div>
-            <!-- end topbar-main -->
-
-            <div class="navbar-custom">
-                <div class="container">
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-
-                            <li class="has-submenu">
-                                <a href="/admin"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-layers"></i>Game Manager</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li>
-                                                <span>Game</span>
-                                            </li>
-                                            <li><a href="/admin/listgame">List Game</a></li>
-                                            <li><a href="/admin/addgame">Add Game</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-layers"></i>User Manager</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li>
-                                                <span>User</span>
-                                            </li>
-                                            <li><a href="/admin/listcustomers">List Customer</a></li>
-                                            <li><a href="/admin/listusers">Users</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-layers"></i>Blog Manager</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li>
-                                                <span>Blog</span>
-                                            </li>
-                                            <li><a href="#">Dashboard Blog</a></li>
-                                            <li><a href="#">Add Blog</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="/admin/slide"><i class="mdi mdi-layers"></i>SlideShow</a>
-                                </ul>
-                            </li>
-                        </ul>
-                        <!-- End navigation menu -->
-                    </div> <!-- end #navigation -->
-                </div> <!-- end container -->
-            </div> <!-- end navbar-custom -->
-        </header>
-        <!-- End Navigation Bar-->
+        <div th:insert="fragments/frAdmin :: header"></div>
 
 
         <div class="wrapper">
@@ -187,10 +71,10 @@
                     <div class="col-sm-12">
                         <div class="page-title-box">
                             <div class="btn-group pull-right">
-                                <form action="#" method="">
+                                <form action="admin" method="post">
                                     <div class="input-group">
-                                    <input type="date" class="form-control" id="" name="date" >
-                                   
+                                    <input type="date" class="form-control" name="datetoday" >
+                                   	<input type="submit" hidden>
                                 </div>
                                 </form>
                             </div>
@@ -199,13 +83,12 @@
                         </div></div>
 
                 <div class="row text-center">
-
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="card-box widget-box-one">
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Access Times</p>
-                                <h2 class="text-danger"><span data-plugin="counterup">1555</span></h2>
-                                <p class="text-muted m-0"><b>Last:</b> 30.4k</p>
+                                <h2 class="text-danger"><span data-plugin="counterup" th:text="${date.viewsSystem}"></span></h2>
+                                <p class="text-muted m-0"><b>Last: </b><b th:text="${yesterday.viewsSystem}"></b></p>
                             </div>
                         </div>
                     </div><!-- end col -->
@@ -214,8 +97,8 @@
                         <div class="card-box widget-box-one">
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Downloads</p>
-                                <h2 class="text-dark"><span data-plugin="counterup">895</span> </h2>
-                                <p class="text-muted m-0"><b>Last:</b> 1250</p>
+                                <h2 class="text-dark"><span data-plugin="counterup" th:text="${date.dowloadSystem}"></span> </h2>
+                                <p class="text-muted m-0" ><b>Last: </b><b th:text="${yesterday.viewsSystem}"></b></p>
                             </div>
                         </div>
                     </div><!-- end col -->

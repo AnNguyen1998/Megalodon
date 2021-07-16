@@ -8,10 +8,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.web.demo.config.WebUtilsAn;
 import com.web.demo.dto.SlideShowDTO;
 import com.web.demo.entity.Games;
 import com.web.demo.entity.SlideShow;
@@ -35,13 +39,18 @@ private SlideShowService slideshowservice;
 private GamesService gameservice;
 
 @GetMapping("admin/slide")
-public String index(Model model) {
+public String index(Model model,Principal principal) {
 	SlideShowDTO slide=new SlideShowDTO();
 	model.addAttribute("slidedto", slide);
 	List<SlideShow> listslide=slideshowservice.findAll();
 	model.addAttribute("listslide", listslide);
 	List<Games>  listgame= gameservice.findAll();
 	model.addAttribute("listgames", listgame);
+	if (principal != null) {
+		User loginedUser = (User) ((Authentication) principal).getPrincipal();
+		String userInfo = WebUtilsAn.toStringManager(loginedUser);
+		model.addAttribute("userInfo", userInfo);
+	}
 	return "admin/slideshow";
 	
 }
@@ -90,8 +99,13 @@ public String AddorUpdate(Model model,@ModelAttribute("slidedto")SlideShowDTO sl
 	
 }
 @GetMapping("slideEdit/{id}")
-public String editslide(@PathVariable(name = "id")Integer id,Model model) {
+public String editslide(@PathVariable(name = "id")Integer id,Model model, Principal principal) {
 	Optional<SlideShow> slide=slideshowservice.findById(id);
+	if (principal != null) {
+		User loginedUser = (User) ((Authentication) principal).getPrincipal();
+		String userInfo = WebUtilsAn.toStringManager(loginedUser);
+		model.addAttribute("userInfo", userInfo);
+	}
 	if (slide.isPresent()) {
 		List<Games>  listgame= gameservice.findAll();
 		model.addAttribute("listgames", listgame);
