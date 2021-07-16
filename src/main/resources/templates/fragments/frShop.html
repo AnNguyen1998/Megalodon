@@ -4,6 +4,7 @@
 <div class="navigation flex-align">
 			<a href="home_1.html" class="logo"><img th:src="@{~/img/logo.png}"
 				alt="delice"><img th:src="@{~/img/logo2.png}" alt="delice"
+
 				class="logo-type-2"></a>
 			<div class="burger-menu">
 				<i></i>
@@ -193,8 +194,8 @@
                     </li>
                     <li>
 						<a href="#">Category</a>
-                            <ul>
-								<li class="cate" th:each="category : ${listcate}">
+                            <ul style="height: 400px; overflow: auto;">
+								<li class="cate" th:each="category : ${listcate}" >
 									<a th:href="@{'/shop/categories/' + ${category.idCategory} + '/1'}" th:text="${category.nameCategory}"></a>
 								</li>
                             </ul>
@@ -415,7 +416,7 @@
 		<div class="copyright text-center">
 			<div class="empty-sm-20 empty-xs-20"></div>
 			<div class="container">
-				<span>© 2017 All Rights Reserved. Development by <a href="#">UnionAgency</a></span>
+				<span>ï¿½ 2017 All Rights Reserved. Development by <a href="#">UnionAgency</a></span>
 			</div>
 			<div class="empty-sm-20 empty-xs-20"></div>
 		</div>
