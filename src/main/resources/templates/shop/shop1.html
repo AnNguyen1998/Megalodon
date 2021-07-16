@@ -129,9 +129,13 @@
 	<div class="main-content">
     
     <section class="full-height-slider type-1">
+
        <div class="bg ready data-jarallax" data-jarallax="5"
 	   th:style="'background: url(' + @{ ${addPath} + '/img/shop/shopbanner.jpg'} + ');
 							background-repeat: no-repeat;background-size: cover;'" data-swiper-parallax="50%"></div>
+
+       <div class="bg ready data-jarallax" data-jarallax="5" th:style="'background-image: url('+@{~/img/shop/banner.jpg}+')'" data-swiper-parallax="50%"></div>
+
 		   <div class="table-view mobile-rel-block">
 			  <div class="table-cell">
 			   <div class="container no-padd"> 
@@ -544,7 +548,9 @@
                     <div class="empty-sm-20 empty-xs-20"></div>
                     <h1 class="h2 sm tt color-2" th:text="${game.nameGame}"></h1>
                     <div class="empty-sm-20 empty-xs-20"></div>
-                    <h5 class="h3 sm color-2">Price: <span class="h2 main-col" th:text="${game.price}"><b></b></span></h5>
+                    <h5 class="h4 sm color-2">Price: <span class="h2 main-col" th:text="${game.price}"><b></b></span></h5>
+                     <h5 class="h4 sm color-2">Discount: <span class="h2 main-col" th:text="${game.discount.value}"><b></b></span></h5>
+                      <h5 class="h3 sm color-2">Price Discount: <span class="h2 main-col" th:text="${game.priceFix}"><b></b></span></h5>
                   </aside>
                   
                   <div class="empty-sm-20 empty-xs-20"></div>
@@ -558,7 +564,7 @@
                   <div class="buy-bar type-2">
                      
                      <div class="fr">
-                         <a href="#" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
+                         <a th:href="@{'/cart/add/'+${game.idGame}}" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
                      </div>
                   </div>
                   </aside>

@@ -1,4 +1,5 @@
 package com.web.demo.controller;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +99,8 @@ public class HomeController {
 		List<SlideShow> sliders = slideshowService.findAll();
 		
 		model.addAttribute("slider", sliders);
-		Systems sys = systemservice.findByDateLike("2021-07-15");
+		LocalDate date=LocalDate.now();
+		Systems sys = systemservice.findByDateLike(date.toString());
 		if(sys!=null) {
 			sys.setViewsSystem(sys.getViewsSystem()+1);
 			systemservice.save(sys);
@@ -136,7 +138,7 @@ public class HomeController {
 		model.addAttribute("games_New", gameService.getGamesByFilter("ReleaseYear_game", 1).get(0));
 		model.addAttribute("images4", imageGameService.getImageDetailGame(gameService.getGamesByFilter("ReleaseYear_game", 1).get(0).getIdGame()).get(0));
 		
-        return "index1";
+        return "index";
     }
 	
 	/*

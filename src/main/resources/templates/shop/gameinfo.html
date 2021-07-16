@@ -124,7 +124,7 @@
 	<div class="main-content">
     
     <section class="full-height-slider type-1">
-       <div class="bg ready data-jarallax" data-jarallax="5" style="background-image: url(../img/product-detail/main-baner-bg.jpg)" data-swiper-parallax="50%"></div>
+       <div class="bg ready data-jarallax" data-jarallax="5" th:style="'background-image: url('+@{~/img/shop/banner.jpg}+')'" data-swiper-parallax="50%"></div>
 		   <div class="table-view mobile-rel-block">
 			  <div class="table-cell">
 			   <div class="container no-padd"> 
@@ -260,8 +260,18 @@
                 </div>
               </div>
             </aside>
-            <div class="empty-sm-40 empty-xs-25"></div>
             
+            <div class="empty-sm-40 empty-xs-25"></div>
+            <aside>
+            <div class="buy-bar type-2">
+               <div class="fl">
+                  <div class="empty-xs-15"></div>
+               </div>
+               <div class="fr">
+                   <a th:href="@{'/cart/add/'+${game.idGame}}" class="page-button button-style-1 type-2"><span class="txt">Add to cart</span></a>
+               </div>
+            </div>
+            </aside>
             <div class="empty-sm-40 empty-xs-25"></div>
             <aside>
               <div class="follow follow-style-1 sm mob-center">
@@ -303,15 +313,9 @@
               <div class="tab-container-item min-h-430">
                 <div class="empty-sm-60 empty-xs-30"></div>
                 <div class="simple-text">
-                  <p th:text="${game.descriptionGame}"></p>
+                  <p th:utext="${game.descriptionGame}"></p>
                 </div>
-                <div class="row" >
-                  <div class="col-sm-4 col-xs-12" th:each="im : ${images}">
-                    <div class="empty-sm-45 empty-xs-20"></div>
-                    <img th:src="@{'/getgameimage/'+${im.idImage}}" alt="" class="full-img">
-                  </div>
-         
-                </div>
+                
               </div>
               <div class="tab-container-item min-h-430">
                 <div class="empty-sm-60 empty-xs-30"></div>

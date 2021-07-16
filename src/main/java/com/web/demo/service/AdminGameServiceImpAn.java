@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.Category;
+import com.web.demo.entity.Discount;
 import com.web.demo.entity.Games;
 import com.web.demo.repository.AdminGameRepoAn;
 
@@ -38,9 +39,11 @@ public class AdminGameServiceImpAn implements AdminGameServiceAn {
 
 	@Override
 	public <S extends Games> Games save(S entity) {
-		if(entity.getPriceFix() == null) {
-			entity.setPriceFix((long)0);
-		}
+		Discount d = entity.getDiscount();
+		int value = d.getValue();
+		long price =  entity.getPrice();
+		long price_fix = price - price*value/100;
+		entity.setPriceFix(price_fix);
 		if(entity.getRateGame() == null) {
 			entity.setRateGame((float) 0);
 		}
