@@ -171,7 +171,7 @@ public class CartControllerSon {
 					billdetailservice.addbilldetail(addbill, game.get());
 				}
 				
-				return "redirect:/shops";
+				return "redirect:/shop";
 			}
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());
