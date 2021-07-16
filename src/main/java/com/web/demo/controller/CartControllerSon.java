@@ -126,7 +126,7 @@ public class CartControllerSon {
 		String successUrl = PaypalUtils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
 		double price=(double) session.getAttribute("mycarttotal");
 		if(session.getAttribute("userinfoname")==null) {
-			return "redirect:/shops";
+			return "redirect:/shop";
 		}else {
 		try {
 			Payment payment = paypalService.createPayment(
@@ -175,7 +175,7 @@ public class CartControllerSon {
 				session.setAttribute("mycartitem", cartitems);
 				session.setAttribute("mycarttotal",0);
 				session.setAttribute("mycartnum", 0);
-				return "redirect:/shops";
+				return "redirect:/shop";
 
 				
 				
