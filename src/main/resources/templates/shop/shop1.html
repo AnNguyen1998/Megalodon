@@ -129,7 +129,13 @@
 	<div class="main-content">
     
     <section class="full-height-slider type-1">
+
+       <div class="bg ready data-jarallax" data-jarallax="5"
+	   th:style="'background: url(' + @{ ${addPath} + '/img/shop/shopbanner.jpg'} + ');
+							background-repeat: no-repeat;background-size: cover;'" data-swiper-parallax="50%"></div>
+
        <div class="bg ready data-jarallax" data-jarallax="5" th:style="'background-image: url('+@{~/img/shop/banner.jpg}+')'" data-swiper-parallax="50%"></div>
+
 		   <div class="table-view mobile-rel-block">
 			  <div class="table-cell">
 			   <div class="container no-padd"> 
@@ -137,11 +143,11 @@
              <div class="col-lg-6 col-lg-offset-3 col-sm-12 col-sm-offset-0">
                   <div class="simple-item color-type-1 text-center">
                   <div class="main-title">
-                   <h1 class="h1 caption">Our Shop</h1>
+                   <h1 class="h1 caption" style="color: #fc9d03;">Our Shop</h1>
                    <div class="empty-sm-30"></div>
                    <div class="col-md-10 col-md-offset-1">
-                     <div class="simple-text md">
-                         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                     <div class="simple-text md" style="color: #fc9d03;">
+                         <p style="color: #fc8803;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                      </div>
                    </div>
                   </div>   
@@ -372,6 +378,7 @@
                       </span>
                   </label>
                 </div>
+				<div class="empty-sm-65 empty-xs-40"></div>
               </aside>
             </div>
             <div class="empty-md-0 empty-sm-30 empty-xs-30"></div>
@@ -393,7 +400,7 @@
                         </div>
                       </div>
 					  
-					  <form th:action="@{'/shop/games/' + ${term} + '/' + ${pageNo}}" method="get" >
+					  <form th:action="@{${URL}(keyword=${keyword})}" method="get" >
 						<select th:name="size" class="input-field type-2 main-col" onchange="this.form.submit()">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -498,9 +505,7 @@
                   </svg>  
                  </a>
 				 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-					<a th:if="${#bools.isFalse(term)} and ${#bools.isFalse(cate)} and ${currentPage != i}" th:href="@{'/shop/' + ${i} }">[[${i}]]</a>
-					<a th:if="${term} and ${currentPage != i}" th:href="@{'/shop/games/' + ${term} + '/' + ${i} }">[[${i}]]</a>
-					<a th:if="${cate} and ${currentPage != i}" th:href="@{'/shop/categories/' + ${cate} + '/' + ${i} }">[[${i}]]</a>
+					<a th:if="${currentPage != i} and ${#bools.isTrue(keyword) or #bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${i} +'?keyword=' + ${keyword} + '&size=' + ${size}}">[[${i}]]</a>
 					<span th:unless="${currentPage != i}">[[${i}]]</span> 
 				 </span>
                  <a href="#" class="right-arr">
@@ -580,14 +585,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-<script src="/js/jquery-ui.min.js"></script>
-<script src="/js/jscolor.min.js"></script>
-<script src="/js/jquery.knob.js"></script>
-<script src="/js/jquery.throttle.js"></script>
-<script src="/js/jquery.classycountdown.js"></script>
-<script src="/js/jarallax.js"></script>
-<script src="/js/all.js"></script>
-<script src="/js/color.picker.js"></script>
+<script th:src="@{'/js/jquery-ui.min.js'}" ></script>
+<script th:src="@{'/js/jscolor.min.js'}" ></script>
+<script th:src="@{'/js/jquery.knob.js'}" ></script>
+<script th:src="@{'/js/jquery.throttle.js'}" ></script>
+<script th:src="@{'/js/jquery.classycountdown.js'}" ></script>
+<script th:src="@{'/js/jarallax.js'}" ></script>
+<script th:src="@{'/js/all.js'}" ></script>
+<script th:src="@{'/js/color.picker.js'}" ></script>
 
 </body>
 </html>	

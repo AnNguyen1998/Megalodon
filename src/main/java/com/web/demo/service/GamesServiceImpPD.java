@@ -65,8 +65,12 @@ public class GamesServiceImpPD implements GamesServicePD {
 	 */
 	@Override
 	public Page<Games> findGamesByFilterPaginated(int pageNo, int pageSize, String field) {
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, Sort.Direction.DESC, field);
-		return this.gamesRepository.findGamesByFilterPaginated(pageable);
+		if(!field.equalsIgnoreCase("discount")) {
+			Pageable pageable = PageRequest.of(pageNo - 1, pageSize, Sort.Direction.DESC, field);
+			return this.gamesRepository.findGamesByFilterPaginated(pageable);
+		}
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return this.gamesRepository.findGamesByDiscountPaginated(pageable);
 	}
 	
 	/**
@@ -79,6 +83,18 @@ public class GamesServiceImpPD implements GamesServicePD {
             return this.gamesRepository.search(keyword, PageRequest.of(pageNo - 1, pageSize));
         }
         return this.findAllPaginated(pageNo, pageSize);
+    }
+	
+	/**
+	 * @author PhatDat
+	 * count number of searching result of games 
+	 */
+	@Override
+	public int countSearchGames(String keyword) {
+		if (keyword != null) {
+			return this.gamesRepository.countSearch(keyword);
+		}
+		return 0;
     }
 	
 	/**

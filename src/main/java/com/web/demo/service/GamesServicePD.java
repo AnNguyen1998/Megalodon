@@ -27,4 +27,6 @@ public interface GamesServicePD {
 	public Page<Games> findAllPaginatedSorted(int pageNo, int pageSize);
 	
 	public Page<Games> findGamesByCategoryPaginated(int pageNo, int pageSize, int idCate);
+
+	public int countSearchGames(String keyword);
 }
