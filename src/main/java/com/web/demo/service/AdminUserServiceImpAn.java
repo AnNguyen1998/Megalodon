@@ -40,7 +40,11 @@ public class AdminUserServiceImpAn implements AdminUserServiceAn {
 		usernew.setIdUsers(entity.getIdUsers());
 		usernew.setNameUsers(entity.getNameUsers());
 		usernew.setUsernameUsers(entity.getUsernameUsers());
-		usernew.setPasswordUsers(pass.encode(entity.getPasswordUsers()));
+		if(entity.getIdUsers() != null) {
+			usernew.setPasswordUsers(entity.getPasswordUsers());
+		}else {
+			usernew.setPasswordUsers(pass.encode(entity.getPasswordUsers()));
+		}	
 		usernew.setEmailUsers(entity.getEmailUsers());
 		usernew.setPhoneUsers(entity.getPhoneUsers());
 		

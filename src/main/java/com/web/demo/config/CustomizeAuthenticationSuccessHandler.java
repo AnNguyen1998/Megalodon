@@ -27,7 +27,8 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 			throws IOException, ServletException {
         //set our response to OK status
         response.setStatus(HttpServletResponse.SC_OK);
-        
+        String re=request.getHeader("REFERER"); 
+        System.out.println(re);
         boolean admin = false;
         
         logger.info("AT onAuthenticationSuccess(...) function!");
@@ -44,7 +45,8 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         if(admin){
         	response.sendRedirect("/admin/");
         }else {
-        	response.sendRedirect("/shop");
+        	response.sendRedirect(re);
         }
 	}
+	
 }

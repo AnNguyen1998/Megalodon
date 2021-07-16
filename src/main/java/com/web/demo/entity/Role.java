@@ -18,8 +18,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "role", catalog = "megalodondb")
 public class Role implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_role", unique = true, nullable = false)
 	private Integer idRole;
+	@Column(name = "Name_role", length = 45)
 	private String nameRole;
 //	private Set<Users> userses = new HashSet<Users>(0);
 
@@ -31,10 +35,7 @@ public class Role implements java.io.Serializable {
 //		this.userses = userses;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_role", unique = true, nullable = false)
 	public Integer getIdRole() {
 		return this.idRole;
 	}
@@ -43,7 +44,7 @@ public class Role implements java.io.Serializable {
 		this.idRole = idRole;
 	}
 
-	@Column(name = "Name_role", length = 45)
+
 	public String getNameRole() {
 		return this.nameRole;
 	}

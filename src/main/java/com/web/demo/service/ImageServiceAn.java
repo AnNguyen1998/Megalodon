@@ -1,4 +1,6 @@
 package com.web.demo.service;
+import java.util.Optional;
+
 /**
  * @author AnNguyen
  */
@@ -14,4 +16,6 @@ public interface ImageServiceAn {
 	void deleteById(Integer id);
 
 	ImageData getById(Integer id);
+
+	Optional<ImageData> findById(Integer id);
 }

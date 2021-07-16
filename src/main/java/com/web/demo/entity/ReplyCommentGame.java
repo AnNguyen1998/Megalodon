@@ -17,12 +17,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "reply_comment_game", catalog = "megalodondb")
 public class ReplyCommentGame implements java.io.Serializable {
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
+	@Column(name = "Id_reply_comment_game", unique = true, nullable = false)
 	private Integer idReplyCommentGame;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_comment_game")
 	private CommentGame commentGame;
+	@Column(name = "Id_users")
 	private Integer idUsers;
+	@Column(name = "Content_comment", length = 65535)
 	private String contentComment;
-
+	
+	
 	public ReplyCommentGame() {
 	}
 
@@ -32,10 +40,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 		this.contentComment = contentComment;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "Id_reply_comment_game", unique = true, nullable = false)
 	public Integer getIdReplyCommentGame() {
 		return this.idReplyCommentGame;
 	}
@@ -44,8 +49,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 		this.idReplyCommentGame = idReplyCommentGame;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_comment_game")
+
 	public CommentGame getCommentGame() {
 		return this.commentGame;
 	}
@@ -54,7 +58,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 		this.commentGame = commentGame;
 	}
 
-	@Column(name = "Id_users")
+	
 	public Integer getIdUsers() {
 		return this.idUsers;
 	}
@@ -63,7 +67,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 		this.idUsers = idUsers;
 	}
 
-	@Column(name = "Content_comment", length = 65535)
+	
 	public String getContentComment() {
 		return this.contentComment;
 	}
