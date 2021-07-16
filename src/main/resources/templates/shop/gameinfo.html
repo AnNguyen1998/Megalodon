@@ -209,8 +209,8 @@
               <div class="empty-sm-10 empty-xs-10"></div>
               <h4 class="h4 xs color-3">Price: <span class="main-col"><b>
               <th:block style="display: inline-block;margin-left: 20px;" th:text="'-'+${game.discount.value}+'%'"></th:block>&emsp;
-              <th:block style="display: inline-block; margin-left: 20px" ><strike th:text="${game.price + ' VND'}"></strike></th:block> &emsp;
-              <th:block style="display: inline-block; margin-left: 20px;" th:text="${game.priceFix + ' VND'}"></th:block>
+              <th:block style="display: inline-block; margin-left: 20px" ><strike th:text="${'&#36;' + game.price}"></strike></th:block> &emsp;
+              <th:block style="display: inline-block; margin-left: 20px;" th:text="${'&#36;' + game.priceFix}"></th:block>
 			
               </b></span></h4>
             </aside>
