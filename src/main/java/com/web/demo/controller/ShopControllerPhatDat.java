@@ -32,12 +32,15 @@ import com.web.demo.entity.Category;
 import com.web.demo.entity.CommentGame;
 import com.web.demo.entity.Games;
 import com.web.demo.entity.ImageData;
+import com.web.demo.entity.ReplyCommentGame;
 import com.web.demo.entity.Users;
+import com.web.demo.repository.ReplyCommentGameRepoPD;
 import com.web.demo.service.CategoryService;
 import com.web.demo.service.DiscountServicePD;
 import com.web.demo.service.GameImageServiceSon;
 import com.web.demo.service.GamesServicePD;
 import com.web.demo.service.ImageDataServicePD;
+import com.web.demo.service.ReplyCommentGameServicePD;
 import com.web.demo.service.UserCommentGameServicePD;
 import com.web.demo.service.UserServiceSon;
 
@@ -60,6 +63,9 @@ public class ShopControllerPhatDat {
 
 	@Autowired
 	private UserCommentGameServicePD commentService;
+	
+	@Autowired
+	private ReplyCommentGameServicePD replyCommentService;
 
 	@Autowired
 	CategoryService cateservice;
@@ -117,7 +123,10 @@ public class ShopControllerPhatDat {
 
 	@RequestMapping(value = "/shop/detailgame")
 	public String gameDetail1(Model model, @RequestParam("id") Integer idGame,Principal principal,
-			@ModelAttribute("comment") CommentGame comment, HttpServletRequest request,HttpSession session) {
+			@ModelAttribute("comment") CommentGame comment,
+			@ModelAttribute("reply") ReplyCommentGame reply,
+			HttpServletRequest request,HttpSession session,
+			@RequestParam(value = "idCmt", required = false) Integer idCmt) {
 		// String username = comment.getUsers().getUsernameUsers();
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -137,6 +146,7 @@ public class ShopControllerPhatDat {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Users user = userService.findByusernameUsers(username);
 		String cmt = comment.getContentCommentGame();
+		String rep = reply.getContentComment();
 		// String cmt = params.get("cmt");
 		
 		if (user != null) {
@@ -149,8 +159,18 @@ public class ShopControllerPhatDat {
 			} else {
 				commentService.addCommentGame(idGame, idUser, cmt);
 			}
+			Integer idcmt = idCmt;
+			if(idcmt != null) {
+				if (rep == null) {
+					reply = new ReplyCommentGame();
+					model.addAttribute("reply", reply);
+				} else {
+					replyCommentService.addReplyCommentGame(idcmt, idUser, rep);
+				}
+			}
+
 		} else {
-			model.addAttribute("avatar", "img/imgUser/defaultavatar.png");
+			model.addAttribute("avatar", "defaultavatar.png");
 			model.addAttribute("usernameUsers", "guest");
 		}
 		
@@ -166,7 +186,8 @@ public class ShopControllerPhatDat {
 		model.addAttribute("cmts", commentService.getCommentGame(idGame));
 		model.addAttribute("recGames", gameService.getRelatedGames(idGame));
 		model.addAttribute("recImgGames", imageGameService.getRelatedImageList(idGame));
-
+		model.addAttribute("reps", replyCommentService.getReplyCommentGame(idGame));
+		System.out.println("-------------------\n"+replyCommentService.getReplyCommentGame(idGame).toString());
 		/**
 		 * @author Dat Ha
 		 */

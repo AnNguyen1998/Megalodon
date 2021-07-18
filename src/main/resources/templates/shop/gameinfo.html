@@ -327,7 +327,7 @@
 							<div class="empty-sm-25 empty-xs-25"></div>
                             <div class="testimonials-item testi-type-4 style-2">
                              <div class="img">   
-                                 <img th:src="@{'../' + *{cmt.users.imageUsers}}" alt="">
+                                 <img th:src="@{'../img/imgUser/' + *{cmt.users.imageUsers}}" alt="">
                              </div>
                              <div class="text">
                                  <h5 class="h5 caption" th:text="${cmt.users.nameUsers}"></h5>
@@ -341,36 +341,77 @@
                                  <span class="separator"></span>
                               </div>
                               <div class="reply">
-                                <a href="#" class="page-button button-style-1 sm type-3"><span class="txt">REPLY</span></a>
+                                <a th:onclick="|hideShow('${cmt.idCommentGame}')|" class="page-button button-style-1 sm type-3"><span class="txt">REPLY</span></a>
                               </div>     
                             </div>
                           </li>
                           <li>
-                            <ul>
+                            <ul th:id="'replyForm' + ${cmt.idCommentGame}" style="display: none;">
                               <div class="empty-sm-25 empty-xs-25"></div>
                               <li>
+                                <div class="testimonials-item testi-type-4 style-2">
+                                 <div class="img">   
+                                     <img th:src="@{'../img/imgUser/' + ${avatar}}" alt="">
+                                 </div>
+                                 <div class="text">
+                                     <form th:action="@{${URL}}" method="post" th:object="${reply}" >
+										<input th:name="idCmt" type="hidden" class="input-field" placeholder="Id Comment Game*" required="" th:value="${cmt.idCommentGame}">
+										<textarea name="rep" placeholder="Reply comment..." class="input-field" required="" th:field="*{contentComment}" ></textarea>
+										<div class="empty-sm-10 empty-xs-10"></div>
+										<div class="text-right"> 
+										  <div class="page-button button-style-1 md type-3">
+											 <input type="submit" onclick="return myFunction();">
+											 <span class="txt">SUBMIT</span><i></i>
+										  </div>
+										</div>
+									   </form>
+									   
+                                     <div class="empty-sm-25 empty-xs-25"></div>
+									 <span class="separator"></span>
+                                  </div>
+                        
+                                </div>
+                              </li>
+                               
+                            </ul>
+							<ul th:each="rep : ${reps}">
+                              <div class="empty-sm-25 empty-xs-25"></div>
+                              <li th:if="${rep.commentGame.idCommentGame == cmt.idCommentGame}">
                                 <div class="testimonials-item testi-type-4 style-2">
                                  <div class="img">   
                                      <img src="../img/blog/comments-2.jpg" alt="">
                                  </div>
                                  <div class="text">
-                                     <h5 class="h5 caption">Daniel Collins</h5>
+                                     <h5 class="h5 caption" th:text="${rep.idUsers}"></h5>
                                      <div class="empty-sm-15 empty-xs-15"></div>
-                                     <span class="proff">5 minutes ago</span>
+                                     <span class="proff" th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></span>
                                      <div class="empty-sm-15 empty-xs-15"></div>
                                      <div class="simple-text">
-                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                         <p th:text="${rep.contentComment}"></p>
                                      </div>
                                      <div class="empty-sm-25 empty-xs-25"></div>
+									 <span class="separator"></span>
                                   </div>
-                                  <div class="reply">
-                                    <a href="#" class="page-button button-style-1 sm type-3"><span class="txt">REPLY</span></a>
-                                  </div>  
+          
                                 </div>
                               </li>
-                              <span class="separator"></span> 
+                               
                             </ul>
+							<span class="separator"></span>
                           </li>
+						  <script th:inline="javascript">
+							/*<![CDATA[*/
+							function hideShow(idName) {
+							  var x = document.getElementById("replyForm".concat(idName));
+							  if (x.style.display === "none") {
+								x.style.display = "block";
+							  } else {
+								x.style.display = "none";
+							  }
+							}
+							/*]]>*/
+							</script>
+						  
                           
                         </ul>
                       </div>
@@ -381,14 +422,14 @@
                         <h4 class="h4 tt color-type-1">leave Your comment</h4>
                       </div>
                       <div class="empty-sm-35 empty-xs-20"></div>
-                      <form th:action="@{${URL}}" method="post" th:object="${comment}">
+                      <form th:action="@{${URL}}" method="post" th:object="${comment}" >
                         <div class="row">
                           <div class="col-sm-6 col-xs-12">
                             <!-- <input name="username" type="text" class="input-field" placeholder="Name *" required="" th:value="${usernameUsers}"> -->
 							<!-- <div class="empty-sm-20 empty-xs-20"></div> -->
 							<input name="id" type="hidden" class="input-field" placeholder="Id Game*" required="" th:value="${id}">
 							<div class="img" >   
-                                 <img th:src="@{'../' + ${avatar}}" alt="" style="height: 100px; width: 100px;">
+                                 <img th:src="@{'../img/imgUser/' + ${avatar}}" alt="" style="height: 100px; width: 100px;">
 								 <div class="empty-sm-2 empty-xs-2"></div>
 								 <p th:text="${usernameUsers}" style="width:100px;text-align:center;"></p>
                              </div>
@@ -401,19 +442,26 @@
                         <div class="empty-sm-30 empty-xs-30"></div>
                         <div class="text-left"> 
                           <div class="page-button button-style-1 type-2">
-                             <input type="submit">
+                             <input type="submit" onclick="return myFunction();">
                              <span class="txt">SUBMIT</span><i></i>
                           </div>
                         </div>
                        </form>
+					   
 					   <script th:inline="javascript">
-							var name = "[[${usernameUsers}]]";
+						/*<![CDATA[*/
+						function myFunction() {
+							var name = /*[[${usernameUsers}]]*/ "";
 							if (name !== 'guest') {
-								$('form').submit();
+								return true;
 							}
 							else{
-								alert("please log in your account to post this comment!");
+								alert('please log in your account to post this comment!');
+								return false;
 							}
+						}
+						
+						/*]]>*/
 						</script>
                     </article>
                   </div>
@@ -804,6 +852,8 @@
 <script src="../../js/jarallax.js"></script>
 <script src="../../js/all.js"></script>
 <script src="../../js/color.picker.js"></script>
+
+
 
 </body>
 </html>	
