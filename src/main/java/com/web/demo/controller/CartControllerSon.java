@@ -10,6 +10,7 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -169,6 +170,9 @@ public class CartControllerSon {
 				for(Map.Entry<Integer, CartDTOSon>entry:cartitems.entrySet()) {
 					Optional<Games> game=gameservice.findById(entry.getValue().getGames().getIdGame());
 					billdetailservice.addbilldetail(addbill, game.get());
+					//
+					game.get().getUsersActive().add(user);
+					gameservice.save(game.get());
 				}
 
 				cartitems=new HashMap<>();
