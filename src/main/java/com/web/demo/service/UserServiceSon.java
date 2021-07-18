@@ -3,9 +3,11 @@ package com.web.demo.service;
  * @author NguyenHuuSon
  */
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.security.core.userdetails.User;
 
+import com.web.demo.entity.Games;
 import com.web.demo.entity.Users;
 
 public interface UserServiceSon {
@@ -37,6 +39,10 @@ public interface UserServiceSon {
 
 
 	Optional<Users> findById(Integer id);
+
+
+
+	
 
 
 
