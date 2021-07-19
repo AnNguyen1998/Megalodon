@@ -1,11 +1,13 @@
 package com.web.demo.controller;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 /**
@@ -65,6 +67,7 @@ public class AdminControllerAn {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
 			LocalDate localDate = LocalDate.now();
 			String date = dtf.format(localDate);
+			model.addAttribute("todaycalendar", date);
 			Systems sys = systemService.findByDateLike(date);
 			model.addAttribute("date", sys);
 			//get yesterday
@@ -79,6 +82,26 @@ public class AdminControllerAn {
 				ye.setDowloadSystem(0);
 				ye.setViewsSystem(0);
 				model.addAttribute("yesterday",ye);
+			}
+		//purchases
+			long count = billService.findCount(date);
+			model.addAttribute("purchases", count);
+			long countys = billService.findCount(yesterday);
+			model.addAttribute("purchasesys", countys);
+		//total revenue
+			String total = billService.findTotalPrice(date);
+			if(total != null) {
+				model.addAttribute("total", total);
+			}else {
+				total = "0";
+				model.addAttribute("total", total);
+			}
+			String totalys = billService.findTotalPrice(yesterday);
+			if(totalys != null) {
+				model.addAttribute("totalys", totalys);
+			}else {
+				totalys = "0";
+				model.addAttribute("totalys", totalys);
 			}
 			
 		return "admin/index";

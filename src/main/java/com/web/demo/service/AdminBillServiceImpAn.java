@@ -18,5 +18,16 @@ public class AdminBillServiceImpAn implements AdminBillServiceAn {
 		
 		return bill.findAllTop();
 	}
+
+	@Override
+	public long findCount(String date) {
+		return bill.findCount(date);
+	}
+
+	@Override
+	public String findTotalPrice(String date) {
+		return bill.findTotalPrice(date);
+	}
+	
 	
 }
