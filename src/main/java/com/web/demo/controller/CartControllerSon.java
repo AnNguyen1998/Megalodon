@@ -179,10 +179,10 @@ public class CartControllerSon {
 				session.setAttribute("mycartitem", cartitems);
 				session.setAttribute("mycarttotal",0);
 				session.setAttribute("mycartnum", 0);
+
 				return "redirect:/shop";
 
-				
-				
+
 
 			}
 		} catch (PayPalRESTException e) {
