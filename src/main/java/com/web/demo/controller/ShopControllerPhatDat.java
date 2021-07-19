@@ -1,4 +1,6 @@
 package com.web.demo.controller;
+import java.net.URI;
+import java.net.URISyntaxException;
 /**
  * @author Phat Dat
  */
@@ -76,6 +78,8 @@ public class ShopControllerPhatDat {
 	UserServiceSon userService;
 	
 	private String addPath = "";
+	
+
 
 	/*
 	 * @GetMapping(value = "/shoptest/{pageNo}") public String
@@ -126,8 +130,35 @@ public class ShopControllerPhatDat {
 			@ModelAttribute("comment") CommentGame comment,
 			@ModelAttribute("reply") ReplyCommentGame reply,
 			HttpServletRequest request,HttpSession session,
+			Users user, @RequestParam(required = false) String message,
 			@RequestParam(value = "idCmt", required = false) Integer idCmt) {
 		// String username = comment.getUsers().getUsernameUsers();
+		
+		// Regis
+				model.addAttribute("user", user);
+				//model.addAttribute("user", new Users());
+
+				//
+				if (message != null && !message.isEmpty()) {
+					if (message.equals("logout")) {
+						model.addAttribute("message", "Logout!");
+					}
+					if (message.equals("error")) {
+						model.addAttribute("message", "Login Failed!");
+						session.removeAttribute("userinfoname");
+						session.removeAttribute("userinfoemail");
+						session.removeAttribute("userinfoid");
+						session.removeAttribute("userinfophone");
+
+					}
+					if (message.equals("loginreq")) {
+						model.addAttribute("message", "Please Login");
+					}
+
+				}
+		
+		
+		
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			Users us = userService.findByusernameUsers(loginedUser.getUsername());
@@ -144,14 +175,14 @@ public class ShopControllerPhatDat {
 		String url = request.getRequestURL().toString() + "?id=" + idGame.toString();
 		model.addAttribute("URL", url);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		Users user = userService.findByusernameUsers(username);
+		Users user1 = userService.findByusernameUsers(username);
 		String cmt = comment.getContentCommentGame();
 		String rep = reply.getContentComment();
 		// String cmt = params.get("cmt");
 		
 		if (user != null) {
-			Integer idUser = user.getIdUsers();
-			model.addAttribute("avatar", user.getImageUsers());
+			Integer idUser = user1.getIdUsers();
+			model.addAttribute("avatar", user1.getImageUsers());
 			model.addAttribute("usernameUsers", username);
 			if (cmt == null) {
 				comment = new CommentGame();
@@ -232,31 +263,31 @@ public class ShopControllerPhatDat {
 	public String shop1(Model model, @PathVariable(value = "pageNo", required = false) Integer pageNo,
 			@Param("keyword") String keyword, Principal principal, 
 			@RequestParam(required = false) String message,
-			@RequestParam(value = "size", defaultValue = "4") int pageSize,
+			@RequestParam(value = "size", defaultValue = "4") Integer pageSize,
 			Users user, HttpSession session, HttpServletRequest request) {
 
 		// Regis
 		model.addAttribute("user", user);
-		model.addAttribute("user", new Users());
+		//model.addAttribute("user", new Users());
 
 		//
-//		if (message != null && !message.isEmpty()) {
-//			if (message.equals("logout")) {
-//				model.addAttribute("message", "Logout!");
-//			}
-//			if (message.equals("error")) {
-//				model.addAttribute("message", "Login Failed!");
-//				session.removeAttribute("userinfoname");
-//				session.removeAttribute("userinfoemail");
-//				session.removeAttribute("userinfoid");
-//				session.removeAttribute("userinfophone");
-//
-//			}
-//			if (message.equals("loginreq")) {
-//				model.addAttribute("message", "Please Login");
-//			}
-//
-//		}
+		if (message != null && !message.isEmpty()) {
+			if (message.equals("logout")) {
+				model.addAttribute("message", "Logout!");
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");
+				session.removeAttribute("userinfoname");
+				session.removeAttribute("userinfoemail");
+				session.removeAttribute("userinfoid");
+				session.removeAttribute("userinfophone");
+
+			}
+			if (message.equals("loginreq")) {
+				model.addAttribute("message", "Please Login");
+			}
+
+		}
 //		System.out.println(message);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -281,7 +312,44 @@ public class ShopControllerPhatDat {
 			pageNo = 1;
 		}
 		
-		String url = request.getRequestURL().toString();
+		String url = request.getHeader("REFERER");
+		if(url == null) {
+			url = request.getRequestURL().toString();
+		}
+
+		
+		System.out.println("--------------------------\n"
+				+ "URL : "+ url);
+		
+		if(!url.matches(".*\\d.*")){
+			url += url + "/1";
+		}
+//		String urlWithoutQuery = "";
+		
+//		if(url.contains("?")) {
+//			String[] arrString = url.split("\\?");
+//			urlWithoutQuery = arrString[0];
+//			queryString =arrString[1];
+//			System.out.println("--------------------------");
+//			System.out.println(urlWithoutQuery+" - " + queryString +"\n--------------------------");
+//			String urlPage = urlWithoutQuery.substring(urlWithoutQuery.lastIndexOf('/'));
+//			if(urlPage.matches(".*\\d.*")) {
+//				int i = urlWithoutQuery.lastIndexOf('/');
+//				urlPage = urlWithoutQuery.substring(0, i);
+//				urlWithoutQuery = urlPage;
+//			}
+//	
+//
+//		}
+//		else {
+//			urlWithoutQuery = url;
+//		}
+		
+//		model.addAttribute("URLPage", urlWithoutQuery);
+//		model.addAttribute("URLQuery", queryString);
+//		System.out.println("\n\n--------------------------");
+//		System.out.println("URLQuery = " +queryString.split("\\=")[0] + "\n--------------------------");
+		
 		String urlPage = url.substring(url.lastIndexOf('/'));
 		if(urlPage.matches(".*\\d.*")) {
 			int i = url.lastIndexOf('/');
@@ -315,6 +383,7 @@ public class ShopControllerPhatDat {
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
 		System.out.println(imageGameService.getImageList());
+		System.out.println(request.getHeader("REFERER"));
 
 		/**
 		 * @author Dat Ha
@@ -329,6 +398,7 @@ public class ShopControllerPhatDat {
 	public String shop2(Model model, @PathVariable(value = "pageNo") int pageNo,
 			@PathVariable(value = "term", required = false) String term, 
 			@RequestParam(value = "size", defaultValue = "4") int pageSize,
+			@RequestParam(required = false) String message,
 			HttpServletRequest request, Principal principal,
 			Users user, HttpSession session) {
 		// pageSize = 5;
@@ -337,23 +407,23 @@ public class ShopControllerPhatDat {
 		model.addAttribute("user", user);
 
 		//
-//		if (message != null && !message.isEmpty()) {
-//			if (message.equals("logout")) {
-//				model.addAttribute("message", "Logout!");
-//			}
-//			if (message.equals("error")) {
-//				model.addAttribute("message", "Login Failed!");
-//				session.removeAttribute("userinfoname");
-//				session.removeAttribute("userinfoemail");
-//				session.removeAttribute("userinfoid");
-//				session.removeAttribute("userinfophone");
-//
-//			}
-//			if (message.equals("loginreq")) {
-//				model.addAttribute("message", "Please Login");
-//			}
-//
-//		}
+		if (message != null && !message.isEmpty()) {
+			if (message.equals("logout")) {
+				model.addAttribute("message", "Logout!");
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");
+				session.removeAttribute("userinfoname");
+				session.removeAttribute("userinfoemail");
+				session.removeAttribute("userinfoid");
+				session.removeAttribute("userinfophone");
+
+			}
+			if (message.equals("loginreq")) {
+				model.addAttribute("message", "Please Login");
+			}
+
+		}
 //		System.out.println(message);
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -411,7 +481,7 @@ public class ShopControllerPhatDat {
 			// model.addAttribute("games1", gameService.getGamesByFilter("ReleaseYear_game",
 			// Integer.MAX_VALUE));
 		}
-		
+		System.out.println(request.getHeader("REFERER"));
 
 		/**
 		 * @author Dat Ha
@@ -427,6 +497,7 @@ public class ShopControllerPhatDat {
 			Principal principal, HttpSession session,
 			@PathVariable(value = "cate") int idCate,
 			@RequestParam(value = "size", defaultValue = "12", required = false) int pageSize,
+			@RequestParam(required = false) String message,
 			HttpServletRequest request, Users user) {
 
 			
@@ -438,6 +509,24 @@ public class ShopControllerPhatDat {
 
 		// Regis
 		model.addAttribute("user", user);
+		
+		if (message != null && !message.isEmpty()) {
+			if (message.equals("logout")) {
+				model.addAttribute("message", "Logout!");
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");
+				session.removeAttribute("userinfoname");
+				session.removeAttribute("userinfoemail");
+				session.removeAttribute("userinfoid");
+				session.removeAttribute("userinfophone");
+
+			}
+			if (message.equals("loginreq")) {
+				model.addAttribute("message", "Please Login");
+			}
+
+		}
 
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -472,6 +561,7 @@ public class ShopControllerPhatDat {
 		}
 		model.addAttribute("URL", url);
 		model.addAttribute("URLPage", urlPage);
+		System.out.println(request.getHeader("REFERER"));
 
 		/**
 		 * @author Dat Ha
