@@ -73,7 +73,7 @@
                             <div class="btn-group pull-right">
                                 <form th:action="@{/chooseday}" method="post">
                                     <div class="input-group">
-                                    <input type="date" id="startdateId" class="form-control" name="chooseday">
+                                    <input type="date" class="form-control" name="chooseday">
                                 	<input type="submit" hidden>
                                 </div>
                                 </form>
@@ -306,8 +306,6 @@
         }
       </script>
     <!--End chart-->
-		<script> document.getElementById('startdateId').value = 
-			new Date().toISOString().slice(0, 10);</script>
         <!-- jQuery  -->
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>

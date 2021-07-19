@@ -1,9 +1,11 @@
 package com.web.demo.controller;
 import java.security.Principal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,11 +66,11 @@ public class AdminControllerAn {
 			String userInfo = WebUtilsAn.toStringManager(loginedUser);
 			model.addAttribute("userInfo", userInfo);
 		}
-		//access page times
+		//access page times and download
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
 			LocalDate localDate = LocalDate.now();
 			String date = dtf.format(localDate);
-			model.addAttribute("todaycalendar", date);
+			//model.addAttribute("todaycalendar", date);
 			Systems sys = systemService.findByDateLike(date);
 			model.addAttribute("date", sys);
 			//get yesterday
@@ -104,6 +107,79 @@ public class AdminControllerAn {
 				model.addAttribute("totalys", totalys);
 			}
 			
+		return "admin/index";
+	}
+	@PostMapping("/chooseday")
+	public String chooseday(Model model, Principal principal, @RequestParam("chooseday") String dates) {
+		List<Games> topgame = gameService.findAllTop();
+		model.addAttribute("topgame", topgame);
+		List<Bill> topuser = billService.findAllTop();
+		model.addAttribute("topuser", topuser);
+		for(Bill b:topuser) {
+			System.out.println(b.getUsers().getNameUsers());
+		}
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			String userInfo = WebUtilsAn.toStringManager(loginedUser);
+			model.addAttribute("userInfo", userInfo);
+		}
+		System.out.println(dates);
+		/* this day*/
+		//access
+		Systems sys = systemService.findByDateLike(dates);
+		if(sys != null) {
+			model.addAttribute("date", sys);
+		}else {
+			Systems system = new Systems();
+			system.setViewsSystem(0);
+			system.setDowloadSystem(0);
+			model.addAttribute("date", system);
+		}
+		//purchases
+		long count = billService.findCount(dates);
+		model.addAttribute("purchases", count);
+		//total revenue
+		String total = billService.findTotalPrice(dates);
+		if(total != null) {
+			model.addAttribute("total", total);
+		}else {
+			total = "0";
+		}
+		/* previous day*/
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date dateformat = format.parse(dates);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(dateformat); 
+			calendar.add(Calendar.DAY_OF_YEAR, -1);
+			Date datebefore = calendar.getTime();
+			String yesterday = format.format(datebefore); 
+			System.out.println(yesterday);
+			//access and download yesterday
+			Systems yes = systemService.findByDateLike(yesterday);
+			if(yes != null) {
+				model.addAttribute("yesterday", yes);
+			}else {
+				Systems system = new Systems();
+				system.setViewsSystem(0);
+				system.setDowloadSystem(0);
+				model.addAttribute("yesterday", system);
+			}
+			//purchases yesterday
+			long countys = billService.findCount(yesterday);
+			model.addAttribute("purchasesys", countys);
+			//total revenue yesterday
+			String totalys = billService.findTotalPrice(yesterday);
+			if(totalys != null) {
+			model.addAttribute("totalys", totalys);
+			}else {
+				totalys = "0";
+				model.addAttribute("totalys", totalys);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "admin/index";
 	}
 	//Users
