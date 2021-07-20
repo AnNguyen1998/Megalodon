@@ -47,7 +47,7 @@ public interface GamesRepositoryPD extends JpaRepository<Games, Integer>, Paging
 	 * method get games by term because user searched with Pagination
 	 */
 	@Query(value = "SELECT * FROM games WHERE Name_game LIKE %?1%",
-			countQuery = "SELECT count(*) FROM games",
+			countQuery = "SELECT * FROM games WHERE Name_game LIKE %?1%",
 			nativeQuery = true)
 	public Page<Games> search(String keyword, Pageable pageable);
 	

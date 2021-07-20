@@ -180,7 +180,7 @@ public class ShopControllerPhatDat {
 		String rep = reply.getContentComment();
 		// String cmt = params.get("cmt");
 		
-		if (user != null) {
+		if (user1 != null) {
 			Integer idUser = user1.getIdUsers();
 			model.addAttribute("avatar", user1.getImageUsers());
 			model.addAttribute("usernameUsers", username);
@@ -260,7 +260,8 @@ public class ShopControllerPhatDat {
 	 */
 
 	@GetMapping(value = { "/shop/{pageNo}", "/shop" })
-	public String shop1(Model model, @PathVariable(value = "pageNo", required = false) Integer pageNo,
+	public String shop1(Model model, 
+			@PathVariable(value = "pageNo", required = false) Integer pageNo,
 			@Param("keyword") String keyword, Principal principal, 
 			@RequestParam(required = false) String message,
 			@RequestParam(value = "size", defaultValue = "4") Integer pageSize,
@@ -307,10 +308,13 @@ public class ShopControllerPhatDat {
 		//int pageSize = 4;
 		if (pageNo == null) {
 			pageNo = 1;
+			
 		} 
 		else if (pageNo.intValue() == 0) {
 			pageNo = 1;
+			
 		}
+		
 		
 		String url = request.getHeader("REFERER");
 		if(url == null) {
@@ -350,6 +354,33 @@ public class ShopControllerPhatDat {
 //		System.out.println("\n\n--------------------------");
 //		System.out.println("URLQuery = " +queryString.split("\\=")[0] + "\n--------------------------");
 		
+		
+		if(url.contains("?")) {
+			int index = url.indexOf('?');
+			String url1 = url.substring(0, index);
+			int index1 = url1.lastIndexOf('/');
+			String url2 = url.substring(index1, index);
+			if(url2.matches(".*\\d.*")) {
+				String url3 = url.substring(0, index1) + "/1?"+url.substring(index);
+				url = url3;
+			}else { 
+				String url4 = url.substring(0, index) + "/1?"+url.substring(index);
+				url = url4;
+			}
+			
+		}else {
+			int index2 = url.lastIndexOf('/');
+			String url5 = url.substring(index2);
+			if(url5.matches(".*\\d.*")) {
+				String url6 = url.substring(0, index2) + "/1";
+				url = url6;
+			}else { 
+				String url4 = url + "/1";
+				url = url4;
+			}
+			
+		}
+	
 		String urlPage = url.substring(url.lastIndexOf('/'));
 		if(urlPage.matches(".*\\d.*")) {
 			int i = url.lastIndexOf('/');
@@ -380,7 +411,9 @@ public class ShopControllerPhatDat {
 		model.addAttribute("listAllGames", listAllGames);
 		model.addAttribute("countSearch", count);
 		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
+		System.out.println("\n---------------\ntotalPages = "+page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
 		System.out.println(imageGameService.getImageList());
 		System.out.println(request.getHeader("REFERER"));
@@ -396,7 +429,7 @@ public class ShopControllerPhatDat {
 	}
 
 	@GetMapping(value = { "/shop/games/{term}/{pageNo}" })
-	public String shop2(Model model, @PathVariable(value = "pageNo") int pageNo,
+	public String shop2(Model model, @PathVariable(value = "pageNo") Integer pageNo,
 			@PathVariable(value = "term", required = false) String term, 
 			@RequestParam(value = "size", defaultValue = "4") int pageSize,
 			@RequestParam(required = false) String message,
@@ -447,12 +480,39 @@ public class ShopControllerPhatDat {
 		model.addAttribute("images1", imageGameService.getImageList());
 		model.addAttribute("user", new Users());
 		// model.addAttribute("listGames", listEmployees);
+		
+		if (pageNo == null) {
+			pageNo = 1;
+		} 
+		else if (pageNo.intValue() == 0) {
+			pageNo = 1;
+		}
+		model.addAttribute("pageNo", pageNo);
 		String url = request.getRequestURL().toString();
+		
+
+		if(!url.matches(".*\\d.*")){
+			url += url + "/1";
+		}
+		
+		
+		int index2 = url.lastIndexOf('/');
+		String url5 = url.substring(index2);
+		if(url5.matches(".*\\d.*")) {
+			String url6 = url.substring(0, index2) + "/1";
+			url = url6;
+		}else { 
+			String url4 = url + "/1";
+			url = url4;
+		}
+	
 		String urlPage = url.substring(url.lastIndexOf('/'));
 		if(urlPage.matches(".*\\d.*")) {
 			int i = url.lastIndexOf('/');
 			urlPage = url.substring(0, i);
 		}
+		
+		
 		model.addAttribute("URL", url);
 		model.addAttribute("URLPage", urlPage);
 		model.addAttribute("size", pageSize);
@@ -554,15 +614,42 @@ public class ShopControllerPhatDat {
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
 		model.addAttribute("user", new Users());
+		
+		
+		if (pageNo == null) {
+			pageNo = 1;
+		} 
+		else if (pageNo.intValue() == 0) {
+			pageNo = 1;
+		}
+		model.addAttribute("pageNo", pageNo);
+		
 		String url = request.getRequestURL().toString();
+		
+		if(!url.matches(".*\\d.*")){
+			url += url + "/1";
+		}
+		
+		
+		int index2 = url.lastIndexOf('/');
+		String url5 = url.substring(index2);
+		if(url5.matches(".*\\d.*")) {
+			String url6 = url.substring(0, index2) + "/1";
+			url = url6;
+		}else { 
+			String url4 = url + "/1";
+			url = url4;
+		}
+	
 		String urlPage = url.substring(url.lastIndexOf('/'));
 		if(urlPage.matches(".*\\d.*")) {
 			int i = url.lastIndexOf('/');
 			urlPage = url.substring(0, i);
 		}
+		
+		
 		model.addAttribute("URL", url);
 		model.addAttribute("URLPage", urlPage);
-		System.out.println(request.getHeader("REFERER"));
 
 		/**
 		 * @author Dat Ha
