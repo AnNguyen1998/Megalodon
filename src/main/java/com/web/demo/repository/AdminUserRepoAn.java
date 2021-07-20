@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.web.demo.entity.Users;
 @Repository
 public interface AdminUserRepoAn extends JpaRepository<Users, Integer> {
+
+	Users findByusernameUsers(String username);
 	
 }
