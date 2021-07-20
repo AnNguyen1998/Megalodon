@@ -507,7 +507,11 @@
                   </svg>  
                  </a>
 				 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-					<a th:if="${currentPage != i} and ${#bools.isTrue(keyword)}" th:href="@{${URLPage}+ '/' + ${i} }">[[${i}]]</a>
+					<a th:if="${currentPage != i} and ${#bools.isTrue(keyword) and #bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${i} + '?keyword=' + ${keyword} + '&size=' + ${size}}">[[${i}]]</a>
+					<div th:unless="${currentPage != i} and ${#bools.isTrue(keyword) and #bools.isTrue(size)}">
+						<a th:if="${currentPage != i} and ${#bools.isTrue(keyword)}" th:href="@{${URLPage}+ '/' + ${i} + '?keyword=' + ${keyword}}">[[${i}]]</a>
+						<a th:if="${currentPage != i} and ${#bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${i} + '?size=' + ${size}}">[[${i}]]</a>
+					</div>
 					<span th:unless="${currentPage != i}">[[${i}]]</span> 
 				 </span>
                  <a href="#" class="right-arr">

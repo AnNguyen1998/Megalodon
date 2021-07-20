@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.web.demo.entity.CommentGame;
 import com.web.demo.entity.ReplyCommentGame;
+import com.web.demo.entity.Users;
 import com.web.demo.repository.CommentGameRepositoryPD;
 import com.web.demo.repository.DiscountRepositoryPD;
 import com.web.demo.repository.GamesRepositoryPD;
@@ -38,10 +39,10 @@ public class UserCommentGameServiceImpPD implements UserCommentGameServicePD{
 	}
 	
 	@Override
-	public CommentGame addCommentGame(int idGame, int idUser, String cmt) {
+	public CommentGame addCommentGame(int idGame, Users idUser, String cmt) {
 		return cmtGameRepo.saveAndFlush(
 				new CommentGame(gamesRepository.getById(idGame),
-						usersRepository.getById(idUser), cmt));
+						idUser, cmt));
 	}
 	
 }

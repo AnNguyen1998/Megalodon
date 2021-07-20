@@ -142,14 +142,14 @@ public class ShopControllerPhatDat {
 				if (message != null && !message.isEmpty()) {
 					if (message.equals("logout")) {
 						model.addAttribute("message", "Logout!");
-					}
-					if (message.equals("error")) {
-						model.addAttribute("message", "Login Failed!");
 						session.removeAttribute("userinfoname");
 						session.removeAttribute("userinfoemail");
 						session.removeAttribute("userinfoid");
 						session.removeAttribute("userinfophone");
-
+					}
+					if (message.equals("error")) {
+						model.addAttribute("message", "Login Failed!");
+						
 					}
 					if (message.equals("loginreq")) {
 						model.addAttribute("message", "Please Login");
@@ -181,14 +181,14 @@ public class ShopControllerPhatDat {
 		// String cmt = params.get("cmt");
 		
 		if (user != null) {
-			Integer idUser = user1.getIdUsers();
+			
 			model.addAttribute("avatar", user1.getImageUsers());
 			model.addAttribute("usernameUsers", username);
 			if (cmt == null) {
 				comment = new CommentGame();
 				model.addAttribute("comment", comment);
 			} else {
-				commentService.addCommentGame(idGame, idUser, cmt);
+				commentService.addCommentGame(idGame, user1, cmt);
 			}
 			Integer idcmt = idCmt;
 			if(idcmt != null) {
@@ -196,7 +196,7 @@ public class ShopControllerPhatDat {
 					reply = new ReplyCommentGame();
 					model.addAttribute("reply", reply);
 				} else {
-					replyCommentService.addReplyCommentGame(idcmt, idUser, rep);
+					replyCommentService.addReplyCommentGame(idcmt, user1, rep);
 				}
 			}
 
@@ -274,13 +274,13 @@ public class ShopControllerPhatDat {
 		if (message != null && !message.isEmpty()) {
 			if (message.equals("logout")) {
 				model.addAttribute("message", "Logout!");
-			}
-			if (message.equals("error")) {
-				model.addAttribute("message", "Login Failed!");
 				session.removeAttribute("userinfoname");
 				session.removeAttribute("userinfoemail");
 				session.removeAttribute("userinfoid");
 				session.removeAttribute("userinfophone");
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");	
 
 			}
 			if (message.equals("loginreq")) {
@@ -384,6 +384,7 @@ public class ShopControllerPhatDat {
 		model.addAttribute("totalItems", page.getTotalElements());
 		System.out.println(imageGameService.getImageList());
 		System.out.println(request.getHeader("REFERER"));
+		System.out.println("keyword: " + keyword + " - size: "+ pageSize);
 
 		/**
 		 * @author Dat Ha
@@ -410,14 +411,14 @@ public class ShopControllerPhatDat {
 		if (message != null && !message.isEmpty()) {
 			if (message.equals("logout")) {
 				model.addAttribute("message", "Logout!");
-			}
-			if (message.equals("error")) {
-				model.addAttribute("message", "Login Failed!");
 				session.removeAttribute("userinfoname");
 				session.removeAttribute("userinfoemail");
 				session.removeAttribute("userinfoid");
 				session.removeAttribute("userinfophone");
-
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");
+				
 			}
 			if (message.equals("loginreq")) {
 				model.addAttribute("message", "Please Login");
@@ -513,13 +514,13 @@ public class ShopControllerPhatDat {
 		if (message != null && !message.isEmpty()) {
 			if (message.equals("logout")) {
 				model.addAttribute("message", "Logout!");
-			}
-			if (message.equals("error")) {
-				model.addAttribute("message", "Login Failed!");
 				session.removeAttribute("userinfoname");
 				session.removeAttribute("userinfoemail");
 				session.removeAttribute("userinfoid");
 				session.removeAttribute("userinfophone");
+			}
+			if (message.equals("error")) {
+				model.addAttribute("message", "Login Failed!");
 
 			}
 			if (message.equals("loginreq")) {
