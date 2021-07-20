@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  * @author An Nguyen
  */
@@ -59,6 +60,9 @@ public class AdminControllerAn {
 	
 	@Autowired
 	ImageServiceAn imgService;
+	
+	@Autowired
+	PasswordEncoder pass;
 	
 	@GetMapping("admin")
 	public String adminindex(Model model, Principal principal) {
@@ -219,29 +223,59 @@ public class AdminControllerAn {
 			model.addAttribute("userInfo", userInfo);
 		}
 		Users user = userService.findByusernameUsers(userInfo);
-		model.addAttribute("user", user);
+		model.addAttribute("useredit", user);
 		return "admin/infor";
 	}
 	@PostMapping("/saveinfor")
-	public String saveinfor(@ModelAttribute("user") Users user) {
-		userService.save(user);
-		return "redirect:/admin/infor";
-		}
-	@PostMapping("/saveavatar")
-	public String saveavatar(@ModelAttribute("user") Users user) {
-		userService.save(user);
-		return "redirect:/admin/infor";
-		}
-	@PostMapping("/savepassword")
-	public String savepassword(@ModelAttribute("user") Users user, Principal principal) {
+	public String saveinfor(@ModelAttribute("useredit") Users user, Principal principal) {
 		String userInfo = null;
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			userInfo = WebUtilsAn.toStringManager(loginedUser);
 		}
-		//Users users = userService.findByusernameUsers(userInfo);
-		//user.getPasswordUsers();
-		userService.save(user);
+		Users users = userService.findByusernameUsers(userInfo);
+		users.setAddressUsers(user.getAddressUsers());
+		users.setDateOfBirthday(user.getDateOfBirthday());
+		users.setEmailUsers(user.getEmailUsers());
+		users.setNameUsers(user.getNameUsers());
+		users.setPhoneUsers(user.getPhoneUsers());
+		userService.save(users);
+		return "redirect:/admin/infor";
+		}
+	@PostMapping("/saveavatar")
+	public String saveavatar(@RequestParam("file") MultipartFile file, Principal principal) {
+		String userInfo = null;
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			userInfo = WebUtilsAn.toStringManager(loginedUser);
+		}
+		Users users = userService.findByusernameUsers(userInfo);
+		imgService.store(file);
+		String nameimg = file.getOriginalFilename();
+		users.setImageUsers(nameimg);
+		userService.save(users);
+		return "redirect:/admin/infor";
+		}
+	@PostMapping("/savepassword")
+	public String savepassword(Model model, @RequestParam("oldpass") String oldpass, @RequestParam("newpasswordUsers") String newpass, Principal principal) {
+		String userInfo = null;
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			userInfo = WebUtilsAn.toStringManager(loginedUser);
+		}
+		Users users = userService.findByusernameUsers(userInfo);
+		System.out.println(oldpass);
+		System.out.println(newpass);
+		String opass = users.getPasswordUsers();
+		String encodenewpass = pass.encode(newpass);
+		if(pass.matches(oldpass, opass)) {
+			users.setPasswordUsers(encodenewpass);
+			userService.save(users);
+		}else {
+			System.out.println("wrong password");
+			String mess = "Wrong password !!!";
+			model.addAttribute("message", mess);
+		}
 		return "redirect:/admin/infor";
 		}
 }
