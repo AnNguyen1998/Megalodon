@@ -122,12 +122,13 @@ public class CartControllerSon {
 		return "redirect:/cart";
 	}
 	@PostMapping("/pay")
-	public String pay(HttpServletRequest request,HttpSession session   ){
+	public String pay(HttpServletRequest request,HttpSession session,Model model  ){
 		String cancelUrl = PaypalUtils.getBaseURL(request) + "/" + URL_PAYPAL_CANCEL;
 		String successUrl = PaypalUtils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
 		double price=(double) session.getAttribute("mycarttotal");
 		if(session.getAttribute("userinfoname")==null) {
-			return "redirect:/shop";
+			
+			return "redirect:/shop?message=loginreq";
 		}else {
 		try {
 			Payment payment = paypalService.createPayment(
