@@ -32,8 +32,10 @@ public class ReplyCommentGame implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Id_comment_game")
 	private CommentGame commentGame;
-	@Column(name = "Id_users")
-	private Users idUsers;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_users")
+	private Users user;
 	@Column(name = "Content_comment", length = 65535)
 	private String contentComment;
 	@Temporal(TemporalType.DATE)
@@ -46,7 +48,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 
 	public ReplyCommentGame(CommentGame commentGame, Users idUsers, String contentComment) {
 		this.commentGame = commentGame;
-		this.idUsers = idUsers;
+		this.user = idUsers;
 		this.contentComment = contentComment;
 	}
 
@@ -70,11 +72,11 @@ public class ReplyCommentGame implements java.io.Serializable {
 
 	
 	public Users getIdUsers() {
-		return this.idUsers;
+		return this.user;
 	}
 
 	public void setIdUsers(Users idUsers) {
-		this.idUsers = idUsers;
+		this.user = idUsers;
 	}
 
 	
