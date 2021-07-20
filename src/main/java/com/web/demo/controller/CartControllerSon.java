@@ -180,7 +180,8 @@ public class CartControllerSon {
 				session.setAttribute("mycarttotal",0);
 				session.setAttribute("mycartnum", 0);
 
-				return "redirect:/shops";
+
+				return "redirect:/shop";
 
 
 			
@@ -188,6 +189,11 @@ public class CartControllerSon {
 
 				
 				
+
+				
+
+
+
 
 			}
 		} catch (PayPalRESTException e) {

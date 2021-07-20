@@ -71,10 +71,10 @@
                     <div class="col-sm-12">
                         <div class="page-title-box">
                             <div class="btn-group pull-right">
-                                <form action="admin" method="post">
+                                <form th:action="@{/chooseday}" method="post">
                                     <div class="input-group">
-                                    <input type="date" class="form-control" name="datetoday" >
-                                   	<input type="submit" hidden>
+                                    <input type="date" class="form-control" name="chooseday">
+                                	<input type="submit" hidden>
                                 </div>
                                 </form>
                             </div>
@@ -107,8 +107,8 @@
                         <div class="card-box widget-box-one">
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Purchases</p>
-                                <h2 class="text-success"><span data-plugin="counterup">52410</span></h2>
-                                <p class="text-muted m-0"><b>Last:</b> 40230</p>
+                                <h2 class="text-success"><span data-plugin="counterup" th:text="${purchases}"></span></h2>
+                                <p class="text-muted m-0"><b>Last: </b><b th:text="${purchasesys}"></b></p>
                             </div>
                         </div>
                     </div><!-- end col -->
@@ -117,8 +117,8 @@
                         <div class="card-box widget-box-one">
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-uppercase font-600 font-secondary text-overflow">Total Revenue</p>
-                                <h2 class="text-warning"><span data-plugin="counterup">652</span> </h2>
-                                <p class="text-muted m-0"><b>Last:</b> 956</p>
+                                <h2 class="text-warning"><span data-plugin="counterup" th:text="${total}"></span> </h2>
+                                <p class="text-muted m-0"><b>Last: </b><b th:text="${totalys}"></b></p>
                             </div>
                         </div>
                     </div><!-- end col -->
@@ -306,7 +306,6 @@
         }
       </script>
     <!--End chart-->
-
         <!-- jQuery  -->
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>

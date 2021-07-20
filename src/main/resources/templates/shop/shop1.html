@@ -165,7 +165,8 @@
         <div class="row">
           <div class="col-lg-2 col-md-3 col-xs-12">
             <aside>
-              <form th:action="@{'/shop/' + ${pageNo}}" class="search-form type-2">
+              <form th:action="@{${URL}}" class="search-form type-2">
+				 <input th:if="${countSearch >= size} and ${#bools.isTrue(size)}" type="hidden" name="size" th:value="${size}" />	
                  <input type="text" placeholder="Search for..." class="input-search" required="" th:name="keyword">
                  <div class="submit-search">
                     <input type="submit" value="">
@@ -400,7 +401,8 @@
                         </div>
                       </div>
 					  
-					  <form th:action="@{${URL}(keyword=${keyword})}" method="get" >
+					  <form th:action="@{${URL}}" method="get" >
+						<input th:if="${keyword}" type="hidden" name="keyword" th:value="${keyword}" />
 						<select th:name="size" class="input-field type-2 main-col" onchange="this.form.submit()">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -476,7 +478,7 @@
                           </div>
                           <div class="text">
                               <div class="empty-sm-15 empty-xs-10"></div>
-                              <h5 class="h5 caption" ><a th:href="@{'http://localhost:8080/shop/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
+                              <h5 class="h5 caption" ><a th:href="@{'/shop/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
                               <div class="empty-sm-5 empty-xs-5"></div>
                               <div class="simple-text">
                                  <p th:text="'-'+${game.discount.value}+'%'"></p>
@@ -505,7 +507,11 @@
                   </svg>  
                  </a>
 				 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-					<a th:if="${currentPage != i} and ${#bools.isTrue(keyword) or #bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${i} +'?keyword=' + ${keyword} + '&size=' + ${size}}">[[${i}]]</a>
+					<a th:if="${currentPage != i} and ${#bools.isTrue(keyword) and #bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${i} + '?keyword=' + ${keyword} + '&size=' + ${size}}">[[${i}]]</a>
+					<div th:unless="${currentPage != i} and ${#bools.isTrue(keyword) and #bools.isTrue(size)}">
+						<a th:if="${currentPage != i} and ${#bools.isTrue(keyword)}" th:href="@{${URLPage}+ '/' + ${i} + '?keyword=' + ${keyword}}">[[${i}]]</a>
+						<a th:if="${currentPage != i} and ${#bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${i} + '?size=' + ${size}}">[[${i}]]</a>
+					</div>
 					<span th:unless="${currentPage != i}">[[${i}]]</span> 
 				 </span>
                  <a href="#" class="right-arr">
