@@ -33,6 +33,8 @@ public class ReplyCommentGame implements java.io.Serializable {
 	@JoinColumn(name = "Id_comment_game")
 	private CommentGame commentGame;
 	@Column(name = "Id_users")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Id_users")
 	private Users idUsers;
 	@Column(name = "Content_comment", length = 65535)
 	private String contentComment;
