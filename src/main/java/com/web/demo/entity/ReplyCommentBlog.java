@@ -24,6 +24,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "reply_comment_blog", catalog = "megalodondb")
 public class ReplyCommentBlog implements java.io.Serializable {
+
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -47,9 +49,9 @@ public class ReplyCommentBlog implements java.io.Serializable {
 
 	
 
-	public ReplyCommentBlog(CommentBlog commentBlog, Users idUsers, String contentComment) {
+	public ReplyCommentBlog(CommentBlog commentBlog,  String contentComment) {
 		this.commentBlog = commentBlog;
-		this.user = idUsers;
+	
 		this.contentComment = contentComment;
 	}
 
@@ -72,13 +74,7 @@ public class ReplyCommentBlog implements java.io.Serializable {
 	}
 
 
-	public Users getIdUsers() {
-		return this.user;
-	}
 
-	public void setIdUsers(Users idUsers) {
-		this.user = idUsers;
-	}
 
 	
 	public String getContentComment() {
@@ -88,5 +84,25 @@ public class ReplyCommentBlog implements java.io.Serializable {
 	public void setContentComment(String contentComment) {
 		this.contentComment = contentComment;
 	}
+	public Users getUser() {
+		return user;
+	}
 
+
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+
+
+	public Date getDate() {
+		return date;
+	}
+
+
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 }

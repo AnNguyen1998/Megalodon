@@ -25,6 +25,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "comment_blog", catalog = "megalodondb")
 public class CommentBlog implements java.io.Serializable {
+
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -115,5 +117,11 @@ public class CommentBlog implements java.io.Serializable {
 	public void setReplyCommentBlogs(Set<ReplyCommentBlog> replyCommentBlogs) {
 		this.replyCommentBlogs = replyCommentBlogs;
 	}
+	public Date getDate() {
+		return date;
+	}
 
+	public void setDate(Date date) {
+		this.date = date;
+	}
 }
