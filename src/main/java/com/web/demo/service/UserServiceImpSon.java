@@ -3,7 +3,9 @@ package com.web.demo.service;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.web.demo.entity.Games;
 import com.web.demo.entity.Role;
 import com.web.demo.entity.TokenUser;
 import com.web.demo.entity.Users;
@@ -23,6 +26,8 @@ import antlr.Token;
 
 @Service
 public class UserServiceImpSon implements UserServiceSon {
+
+	
 
 	@Override
 	public Optional<Users> findById(Integer id) {
@@ -119,4 +124,5 @@ public class UserServiceImpSon implements UserServiceSon {
 		tokenrepository.save(token);
 		return user;
 	}
+	
 }

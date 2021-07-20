@@ -10,6 +10,7 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -126,7 +127,7 @@ public class CartControllerSon {
 		String successUrl = PaypalUtils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
 		double price=(double) session.getAttribute("mycarttotal");
 		if(session.getAttribute("userinfoname")==null) {
-			return "redirect:/shops";
+			return "redirect:/shop";
 		}else {
 		try {
 			Payment payment = paypalService.createPayment(
@@ -169,13 +170,21 @@ public class CartControllerSon {
 				for(Map.Entry<Integer, CartDTOSon>entry:cartitems.entrySet()) {
 					Optional<Games> game=gameservice.findById(entry.getValue().getGames().getIdGame());
 					billdetailservice.addbilldetail(addbill, game.get());
+					//
+					game.get().getUsersActive().add(user);
+					gameservice.save(game.get());
 				}
 
 				cartitems=new HashMap<>();
 				session.setAttribute("mycartitem", cartitems);
 				session.setAttribute("mycarttotal",0);
 				session.setAttribute("mycartnum", 0);
+
 				return "redirect:/shops";
+
+
+			
+
 
 				
 				
