@@ -8,6 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.mail.Multipart;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.security.core.Authentication;
@@ -31,10 +34,12 @@ import com.web.demo.entity.Bill;
 import com.web.demo.entity.Category;
 import com.web.demo.entity.Games;
 import com.web.demo.entity.Systems;
+import com.web.demo.entity.Users;
 import com.web.demo.service.AdminBillServiceAn;
 import com.web.demo.service.AdminGameServiceAn;
 import com.web.demo.service.AdminUserServiceAn;
 import com.web.demo.service.CategoryService;
+import com.web.demo.service.ImageServiceAn;
 import com.web.demo.service.SystemsService;
 
 @Controller
@@ -51,6 +56,9 @@ public class AdminControllerAn {
 	
 	@Autowired
 	SystemsService systemService;
+	
+	@Autowired
+	ImageServiceAn imgService;
 	
 	@GetMapping("admin")
 	public String adminindex(Model model, Principal principal) {
@@ -202,4 +210,38 @@ public class AdminControllerAn {
 		}
 		return "admin/customer";
 	}
+	@GetMapping("admin/infor")
+	public String infor(Model model, Principal principal) {
+		String userInfo = null;
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			userInfo = WebUtilsAn.toStringManager(loginedUser);
+			model.addAttribute("userInfo", userInfo);
+		}
+		Users user = userService.findByusernameUsers(userInfo);
+		model.addAttribute("user", user);
+		return "admin/infor";
+	}
+	@PostMapping("/saveinfor")
+	public String saveinfor(@ModelAttribute("user") Users user) {
+		userService.save(user);
+		return "redirect:/admin/infor";
+		}
+	@PostMapping("/saveavatar")
+	public String saveavatar(@ModelAttribute("user") Users user) {
+		userService.save(user);
+		return "redirect:/admin/infor";
+		}
+	@PostMapping("/savepassword")
+	public String savepassword(@ModelAttribute("user") Users user, Principal principal) {
+		String userInfo = null;
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			userInfo = WebUtilsAn.toStringManager(loginedUser);
+		}
+		//Users users = userService.findByusernameUsers(userInfo);
+		//user.getPasswordUsers();
+		userService.save(user);
+		return "redirect:/admin/infor";
+		}
 }
