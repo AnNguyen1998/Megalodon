@@ -92,15 +92,15 @@
                                             <hr/>
 
                                             <div class="text-left">
-                                                <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15" th:text="${user.nameUsers}"></span></p>
+                                                <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15" th:text="${useredit.nameUsers}"></span></p>
 
-                                                <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15" th:text="${user.phoneUsers}"></span></p>
+                                                <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15" th:text="${useredit.phoneUsers}"></span></p>
 
-                                                <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15" th:text="${user.emailUsers}"></span></p>
+                                                <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15" th:text="${useredit.emailUsers}"></span></p>
 
-                                                <p class="text-muted font-13"><strong>Birthday :</strong> <span class="m-l-15" th:text="${user.dateOfBirthday}"></span></p>
+                                                <p class="text-muted font-13"><strong>Birthday :</strong> <span class="m-l-15" th:text="${useredit.dateOfBirthday}"></span></p>
                                                 
-                                                <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15" th:text="${user.addressUsers}"></span></p>
+                                                <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15" th:text="${useredit.addressUsers}"></span></p>
                                             </div>
 
                                             <ul class="social-links list-inline m-t-30">
@@ -126,7 +126,7 @@
                                     <div class="border m-b-30"></div>
 
                                     <div class="row">
-                            <form method="post" th:action="@{/saveinfor}" th:object="${user}" data-parsley-validate novalidate>
+                            <form method="post" th:action="@{/saveinfor}" th:object="${useredit}" data-parsley-validate novalidate>
                 
                                 <div class="form-group">
                                     <label for="userName">Full Name<span class="text-danger">*</span></label>
@@ -138,10 +138,8 @@
                                     <label for="emailAddress">BirthDay<span class="text-danger">*</span></label>
 
                                     <div class="input-group">
-                                        <input type="date" class="form-control" id="" name="dateOfBirthday"
+                                        <input type="date" class="form-control" name="dateOfBirthday"
                                             th:field="*{dateOfBirthday}">
-                                        <input type="hidden" class="form-control" id="" name="idUsers"
-                                           th:field="*{idUsers}">
                                     </div>
                                     <div class="form-group">
                                         <label for="Phone">Phone<span class="text-danger">*</span></label>
@@ -233,20 +231,15 @@
             </button>
             <h4 class="custom-modal-title">Change Password</h4>
             <div class="custom-modal-title">
-                <form method="Post" th:action="@{/savepassword}" th:object="${user}">
-                  
+                <form method="Post" th:action="@{/savepassword}">
                        <div class="form-group">
                           <label for="userName">Your Password<span class="text-danger">*</span></label>
-                          <input type="text" name="pass" parsley-trigger="change" required
-                              placeholder="Enter Old Password" class="form-control" id="userName"
-                              >
-                          <input type="hidden" name="idUsers" parsley-trigger="change" required
-                          class="form-control" id="idUsers"
-                          th:field="*{idUsers}">
+                          <input type="text" name="oldpass" parsley-trigger="change" required
+                              placeholder="Enter Old Password" class="form-control" id="userName">
                        </div>
                        <div class="form-group">
                           <label for="userName">New Password<span class="text-danger">*</span></label>
-                          <input type="text" name="passwordUsers" parsley-trigger="change" required
+                          <input type="text" name="newpasswordUsers" parsley-trigger="change" required
                               placeholder="Enter New Password" class="form-control" id="userName"
                               >
                        </div>
