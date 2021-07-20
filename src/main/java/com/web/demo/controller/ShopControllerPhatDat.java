@@ -179,16 +179,15 @@ public class ShopControllerPhatDat {
 		String cmt = comment.getContentCommentGame();
 		String rep = reply.getContentComment();
 		// String cmt = params.get("cmt");
-		
-		if (user1 != null) {
-			Integer idUser = user1.getIdUsers();
+		if (user != null) {
+			
 			model.addAttribute("avatar", user1.getImageUsers());
 			model.addAttribute("usernameUsers", username);
 			if (cmt == null) {
 				comment = new CommentGame();
 				model.addAttribute("comment", comment);
 			} else {
-				commentService.addCommentGame(idGame, idUser, cmt);
+				commentService.addCommentGame(idGame, user1, cmt);
 			}
 			Integer idcmt = idCmt;
 			if(idcmt != null) {
@@ -196,7 +195,7 @@ public class ShopControllerPhatDat {
 					reply = new ReplyCommentGame();
 					model.addAttribute("reply", reply);
 				} else {
-					replyCommentService.addReplyCommentGame(idcmt, idUser, rep);
+					replyCommentService.addReplyCommentGame(idcmt, user1, rep);
 				}
 			}
 
