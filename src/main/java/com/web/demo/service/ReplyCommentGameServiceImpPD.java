@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.CommentGame;
 import com.web.demo.entity.ReplyCommentGame;
+import com.web.demo.entity.Users;
 import com.web.demo.repository.CommentGameRepositoryPD;
 import com.web.demo.repository.ReplyCommentGameRepoPD;
 
@@ -24,7 +25,7 @@ public class ReplyCommentGameServiceImpPD implements ReplyCommentGameServicePD {
 	}
 
 	@Override
-	public ReplyCommentGame addReplyCommentGame(int idCommentGame, int idUser, String repCmt) {
+	public ReplyCommentGame addReplyCommentGame(int idCommentGame, Users idUser, String repCmt) {
 		CommentGame cmt = cmtgameRepo.getOne(idCommentGame);
 		return repCmtgameRepo.saveAndFlush(new ReplyCommentGame(cmt, idUser, repCmt));
 	}

@@ -33,7 +33,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 	@JoinColumn(name = "Id_comment_game")
 	private CommentGame commentGame;
 	@Column(name = "Id_users")
-	private Integer idUsers;
+	private Users idUsers;
 	@Column(name = "Content_comment", length = 65535)
 	private String contentComment;
 	@Temporal(TemporalType.DATE)
@@ -44,7 +44,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 	public ReplyCommentGame() {
 	}
 
-	public ReplyCommentGame(CommentGame commentGame, Integer idUsers, String contentComment) {
+	public ReplyCommentGame(CommentGame commentGame, Users idUsers, String contentComment) {
 		this.commentGame = commentGame;
 		this.idUsers = idUsers;
 		this.contentComment = contentComment;
@@ -69,11 +69,11 @@ public class ReplyCommentGame implements java.io.Serializable {
 	}
 
 	
-	public Integer getIdUsers() {
+	public Users getIdUsers() {
 		return this.idUsers;
 	}
 
-	public void setIdUsers(Integer idUsers) {
+	public void setIdUsers(Users idUsers) {
 		this.idUsers = idUsers;
 	}
 

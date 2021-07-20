@@ -33,7 +33,7 @@ public class ReplyCommentBlog implements java.io.Serializable {
 	@JoinColumn(name = "Id_commnet_blog", nullable = false)
 	private CommentBlog commentBlog;
 	@Column(name = "Id_users", nullable = false)
-	private int idUsers;
+	private Users idUsers;
 	@Column(name = "Content_comment", length = 65535)
 	private String contentComment;
 	@Temporal(TemporalType.DATE)
@@ -43,12 +43,12 @@ public class ReplyCommentBlog implements java.io.Serializable {
 	public ReplyCommentBlog() {
 	}
 
-	public ReplyCommentBlog(CommentBlog commentBlog, int idUsers) {
+	public ReplyCommentBlog(CommentBlog commentBlog, Users idUsers) {
 		this.commentBlog = commentBlog;
 		this.idUsers = idUsers;
 	}
 
-	public ReplyCommentBlog(CommentBlog commentBlog, int idUsers, String contentComment) {
+	public ReplyCommentBlog(CommentBlog commentBlog, Users idUsers, String contentComment) {
 		this.commentBlog = commentBlog;
 		this.idUsers = idUsers;
 		this.contentComment = contentComment;
@@ -73,11 +73,11 @@ public class ReplyCommentBlog implements java.io.Serializable {
 	}
 
 
-	public int getIdUsers() {
+	public Users getIdUsers() {
 		return this.idUsers;
 	}
 
-	public void setIdUsers(int idUsers) {
+	public void setIdUsers(Users idUsers) {
 		this.idUsers = idUsers;
 	}
 
