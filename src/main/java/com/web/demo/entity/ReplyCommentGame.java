@@ -24,6 +24,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "reply_comment_game", catalog = "megalodondb")
 public class ReplyCommentGame implements java.io.Serializable {
+
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -46,9 +48,9 @@ public class ReplyCommentGame implements java.io.Serializable {
 	public ReplyCommentGame() {
 	}
 
-	public ReplyCommentGame(CommentGame commentGame, Users idUsers, String contentComment) {
+	public ReplyCommentGame(CommentGame commentGame,  String contentComment) {
 		this.commentGame = commentGame;
-		this.user = idUsers;
+		
 		this.contentComment = contentComment;
 	}
 
@@ -71,13 +73,7 @@ public class ReplyCommentGame implements java.io.Serializable {
 	}
 
 	
-	public Users getIdUsers() {
-		return this.user;
-	}
 
-	public void setIdUsers(Users idUsers) {
-		this.user = idUsers;
-	}
 
 	
 	public String getContentComment() {
@@ -87,5 +83,19 @@ public class ReplyCommentGame implements java.io.Serializable {
 	public void setContentComment(String contentComment) {
 		this.contentComment = contentComment;
 	}
+	public Users getUser() {
+		return user;
+	}
 
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 }
