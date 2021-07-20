@@ -468,7 +468,7 @@
                                <span class="proff" th:text="${#dates.format(cmt.date,'dd-MM-yyyyy hh:mm')}"></span>
                                <div class="empty-sm-15 empty-xs-15"></div>
                                <div class="simple-text">
-                                   <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.</p>
+                                   <p th:utext="${cmt.contentCommentBlog}"></p>
                                </div>
                                <div class="empty-sm-25 empty-xs-25"></div>
                                <span class="separator"></span>
@@ -478,6 +478,7 @@
                             </div>     
                           </div>
                         </li>
+                        <th:block th:each = "rep : ${cmt.replyCommentBlogs}">
                         <li>
                           <ul>
                             <div class="empty-sm-25 empty-xs-25"></div>
@@ -487,12 +488,12 @@
                                    <img src="img/blog/comments-2.jpg" alt="">
                                </div>
                                <div class="text">
-                                   <h5 class="h5 caption">Daniel Collins</h5>
+                                   <h5 class="h5 caption" th:text="${rep.getIdUsers().nameUsers}"></h5>
                                    <div class="empty-sm-15 empty-xs-15"></div>
-                                   <span class="proff">5 minutes ago</span>
+                                   <span class="proff" th:text="#dates.format(rep.)"></span>
                                    <div class="empty-sm-15 empty-xs-15"></div>
                                    <div class="simple-text">
-                                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                       <p th:utext="${rep.contentComment}"></p>
                                    </div>
                                    <div class="empty-sm-25 empty-xs-25"></div>
                                 </div>
@@ -504,6 +505,7 @@
                             <span class="separator"></span> 
                           </ul>
                         </li>
+                        </th:block>
                         
                       </ul>
                     </div>
