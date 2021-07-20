@@ -233,7 +233,14 @@ public class AdminControllerAn {
 		return "redirect:/admin/infor";
 		}
 	@PostMapping("/savepassword")
-	public String savepassword(@ModelAttribute("user") Users user) {
+	public String savepassword(@ModelAttribute("user") Users user, Principal principal) {
+		String userInfo = null;
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			userInfo = WebUtilsAn.toStringManager(loginedUser);
+		}
+		//Users users = userService.findByusernameUsers(userInfo);
+		//user.getPasswordUsers();
 		userService.save(user);
 		return "redirect:/admin/infor";
 		}

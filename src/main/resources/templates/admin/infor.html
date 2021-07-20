@@ -86,7 +86,7 @@
                                             </div>
 
                                             <a href="#custom-modal" class="btn btn-success btn-sm w-sm waves-effect m-t-10 waves-light" data-animation="fadein" data-plugin="custommodal"
-                                                data-overlaySpeed="200" data-overlayColor="#36404a">Edit</a>
+                                                data-overlaySpeed="200" data-overlayColor="#36404a">Change avatar</a>
                                             <a href="#custom-modal1" class="btn btn-danger btn-sm w-sm waves-effect m-t-10 waves-light" data-animation="fadein" data-plugin="custommodal"
                                             data-overlaySpeed="200" data-overlayColor="#36404a">Change Password</a>
                                             <hr/>
@@ -233,24 +233,21 @@
             </button>
             <h4 class="custom-modal-title">Change Password</h4>
             <div class="custom-modal-title">
-                <form method="Post" th:action="@{/savepassword}">
+                <form method="Post" th:action="@{/savepassword}" th:object="${user}">
                   
                        <div class="form-group">
                           <label for="userName">Your Password<span class="text-danger">*</span></label>
-                          <input type="text" name="usernameUsers" parsley-trigger="change" required
-                              placeholder="Enter Username" class="form-control" id="userName"
+                          <input type="text" name="pass" parsley-trigger="change" required
+                              placeholder="Enter Old Password" class="form-control" id="userName"
                               >
+                          <input type="hidden" name="idUsers" parsley-trigger="change" required
+                          class="form-control" id="idUsers"
+                          th:field="*{idUsers}">
                        </div>
                        <div class="form-group">
                           <label for="userName">New Password<span class="text-danger">*</span></label>
-                          <input type="text" name="usernameUsers" parsley-trigger="change" required
-                              placeholder="Enter Username" class="form-control" id="userName"
-                              >
-                       </div>
-                       <div class="form-group">
-                          <label for="userName">Check New Password<span class="text-danger">*</span></label>
-                          <input type="text" name="usernameUsers" parsley-trigger="change" required
-                              placeholder="Enter Username" class="form-control" id="userName"
+                          <input type="text" name="passwordUsers" parsley-trigger="change" required
+                              placeholder="Enter New Password" class="form-control" id="userName"
                               >
                        </div>
                        <div class="form-group pull-right clearfix">
