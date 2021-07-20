@@ -8,7 +8,8 @@
     <meta name="author" content="Coderthemes">
 
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
-
+	<!-- Custom box css -->
+    <link href="../plugins/custombox/css/custombox.min.css" rel="stylesheet">
     <title>Megalodon</title>
 
     <!-- App css -->
@@ -20,7 +21,11 @@
     <link href="../assets/css/menu.css" rel="stylesheet" type="text/css" />
     <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
-
+	
+    <!--modal  -->
+	<script src="../plugins/custombox/js/custombox.min.js"></script>
+	<script src="../plugins/custombox/js/legacy.min.js"></script>
+    
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -70,6 +75,7 @@
                                     <th>Address</th>
                                     <th>Date</th>
                                     <th>Phone</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,6 +86,7 @@
                                     <td>{{u.addressUsers}}</td>
                                     <td>{{u.dateOfBirthday}}</td>
                                     <td>{{u.phoneUsers}}</td>
+                                    
                                 </tr>
                             </tbody>
                            
