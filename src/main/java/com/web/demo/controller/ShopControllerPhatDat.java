@@ -179,7 +179,7 @@ public class ShopControllerPhatDat {
 		String cmt = comment.getContentCommentGame();
 		String rep = reply.getContentComment();
 		// String cmt = params.get("cmt");
-		if (user != null) {
+		if (user1 != null) {
 			
 			model.addAttribute("avatar", user1.getImageUsers());
 			model.addAttribute("usernameUsers", username);

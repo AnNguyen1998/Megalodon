@@ -209,7 +209,7 @@
                 <h5 class="tt h5 color-2">Price</h5>
                 <div class="empty-sm-20 empty-xs-10"></div>
                  <form th:action="@{${URL}}" class="input-range" method="get">
-                  <div class="slider-range" data-counter="$" data-position="start" data-from="1" data-to="80" data-min="0" data-max="100" >
+                  <div class="slider-range" data-counter="$" data-position="start" data-from="1" data-to="80" data-min="0" data-max="100" onchange="handleSlider()">
                     <div class="range" onchange="this.form.submit()"></div>
                     <div class="range-val flex-align">
                         <div class="range-title">
@@ -217,18 +217,14 @@
                         </div>
                         <span class="amount-start">$2</span>
                         <span>-</span>
-                        <span class="amount-end" th:name="maxPrice" th:value="80" ></span>
+                        <span class="amount-end" th:value="80"></span>
                     </div>            
                   </div>
+				  <input type="hidden" id="amount2" th:name="maxPrice">
                  </form>
 				 <script>
-					var slider = document.getElementsByClassName("slider-range");
-					var output = document.getElementById("demo");
-					output.innerHTML = slider.value;
-
-					slider.oninput = function() {
-					  output.innerHTML = this.value;
-					}
+					//xu ly script
+					
 				</script>
               </aside>
               <aside>
@@ -463,8 +459,8 @@
                 <th:block th:each="game : ${listAllGames}">
                   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                       <div class="empty-sm-50 empty-xs-50"></div>
-                      <div class="menu-item menu-item-2 type-3">
-                          <div class="image hover-zoom" >
+                      <div class="menu-item menu-item-2 type-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);margin:auto;width:105%;padding: 2px;">
+                          <div class="image hover-zoom"  style="height:150px;">
                             <a href="#" class="like-product main-fill-col">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
                                     <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
@@ -477,7 +473,7 @@
                                 </svg>
                             </a>
 							
-                           <img th:src="@{'/getgameimage/'+${game.imageDatas[0].idImage}}" alt="">
+                           <img th:src="@{'/getgameimage/'+${game.imageDatas[0].idImage}}" alt="" style="height:150px;">
                             
                               <div class="vertical-align full menu-button">
                                   <a  class="page-button button-style-1 type-4" th:href="@{'/cart/add/'+${game.idGame}}"><span class="txt">Add to cart</span></a>
@@ -485,15 +481,19 @@
                                   <a href="#" class="page-button button-style-1 type-2 open-popup" th:data-open="'popup-'+${game.idGame}" th:data-rel="${game.nameGame}"><span class="txt">quick view</span></a>
                               </div>
                           </div>
-                          <div class="text">
+                          <div class="text" style="padding:5px 5px 20px 5px;">
                               <div class="empty-sm-15 empty-xs-10"></div>
                               <h5 class="h5 caption" ><a th:href="@{'/shop/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
                               <div class="empty-sm-5 empty-xs-5"></div>
-                              <div class="simple-text">
-                                 <p th:text="'-'+${game.discount.value}+'%'"></p>
+                              <div class="simple-text" th:if="${game.discount.value != 0}">
+                                 <p th:if="${game.discount.value != 100}" style="background-color:blue;color:white;margin:10px 50px 0px 50px;font-size:20px;padding:10px 0px 10px 0px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" th:text="'-'+${game.discount.value}+'%'"></p>
+								 <p th:unless="${game.discount.value != 100}" style="background-color:blue;color:white;margin:10px 50px 0px 50px;font-size:20px;padding:10px 0px 10px 0px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">Free</p>
                               </div>
                               <div class="empty-sm-10 empty-xs-10"></div>
-                              <div class="menu-price style-2 title main-col" th:text="'$'+${game.price}"></div>
+							  <span th:if="${game.discount.value != 100}">
+								<strike th:if="${game.discount.value != 0}" th:text="'$'+${game.price}" style="margin-right: 20px"></strike>
+								<div class="menu-price style-2 title main-col" style="font-size:20px;" th:text="'$'+${game.priceFix}"></div>
+							  </span>
                           </div>
                       </div>
                   </div>

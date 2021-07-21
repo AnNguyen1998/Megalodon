@@ -27,7 +27,7 @@ public class ReplyCommentGameServiceImpPD implements ReplyCommentGameServicePD {
 	@Override
 	public ReplyCommentGame addReplyCommentGame(int idCommentGame, Users idUser, String repCmt) {
 		CommentGame cmt = cmtgameRepo.getOne(idCommentGame);
-		return repCmtgameRepo.saveAndFlush(new ReplyCommentGame(cmt, idUser, repCmt));
+		return repCmtgameRepo.saveAndFlush( new ReplyCommentGame(cmt, idUser, repCmt));
 	}
 
 }
