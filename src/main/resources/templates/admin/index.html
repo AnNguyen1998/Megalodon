@@ -134,8 +134,12 @@
                             <h4 class="header-title m-t-0">Dowloads</h4>
 
                             <div class="widget-chart text-center">
+                            
+                            	<h2 th:if="${date.dowloadSystem == 0 && purchases == 0}">No Data</h2>
+                            
                                 <div id="donutchart" style=" width: 800px; height: 500px;"></div>
-                            </div>
+                                
+                                </div>
                         </div>
                     </div><!-- end col -->
 
@@ -246,8 +250,8 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Game', 'Count'],
-          ['Game Free',     14],
-          ['Game Paid',      16]
+          ['Game Free',     "[[${date.dowloadSystem}]]"],
+          ['Game Paid',      "[[${purchases}]]"]
          
         ]);
 
@@ -267,7 +271,7 @@
   
         function drawChart() {
           var data = google.visualization.arrayToDataTable([
-            ['hour', 'Sales', 'Expenses'],
+            ['hour', 'Download', 'Access'],
             ['1',  1000,      400],
             ['2',  1170,      460],
             ['3',  660,       1120],
