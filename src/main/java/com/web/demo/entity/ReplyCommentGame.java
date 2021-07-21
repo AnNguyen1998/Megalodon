@@ -48,9 +48,9 @@ public class ReplyCommentGame implements java.io.Serializable {
 	public ReplyCommentGame() {
 	}
 
-	public ReplyCommentGame(CommentGame commentGame,  String contentComment) {
+	public ReplyCommentGame(CommentGame commentGame,Users user,  String contentComment) {
 		this.commentGame = commentGame;
-		
+		this.user=user;
 		this.contentComment = contentComment;
 	}
 
