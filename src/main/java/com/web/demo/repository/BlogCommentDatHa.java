@@ -1,5 +1,7 @@
 package com.web.demo.repository;
-
+/**
+ * @author Dat Ha
+ */
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
