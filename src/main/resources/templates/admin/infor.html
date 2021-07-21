@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
-
+		<link rel="stylesheet"
+			  href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="../assets/images/favicon.ico">
 		<!-- Custom box css -->
         <link href="../plugins/custombox/css/custombox.min.css" rel="stylesheet">
@@ -232,29 +234,72 @@
             <h4 class="custom-modal-title">Change Password</h4>
             <div class="custom-modal-title">
                 <form method="Post" th:action="@{/savepassword}">
-                       <div class="form-group">
-                          <label for="userName">Your Password<span class="text-danger">*</span></label>
-                          <input type="text" name="oldpass" parsley-trigger="change" required
-                              placeholder="Enter Old Password" class="form-control" id="userName">
+                   <div class="form-group">
+                      <label for="userName">Your Old Password<span class="text-danger">*</span></label>
+                      <input type="text" name="oldpass" parsley-trigger="change" required
+                          placeholder="Enter Old Password" class="form-control" id="userName">
+                   </div>
+                   <div class="form-group">
+                      <label for="userName">New Password<span class="text-danger">*</span></label>
+                      <input type="text" name="newpasswordUsers" parsley-trigger="change" required
+                          placeholder="Enter New Password" class="form-control" id="userName"
+                          >
+                   </div>
+                   <div class="form-group pull-right clearfix">
+                       <div class="col-sm-12 padding-left-0 padding-right-0">
+                           <button type="submit"
+                               class="btn btn-teal btn-rounded waves-light waves-effect w-md m-b-5">
+                               Save</button>
                        </div>
-                       <div class="form-group">
-                          <label for="userName">New Password<span class="text-danger">*</span></label>
-                          <input type="text" name="newpasswordUsers" parsley-trigger="change" required
-                              placeholder="Enter New Password" class="form-control" id="userName"
-                              >
-                       </div>
-                       <div class="form-group pull-right clearfix">
-                           <div class="col-sm-12 padding-left-0 padding-right-0">
-                               <button type="submit"
-                                   class="btn btn-teal btn-rounded waves-light waves-effect w-md m-b-5">
-                                   Save</button>
-                           </div>
-                       </div>
-                   
+                   </div>
                </form>
             </div>
         </div>
-
+        <!-- POP UP -->
+        <div class="popup index-popup-login" data-rel="3">
+		<div class="popup-wrap popup-layer">
+			<div class="empty-sm-0 empty-xs-15"></div>
+			<div class="container size-1">
+				<div class="popup-inner">
+					<div class="close-popup type-2">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+							viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9"
+							width="14px" height="14px">
+            <path
+								d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+								fill="#484848" />
+            </svg>
+					</div>
+		<div class="main-caption text-center color-type-2">
+				<h4 style="color: red;"  class="h4 tt" th:utext="${message}"></h4>
+			<script type="text/javascript">
+				var input = document.querySelector('#input-message');
+				var message="[[${message}]]";
+				if(message){
+					document.body.classList.add('overflow');
+					var popup = document.querySelector('.index-popup-login');
+					popup.classList.add('active');
+				}
+				</script>
+			</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		<!-- pop up -->
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/jscolor.min.js"></script>
+		<script src="js/jquery.knob.js"></script>
+		<script src="js/jquery.throttle.js"></script>
+		<script src="js/jquery.classycountdown.js"></script>
+		<script src="js/jarallax.js"></script>
+		<script src="js/all.js"></script>
+		<script src="js/color.picker.js"></script>
         <!-- jQuery  -->
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/bootstrap.min.js"></script>
