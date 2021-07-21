@@ -40,7 +40,7 @@ public class CommentBlog implements java.io.Serializable {
 	private Users users;
 	@Column(name = "Content_comment_blog", length = 65535)
 	private String contentCommentBlog;
-	@Column(name = "Name_user", nullable = false, length = 45)
+	@Column(name = "Name_user")
 	private String nameUser;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "commentBlog")
 	private Set<ReplyCommentBlog> replyCommentBlogs = new HashSet<ReplyCommentBlog>(0);

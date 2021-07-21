@@ -475,8 +475,52 @@
                                <span class="separator"></span>
                             </div>
                             <div class="reply">
-                              <a href="#" data-open="popup-reply"
-								data-rel="10" class="open-popup page-button button-style-1 sm type-3"><span class="txt">REPLY</span></a>
+                              <a href="#" th:data-open="'popup-reply'+${cmt.idCommnetBlog}"
+								th:data-rel="'comt'+${cmt.idCommnetBlog}" class="open-popup page-button button-style-1 sm type-3"><span class="txt">REPLY</span></a>
+								<div th:class="'popup index-popup-reply'+${cmt.idCommnetBlog}" th:data-rel="'comt'+${cmt.idCommnetBlog}" >
+								<div class="popup-wrap popup-layer">
+									<div class="empty-sm-0 empty-xs-15"></div>
+									<div class="container size-1">
+											<div class="popup-inner">
+					<div class="close-popup type-2">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+							viewBox="0 0 21.9 21.9" enable-background="new 0 0 21.9 21.9"
+							width="14px" height="14px">
+            <path
+								d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+								fill="#484848" />
+            </svg>
+					</div>
+					<div class="main-caption text-center color-type-2">
+						<h2 class="h4 tt" th:text="'Reply Comment for '+${cmt.users.nameUsers}"></h2>
+						<h4 style="color: red;"  class="h4 tt" th:utext="${message}"></h4>
+						
+						<!-- <h4  class="h4 tt" th:text="${message}"></h4> -->
+					</div>
+					<div class="empty-sm-30 empty-xs-30"></div>
+					<div class="empty-sm-30 empty-xs-30"></div>
+					<form th:action="@{/repcomment/add}" method="POST" role="form" th:object="${replycommentblog}" >
+					<input type="hidden" name="idcmt" th:value="${cmt.idCommnetBlog}">
+						<div class="input-field-wrap">
+							 <textarea id="elm2"  th:field="*{contentComment}"  placeholder="Comment..." class="input-field" ></textarea>
+							<div class="focus"></div>
+						</div>
+						<div class="empty-sm-30 empty-xs-20"></div>
+						<div class="text-center">
+							<div class="page-button button-style-1 type-2">
+								<button onchange="myFunction()" type="submit"> <span class="txt">REPLY</span><i></i></button>
+							</div>
+						</div>
+					</form>
+					<div class="empty-sm-30 empty-xs-30"></div>
+
+ 
+
+				</div>
+			</div>
+		</div>
+	</div>  
                             </div>     
                           </div>
                         </li>
@@ -500,10 +544,10 @@
                                    <div class="empty-sm-25 empty-xs-25"></div>
                                 </div>
                                 <div class="reply">
-                                  <a href="#" data-open="popup-reply"
-								data-rel="10" class="open-popup page-button button-style-1 sm type-3"><span class="txt">REPLY</span></a>
+                                  <a href="#" th:data-open="'popup-reply'+${cmt.idCommnetBlog}"
+								th:data-rel="'comt'+${cmt.idCommnetBlog}" class="open-popup page-button button-style-1 sm type-3"><span class="txt">REPLY</span></a>
                                 </div>
-                                <div class="popup index-popup-reply" data-rel="10" xmlns:th="http://www.thymeleaf.org" th:fragment="popupLogin">
+                                <div th:class="'popup index-popup-reply'+${cmt.idCommnetBlog}" th:data-rel="'comt'+${cmt.idCommnetBlog}" >
 								<div class="popup-wrap popup-layer">
 									<div class="empty-sm-0 empty-xs-15"></div>
 									<div class="container size-1">
@@ -526,13 +570,12 @@
 					</div>
 					<div class="empty-sm-30 empty-xs-30"></div>
 					<div class="empty-sm-30 empty-xs-30"></div>
-					<form th:action="@{#}" method="POST" role="form" >
+					<form th:action="@{/repcomment/add}" method="POST" role="form" th:object="${replycommentblog}" >
+					<input type="hidden" name="idcmt" th:value="${cmt.idCommnetBlog}">
 						<div class="input-field-wrap">
-							 <textarea id="elm2" name="area"  placeholder="Comment..." class="input-field" required="required"></textarea>
+							 <textarea id="elm2"  th:field="*{contentComment}"  placeholder="Comment..." class="input-field" ></textarea>
 							<div class="focus"></div>
 						</div>
-						
-						
 						<div class="empty-sm-30 empty-xs-20"></div>
 						<div class="text-center">
 							<div class="page-button button-style-1 type-2">
@@ -563,37 +606,41 @@
                   <article>
                     <div class="text-left color-type-2">
                       <h4 class="h4 tt color-type-1">leave a comment</h4>
+                      
                     </div>
                     <div class="empty-sm-45 empty-xs-30"></div>
-                    <form th:action="@{/commentblog/add}" novalidate th:object="${commentblog}" method="post">
-                    <input type="hidden" name="idblog" th:utext="${blogdt.idBlog}" >
+                    <form th:action="@{/commentblog/add}"  th:object="${commentblog}" method="post">
+                    	
                       <div class="row">
                         <div class="col-sm-6 col-xs-12">
                         <div class="input-field-wrap">  
-                          <input disabled="disabled" type="text" class="input-field" placeholder="Name *" th:value="${session.userinfoname}" >
+                          
+                          <input readonly="readonly" type="text" class="input-field" placeholder="Name *" th:value="${session.userinfoname}" >
+                        <input type="hidden" name="idblog" th:value="${blogdt.idBlog}">
+                          
                           <div class="focus"></div>
                         </div>  
                         <div class="empty-sm-20 empty-xs-20"></div>   
                         </div>
                         <div class="col-sm-6 col-xs-12">
                         <div class="input-field-wrap">
-                          <input disabled="disabled" type="email" class="input-field" th:value="${session.userinfoemail}"> 
+                          <input readonly="readonly" type="email" class="input-field" th:value="${session.userinfoemail}"> 
                           <div class="focus"></div>
                         </div> 
                         <div class="empty-sm-20 empty-xs-20"></div>   
                         </div>
                       </div>
                       <div class="input-field-wrap">  
-                        <textarea id="elm1" name="area"  th:field="*{contentCommentBlog}" placeholder="Comment..." class="input-field" required="required"></textarea>
+                        <textarea id="elm1"  th:field="*{contentCommentBlog}" placeholder="Comment..." class="input-field" autofocus ></textarea>
                         <div class="focus"></div> 
                       </div> 
                       <div class="empty-sm-30 empty-xs-30"></div>
-                      <div class="text-left"> 
+                     <div class="text-left" > 
                         <div class="page-button button-style-1 type-2">
                            <input type="submit">
-                           <button class="txt">SUBMIT</span><i></i>
+                           <span class="txt">SUBMIT</span><i></i>
                         </div>
-                      </div>     
+                      </div>   
                      </form>
                      <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
                   </article>
@@ -977,7 +1024,7 @@
             if ($("#elm2").length > 0) {
                 tinymce.init({
                     selector: "textarea#elm2",
-                    skin: "outside",
+                  
                     menubar: false,
                     toolbar: false,
                     height: 200, 
