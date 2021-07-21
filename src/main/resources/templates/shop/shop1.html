@@ -165,8 +165,8 @@
         <div class="row">
           <div class="col-lg-2 col-md-3 col-xs-12">
             <aside>
-              <form th:action="@{${URL}}" class="search-form type-2">
-				 <input th:if="${countSearch >= size} and ${#bools.isTrue(size)}" type="hidden" name="size" th:value="${size}" />	
+              <form th:action="@{/shop/1}" class="search-form type-2">
+				 <input th:if="${countSearch >= size} and ${#bools.isTrue(size)}" type="hidden" name="size" th:value="${size}" />			 
                  <input type="text" placeholder="Search for..." class="input-search" required="" th:name="keyword">
                  <div class="submit-search">
                     <input type="submit" value="">
@@ -208,19 +208,24 @@
                 <div class="empty-sm-65 empty-xs-30"></div>
                 <h5 class="tt h5 color-2">Price</h5>
                 <div class="empty-sm-20 empty-xs-10"></div>
-                 <form action="/" class="input-range">
-                  <div class="slider-range" data-counter="$" data-position="start" data-from="2" data-to="300" data-min="0" data-max="400">
-                    <div class="range"></div>
+                 <form th:action="@{${URL}}" class="input-range" method="get">
+                  <div class="slider-range" data-counter="$" data-position="start" data-from="1" data-to="80" data-min="0" data-max="100" onchange="handleSlider()">
+                    <div class="range" onchange="this.form.submit()"></div>
                     <div class="range-val flex-align">
                         <div class="range-title">
                             Price:
                         </div>
                         <span class="amount-start">$2</span>
                         <span>-</span>
-                        <span class="amount-end" value="$300"></span>
+                        <span class="amount-end" th:value="80"></span>
                     </div>            
                   </div>
+				  <input type="hidden" id="amount2" th:name="maxPrice">
                  </form>
+				 <script>
+					//xu ly script
+					
+				</script>
               </aside>
               <aside>
                 <div class="empty-sm-65 empty-xs-30"></div>
@@ -454,8 +459,8 @@
                 <th:block th:each="game : ${listAllGames}">
                   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                       <div class="empty-sm-50 empty-xs-50"></div>
-                      <div class="menu-item menu-item-2 type-3">
-                          <div class="image hover-zoom" >
+                      <div class="menu-item menu-item-2 type-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);margin:auto;width:105%;padding: 2px;">
+                          <div class="image hover-zoom"  style="height:150px;">
                             <a href="#" class="like-product main-fill-col">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.701 471.701" style="enable-background:new 0 0 471.701 471.701;" xml:space="preserve" width="16px" height="16px">
                                     <g><path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
@@ -468,7 +473,7 @@
                                 </svg>
                             </a>
 							
-                           <img th:src="@{'/getgameimage/'+${game.imageDatas[0].idImage}}" alt="">
+                           <img th:src="@{'/getgameimage/'+${game.imageDatas[0].idImage}}" alt="" style="height:150px;">
                             
                               <div class="vertical-align full menu-button">
                                   <a  class="page-button button-style-1 type-4" th:href="@{'/cart/add/'+${game.idGame}}"><span class="txt">Add to cart</span></a>
@@ -476,15 +481,19 @@
                                   <a href="#" class="page-button button-style-1 type-2 open-popup" th:data-open="'popup-'+${game.idGame}" th:data-rel="${game.nameGame}"><span class="txt">quick view</span></a>
                               </div>
                           </div>
-                          <div class="text">
+                          <div class="text" style="padding:5px 5px 20px 5px;">
                               <div class="empty-sm-15 empty-xs-10"></div>
                               <h5 class="h5 caption" ><a th:href="@{'/shop/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
                               <div class="empty-sm-5 empty-xs-5"></div>
-                              <div class="simple-text">
-                                 <p th:text="'-'+${game.discount.value}+'%'"></p>
+                              <div class="simple-text" th:if="${game.discount.value != 0}">
+                                 <p th:if="${game.discount.value != 100}" style="background-color:blue;color:white;margin:10px 50px 0px 50px;font-size:20px;padding:10px 0px 10px 0px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" th:text="'-'+${game.discount.value}+'%'"></p>
+								 <p th:unless="${game.discount.value != 100}" style="background-color:blue;color:white;margin:10px 50px 0px 50px;font-size:20px;padding:10px 0px 10px 0px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">Free</p>
                               </div>
                               <div class="empty-sm-10 empty-xs-10"></div>
-                              <div class="menu-price style-2 title main-col" th:text="'$'+${game.price}"></div>
+							  <span th:if="${game.discount.value != 100}">
+								<strike th:if="${game.discount.value != 0}" th:text="'$'+${game.price}" style="margin-right: 20px"></strike>
+								<div class="menu-price style-2 title main-col" style="font-size:20px;" th:text="'$'+${game.priceFix}"></div>
+							  </span>
                           </div>
                       </div>
                   </div>
@@ -500,12 +509,34 @@
 			
             <div class="row" th:if="${totalPages >= pageNo}">
               <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <div class="page-navigation">
-                 <a href="#" class="left-arr" >
+                <div class="page-navigation" th:with="previous=${pageNo}-1,next=${pageNo}+1">
+				<span>
+				<div th:if="${pageNo > 1}">
+                 <a th:if="${#bools.isTrue(keyword) and #bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${previous} + '?keyword=' + ${keyword} + '&size=' + ${size}}" class="left-arr" >
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve">
                   <g><path d="M222.979,5.424C219.364,1.807,215.08,0,210.132,0c-4.949,0-9.233,1.807-12.848,5.424L69.378,133.331   c-3.615,3.617-5.424,7.898-5.424,12.847c0,4.949,1.809,9.233,5.424,12.847l127.906,127.907c3.614,3.617,7.898,5.428,12.848,5.428   c4.948,0,9.232-1.811,12.847-5.428c3.617-3.614,5.427-7.898,5.427-12.847V18.271C228.405,13.322,226.596,9.042,222.979,5.424z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
                   </svg>  
                  </a>
+				 <div th:unless="${#bools.isTrue(keyword) and #bools.isTrue(size)}" >
+					<a th:if="${keyword}" th:href="@{${URLPage}+ '/' + ${previous} + '?keyword=' + ${keyword}}" class="left-arr" >
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve">
+							<g><path d="M222.979,5.424C219.364,1.807,215.08,0,210.132,0c-4.949,0-9.233,1.807-12.848,5.424L69.378,133.331   c-3.615,3.617-5.424,7.898-5.424,12.847c0,4.949,1.809,9.233,5.424,12.847l127.906,127.907c3.614,3.617,7.898,5.428,12.848,5.428   c4.948,0,9.232-1.811,12.847-5.428c3.617-3.614,5.427-7.898,5.427-12.847V18.271C228.405,13.322,226.596,9.042,222.979,5.424z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+						</svg>  
+					</a>
+					<a th:if="${size}" th:href="@{${URLPage}+ '/' + ${previous} + '?size=' + ${size}}" class="left-arr" >
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve">
+							<g><path d="M222.979,5.424C219.364,1.807,215.08,0,210.132,0c-4.949,0-9.233,1.807-12.848,5.424L69.378,133.331   c-3.615,3.617-5.424,7.898-5.424,12.847c0,4.949,1.809,9.233,5.424,12.847l127.906,127.907c3.614,3.617,7.898,5.428,12.848,5.428   c4.948,0,9.232-1.811,12.847-5.428c3.617-3.614,5.427-7.898,5.427-12.847V18.271C228.405,13.322,226.596,9.042,222.979,5.424z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+						</svg>  
+					</a>
+				</div>
+				</div>
+				<a th:unless="${pageNo > 1}" href="#" th:disabled="disabled" class="left-arr" >
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve">
+							<g><path d="M222.979,5.424C219.364,1.807,215.08,0,210.132,0c-4.949,0-9.233,1.807-12.848,5.424L69.378,133.331   c-3.615,3.617-5.424,7.898-5.424,12.847c0,4.949,1.809,9.233,5.424,12.847l127.906,127.907c3.614,3.617,7.898,5.428,12.848,5.428   c4.948,0,9.232-1.811,12.847-5.428c3.617-3.614,5.427-7.898,5.427-12.847V18.271C228.405,13.322,226.596,9.042,222.979,5.424z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+						</svg>  
+				</a>
+				</span>
+				
 				 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
 					<a th:if="${currentPage != i} and ${#bools.isTrue(keyword) and #bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${i} + '?keyword=' + ${keyword} + '&size=' + ${size}}">[[${i}]]</a>
 					<div th:unless="${currentPage != i} and ${#bools.isTrue(keyword) and #bools.isTrue(size)}">
@@ -514,11 +545,35 @@
 					</div>
 					<span th:unless="${currentPage != i}">[[${i}]]</span> 
 				 </span>
-                 <a href="#" class="right-arr">
-                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g>
+				 
+				 
+				 <span>
+				 <div th:if="${pageNo < totalPages}">
+                 <a th:if="${#bools.isTrue(keyword) and #bools.isTrue(size)}" th:href="@{${URLPage}+ '/' + ${next} + '?keyword=' + ${keyword} + '&size=' + ${size}}" class="right-arr" >
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g>
                      <path d="M222.979,133.331L95.073,5.424C91.456,1.807,87.178,0,82.226,0c-4.952,0-9.233,1.807-12.85,5.424   c-3.617,3.617-5.424,7.898-5.424,12.847v255.813c0,4.948,1.807,9.232,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428   c4.949,0,9.23-1.811,12.847-5.428l127.906-127.907c3.614-3.613,5.428-7.897,5.428-12.847   C228.407,141.229,226.594,136.948,222.979,133.331z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                   </svg>
+                   </svg> 
                  </a>
+				 <div th:unless="${#bools.isTrue(keyword) and #bools.isTrue(size)}" >
+					<a th:if="${keyword}" th:href="@{${URLPage}+ '/' + ${next} + '?keyword=' + ${keyword}}" class="right-arr" >
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g>
+							<path d="M222.979,133.331L95.073,5.424C91.456,1.807,87.178,0,82.226,0c-4.952,0-9.233,1.807-12.85,5.424   c-3.617,3.617-5.424,7.898-5.424,12.847v255.813c0,4.948,1.807,9.232,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428   c4.949,0,9.23-1.811,12.847-5.428l127.906-127.907c3.614-3.613,5.428-7.897,5.428-12.847   C228.407,141.229,226.594,136.948,222.979,133.331z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+						</svg>  
+					</a>
+					<a th:if="${size}" th:href="@{${URLPage}+ '/' + ${next} + '?size=' + ${size}}" class="right-arr" >
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g>
+							<path d="M222.979,133.331L95.073,5.424C91.456,1.807,87.178,0,82.226,0c-4.952,0-9.233,1.807-12.85,5.424   c-3.617,3.617-5.424,7.898-5.424,12.847v255.813c0,4.948,1.807,9.232,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428   c4.949,0,9.23-1.811,12.847-5.428l127.906-127.907c3.614-3.613,5.428-7.897,5.428-12.847   C228.407,141.229,226.594,136.948,222.979,133.331z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+						</svg>
+					</a>
+				  </div>
+				</div>
+				<a th:unless="${pageNo < totalPages}" href="#" class="right-arr" >
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="6px" height="8px" viewBox="0 0 292.359 292.359" style="enable-background:new 0 0 292.359 292.359;" xml:space="preserve"><g>
+						<path d="M222.979,133.331L95.073,5.424C91.456,1.807,87.178,0,82.226,0c-4.952,0-9.233,1.807-12.85,5.424   c-3.617,3.617-5.424,7.898-5.424,12.847v255.813c0,4.948,1.807,9.232,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428   c4.949,0,9.23-1.811,12.847-5.428l127.906-127.907c3.614-3.613,5.428-7.897,5.428-12.847   C228.407,141.229,226.594,136.948,222.979,133.331z" fill="#898989"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+					</svg>  
+				</a>
+				</span>
+				 
                 </div>
                 <div class="empty-lg-140 empty-md-100 empty-sm-60 empty-xs-60"></div>
               </div>
