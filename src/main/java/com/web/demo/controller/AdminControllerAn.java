@@ -282,4 +282,8 @@ public class AdminControllerAn {
 		}
 		
 		}
+	@GetMapping("admin/maintenance")
+	public String maintenance() {
+		return "admin/maintenance";
+	}
 }
