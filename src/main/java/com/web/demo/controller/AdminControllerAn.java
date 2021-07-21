@@ -271,11 +271,15 @@ public class AdminControllerAn {
 		if(pass.matches(oldpass, opass)) {
 			users.setPasswordUsers(encodenewpass);
 			userService.save(users);
+			return "redirect:/admin/infor";
 		}else {
 			System.out.println("wrong password");
-			String mess = "Wrong password !!!";
+			String mess = "Old Password is not correct !!!";
 			model.addAttribute("message", mess);
+			model.addAttribute("useredit", users);
+			model.addAttribute("userInfo", userInfo);
+			return "admin/infor";
 		}
-		return "redirect:/admin/infor";
+		
 		}
 }
