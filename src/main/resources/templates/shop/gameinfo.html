@@ -379,10 +379,10 @@
                               <li th:if="${rep.commentGame.idCommentGame == cmt.idCommentGame}">
                                 <div class="testimonials-item testi-type-4 style-2">
                                  <div class="img">   
-                                     <img src="../img/blog/comments-2.jpg" alt="">
+                                     <img th:src="@{'../img/imgUser/' + *{rep.getIdUsers().imageUsers}}" alt="">
                                  </div>
                                  <div class="text">
-                                     <h5 class="h5 caption" th:text="${rep.idUsers}"></h5>
+                                     <h5 class="h5 caption" th:text="${rep.getIdUsers().nameUsers}"></h5>
                                      <div class="empty-sm-15 empty-xs-15"></div>
                                      <span class="proff" th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></span>
                                      <div class="empty-sm-15 empty-xs-15"></div>
