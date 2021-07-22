@@ -6,14 +6,18 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,7 +47,14 @@ public class AdminBlogControllerAn {
 	ImageServiceAn imgService;
 	
 	@GetMapping("admin/listblog")
-	public String listblog() {
+	public String listblog(Model model, Principal principal) {
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			String userInfo = WebUtilsAn.toStringManager(loginedUser);
+			model.addAttribute("userInfo", userInfo);
+		}
+		List<Blog> blogs = blogService.findAll();
+		model.addAttribute("blogs", blogs);
 		return "admin/listblog";
 	}
 	@GetMapping("admin/addblog")
@@ -62,9 +73,29 @@ public class AdminBlogControllerAn {
 		model.addAttribute("blog", blog);
 		return "admin/addblog";
 	}
+	@GetMapping("/editblog/{id}")
+	public String editBlog(Model model, Principal principal, @PathVariable Integer id) {
+		String userInfo = null;
+		if (principal != null) {
+			User loginedUser = (User) ((Authentication) principal).getPrincipal();
+			userInfo = WebUtilsAn.toStringManager(loginedUser);
+			model.addAttribute("userInfo", userInfo);
+		}
+		Users user = userService.findByusernameUsers(userInfo);
+		model.addAttribute("user", user);
+		Optional<Blog> blog = blogService.findById(id);
+		Blog bl = blog.get();
+		model.addAttribute("blog", bl);
+		return "admin/addblog";
+	}
 	@PostMapping("/saveblog")
 	public String saveblog(@ModelAttribute("blog") Blog blog, @RequestParam("file") MultipartFile file, Principal principal) {
-		imgService.store(file);
+		if(!file.getOriginalFilename().isEmpty()) {
+			imgService.store(file);
+			blog.setImageBlog(file.getOriginalFilename());
+		}else {
+			
+		}
 		String userInfo = null;
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
@@ -72,10 +103,20 @@ public class AdminBlogControllerAn {
 		}
 		Users user = userService.findByusernameUsers(userInfo);
 		blog.setUsers(user);
-		Date date = new Date();
-		blog.setDateBlog(date);
-		blog.setImageBlog(file.getOriginalFilename());
+		if(blog.getIdBlog()==null) {
+			Date date = new Date();
+			blog.setDateBlog(date);
+		}
+		if(blog.getViewBlog() == null) {
+			blog.setViewBlog(0);
+		}
 		blogService.save(blog);
+		return "redirect:/admin/listblog";
+	}
+	@DeleteMapping("/deleteblog/{id}")
+	public String deleteBlog(@PathVariable Integer id) {
+		Optional<Blog> blog = blogService.findById(id);
+		blogService.delete(blog.get());
 		return "redirect:/admin/listblog";
 	}
 }
