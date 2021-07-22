@@ -60,12 +60,13 @@
                                 <form method="post" th:action="@{/saveblog}" th:object="${blog}" enctype="multipart/form-data">
                                     <div class="form-group m-b-20">
                                         <label for="exampleInputEmail1">Author</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" th:text="${user.usernameUsers}" disabled>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" th:value="${user.usernameUsers}" disabled>
+                                        <input type="hidden" class="form-control" th:field="*{idBlog}">
                                     </div>
                                     <div class="form-group m-b-20">
                                         <label class="m-b-10">Date Create Blog</label>
                                         <br/>
-                                        <input type="date" class="form-control" id="exampleInputEmail1" th:field="*{dateBlog}" th:value="${blog.dateBlog}" disabled>
+                                        <input type="date" class="form-control" id="exampleInputEmail1" th:field="*{dateBlog}" th:value="${blog.dateBlog}" readonly>
                                     </div>
                                     <div class="form-group m-b-20">
                                         <label for="exampleInputEmail1">Post Title</label>
@@ -73,12 +74,20 @@
                                     </div>
                                     <div class="form-group m-b-20">
                                         <label>Description</label>
-                                        <div class="summernote" th:field="*{contentBlog}">
-                                        </div>
+                                        <textarea class="summernote" th:field="*{contentBlog}">
+                                        </textarea>
                                     </div>
                                     <div class="form-group m-b-20">
                                         <label>File Uploads</label>
-                                        <input type="file" name="file">
+                                        <input type="file" name="file" >
+                                        <input type="hidden" th:field="*{imageBlog}">
+                                        <div class="row">
+                                           <div class="col-sm-3">
+                                           <img th:if="${blog.imageBlog != null }"
+                                            th:src="@{'/getblogimage/'+${blog.idBlog}}"
+                                            alt="image" class="img-responsive img-rounded"/>
+                                      		 </div>
+                                      		 </div>
                                     </div>
                                     
                                     <input type="submit" class="btn btn-success waves-light" value="Save and Post">
