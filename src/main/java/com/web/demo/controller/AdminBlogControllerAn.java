@@ -113,10 +113,11 @@ public class AdminBlogControllerAn {
 		blogService.save(blog);
 		return "redirect:/admin/listblog";
 	}
-	@DeleteMapping("/deleteblog/{id}")
+	@GetMapping("/deleteblog/{id}")
 	public String deleteBlog(@PathVariable Integer id) {
 		Optional<Blog> blog = blogService.findById(id);
-		blogService.delete(blog.get());
+		Blog bl = blog.get();
+		blogService.delete(bl);
 		return "redirect:/admin/listblog";
 	}
 }
