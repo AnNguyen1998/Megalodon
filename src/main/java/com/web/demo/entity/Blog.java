@@ -31,9 +31,8 @@ public class Blog implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Author_blog", nullable = false)
 	private Users users;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id_view_blog", nullable = false)
-	private ViewBlog viewBlog;
+	@Column(name = "Views")
+	private Integer viewBlog;
 	@Column(name = "Title_blog", nullable = false, length = 45)
 	private String titleBlog;
 	@Column(name = "Content_blog", length = 65535)
@@ -49,14 +48,14 @@ public class Blog implements java.io.Serializable {
 	public Blog() {
 	}
 
-	public Blog(Users users, ViewBlog viewBlog, String titleBlog, String imageBlog) {
+	public Blog(Users users, Integer viewBlog, String titleBlog, String imageBlog) {
 		this.users = users;
 		this.viewBlog = viewBlog;
 		this.titleBlog = titleBlog;
 		this.imageBlog = imageBlog;
 	}
 
-	public Blog(Users users, ViewBlog viewBlog, String titleBlog, String contentBlog, Date dateBlog, String imageBlog) {
+	public Blog(Users users, Integer viewBlog, String titleBlog, String contentBlog, Date dateBlog, String imageBlog) {
 		this.users = users;
 		this.viewBlog = viewBlog;
 		this.titleBlog = titleBlog;
@@ -85,11 +84,11 @@ public class Blog implements java.io.Serializable {
 	}
 
 	
-	public ViewBlog getViewBlog() {
+	public Integer getViewBlog() {
 		return this.viewBlog;
 	}
 
-	public void setViewBlog(ViewBlog viewBlog) {
+	public void setViewBlog(Integer viewBlog) {
 		this.viewBlog = viewBlog;
 	}
 
