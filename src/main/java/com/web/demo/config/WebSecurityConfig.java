@@ -50,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http
 				.authorizeRequests()
-				.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('EMPLOYEE')");
-		
+				.antMatchers("/admin/","/admin/listusers").access("hasRole('ADMIN')");
+		http.authorizeRequests().antMatchers("/admin/listcustomers","/admin/").access("hasRole('EMPLOYEE')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and()
 				.formLogin().successHandler(customizeAuthenticationSuccessHandler)
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/shop").usernameParameter("usernameUsers").passwordParameter("passwordUsers")
 				.failureUrl("/shop?message=error")
 				.and()
-				.logout().logoutUrl("/logout").logoutSuccessHandler(customizeLogout);
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/shop");
 		http.sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 	}
