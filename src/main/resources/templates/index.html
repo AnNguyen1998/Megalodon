@@ -121,9 +121,10 @@
             }
         }
     </style>
+	
 </head>
 
-<body class="page-color-style-1 page-style-1">
+<body class="page-color-style-1 page-style-1" >
 
     <div class="preloader">
         <div class="sk-cube-grid selected">
@@ -268,7 +269,7 @@
                    
                     <th:block th:each="slide :${slider}">
                     <div class="swiper-slide">
-                        <div class="parallax-bg layer bg"
+                        <div class="parallax-bg layer bg" id="img1"
 							th:style="'background: url(' + @{ '/getimage/'+${slide.idSlideShow}}+ ');
 							background-repeat: no-repeat;background-size: cover;'"
 							data-swiper-parallax="50%">
@@ -290,7 +291,7 @@
                                         </div>
                                         <div class="empty-sm-45  empty-xs-45"></div>
                                         <div class="button-wrap">
-                                            <a th:href="@{/shop/1}" class="page-button button-style-1"><span class="txt">Buy now</span></a>
+                                            <a th:href="@{'/shop/detailgame?id=' + ${slide.games.idGame}}" class="page-button button-style-1"><span class="txt">Buy now</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -350,10 +351,11 @@
             </div>
             <div class="empty-lg-140 empty-md-100 empty-sm-90 empty-xs-60"></div>
         </section>
-
-        <section class="section">
+		
+        <section class="section" onload = "startTimer()">
+			
             <div class="empty-lg-170 empty-md-70 empty-sm-50 empty-xs-20"></div>
-            <div class="bg layer ready data-jarallax" data-jarallax="5"
+            <div class="bg layer ready data-jarallax" data-jarallax="5" id="image-head"
                 style="background-image: url(../img/game/slider4.jpg)"></div>
             <div class="container item-animation scroll-type-1">
                 <div class="simple-item text-center color-type-1 simple-item-style-1">
@@ -374,7 +376,9 @@
                 </div>
             </div>
             <div class="empty-lg-200 empty-md-100 empty-sm-90 empty-xs-60"></div>
+			
         </section>
+
 
         <section class="section">
             <div class="empty-lg-140 empty-md-100 empty-sm-90 empty-xs-60"></div>
@@ -393,7 +397,7 @@
                 <div class="row item-animation scroll-type-1">
                     <div class="col-md-3 col-sm-6 col-xs-12" th:each="game : ${games_topSelling}">
 					
-                        <div class="menu-item menu-item-1">
+                        <div class="menu-item menu-item-1" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);margin:auto;padding: 2px;">
                             <div class="image" th:each="img : ${images2}">
                                 <span class="page-span-1 page-span"></span>
                                 <span class="page-span-2 page-span type-2"></span>
@@ -407,12 +411,21 @@
                                 </div>
                             </div>
                             <div class="text">
+                                <div class="empty-sm-50 empty-xs-50"></div>
+                                <h4 class="h4 caption" align><a th:href="@{'/shop/detailgame?id=' + ${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h4>
                                 <div class="empty-sm-20 empty-xs-20"></div>
-                                <h4 class="h4 caption" align><a href="#" class="link-hover-line" th:text="${game.nameGame}"></a></h4>
-                                <div class="empty-sm-10 empty-xs-10"></div>
-								<div class="cat" ><p th:text="${game.discount.Value}"></p><s th:text="${game.priceFix}"></s><p th:text="${game.price}"></p></div>
-								
-
+								<div class="row" style="margin: 0px 30px 0px 30px;border-radius:7px;overflow: hidden">
+									<div th:if="${game.discount.value != 0}" style="float:left;width:60%;padding:12px;height:56px;font-size:30px;background-color:#494a4d;color:white;">
+										<p th:if="${game.discount.value != 100}" th:text="'-'+${game.discount.value}+'%'"></p>
+										
+									</div>
+									<div th:if="${game.discount.value != 100}" style="float:left;width:40%;padding:5px;background-color:#7f9ac7;color:white;">
+										<s th:if="${game.discount.value != 0}" th:text="'$'+${game.price}" style="height: 50%;"></s>
+										<p th:text="'$'+${game.priceFix}" style="height: 50%;font-size:24px;"></p>
+									</div>
+									<p th:unless="${game.discount.value != 100}" >Free</p>
+								</div>
+								<div class="empty-sm-40 empty-xs-40"></div>
                             </div>
                         </div>
                         <div class="empty-sm-30 empty-xs-30"></div>
@@ -441,11 +454,12 @@
                     <div class="wrap-padding">
                         <h2 class="simple-sub-text main-col h1" th:text="${games_New.nameGame}"></h2>
                         <div class="empty-sm-10 empty-xs-10"></div>
-                        <div class="simple-text md simple-sub-text">
+                        <div style="font-size:30px;color:white;">
                             <p>Price:</p>
-                                <p style="display: inline-block;" th:text="${'- ' + games_New.discount.value + ' %'}"></p>
-								<p style="display: inline-block; margin-left: 20px;" th:text="${games_New.priceFix + ' VND'}"></p>
-								<p style="display: inline-block; margin-left: 20px;" ><strike th:text="${games_New.price + ' VND'}"></strike></p>
+                                <p th:if="${games_New.discount.value != 0} or ${games_New.discount.value != 100}" style="display: inline-block;" th:text="${'-' + games_New.discount.value + '%'}"></p>
+								<p th:unless="${games_New.discount.value != 100}" style="display: inline-block;" >Free</p>
+								<p th:if="${games_New.discount.value != 100}" style="display: inline-block; margin-left: 20px;" th:text="${'$' + games_New.priceFix}"></p>
+								<p th:if="${games_New.discount.value != 100} or ${games_New.discount.value != 0}" style="display: inline-block; margin-left: 20px;" ><strike th:text="${'$' + games_New.price}"></strike></p>
                         </div>
                     </div>
                     <div class="empty-sm-40  empty-xs-40"></div>
@@ -475,11 +489,13 @@
                                 <p></p>
                             </div>
                             <div class="empty-sm-20 empty-xs-20"></div>
-                            <div class="simple-text">
+                            <div style="font-size:20px;">
 								<p>Price:</p>
-                                <p style="display: inline-block;" th:text="${'- ' + games_Recommended.discount.value + ' %'}"></p>
-								<p style="display: inline-block; margin-left: 20px;" th:text="${games_Recommended.priceFix + ' VND'}"></p>
-								<p style="display: inline-block; margin-left: 20px;" ><strike th:text="${games_Recommended.price + ' VND'}"></strike></p>
+								<div class="empty-sm-10 empty-xs-10"></div>
+                                <p th:if="${games_Recommended.discount.value != 0} or ${games_Recommended.discount.value != 100}" style="display: inline-block;font-size:40px;color:#ed6c39;" th:text="${'-' + games_Recommended.discount.value + '%'}"></p>
+								<p th:unless="${games_Recommended.discount.value != 100}" style="display: inline-block;font-size:40px;color:#ed6c39;" >Free</p>
+								<p th:if="${games_Recommended.discount.value != 100}" style="display: inline-block; margin-left: 20px;font-size:30px;color:#6bb37e;" th:text="${'$' + games_Recommended.priceFix}"></p>
+								<p th:if="${games_Recommended.discount.value != 100} or ${games_Recommended.discount.value != 0}" style="display: inline-block; margin-left: 20px;" ><strike th:text="${'$' + games_Recommended.price}"></strike></p>
                             </div>
                             <div class="empty-sm-45  empty-xs-45"></div>
                             <a th:href="@{'/shop/detailgame?id=' + ${games_Recommended.idGame}}" 
@@ -498,7 +514,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="simple-item-style-2 simple-item">
                                     <span class="page-span-3 page-span"></span>
-                                    <img th:src="@{'/getgameimage/'+${img3.idImage}}" alt="" class="resp-img">
+                                    <img th:src="@{'/getgameimage/'+${img3.idImage}}" alt="" class="resp-img" style="height:150px;">
                                 </div>
                                 <div class="empty-sm-30 empty-xs-30"></div>
                             </div>
@@ -683,7 +699,30 @@
             });
             return false;
         }
+		
     </script>
+	
+	<script type="text/javascript">
+        function startTimer() {
+			  var i = 0;
+			  var images = [
+				  "../img/game/slider1.jpg",
+				  "../img/game/slider2.jpg",
+				  "../img/game/slider3.jpg",
+				  "../img/game/slider4.jpg"
+				]
+
+              setInterval(function() {
+					document.getElementById("image-head").style.backgroundImage = "url(" + images[i] + ")";
+					  i = i + 1;
+					  if (i == images.length) {
+						i =  0;
+					  }
+				  }, 3000);
+			  }
+      </script>
+	
+	
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>

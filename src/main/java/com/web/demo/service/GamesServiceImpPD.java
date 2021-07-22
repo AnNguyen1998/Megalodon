@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.web.demo.entity.Games;
+import com.web.demo.entity.Users;
 import com.web.demo.repository.GamesRepositoryPD;
 /*
  * @author PhatDat
@@ -120,6 +121,16 @@ public class GamesServiceImpPD implements GamesServicePD {
 	public Page<Games> findGamesByCategoryPaginated(int pageNo, int pageSize, int idCate) {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
 		return this.gamesRepository.findGamesByCateGoryPaginated(idCate, pageable);
+	}
+
+	@Override
+	public List<Games> getListRecommendGames(int id1, int id2) {	
+		return this.gamesRepository.findRecommendGames(id1, id2);
+	}
+
+	@Override
+	public Integer getActiveGame(int idGame, int idUser) {
+		return this.gamesRepository.findActiveGame(idGame, idUser);
 	}
 
 }

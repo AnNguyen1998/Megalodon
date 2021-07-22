@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.web.demo.entity.Games;
+import com.web.demo.entity.Users;
 /*
  * @author PhatDat
  */
@@ -29,4 +30,8 @@ public interface GamesServicePD {
 	public Page<Games> findGamesByCategoryPaginated(int pageNo, int pageSize, int idCate);
 
 	public int countSearchGames(String keyword);
+	
+	public List<Games> getListRecommendGames(int id1, int id2);
+	
+	public Integer getActiveGame(int idGame, int idUser);
 }
