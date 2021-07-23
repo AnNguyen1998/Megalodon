@@ -50,9 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http
 				.authorizeRequests()
-				.antMatchers("/admin/").access("hasRole('ADMIN') or hasRole('EMPLOYEE') ");
-		http.authorizeRequests().antMatchers("/admin/listcustomers").access("hasRole('EMPLOYEE')");
-		http.authorizeRequests().antMatchers("/admin/listusers","/admin/listcustomers").access("hasRole('ADMIN')");
+				.antMatchers("/admin/","/admin/listcustomers").access("hasRole('ADMIN') or hasRole('EMPLOYEE') ");
+		
+		http.authorizeRequests().antMatchers("/admin/listusers").access("hasRole('ADMIN')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and()
 				.formLogin().successHandler(customizeAuthenticationSuccessHandler)
