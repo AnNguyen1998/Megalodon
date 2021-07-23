@@ -181,6 +181,7 @@ public class CartControllerSon {
 					billdetailservice.addbilldetail(addbill, game.get());
 					//
 					game.get().getUsersActive().add(user);
+					game.get().setCountSell(game.get().getCountRate()+1);
 					gameservice.save(game.get());
 				}
 
