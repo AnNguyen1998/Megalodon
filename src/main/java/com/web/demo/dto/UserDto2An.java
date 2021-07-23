@@ -31,7 +31,7 @@ public class UserDto2An {
 //	private Set<Blog> blogs = new HashSet<Blog>(0);
 //	private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
 //	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
-	private Set<Games> GamesActive = new HashSet<Games>(0);
+//	private Set<Games> GamesActive = new HashSet<Games>(0);
 	public Integer getIdUsers() {
 		return idUsers;
 	}
@@ -129,10 +129,10 @@ public class UserDto2An {
 //		this.commentGames = commentGames;
 //	}
 	
-	public Set<Games> getGamesActive() {
-		return GamesActive;
-	}
-	public void setGamesActive(Set<Games> gamesActive) {
-		GamesActive = gamesActive;
-	}
+//	public Set<Games> getGamesActive() {
+//		return GamesActive;
+//	}
+//	public void setGamesActive(Set<Games> gamesActive) {
+//		GamesActive = gamesActive;
+//	}
 }
