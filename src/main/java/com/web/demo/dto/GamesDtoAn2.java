@@ -32,8 +32,8 @@ public class GamesDtoAn2 {
 	private String ram;
 	private String freeStorage;
 	private String vga;
-	private Set<ImageData> imageDatas = new HashSet<ImageData>(0);
-	private Set<Users> UsersActive = new HashSet<Users>(0);
+//	private Set<ImageData> imageDatas = new HashSet<ImageData>(0);
+//	private Set<Users> UsersActive = new HashSet<Users>(0);
 //	private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
 //	private Set<BillDetail> billDetails = new HashSet<BillDetail>(0);
 //	private Set<SlideShow> slideShows = new HashSet<SlideShow>(0);
@@ -145,19 +145,19 @@ public class GamesDtoAn2 {
 	public void setVga(String vga) {
 		this.vga = vga;
 	}
-	public Set<ImageData> getImageDatas() {
-		return imageDatas;
-	}
-	public void setImageDatas(Set<ImageData> imageDatas) {
-		this.imageDatas = imageDatas;
-	}
-	public Set<Users> getUsersActive() {
-		return UsersActive;
-	}
-
-	public void setUsersActive(Set<Users> usersActive) {
-		UsersActive = usersActive;
-	}
+//	public Set<ImageData> getImageDatas() {
+//		return imageDatas;
+//	}
+//	public void setImageDatas(Set<ImageData> imageDatas) {
+//		this.imageDatas = imageDatas;
+//	}
+//	public Set<Users> getUsersActive() {
+//		return UsersActive;
+//	}
+//
+//	public void setUsersActive(Set<Users> usersActive) {
+//		UsersActive = usersActive;
+//	}
 //	public Set<CommentGame> getCommentGames() {
 //		return commentGames;
 //	}

@@ -35,7 +35,7 @@ public class UsersDtoAn {
 	//private Set<Blog> blogs = new HashSet<Blog>(0);
 	//private Set<CommentBlog> commentBlogs = new HashSet<CommentBlog>(0);
 	//private Set<CommentGame> commentGames = new HashSet<CommentGame>(0);
-	private Set<Games> GamesActive = new HashSet<Games>(0);
+	private Set<GamesDtoAn> GamesActive = new HashSet<GamesDtoAn>(0);
 	public Integer getIdUsers() {
 		return idUsers;
 	}
@@ -132,12 +132,12 @@ public class UsersDtoAn {
 //	public void setCommentGames(Set<CommentGame> commentGames) {
 //		this.commentGames = commentGames;
 //	}
-	public Set<Games> getGamesActive() {
-		return GamesActive;
-	}
-	public void setGamesActive(Set<Games> gamesActive) {
-		GamesActive = gamesActive;
-	}
+//	public Set<Games> getGamesActive() {
+//		return GamesActive;
+//	}
+//	public void setGamesActive(Set<Games> gamesActive) {
+//		GamesActive = gamesActive;
+//	}
 	public RoleDtoAn getRole() {
 		return role;
 	}
