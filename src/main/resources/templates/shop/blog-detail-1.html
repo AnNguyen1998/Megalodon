@@ -111,11 +111,7 @@
     </div>
 
     <!--market-->
-    <a href="https://themeforest.net/" class="pulse-wr">
-      <div class="popup-pulse">
-          <span>$</span>18
-      </div>
-    </a>
+    
     
     <div th:insert="fragments/frShop :: header"></div> 
     
@@ -574,7 +570,7 @@
 					<input type="hidden" name="idcmt" th:value="${cmt.idCommnetBlog}">
 						<div class="input-field-wrap">
 							 <textarea id="elm2"  th:field="*{contentComment}"  placeholder="Comment..." class="input-field" ></textarea>
-							<div class="focus"></div>
+							
 						</div>
 						<div class="empty-sm-30 empty-xs-20"></div>
 						<div class="text-center">
@@ -631,7 +627,7 @@
                         </div>
                       </div>
                       <div class="input-field-wrap">  
-                        <textarea id="elm1"  th:field="*{contentCommentBlog}" placeholder="Comment..." class="input-field" autofocus ></textarea>
+                        <textarea id="elm1"  th:field="*{contentCommentBlog}" placeholder="Comment..." class="input-field"  ></textarea>
                         <div class="focus"></div> 
                       </div> 
                       <div class="empty-sm-30 empty-xs-30"></div>
