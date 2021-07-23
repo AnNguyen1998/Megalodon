@@ -4,6 +4,9 @@ package com.web.demo.controller;
  */
 
 import java.security.Principal;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -128,8 +131,7 @@ public class BlogController {
 			String userInfo = WebUtils.toString(loginedUser);
 			model.addAttribute("userInfo", userInfo);
 		}
-		List<CommentBlog> listcmt = commentblog.findAll();
-		model.addAttribute("listcmt", listcmt);
+		
 		Optional<Blog> bl = blogservice.findById(id);
 		if (bl.isPresent()) {
 			model.addAttribute("blogdt", bl.get());
@@ -169,9 +171,11 @@ public class BlogController {
 		}else {
 			Users u = userService.findByusernameUsers(session.getAttribute("userinfoname").toString());
 			Optional<CommentBlog> b=commentblog.findById(idcmt);
+			LocalDateTime ldt = LocalDateTime.now();
+			Date date2 = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
 			if (u != null) {
 				cmb.setUser(u);
-				cmb.setDate(new Date());
+				cmb.setDate(date2);
 				cmb.setCommentBlog(b.get());
 				reply.save(cmb);
 			}

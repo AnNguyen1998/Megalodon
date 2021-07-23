@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -666,6 +667,22 @@ public class ShopControllerPhatDat {
 		model.addAttribute("listcate", listcate);
 
 		return "shop/shop1";
+	}
+	
+	@PostMapping("/rating/{id}")
+	public String rate(@RequestParam float rate,@PathVariable("id") int id,HttpServletRequest req) {
+		String fe=req.getHeader("REFERER");
+		Optional<Games> game=gameService.findById(id);
+		float rating=(game.get().getRateGame()+rate)/(game.get().getCountRate()+1);
+		if (game.isPresent()) {
+			game.get().setRateGame(rating);
+			game.get().setCountRate(game.get().getCountRate()+1);
+			gameService.save(game.get());
+		}
+		
+		
+		return "redirect:"+fe;
+		
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.web.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,16 @@ import com.web.demo.repository.GamesRepositoryPD;
  */
 @Service
 public class GamesServiceImpPD implements GamesServicePD {
+	@Override
+	public <S extends Games> S save(S entity) {
+		return gamesRepository.save(entity);
+	}
+
+	@Override
+	public Optional<Games> findById(Integer id) {
+		return gamesRepository.findById(id);
+	}
+
 	@Autowired
 	private GamesRepositoryPD gamesRepository;
 	

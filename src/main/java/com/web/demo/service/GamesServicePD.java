@@ -1,6 +1,7 @@
 package com.web.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
@@ -34,4 +35,8 @@ public interface GamesServicePD {
 	public List<Games> getListRecommendGames(int id1, int id2);
 	
 	public Integer getActiveGame(int idGame, int idUser);
+
+	Optional<Games> findById(Integer id);
+
+	<S extends Games> S save(S entity);
 }

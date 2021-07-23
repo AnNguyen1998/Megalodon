@@ -453,7 +453,7 @@
                   <h2 class="h2 caption">Comments</h2>
                     <div class="empty-sm-50 empty-xs-30"></div>
                     <div class="comment-wrap">
-                      <ul th:each="cmt : ${listcmt}">
+                      <ul th:each="cmt : ${blogdt.commentBlogs}">
                         <li>
                           <div class="testimonials-item testi-type-4 style-2">
                            <div class="img">   
@@ -462,7 +462,7 @@
                            <div class="text">
                                <h5 class="h5 caption" th:text="${cmt.users.nameUsers}"></h5>
                                <div class="empty-sm-15 empty-xs-15"></div>
-                               <span class="proff" th:text="${#dates.format(cmt.date,'dd-MM-yyyy hh:mm')}"></span>
+                               <span class="proff" th:text="${#dates.format(cmt.date,'dd-MM-yyyy ')}"></span>
                                <div class="empty-sm-15 empty-xs-15"></div>
                                <div class="simple-text">
                                    <p th:utext="${cmt.contentCommentBlog}"></p>
@@ -532,7 +532,7 @@
                                <div class="text">
                                    <h5 class="h5 caption" th:text="${rep.user.nameUsers}"></h5>
                                    <div class="empty-sm-15 empty-xs-15"></div>
-                                   <span class="proff" th:text="${#dates.format(rep.date,'dd-MM-yyyy hh:mm')}"></span>
+                                   <span class="proff" th:text="${#dates.format(rep.date,'dd-MM-yyyy' )}"></span>
                                    <div class="empty-sm-15 empty-xs-15"></div>
                                    <div class="simple-text">
                                        <p th:utext="${rep.contentComment}"></p>
