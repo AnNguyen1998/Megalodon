@@ -324,7 +324,7 @@ public class ShopControllerPhatDat {
 		
 		
 		String url = request.getHeader("REFERER");
-		if(url == null) {
+		if(url == null || !url.contains("shop")) {
 			url = request.getRequestURL().toString();
 		}
 

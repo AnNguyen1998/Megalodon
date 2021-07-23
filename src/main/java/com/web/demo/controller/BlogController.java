@@ -27,10 +27,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.demo.config.WebUtils;
 import com.web.demo.entity.Blog;
+import com.web.demo.entity.Category;
 import com.web.demo.entity.CommentBlog;
 import com.web.demo.entity.ReplyCommentBlog;
 import com.web.demo.entity.Users;
 import com.web.demo.service.BlogService;
+import com.web.demo.service.CategoryService;
 import com.web.demo.service.CommentBlogService;
 import com.web.demo.service.ReplyCommentBlogService;
 import com.web.demo.service.UserServiceImpSon;
@@ -45,6 +47,8 @@ public class BlogController {
 	UserServiceImpSon userService;
 	@Autowired
 	BlogService blogservice;
+	@Autowired
+	CategoryService cateservice;
 
 	@GetMapping("blog")
 	public String blog(Model model, String message, HttpSession session, Principal principal) {
@@ -81,7 +85,8 @@ public class BlogController {
 
 		List<Blog> listblog = blogservice.findAll();
 		model.addAttribute("listblog", listblog);
-
+		List<Category> listcate = cateservice.findAll();
+		model.addAttribute("listcate", listcate);
 		return "shop/blog-1";
 	}
 

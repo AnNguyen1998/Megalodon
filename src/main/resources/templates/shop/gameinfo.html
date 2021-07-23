@@ -129,11 +129,7 @@
     </div>
 
     <!--market-->
-    <a href="https://themeforest.net/" class="pulse-wr">
-      <div class="popup-pulse">
-          <span>$</span>18
-      </div>
-    </a>
+    
     
     <div th:insert="fragments/frShop :: header"></div>
 	
@@ -372,7 +368,7 @@
                               <li>
                                 <div class="testimonials-item testi-type-4 style-2">
                                  <div class="img">   
-                                     <img th:src="@{'../img/imgUser/' + ${avatar}}" alt="">
+                                     <img th:src="@{'/images/' + ${avatar}}" alt="">
                                  </div>
                                  <div class="text">
                                      <form th:action="@{${URL}}" method="post" th:object="${reply}" >
