@@ -200,29 +200,7 @@
                   <li><a th:href="@{/shop/games/offers/1}" class="link-hover">Special Offers</a></li>
                 </ul>
               </aside>
-              <aside>
-                <div class="empty-sm-65 empty-xs-30"></div>
-                <h5 class="tt h5 color-2">Price</h5>
-                <div class="empty-sm-20 empty-xs-10"></div>
-                 <form th:action="@{${URL}}" class="input-range" method="get">
-                  <div class="slider-range" data-counter="$" data-position="start" data-from="1" data-to="80" data-min="0" data-max="100" onchange="handleSlider()">
-                    <div class="range" onchange="this.form.submit()"></div>
-                    <div class="range-val flex-align">
-                        <div class="range-title">
-                            Price:
-                        </div>
-                        <span class="amount-start">$2</span>
-                        <span>-</span>
-                        <span class="amount-end" th:value="80"></span>
-                    </div>            
-                  </div>
-				  <input type="hidden" id="amount2" th:name="maxPrice">
-                 </form>
-				 <script>
-					//xu ly script
-					
-				</script>
-              </aside>
+             
             </div>
             <div class="empty-md-0 empty-sm-30 empty-xs-30"></div>
           </div>

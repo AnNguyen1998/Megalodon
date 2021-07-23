@@ -162,6 +162,7 @@ public class ShopControllerPhatDat {
 		if (principal != null) {
 			User loginedUser = (User) ((Authentication) principal).getPrincipal();
 			Users us = userService.findByusernameUsers(loginedUser.getUsername());
+			System.out.println(loginedUser.getAuthorities());
 			session.setAttribute("userinfoname", us.getNameUsers());
 			session.setAttribute("userinfoemail", us.getEmailUsers());
 			session.setAttribute("userinfoid", us.getIdUsers());
