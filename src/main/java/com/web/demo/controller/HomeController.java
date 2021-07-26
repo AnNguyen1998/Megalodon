@@ -152,6 +152,9 @@ public class HomeController {
 //        return "index";
 //    }
 	
-
+@GetMapping("/userinfo")
+public String userinfo(Model model) {
+	return "shop/maintenance";
+}
 	
 }
