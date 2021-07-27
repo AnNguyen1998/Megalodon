@@ -191,7 +191,7 @@ public class CartControllerSon {
 				session.setAttribute("mycartnum", 0);
 
 
-				return "redirect:/shop";
+				return "redirect:/thank/"+bill.getIdBill();
 
 
 			
@@ -210,5 +210,13 @@ public class CartControllerSon {
 			log.error(e.getMessage());
 		}
 		return "redirect:/cart";
+	}
+	@GetMapping("thank/{bill}")
+	public String thk(Model model,@PathVariable("bill") int bill) {
+		
+		Optional<Bill> bil=billservice.findById(bill);
+		model.addAttribute("bill", bil.get());
+		return "shop/extras-invoice";
+				
 	}
 }

@@ -273,7 +273,7 @@ public class ShopControllerPhatDat {
 			@PathVariable(value = "pageNo", required = false) Integer pageNo,
 			@Param("keyword") String keyword, Principal principal, 
 			@RequestParam(required = false) String message,
-			@RequestParam(value = "size", defaultValue = "4") Integer pageSize,
+			@RequestParam(value = "size", defaultValue = "12") Integer pageSize,
 			Users user, HttpSession session, HttpServletRequest request) {
 
 		// Regis

@@ -135,6 +135,8 @@ public class BlogController {
 		Optional<Blog> bl = blogservice.findById(id);
 		if (bl.isPresent()) {
 			model.addAttribute("blogdt", bl.get());
+			List<Category> listcate = cateservice.findAll();
+			model.addAttribute("listcate", listcate);
 			return "shop/blog-detail-1";
 		} else {
 			return "shop/blog-1";

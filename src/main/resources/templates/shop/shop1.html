@@ -224,12 +224,11 @@
 					  <form th:action="@{${URL}}" method="get" >
 						<input th:if="${keyword}" type="hidden" name="keyword" th:value="${keyword}" />
 						<select th:name="size" class="input-field type-2 main-col" onchange="this.form.submit()">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
+							<option value="10">12</option>
+							<option value="20">24</option>
+							<option value="30">36</option>
+							
+							
 						</select>
 					  </form>
                       
@@ -271,16 +270,19 @@
                           </div>
                           <div class="text" style="padding:5px 5px 20px 5px;">
                               <div class="empty-sm-15 empty-xs-10"></div>
-                              <h5 class="h5 caption" ><a th:href="@{'/shop/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h5>
+                              <h6 class="h6 caption"><a th:href="@{'/shop/detailgame?id='+${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h6>
                               <div class="empty-sm-5 empty-xs-5"></div>
-                              <div class="simple-text" th:if="${game.discount.value != 0}">
-                                 <p th:if="${game.discount.value != 100}" style="background-color:blue;color:white;margin:10px 50px 0px 50px;font-size:20px;padding:10px 0px 10px 0px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" th:text="'-'+${game.discount.value}+'%'"></p>
-								 <p th:unless="${game.discount.value != 100}" style="background-color:blue;color:white;margin:10px 50px 0px 50px;font-size:20px;padding:10px 0px 10px 0px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">Free</p>
+                              <div class="simple-text" >
+                               		<div th:if="${game.discount.value != 100}"  class="menu-price style-2 title main-col"th:text="'-'+${game.discount.value}+'%'" style="background-color:green;color:white;padding:5px;border-radius:50%;margin: 5px 5px 0px 0px;"></div>
+								<div th:if="${game.discount.value == 100}"  class="menu-price style-2 title main-col" th:text="'FREE'" style="background-color:green;color:white;padding:5px;border-radius:50%;margin: 5px 5px 0px 0px;"></div>
+                               
                               </div>
+                              							
                               <div class="empty-sm-10 empty-xs-10"></div>
-							  <span th:if="${game.discount.value != 100}">
+							  <span >
 								<strike th:if="${game.discount.value != 0}" th:text="'$'+${game.price}" style="margin-right: 20px"></strike>
 								<div class="menu-price style-2 title main-col" style="font-size:20px;" th:text="'$'+${game.priceFix}"></div>
+								
 							  </span>
                           </div>
                       </div>

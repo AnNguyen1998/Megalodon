@@ -386,15 +386,16 @@ Fun games or games you've always been looking for. We understand how difficult t
             </div>
             <div class="custome-container">
                 <div class="row item-animation scroll-type-1">
-                    <div class="col-md-3 col-sm-6 col-xs-12" th:each="game : ${games_topSelling}">
+                <th:block th:each="game : ${games_topSelling}">
+                    <div class="col-md-3 col-sm-6 col-xs-12" >
 					
-                        <div class="menu-item menu-item-1" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);margin:auto;padding: 2px;">
-                            <div class="image" th:each="img : ${images2}">
+                        <div class="menu-item menu-item-1" >
+                            <div class="image" >
                                 <span class="page-span-1 page-span"></span>
                                 <span class="page-span-2 page-span type-2"></span>
-								<div th:if="${game.idGame == img.games.idGame}">
-									<img th:src="@{'/getgameimage/'+${img.idImage}}" alt="">
-								</div>
+								
+									<img th:src="@{'/getgameimage/'+${game.imageDatas[0].idImage}}" class="img-responsive">
+								
                                 <div class="vertical-align full menu-button">
                                     <a th:href="@{'/shop/detailgame?id=' + ${game.idGame}}" 
 									class="page-button button-style-1"><span class="txt">view
@@ -405,23 +406,13 @@ Fun games or games you've always been looking for. We understand how difficult t
                                 <div class="empty-sm-50 empty-xs-50"></div>
                                 <h4 class="h4 caption" align><a th:href="@{'/shop/detailgame?id=' + ${game.idGame}}" class="link-hover-line" th:text="${game.nameGame}"></a></h4>
                                 <div class="empty-sm-20 empty-xs-20"></div>
-								<div class="row" style="margin: 0px 30px 0px 30px;border-radius:7px;overflow: hidden">
-									<div th:if="${game.discount.value != 0}" style="float:left;width:60%;padding:12px;height:56px;font-size:30px;background-color:#494a4d;color:white;">
-										<p th:if="${game.discount.value != 100}" th:text="'-'+${game.discount.value}+'%'"></p>
-										
-									</div>
-									<div th:if="${game.discount.value != 100}" style="float:left;width:40%;padding:5px;background-color:#7f9ac7;color:white;">
-										<s th:if="${game.discount.value != 0}" th:text="'$'+${game.price}" style="height: 50%;"></s>
-										<p th:text="'$'+${game.priceFix}" style="height: 50%;font-size:24px;"></p>
-									</div>
-									<p th:unless="${game.discount.value != 100}" >Free</p>
-								</div>
+								
 								<div class="empty-sm-40 empty-xs-40"></div>
                             </div>
                         </div>
                         <div class="empty-sm-30 empty-xs-30"></div>
                     </div>
-
+</th:block>
                     <div class="text-center">
                         <div class="empty-sm-20 empty-xs-20"></div>
                         <a th:href="@{/shop/games/bestSelling/1}" class="page-button button-style-2"><span class="bg"
@@ -526,7 +517,8 @@ Fun games or games you've always been looking for. We understand how difficult t
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-sm-12">
                     <div class="footer-item">
-                        <img src="img/logo.png" alt="">
+                   
+                        <img src="img/final1.png" height="40%" width="60%" alt="">
                         <div class="empty-sm-15 empty-xs-15"></div>
                         <div class="simple-text">
                             <p>Play together, enjoy together, have fun together, that's the moment of life."‎ Live in your world, play in ours "‎. That is our concern for you.</p>
